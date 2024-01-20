@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxcvwjbfhgu6a"]
+[gd_scene load_steps=3 format=3 uid="uid://bxcvwjbfhgu6a"]
 
 [ext_resource type="Script" path="res://scripts/Boot.cs" id="1_jt8u4"]
+[ext_resource type="PackedScene" uid="uid://dpsquq25tmdhn" path="res://scenes/client.tscn" id="2_gwcce"]
 
 [node name="Boot" type="Node"]
 script = ExtResource("1_jt8u4")
+_clientScene = ExtResource("2_gwcce")

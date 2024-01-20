@@ -9,6 +9,9 @@ namespace pdxpartyparrot.ggj2024
         [Export]
         private PackedScene _dedicatedScene;
 
+        [Export]
+        private PackedScene _clientScene;
+
         public override void _Process(double delta)
         {
             if(PartyParrotManager.Instance.CommandLineArgs.ContainsKey("dedicated")) {
@@ -19,7 +22,8 @@ namespace pdxpartyparrot.ggj2024
             } else {
                 GD.Print("Starting client ...");
 
-                // ...
+                var scene = _clientScene.Instantiate();
+                GetTree().Root.AddChild(scene);
             }
 
             QueueFree();
