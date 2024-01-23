@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/Managers/LevelManager.cs" id="1_ffoc5"]
 [ext_resource type="PackedScene" uid="uid://cedaaxqwkl6mf" path="res://scenes/loading_screen.tscn" id="2_tu67g"]
 [ext_resource type="PackedScene" uid="uid://ywru8c3hxklb" path="res://scenes/main_menu.tscn" id="3_12uok"]
-[ext_resource type="PackedScene" uid="uid://bfijpu17aav6h" path="res://scenes/levels/level01.tscn" id="4_s78kb"]
+[ext_resource type="PackedScene" uid="uid://cyoxwjirorhlm" path="res://scenes/levels/lobby.tscn" id="4_rilji"]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_ffoc5")
 _loadingScreenScene = ExtResource("2_tu67g")
 _mainMenuScene = ExtResource("3_12uok")
-_initialLevelScene = ExtResource("4_s78kb")
+_initialLevelScene = ExtResource("4_rilji")

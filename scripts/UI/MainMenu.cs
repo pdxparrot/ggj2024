@@ -40,7 +40,7 @@ namespace pdxpartyparrot.ggj2024.UI
         #region Join Menu
 
         [Export]
-        private BaseButton _joinMenuBackButton;
+        private BaseButton _joinMenuJoinButton;
 
         #endregion
 
@@ -102,7 +102,7 @@ namespace pdxpartyparrot.ggj2024.UI
 
         private async void _on_host_pressed()
         {
-            await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
+            await GameManager.Instance.HostGameAsync().ConfigureAwait(false);
         }
 
         private void _on_windowed_pressed()
@@ -130,7 +130,7 @@ namespace pdxpartyparrot.ggj2024.UI
             _mainMenu.Hide();
             _joinMenu.Show();
 
-            _joinMenuBackButton.GrabFocus();
+            _joinMenuJoinButton.GrabFocus();
         }
 
         private void _on_join_back_pressed()

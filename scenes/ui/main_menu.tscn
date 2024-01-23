@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxx854vihgahm"]
+[gd_scene load_steps=4 format=3 uid="uid://dxx854vihgahm"]
 
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.cs" id="1_cimc5"]
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_ffntl"]
+[ext_resource type="Script" path="res://scripts/UI/JoinMenu.cs" id="3_v625v"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("_mainMenu", "_joinMenu", "_credits")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("_mainMenu", "_joinMenu", "_credits", "_hostButton", "_joinButton", "_creditsButton", "_joinMenuJoinButton", "_creditsBackButton")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_cimc5")
 _mainMenu = NodePath("CanvasLayer/MainMenu")
 _joinMenu = NodePath("CanvasLayer/JoinGame")
 _credits = NodePath("CanvasLayer/Credits")
+_hostButton = NodePath("CanvasLayer/MainMenu/VBoxContainer/Host")
+_joinButton = NodePath("CanvasLayer/MainMenu/VBoxContainer/Join")
+_creditsButton = NodePath("CanvasLayer/MainMenu/VBoxContainer/Credits")
+_joinMenuJoinButton = NodePath("CanvasLayer/JoinGame/VBoxContainer/HBoxContainer2/Join")
+_creditsBackButton = NodePath("CanvasLayer/Credits/VBoxContainer/Back")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -40,18 +46,38 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
-[node name="JoinGame" type="Control" parent="CanvasLayer"]
+[node name="JoinGame" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_addressInput")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("3_v625v")
+_addressInput = NodePath("VBoxContainer/HBoxContainer/LineEdit")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/JoinGame"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Back" parent="CanvasLayer/JoinGame/VBoxContainer" instance=ExtResource("2_ffntl")]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/JoinGame/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Host Address:"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/JoinGame/VBoxContainer"]
+layout_mode = 2
+
+[node name="Join" parent="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer2" instance=ExtResource("2_ffntl")]
+layout_mode = 2
+text = "Join Game"
+
+[node name="Back" parent="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer2" instance=ExtResource("2_ffntl")]
 layout_mode = 2
 text = "Back"
 
@@ -74,5 +100,6 @@ text = "Back"
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/JoinGame/VBoxContainer/Back" to="." method="_on_join_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer2/Join" to="CanvasLayer/JoinGame" method="_on_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer2/Back" to="." method="_on_join_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Credits/VBoxContainer/Back" to="." method="_on_credits_back_pressed"]

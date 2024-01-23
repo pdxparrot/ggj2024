@@ -26,7 +26,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/fps"]
 layout_mode = 2
-text = "FPS: "
+text = "FPS:"
 
 [node name="fps" type="Label" parent="CanvasLayer/VBoxContainer/fps"]
 layout_mode = 2
@@ -37,7 +37,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/static memory"]
 layout_mode = 2
-text = "Static Memory: "
+text = "Static Memory:"
 
 [node name="static memory" type="Label" parent="CanvasLayer/VBoxContainer/static memory"]
 layout_mode = 2
