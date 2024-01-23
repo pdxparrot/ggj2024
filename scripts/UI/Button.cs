@@ -2,9 +2,8 @@ using Godot;
 
 namespace pdxpartyparrot.ggj2024.UI
 {
-    public partial class Button : TextureButton
+    public partial class Button : BaseButton
     {
-        // TODO: not sure what signal to use here
         [Export]
         private AudioStreamPlayer _hoverAudioStreamPlayer;
 
@@ -13,7 +12,17 @@ namespace pdxpartyparrot.ggj2024.UI
 
         #region Signal Handlers
 
-        private void _on_Button_pressed()
+        private void _on_mouse_entered()
+        {
+            _hoverAudioStreamPlayer.Play();
+        }
+
+        private void _on_mouse_exited()
+        {
+            _hoverAudioStreamPlayer.Play();
+        }
+
+        private void _on_pressed()
         {
             _pressedAudioStreamPlayer.Play();
         }

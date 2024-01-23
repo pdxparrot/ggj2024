@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqde5dthabmu5"]
+
+[ext_resource type="Script" path="res://scripts/UI/Button.cs" id="1_wyd8i"]
+
+[node name="Button" type="Button" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wyd8i")
+_hoverAudioStreamPlayer = NodePath("Hover")
+_pressedAudioStreamPlayer = NodePath("Pressed")
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+
+[node name="Pressed" type="AudioStreamPlayer" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

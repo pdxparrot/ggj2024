@@ -80,17 +80,6 @@ namespace pdxpartyparrot.ggj2024.UI
             }
         }
 
-        public override void _EnterTree()
-        {
-            if(_playButton != null) {
-                _playButton.GrabFocus();
-            }
-
-            if(_hostButton != null) {
-                _hostButton.GrabFocus();
-            }
-        }
-
         #endregion
 
         private void UpdateFullscreenButtons()
@@ -106,19 +95,19 @@ namespace pdxpartyparrot.ggj2024.UI
 
         #region Signal Handlers
 
-        private async void _on_Play_pressed()
+        private async void _on_play_pressed()
         {
             // TODO 2024:
             //await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
         }
 
-        private async void _on_Host_pressed()
+        private async void _on_host_pressed()
         {
             // TODO 2024:
             //await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
         }
 
-        private void _on_Windowed_pressed()
+        private void _on_windowed_pressed()
         {
             PartyParrotManager.Instance.IsFullscreen = false;
 
@@ -127,7 +116,7 @@ namespace pdxpartyparrot.ggj2024.UI
             _fullscreenButton.GrabFocus();
         }
 
-        private void _on_Fullscreen_pressed()
+        private void _on_fullscreen_pressed()
         {
             PartyParrotManager.Instance.IsFullscreen = true;
 
@@ -138,7 +127,7 @@ namespace pdxpartyparrot.ggj2024.UI
 
         #region Join
 
-        private void _on_Join_pressed()
+        private void _on_join_pressed()
         {
             _mainMenu.Hide();
             _joinMenu.Show();
@@ -146,7 +135,7 @@ namespace pdxpartyparrot.ggj2024.UI
             _joinMenuBackButton.GrabFocus();
         }
 
-        private void _on_Join_Back_pressed()
+        private void _on_join_back_pressed()
         {
             _mainMenu.Show();
             _joinMenu.Hide();
@@ -158,7 +147,7 @@ namespace pdxpartyparrot.ggj2024.UI
 
         #region Credits
 
-        private void _on_Credits_pressed()
+        private void _on_credits_pressed()
         {
             _mainMenu.Hide();
             _credits.Show();
@@ -166,7 +155,7 @@ namespace pdxpartyparrot.ggj2024.UI
             _creditsBackButton.GrabFocus();
         }
 
-        private void _on_Credits_Back_pressed()
+        private void _on_credits_back_pressed()
         {
             _mainMenu.Show();
             _credits.Hide();
@@ -176,7 +165,7 @@ namespace pdxpartyparrot.ggj2024.UI
 
         #endregion
 
-        private void _on_Quit_pressed()
+        private void _on_quit_pressed()
         {
             PartyParrotManager.Instance.SafeQuit();
         }
