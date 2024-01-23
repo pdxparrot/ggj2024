@@ -15,12 +15,12 @@ namespace pdxpartyparrot.ggj2024
         public override void _Process(double delta)
         {
             if(PartyParrotManager.Instance.CommandLineArgs.ContainsKey("dedicated")) {
-                GD.Print("Starting dedicated server ...");
+                GD.Print("[Boot] Starting dedicated server ...");
 
                 var scene = _dedicatedScene.Instantiate();
                 GetTree().Root.AddChild(scene);
             } else {
-                GD.Print("Starting client ...");
+                GD.Print("[Boot] Starting client ...");
 
                 var scene = _clientScene.Instantiate();
                 GetTree().Root.AddChild(scene);

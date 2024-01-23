@@ -6,11 +6,18 @@ namespace pdxpartyparrot.ggj2024.UI
 {
     public partial class MainMenu : Control
     {
+        #region Sub-Menus
+
         [Export]
         private Control _mainMenu;
 
         [Export]
+        private Control _joinMenu;
+
+        [Export]
         private Control _credits;
+
+        #endregion
 
         [Export]
         private BaseButton _playButton;
@@ -30,8 +37,19 @@ namespace pdxpartyparrot.ggj2024.UI
         [Export]
         private BaseButton _fullscreenButton;
 
+        #region Join Menu
+
+        [Export]
+        private BaseButton _joinMenuBackButton;
+
+        #endregion
+
+        #region Credits
+
         [Export]
         private BaseButton _creditsBackButton;
+
+        #endregion
 
         // TODO: this belongs on the main menu state, not the UI
         [Export]
@@ -52,9 +70,14 @@ namespace pdxpartyparrot.ggj2024.UI
             UpdateFullscreenButtons();
 
             _mainMenu.Show();
+            if(_joinMenu != null) {
+                _joinMenu.Hide();
+            }
             _credits.Hide();
 
-            _musicPlayer.Play();
+            if(_musicPlayer != null) {
+                _musicPlayer.Play();
+            }
         }
 
         public override void _EnterTree()
@@ -72,8 +95,13 @@ namespace pdxpartyparrot.ggj2024.UI
 
         private void UpdateFullscreenButtons()
         {
-            _windowedButton.Visible = PartyParrotManager.Instance.IsFullscreen;
-            _fullscreenButton.Visible = !PartyParrotManager.Instance.IsFullscreen;
+            if(_windowedButton != null) {
+                _windowedButton.Visible = PartyParrotManager.Instance.IsFullscreen;
+            }
+
+            if(_fullscreenButton != null) {
+                _fullscreenButton.Visible = !PartyParrotManager.Instance.IsFullscreen;
+            }
         }
 
         #region Signal Handlers
@@ -87,11 +115,7 @@ namespace pdxpartyparrot.ggj2024.UI
         private async void _on_Host_pressed()
         {
             // TODO 2024:
-        }
-
-        private async void _on_Join_pressed()
-        {
-            // TODO 2024:
+            //await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
         }
 
         private void _on_Windowed_pressed()
@@ -112,6 +136,28 @@ namespace pdxpartyparrot.ggj2024.UI
             _windowedButton.GrabFocus();
         }
 
+        #region Join
+
+        private void _on_Join_pressed()
+        {
+            _mainMenu.Hide();
+            _joinMenu.Show();
+
+            _joinMenuBackButton.GrabFocus();
+        }
+
+        private void _on_Join_Back_pressed()
+        {
+            _mainMenu.Show();
+            _joinMenu.Hide();
+
+            _joinButton.GrabFocus();
+        }
+
+        #endregion
+
+        #region Credits
+
         private void _on_Credits_pressed()
         {
             _mainMenu.Hide();
@@ -127,6 +173,8 @@ namespace pdxpartyparrot.ggj2024.UI
 
             _creditsButton.GrabFocus();
         }
+
+        #endregion
 
         private void _on_Quit_pressed()
         {

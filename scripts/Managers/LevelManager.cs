@@ -71,11 +71,13 @@ namespace pdxpartyparrot.ggj2024.Managers
         private void UpdateProgress(float progress)
         {
             GD.Print($"[LevelManager] {progress * 100.0}%");
+            // TODO: update loading screen ?
         }
 
         private void ShowError(Error err)
         {
             GD.Print($"[LevelManager] Error loading level: {err}");
+            // TODO: show error on loading screen?
         }
 
         public async Task LoadMainMenuAsync()
@@ -86,6 +88,9 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public async Task LoadInitialLevelAsync(Action onSuccess = null)
         {
+            // TODO: this doesn't seem like it's the right move
+            // we should let the game decide what level to load depending on what it's doing
+            // (like a dedicated server may load a random level and a client may load a lobby)
             await LoadLevelAsync(_initialLevelScene, onSuccess).ConfigureAwait(false);
         }
 

@@ -35,6 +35,7 @@ namespace pdxpartyparrot.ggj2024
             if(SkipSplashImages) {
                 GD.Print("Skipping splash screen (editor) ...");
                 await LoadMainMenuAsync().ConfigureAwait(false);
+                return;
             }
 
             if(_fadeTimer.IsStopped() && _displayTimer.IsStopped()) {
@@ -82,12 +83,12 @@ namespace pdxpartyparrot.ggj2024
 
         #region Signals
 
-        private void _on_Timer_timeout()
+        private void _on_timer_timeout()
         {
             _fadeTimer.Start();
         }
 
-        private void _on_Fade_Timer_timeout()
+        private void _on_fade_timer_timeout()
         {
             _splashImage.Modulate = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         }
