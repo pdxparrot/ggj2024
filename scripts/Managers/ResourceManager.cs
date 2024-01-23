@@ -65,6 +65,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             // if the resource is already loaded, just return it
             if(ResourceLoader.HasCached(path)) {
+                GD.Print($"[ResourceManager] returning cached resource '{path}'");
                 onSuccess?.Invoke(this, new SuccessEventArgs {
                     Resource = ResourceLoader.Load(path),
                 });
@@ -74,6 +75,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             // if we're already loading this resource
             // just subscribe for notifications
             if(_loadingSet.TryGetValue(path, out Notifier notifier)) {
+                GD.Print($"[ResourceManager] registering listener for resource '{path}'");
                 notifier.SuccessEvent += onSuccess;
                 notifier.FailureEvent += onFailure;
                 notifier.ProgressEvent += onProgress;

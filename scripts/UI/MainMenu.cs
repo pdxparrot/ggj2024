@@ -97,14 +97,12 @@ namespace pdxpartyparrot.ggj2024.UI
 
         private async void _on_play_pressed()
         {
-            // TODO 2024:
-            //await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
+            await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
         }
 
         private async void _on_host_pressed()
         {
-            // TODO 2024:
-            //await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
+            await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
         }
 
         private void _on_windowed_pressed()
