@@ -1,4 +1,4 @@
-# SSJ August 2024
+# GGJ 2024
 
 ## Requirements
 

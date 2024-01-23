@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://rj05i3nux2t6"]
+
+[ext_resource type="Script" path="res://scripts/Debug/DebugMenu.cs" id="1_xammn"]
+
+[node name="DebugMenu" type="Control" node_paths=PackedStringArray("_canvas", "_fps", "_staticMemory", "_staticMemoryMax")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xammn")
+_canvas = NodePath("CanvasLayer")
+_fps = NodePath("CanvasLayer/VBoxContainer/fps/fps")
+_staticMemory = NodePath("CanvasLayer/VBoxContainer/static memory/static memory")
+_staticMemoryMax = NodePath("CanvasLayer/VBoxContainer/static memory/static memory max")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="fps" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/fps"]
+layout_mode = 2
+text = "FPS: "
+
+[node name="fps" type="Label" parent="CanvasLayer/VBoxContainer/fps"]
+layout_mode = 2
+text = "0"
+
+[node name="static memory" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/static memory"]
+layout_mode = 2
+text = "Static Memory: "
+
+[node name="static memory" type="Label" parent="CanvasLayer/VBoxContainer/static memory"]
+layout_mode = 2
+text = "0"
+
+[node name="static memory max" type="Label" parent="CanvasLayer/VBoxContainer/static memory"]
+layout_mode = 2
+text = "(0)"

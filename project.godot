@@ -18,9 +18,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 EngineManager="*res://scenes/managers/engine_manager.tscn"
-AudioManager="*res://scripts/Managers/AudioManager.cs"
 ResourceManager="*res://scripts/Managers/ResourceManager.cs"
+AudioManager="*res://scripts/Managers/AudioManager.cs"
+NetworkManager="*res://scenes/managers/network_manager.tscn"
+UiManager="*res://scenes/managers/ui_manager.tscn"
 LevelManager="*res://scripts/Managers/LevelManager.cs"
+DebugOverlay="*res://scenes/debug/debug_overlay.tscn"
+DebugMenu="*res://scenes/debug/debug_menu.tscn"
 
 [dotnet]
 

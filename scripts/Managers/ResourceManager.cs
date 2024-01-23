@@ -61,15 +61,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private readonly Dictionary<string, Notifier> _loadingSet = new Dictionary<string, Notifier>();
 
-        #region Godot Lifecycle
-
-        public override void _Ready()
-        {
-            base._Ready();
-        }
-
-        #endregion
-
         public async Task LoadResourceAsync(string path, EventHandler<SuccessEventArgs> onSuccess = null, EventHandler<FailureEventArgs> onFailure = null, EventHandler<ProgressEventArgs> onProgress = null)
         {
             // if the resource is already loaded, just return it
