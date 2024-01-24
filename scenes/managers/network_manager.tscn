@@ -9,3 +9,8 @@ _rpc = NodePath("RPC")
 
 [node name="RPC" type="Node" parent="."]
 script = ExtResource("2_26bru")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../SpawnRoot")
+
+[node name="SpawnRoot" type="Node" parent="."]

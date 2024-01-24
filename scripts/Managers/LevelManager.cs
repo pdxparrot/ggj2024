@@ -100,6 +100,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             if(IsInstanceValid(_currentLevel)) {
                 _currentLevel.QueueFree();
+                _currentLevel = null;
             }
 
             ShowLoadingScreen();

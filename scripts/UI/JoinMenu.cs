@@ -27,7 +27,9 @@ namespace pdxpartyparrot.ggj2024.UI
                 address = NetworkManager.Instance.DefaultAddress;
             }
 
-            await GameManager.Instance.JoinGameAsync(address).ConfigureAwait(false);
+            if(!await GameManager.Instance.JoinGameAsync(address).ConfigureAwait(false)) {
+                // TODO: show error
+            }
         }
 
         #endregion

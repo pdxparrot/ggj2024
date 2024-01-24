@@ -23,17 +23,23 @@ namespace pdxpartyparrot.ggj2024.Managers
             await LevelManager.Instance.LoadInitialLevelAsync().ConfigureAwait(false);
         }
 
-        public async Task HostGameAsync()
+        public async Task<bool> HostGameAsync()
         {
             GD.Print("[GameManager] Hosting game ...");
+
+            if(!NetworkManager.Instance.StartLocalServer(MaxPlayers)) {
+                return false;
+            }
 
             // TODO 2024: move this to the level
             //ViewerManager.Instance.InstanceViewers(1);
 
             await LevelManager.Instance.LoadInitialLevelAsync().ConfigureAwait(false);
+
+            return true;
         }
 
-        public async Task JoinGameAsync(string address)
+        public async Task<bool> JoinGameAsync(string address)
         {
             GD.Print("[GameManager] Joining game ...");
 
@@ -41,6 +47,8 @@ namespace pdxpartyparrot.ggj2024.Managers
             //ViewerManager.Instance.InstanceViewers(1);
 
             await LevelManager.Instance.LoadInitialLevelAsync().ConfigureAwait(false);
+
+            return true;
         }
     }
 }
