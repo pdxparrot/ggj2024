@@ -23,6 +23,7 @@ AudioManager="*res://scripts/Managers/AudioManager.cs"
 NetworkManager="*res://scenes/managers/network_manager.tscn"
 LevelManager="*res://scenes/managers/level_manager.tscn"
 GameManager="*res://scenes/managers/game_manager.tscn"
+PlayerManager="*res://scenes/managers/player_manager.tscn"
 DebugOverlay="*res://scenes/debug/debug_overlay.tscn"
 DebugMenu="*res://scenes/debug/debug_menu.tscn"
 

@@ -27,7 +27,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             GD.Print("[GameManager] Hosting game ...");
 
-            if(!NetworkManager.Instance.StartLocalServer(MaxPlayers)) {
+            if(!NetworkManager.Instance.StartLocalServer(MaxPlayers - 1)) {
                 return false;
             }
 

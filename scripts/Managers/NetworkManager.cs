@@ -32,8 +32,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         #endregion
 
-        //public event EventHandler<PeerEventArgs> LevelLoadedEvent;
-
         #endregion
 
         [Export]
@@ -58,7 +56,9 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public bool IsServer => Multiplayer.MultiplayerPeer == null ? false : Multiplayer.IsServer();
 
-        public bool IsHost => GetMultiplayerAuthority() == Multiplayer.GetUniqueId();
+        public bool IsHost => GetMultiplayerAuthority() == UniqueId;
+
+        public long UniqueId => Multiplayer.GetUniqueId();
 
         #region Godot Lifecycle
 
@@ -206,7 +206,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private void OnConnectedToServer()
         {
-            GD.Print($"[NetworkManager] Peer {Multiplayer.GetUniqueId()} connected to server!");
+            GD.Print($"[NetworkManager] Peer {UniqueId} connected to server!");
 
             ConnectedToServerEvent?.Invoke(this, EventArgs.Empty);
         }
