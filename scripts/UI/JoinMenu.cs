@@ -1,5 +1,7 @@
 using Godot;
 
+using System;
+
 using pdxpartyparrot.ggj2024.Managers;
 
 namespace pdxpartyparrot.ggj2024.UI
@@ -8,6 +10,9 @@ namespace pdxpartyparrot.ggj2024.UI
     {
         [Export]
         private LineEdit _addressInput;
+
+        [Export]
+        private Button[] _buttons = new Button[0];
 
         #region Godot Lifecycle
 
@@ -18,18 +23,38 @@ namespace pdxpartyparrot.ggj2024.UI
 
         #endregion
 
+        private void EnableControls(bool enabled)
+        {
+            foreach(var button in _buttons) {
+                button.Disabled = !enabled;
+            }
+            _addressInput.Editable = enabled;
+        }
+
         #region Signal Handlers
 
-        private async void _on_join_pressed()
+        private void _on_join_pressed()
         {
             var address = _addressInput.Text;
             if(string.IsNullOrWhiteSpace(address)) {
                 address = NetworkManager.Instance.DefaultAddress;
             }
 
-            if(!await GameManager.Instance.JoinGameAsync(address).ConfigureAwait(false)) {
-                // TODO: show error
-            }
+            NetworkManager.Instance.ConnectionFailedEvent += OnConnectionFailed;
+            GameManager.Instance.BeginJoinGame(address);
+
+            EnableControls(false);
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void OnConnectionFailed(object sender, EventArgs e)
+        {
+            NetworkManager.Instance.ConnectionFailedEvent -= OnConnectionFailed;
+
+            EnableControls(true);
         }
 
         #endregion
