@@ -6,12 +6,35 @@ namespace pdxpartyparrot.ggj2024
 {
     public partial class RPC : Node
     {
-        [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-        public void LevelLoaded(long id)
+        #region Server -> Client
+
+        public void ClientLoadLobby(long id)
         {
-            GD.Print($"Client {id} says level loaded");
+            RpcId(id, nameof(LoadLobby));
+        }
+
+        [Rpc(TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private async void LoadLobby()
+        {
+            GD.Print($"[RPC] Server says load lobby");
+
+            await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
+
+            Rpc(nameof(LobbyLoaded));
+        }
+
+        #endregion
+
+        #region Client -> Server
+
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void LobbyLoaded()
+        {
+            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says lobby loaded");
 
             //NetworkManager.Instance.LevelLoadedEvent?.Invoke(this, new PeerEventArgs { Id = id });
         }
+
+        #endregion
     }
 }

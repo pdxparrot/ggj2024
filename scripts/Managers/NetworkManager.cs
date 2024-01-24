@@ -39,6 +39,8 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private RPC _rpc;
 
+        public RPC Rpcs => _rpc;
+
         [Export]
         private MultiplayerSpawner _spawner;
 
@@ -56,7 +58,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public bool IsServer => Multiplayer.MultiplayerPeer == null ? false : Multiplayer.IsServer();
 
-        public bool IsHost => IsServer;
+        public bool IsHost => GetMultiplayerAuthority() == Multiplayer.GetUniqueId();
 
         #region Godot Lifecycle
 
@@ -204,7 +206,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private void OnConnectedToServer()
         {
-            GD.Print("[NetworkManager] Connected to server!");
+            GD.Print($"[NetworkManager] Peer {Multiplayer.GetUniqueId()} connected to server!");
 
             ConnectedToServerEvent?.Invoke(this, EventArgs.Empty);
         }

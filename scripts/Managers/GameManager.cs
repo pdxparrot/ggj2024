@@ -1,6 +1,5 @@
 using Godot;
 
-using System;
 using System.Threading.Tasks;
 
 using pdxpartyparrot.ggj2024.Util;
@@ -32,10 +31,7 @@ namespace pdxpartyparrot.ggj2024.Managers
                 return false;
             }
 
-            // TODO 2024: move this to the level
-            //ViewerManager.Instance.InstanceViewers(1);
-
-            await LevelManager.Instance.LoadInitialLevelAsync().ConfigureAwait(false);
+            await StartGameAsync().ConfigureAwait(false);
 
             return true;
         }
@@ -44,27 +40,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             GD.Print("[GameManager] Joining game ...");
 
-            NetworkManager.Instance.ConnectedToServerEvent += OnConnectedToServer;
             NetworkManager.Instance.BeginJoinGameSession(address);
-
-            // TODO 2024: move this to the level
-            //ViewerManager.Instance.InstanceViewers(1);
-
-            //await LevelManager.Instance.LoadInitialLevelAsync().ConfigureAwait(false);
         }
-
-        #region Event Handlers
-
-        private async void OnConnectedToServer(object sender, EventArgs e)
-        {
-            NetworkManager.Instance.ConnectedToServerEvent -= OnConnectedToServer;
-
-            // TODO 2024: move this to the level
-            //ViewerManager.Instance.InstanceViewers(1);
-
-            await LevelManager.Instance.LoadInitialLevelAsync().ConfigureAwait(false);
-        }
-
-        #endregion
     }
 }

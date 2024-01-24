@@ -21,7 +21,9 @@ namespace pdxpartyparrot.ggj2024.Levels
         {
             _playerCount.Text = "TODO";
 
-            if(!NetworkManager.Instance.IsHost) {
+            if(NetworkManager.Instance.IsHost) {
+                NetworkManager.Instance.PeerConnectedEvent += PeerConnectEventHandler;
+            } else {
                 _startButton.Hide();
             }
         }
@@ -39,6 +41,15 @@ namespace pdxpartyparrot.ggj2024.Levels
         private async void _on_start_pressed()
         {
             await LevelManager.Instance.LoadLevelAsync(_gameLevel).ConfigureAwait(false);
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void PeerConnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
+        {
+            NetworkManager.Instance.Rpcs.ClientLoadLobby(args.Id);
         }
 
         #endregion
