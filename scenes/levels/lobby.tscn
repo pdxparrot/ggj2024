@@ -4,9 +4,10 @@
 [ext_resource type="Script" path="res://scripts/Levels/Lobby.cs" id="1_an5xv"]
 [ext_resource type="PackedScene" uid="uid://bfijpu17aav6h" path="res://scenes/levels/level01.tscn" id="2_bb6mr"]
 
-[node name="Lobby" type="Node3D" node_paths=PackedStringArray("_playerCount")]
+[node name="Lobby" type="Node3D" node_paths=PackedStringArray("_startButton", "_playerCount")]
 script = ExtResource("1_an5xv")
 _gameLevel = ExtResource("2_bb6mr")
+_startButton = NodePath("Control/CanvasLayer/VBoxContainer/Start")
 _playerCount = NodePath("Control/CanvasLayer/VBoxContainer/HBoxContainer/PlayerCount")
 
 [node name="Control" type="Control" parent="."]

@@ -10,6 +10,9 @@ namespace pdxpartyparrot.ggj2024.Levels
         private PackedScene _gameLevel;
 
         [Export]
+        private UI.Button _startButton;
+
+        [Export]
         private Label _playerCount;
 
         #region Godot Lifecycle
@@ -17,6 +20,10 @@ namespace pdxpartyparrot.ggj2024.Levels
         public override void _Ready()
         {
             _playerCount.Text = "TODO";
+
+            if(!NetworkManager.Instance.IsHost) {
+                _startButton.Hide();
+            }
         }
 
         public override void _Process(double delta)

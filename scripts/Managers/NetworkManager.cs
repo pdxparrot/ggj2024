@@ -56,6 +56,8 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public bool IsServer => Multiplayer.MultiplayerPeer == null ? false : Multiplayer.IsServer();
 
+        public bool IsHost => IsServer;
+
         #region Godot Lifecycle
 
         public override void _EnterTree()
