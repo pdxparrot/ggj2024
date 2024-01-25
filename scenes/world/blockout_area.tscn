@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqaemh17p0ggb"]
+
+[ext_resource type="ArrayMesh" uid="uid://b5rtyigxowds3" path="res://art/environment/PlayArea_Blockout.obj" id="1_qwmu3"]
+
+[node name="BlockoutArea" type="Node3D"]
+
+[node name="PlayAreaBlockout" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.431125, 0, 2.62888)
+mesh = ExtResource("1_qwmu3")

@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=2 format=3 uid="uid://bfijpu17aav6h"]
+
+[ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
 
 [node name="Level" type="Node3D"]
 
@@ -10,4 +12,9 @@ use_collision = true
 size = Vector3(10, 0.1, 10)
 
 [node name="temp camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+transform = Transform3D(0.825317, -0.313204, 0.469846, -0.0157256, 0.819001, 0.573577, -0.564451, -0.480771, 0.67101, 119.1, 59.1216, 111.466)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="BlockoutArea" parent="World" instance=ExtResource("1_gh4wy")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
