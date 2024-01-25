@@ -13,25 +13,44 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public int MaxPlayers => _maxPlayers;
 
-        public async Task StartGameAsync()
+        [Export]
+        private PackedScene _lobbyScene;
+
+        [Export]
+        private PackedScene _gameScene;
+
+        public int LocalPlayerCount => Input.GetConnectedJoypads().Count;
+
+        #region Godot Lifecycle
+
+        public override void _Ready()
         {
-            GD.Print("[GameManager] Starting game ...");
+            base._Ready();
 
-            // TODO 2024: move this to the level
-            //ViewerManager.Instance.InstanceViewers(1);
+            GD.Print($"[GameManager] Connected joypads:");
+            foreach(var deviceId in Input.GetConnectedJoypads()) {
+                GD.Print($"{deviceId}: {Input.GetJoyName(deviceId)}");
+            }
+        }
 
-            await LevelManager.Instance.LoadInitialLevelAsync().ConfigureAwait(false);
+        #endregion
+
+        public async Task CreateGameAsync()
+        {
+            GD.Print($"[GameManager] Creating game with {PlayerManager.Instance.ReadyPlayerCount} players ...");
+
+            await LevelManager.Instance.LoadLevelAsync(_lobbyScene).ConfigureAwait(false);
         }
 
         public async Task<bool> HostGameAsync()
         {
             GD.Print("[GameManager] Hosting game ...");
 
-            if(!NetworkManager.Instance.StartLocalServer(MaxPlayers - 1)) {
+            if(!NetworkManager.Instance.StartLocalServer(MaxPlayers - LocalPlayerCount)) {
                 return false;
             }
 
-            await StartGameAsync().ConfigureAwait(false);
+            await CreateGameAsync().ConfigureAwait(false);
 
             return true;
         }
@@ -41,6 +60,25 @@ namespace pdxpartyparrot.ggj2024.Managers
             GD.Print("[GameManager] Joining game ...");
 
             NetworkManager.Instance.BeginJoinGameSession(address);
+        }
+
+        public void RegisterLocalPlayers()
+        {
+            GD.Print($"[GameManager] Registering {LocalPlayerCount} local players ...");
+            foreach(var deviceId in Input.GetConnectedJoypads()) {
+                PlayerManager.Instance.RegisterLocalPlayer(deviceId);
+            }
+        }
+
+        public async Task StartGameAsync()
+        {
+            GD.Print($"[GameManager] Starting game ...");
+
+            // TODO 2024: move this to the level
+            //ViewerManager.Instance.InstanceViewers(1);
+
+            NetworkManager.Instance.LockServer(true);
+            await LevelManager.Instance.LoadLevelAsync(_gameScene).ConfigureAwait(false);
         }
     }
 }

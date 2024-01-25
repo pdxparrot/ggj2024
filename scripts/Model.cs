@@ -19,7 +19,6 @@ namespace pdxpartyparrot.ggj2024
         public override void _Ready()
         {
             _animationStateMachine = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
-
         }
 
         #endregion

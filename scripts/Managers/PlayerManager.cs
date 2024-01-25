@@ -3,6 +3,8 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 
+using Newtonsoft.Json;
+
 using pdxpartyparrot.ggj2024.Player;
 using pdxpartyparrot.ggj2024.Util;
 
@@ -13,27 +15,76 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private PackedScene _playerScene;
 
-        private readonly Dictionary<long, SimplePlayer> _players = new Dictionary<long, SimplePlayer>();
+        private List<PlayerInfo> _players = new List<PlayerInfo>();
 
-        public IReadOnlyDictionary<long, SimplePlayer> Players => _players;
+        public int ReadyPlayerCount => _players.Count(p => p.IsReady);
 
-        public int ReadyPlayerCount => _players.Values.Count(p => p.IsReady);
-
-        public void RegisterPlayer(long clientId)
+        public string SerializePlayerState()
         {
-            GD.Print($"[PlayerManager] Registering player {clientId}...");
-
-            var player = _playerScene.Instantiate<SimplePlayer>();
-            player.ClientId = clientId;
-            player.State = SimplePlayer.PlayerState.Connected;
-            _players.Add(player.ClientId, player);
+            return JsonConvert.SerializeObject(_players);
         }
 
-        public void PlayerReady(long clientId)
+        public void DeserializePlayerState(string playerState)
         {
-            if(_players.TryGetValue(clientId, out SimplePlayer player)) {
-                player.State = SimplePlayer.PlayerState.Ready;
+            _players = JsonConvert.DeserializeObject<List<PlayerInfo>>(playerState);
+        }
+
+        public void RegisterLocalPlayer(int deviceId)
+        {
+            GD.Print($"[PlayerManager] Registering local player {deviceId}...");
+
+            var player = new PlayerInfo {
+                ClientId = 1,
+                DeviceId = deviceId,
+                State = PlayerInfo.PlayerState.Ready
+            };
+            RegisterPlayer(player);
+        }
+
+        public void RegisterRemotePlayer(long clientId)
+        {
+            GD.Print($"[PlayerManager] Registering remote player {clientId}...");
+
+            var player = new PlayerInfo {
+                ClientId = clientId,
+                DeviceId = PlayerInfo.RemotePlayerDeviceId,
+                State = PlayerInfo.PlayerState.Connected
+            };
+            RegisterPlayer(player);
+        }
+
+        private void RegisterPlayer(PlayerInfo player)
+        {
+            var existing = _players.Find(p => p.ClientId == player.ClientId && p.DeviceId == player.DeviceId);
+            if(null != existing) {
+                GD.PushWarning($"[PlayerManager] Overwriting player {player.ClientId}:{player.DeviceId} already registered!");
+                return;
             }
+            _players.Add(player);
+
+            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+        }
+
+        public void UnRegisterRemotePlayer(long clientId)
+        {
+            GD.Print($"[PlayerManager] UnRegistering remote player {clientId}...");
+            _players.RemoveAll(p => p.ClientId == clientId);
+
+            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+        }
+
+        public void RemotePlayerReady(long clientId)
+        {
+            var player = _players.Find(p => p.ClientId == clientId);
+            if(null == player) {
+                GD.PushWarning($"[PlayerManager] Failed to ready remote player {clientId}!");
+                return;
+            }
+
+            GD.Print($"[PlayerManager] Remote player {clientId} ready!");
+            player.State = PlayerInfo.PlayerState.Ready;
+
+            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
         }
     }
 }

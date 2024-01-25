@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://b54i32jei7hdt"]
+[gd_scene load_steps=5 format=3 uid="uid://b54i32jei7hdt"]
 
 [ext_resource type="Script" path="res://scripts/Player/Mecha.cs" id="1_63y7g"]
+[ext_resource type="Script" path="res://scripts/Player/MechaInput.cs" id="2_nm1nr"]
+[ext_resource type="Script" path="res://scripts/Player/MechaMovement.cs" id="3_uvfir"]
 
-[node name="Player" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t51w8"]
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("_input")]
 script = ExtResource("1_63y7g")
+_input = NodePath("Input")
+
+[node name="Input" type="MultiplayerSynchronizer" parent="."]
+script = ExtResource("2_nm1nr")
+
+[node name="Movement" type="CharacterBody3D" parent="."]
+script = ExtResource("3_uvfir")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Movement"]
+shape = SubResource("CapsuleShape3D_t51w8")

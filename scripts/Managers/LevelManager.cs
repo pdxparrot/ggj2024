@@ -17,9 +17,6 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private PackedScene _mainMenuScene;
 
-        [Export]
-        private PackedScene _initialLevelScene;
-
         private Node _currentLevel;
 
         #region Godot Lifecycle
@@ -84,14 +81,6 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             GD.Print("[LevelManager] Loading main menu ...");
             await LoadLevelAsync(_mainMenuScene).ConfigureAwait(false);
-        }
-
-        public async Task LoadInitialLevelAsync(Action onSuccess = null)
-        {
-            // TODO: this doesn't seem like it's the right move
-            // we should let the game decide what level to load depending on what it's doing
-            // (like a dedicated server may load a random level and a client may load a lobby)
-            await LoadLevelAsync(_initialLevelScene, onSuccess).ConfigureAwait(false);
         }
 
         public async Task LoadLevelAsync(PackedScene level, Action onSuccess = null)

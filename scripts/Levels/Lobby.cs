@@ -7,9 +7,6 @@ namespace pdxpartyparrot.ggj2024.Levels
     public partial class Lobby : Node
     {
         [Export]
-        private PackedScene _gameLevel;
-
-        [Export]
         private UI.Button _startButton;
 
         [Export]
@@ -20,9 +17,10 @@ namespace pdxpartyparrot.ggj2024.Levels
         public override void _Ready()
         {
             if(NetworkManager.Instance.IsHost) {
-                PlayerManager.Instance.RegisterPlayer(NetworkManager.Instance.UniqueId);
+                GameManager.Instance.RegisterLocalPlayers();
 
                 NetworkManager.Instance.PeerConnectedEvent += PeerConnectEventHandler;
+                NetworkManager.Instance.PeerDisconnectedEvent += PeerDisconnectEventHandler;
             } else {
                 _startButton.Hide();
             }
@@ -42,9 +40,9 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         #region Signal Handlers
 
-        private async void _on_start_pressed()
+        private void _on_start_pressed()
         {
-            await LevelManager.Instance.LoadLevelAsync(_gameLevel).ConfigureAwait(false);
+            NetworkManager.Instance.Rpcs.ServerStartGame();
         }
 
         #endregion
@@ -53,9 +51,14 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         private void PeerConnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
         {
-            PlayerManager.Instance.RegisterPlayer(args.Id);
+            PlayerManager.Instance.RegisterRemotePlayer(args.Id);
 
-            NetworkManager.Instance.Rpcs.ClientLoadLobby(args.Id);
+            NetworkManager.Instance.Rpcs.ServerLoadLobby(args.Id);
+        }
+
+        private void PeerDisconnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
+        {
+            PlayerManager.Instance.UnRegisterRemotePlayer(args.Id);
         }
 
         #endregion

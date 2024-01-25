@@ -126,6 +126,14 @@ namespace pdxpartyparrot.ggj2024.Managers
             Multiplayer.MultiplayerPeer = null;
         }
 
+        public void LockServer(bool locked)
+        {
+            if(IsServer) {
+                GD.Print($"[NetworkManager] {(locked ? "locking" : "unlocking")} server ...");
+                Multiplayer.MultiplayerPeer.RefuseNewConnections = locked;
+            }
+        }
+
         #endregion
 
         #region Client
