@@ -101,6 +101,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             string build = IsRelease ? "release" : IsDebug ? "debug" : "unknown";
             GD.Print($"Party Parrot Engine ({build} build) starting up...");
             GD.Print($"Godot version: {Engine.GetVersionInfo()["string"]}");
+            GD.Print($".NET version: {System.Environment.Version}");
             GD.Print($"Log path: {LogPath}");
 
             if(IsEditor) {
