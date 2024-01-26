@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=5 format=3 uid="uid://bfijpu17aav6h"]
 
+[ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
 [ext_resource type="PackedScene" uid="uid://1sbg6cmvuqi2" path="res://scenes/camera.tscn" id="2_fo1sa"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3qm2k"]
+
 [node name="Level" type="Node3D"]
+script = ExtResource("1_avn16")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 0)
@@ -14,6 +18,7 @@ size = Vector3(10, 0.1, 10)
 
 [node name="Camera" parent="." instance=ExtResource("2_fo1sa")]
 transform = Transform3D(0.825317, -0.313204, 0.469846, -0.0157256, 0.819001, 0.573576, -0.564451, -0.480771, 0.67101, 119.1, 59.122, 111.466)
+_noise = SubResource("FastNoiseLite_3qm2k")
 
 [node name="World" type="Node3D" parent="."]
 
