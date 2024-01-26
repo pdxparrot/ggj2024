@@ -12,7 +12,7 @@ namespace pdxpartyparrot.ggj2024.UI
         private LineEdit _addressInput;
 
         [Export]
-        private Button[] _buttons = new Button[0];
+        private Button[] _buttons = Array.Empty<Button>();
 
         #region Godot Lifecycle
 

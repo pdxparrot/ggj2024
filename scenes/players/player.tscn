@@ -9,9 +9,12 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u00co"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("_input")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("_input", "_movement", "_model", "_collider")]
 script = ExtResource("1_63y7g")
 _input = NodePath("Input")
+_movement = NodePath("Movement")
+_model = NodePath("Movement/Model")
+_collider = NodePath("Movement/CollisionShape3D")
 
 [node name="Input" type="MultiplayerSynchronizer" parent="."]
 script = ExtResource("2_nm1nr")
@@ -22,8 +25,8 @@ script = ExtResource("3_uvfir")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Movement"]
 shape = SubResource("CapsuleShape3D_t51w8")
 
-[node name="Model" type="Node" parent="."]
+[node name="Model" type="Node" parent="Movement"]
 script = ExtResource("4_1efev")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Model"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Movement/Model"]
 mesh = SubResource("CapsuleMesh_u00co")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccgsedax4fyfo"]
+
+[ext_resource type="Script" path="res://scripts/Managers/SpawnManager.cs" id="1_g4f1j"]
+
+[node name="SpawnManager" type="Node"]
+script = ExtResource("1_g4f1j")
+_playerSpawnPointTags = PackedStringArray("player")

@@ -25,6 +25,7 @@ LevelManager="*res://scenes/managers/level_manager.tscn"
 GameManager="*res://scenes/managers/game_manager.tscn"
 GameUiManager="*res://scenes/managers/game_ui_manager.tscn"
 PlayerManager="*res://scenes/managers/player_manager.tscn"
+SpawnManager="*res://scenes/managers/spawn_manager.tscn"
 DebugOverlay="*res://scenes/debug/debug_overlay.tscn"
 DebugMenu="*res://scenes/debug/debug_menu.tscn"
 

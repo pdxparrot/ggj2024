@@ -1,5 +1,6 @@
 using Godot;
 
+using System;
 using System.Threading.Tasks;
 
 using pdxpartyparrot.ggj2024.Managers;
@@ -15,7 +16,7 @@ namespace pdxpartyparrot.ggj2024
         private bool SkipSplashImages => _skipSplashImagesInEditor && PartyParrotManager.Instance.IsEditor;
 
         [Export]
-        private Texture2D[] _splashImages = new Texture2D[0];
+        private Texture2D[] _splashImages = Array.Empty<Texture2D>();
 
         [Export]
         private TextureRect _splashImage;
