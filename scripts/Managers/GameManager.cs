@@ -1,9 +1,10 @@
 using Godot;
 
+using System;
 using System.Threading.Tasks;
 
 using pdxpartyparrot.ggj2024.Util;
-using System;
+using pdxpartyparrot.ggj2024.Player;
 
 namespace pdxpartyparrot.ggj2024.Managers
 {
@@ -38,7 +39,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public async Task CreateGameAsync()
         {
-            GD.Print($"[GameManager] Creating game with {PlayerManager.Instance.ReadyPlayerCount} players ...");
+            GD.Print($"[GameManager] Creating game ...");
 
             await LevelManager.Instance.LoadLevelAsync(_lobbyScene).ConfigureAwait(false);
         }
@@ -63,11 +64,11 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.BeginJoinGameSession(address);
         }
 
-        public void RegisterLocalPlayers()
+        public void RegisterLocalPlayers(PlayerInfo.PlayerState initialState)
         {
             GD.Print($"[GameManager] Registering {LocalPlayerCount} local players ...");
             foreach(var deviceId in Input.GetConnectedJoypads()) {
-                PlayerManager.Instance.RegisterLocalPlayer(deviceId);
+                PlayerManager.Instance.RegisterLocalPlayer(deviceId, initialState);
                 if(PlayerManager.Instance.PlayerCount >= MaxPlayers) {
                     break;
                 }

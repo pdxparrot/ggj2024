@@ -1,6 +1,7 @@
 using Godot;
 
 using pdxpartyparrot.ggj2024.Managers;
+using pdxpartyparrot.ggj2024.Player;
 
 // TODO: move to Network namespace
 namespace pdxpartyparrot.ggj2024
@@ -64,12 +65,25 @@ namespace pdxpartyparrot.ggj2024
             RpcId(1, nameof(LobbyLoaded));
         }
 
-        [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void LobbyLoaded()
         {
             GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says lobby loaded");
 
-            PlayerManager.Instance.RemotePlayerReady(Multiplayer.GetRemoteSenderId());
+            PlayerManager.Instance.UpdateRemotePlayerState(Multiplayer.GetRemoteSenderId(), PlayerInfo.PlayerState.LobbyReady);
+        }
+
+        public void ClientArenaLoaded()
+        {
+            RpcId(1, nameof(ArenaLoaded));
+        }
+
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void ArenaLoaded()
+        {
+            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says arena loaded");
+
+            PlayerManager.Instance.UpdateRemotePlayerState(Multiplayer.GetRemoteSenderId(), PlayerInfo.PlayerState.ArenaReady);
         }
 
         #endregion

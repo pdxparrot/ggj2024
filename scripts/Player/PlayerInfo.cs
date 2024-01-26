@@ -10,7 +10,8 @@ namespace pdxpartyparrot.ggj2024.Player
         {
             Disconnected,
             Connected,
-            Ready,
+            LobbyReady,
+            ArenaReady,
         }
 
         public long ClientId { get; set; }
@@ -18,7 +19,5 @@ namespace pdxpartyparrot.ggj2024.Player
         public int DeviceId { get; set; }
 
         public PlayerState State { get; set; }
-
-        public bool IsReady => State == PlayerState.Ready;
     }
 }

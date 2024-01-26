@@ -26,8 +26,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public int PlayerCount => _players.Count;
 
-        public int ReadyPlayerCount => _players.Values.Count(p => p.IsReady);
-
         public string SerializePlayerState()
         {
             return JsonConvert.SerializeObject(_players.Values);
@@ -50,26 +48,31 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
         }
 
-        public void RegisterLocalPlayer(int deviceId)
+        public int GetPlayersInStateCount(PlayerInfo.PlayerState state)
         {
-            GD.Print($"[PlayerManager] Registering local player {deviceId}...");
+            return _players.Values.Count(player => player.State == state);
+        }
+
+        public void RegisterLocalPlayer(int deviceId, PlayerInfo.PlayerState initialState)
+        {
+            GD.Print($"[PlayerManager] Registering local player {deviceId}: {initialState}");
 
             var player = new PlayerInfo {
                 ClientId = 1,
                 DeviceId = deviceId,
-                State = PlayerInfo.PlayerState.Ready
+                State = initialState
             };
             RegisterPlayer(player);
         }
 
-        public void RegisterRemotePlayer(long clientId)
+        public void RegisterRemotePlayer(long clientId, PlayerInfo.PlayerState initialState)
         {
-            GD.Print($"[PlayerManager] Registering remote player {clientId}...");
+            GD.Print($"[PlayerManager] Registering remote player {clientId}: {initialState}");
 
             var player = new PlayerInfo {
                 ClientId = clientId,
                 DeviceId = PlayerInfo.RemotePlayerDeviceId,
-                State = PlayerInfo.PlayerState.Connected
+                State = initialState
             };
             RegisterPlayer(player);
         }
@@ -81,8 +84,8 @@ namespace pdxpartyparrot.ggj2024.Managers
                 DeviceId = player.DeviceId,
             };
 
-            if(_players.ContainsKey(key)) {
-                GD.PushWarning($"[PlayerManager] Player {player.ClientId}:{player.DeviceId} already registered!");
+            if(_players.TryGetValue(key, out var existingPlayer)) {
+                GD.PushWarning($"[PlayerManager] Player {player.ClientId}:{player.DeviceId} already registered: {existingPlayer.State}");
                 return;
             }
             _players.Add(key, player);
@@ -102,16 +105,29 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
         }
 
-        public void RemotePlayerReady(long clientId)
+        public void UpdateLocalPlayersState(PlayerInfo.PlayerState state)
+        {
+            GD.Print($"[PlayerManager] Local players update state: {state}");
+            foreach(var player in _players.Values) {
+                if(player.DeviceId == PlayerInfo.RemotePlayerDeviceId) {
+                    continue;
+                }
+                player.State = state;
+            }
+
+            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+        }
+
+        public void UpdateRemotePlayerState(long clientId, PlayerInfo.PlayerState state)
         {
             if(_players.TryGetValue(new PlayerIndex {
                 ClientId = clientId,
                 DeviceId = PlayerInfo.RemotePlayerDeviceId,
             }, out var player)) {
-                GD.Print($"[PlayerManager] Remote player {clientId} ready!");
-                player.State = PlayerInfo.PlayerState.Ready;
+                GD.Print($"[PlayerManager] Remote player {clientId} update state: {state}");
+                player.State = state;
             } else {
-                GD.PushWarning($"[PlayerManager] Failed to ready remote player {clientId}!");
+                GD.PushWarning($"[PlayerManager] Failed to update remote player {clientId} state!");
                 return;
             }
 

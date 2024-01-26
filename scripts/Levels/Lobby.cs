@@ -3,6 +3,7 @@ using Godot;
 using System;
 
 using pdxpartyparrot.ggj2024.Managers;
+using pdxpartyparrot.ggj2024.Player;
 
 namespace pdxpartyparrot.ggj2024.Levels
 {
@@ -14,6 +15,8 @@ namespace pdxpartyparrot.ggj2024.Levels
         [Export]
         private Label _playerCount;
 
+        private int ReadyPlayerCount => PlayerManager.Instance.GetPlayersInStateCount(PlayerInfo.PlayerState.LobbyReady);
+
         #region Godot Lifecycle
 
         public override void _Ready()
@@ -21,17 +24,17 @@ namespace pdxpartyparrot.ggj2024.Levels
             NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
 
             if(NetworkManager.Instance.IsHost) {
-                GameManager.Instance.RegisterLocalPlayers();
+                GameManager.Instance.RegisterLocalPlayers(PlayerInfo.PlayerState.LobbyReady);
 
                 NetworkManager.Instance.PeerConnectedEvent += PeerConnectEventHandler;
                 NetworkManager.Instance.PeerDisconnectedEvent += PeerDisconnectEventHandler;
             } else {
+                NetworkManager.Instance.Rpcs.ClientLobbyLoaded();
+
                 _startButton.Hide();
             }
 
-            NetworkManager.Instance.Rpcs.ClientLobbyLoaded();
-
-            _playerCount.Text = $"{PlayerManager.Instance.ReadyPlayerCount}/{GameManager.Instance.MaxPlayers}";
+            _playerCount.Text = $"{ReadyPlayerCount}/{GameManager.Instance.MaxPlayers}";
         }
 
         public override void _ExitTree()
@@ -44,7 +47,7 @@ namespace pdxpartyparrot.ggj2024.Levels
         public override void _Process(double delta)
         {
             // TODO: update this in an event handler, not here
-            _playerCount.Text = $"{PlayerManager.Instance.ReadyPlayerCount}/{GameManager.Instance.MaxPlayers}";
+            _playerCount.Text = $"{ReadyPlayerCount}/{GameManager.Instance.MaxPlayers}";
         }
 
         #endregion
@@ -62,7 +65,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         private void PeerConnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
         {
-            PlayerManager.Instance.RegisterRemotePlayer(args.Id);
+            PlayerManager.Instance.RegisterRemotePlayer(args.Id, PlayerInfo.PlayerState.Connected);
 
             NetworkManager.Instance.Rpcs.ServerLoadLobby(args.Id);
         }

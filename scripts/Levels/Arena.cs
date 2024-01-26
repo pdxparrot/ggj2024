@@ -3,16 +3,25 @@ using Godot;
 using System;
 
 using pdxpartyparrot.ggj2024.Managers;
+using pdxpartyparrot.ggj2024.Player;
 
 namespace pdxpartyparrot.ggj2024.Levels
 {
     public partial class Arena : Node
     {
+        private int ReadyPlayerCount => PlayerManager.Instance.GetPlayersInStateCount(PlayerInfo.PlayerState.ArenaReady);
+
         #region Godot Lifecycle
 
         public override void _Ready()
         {
             NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
+
+            if(NetworkManager.Instance.IsHost) {
+                PlayerManager.Instance.UpdateLocalPlayersState(PlayerInfo.PlayerState.ArenaReady);
+            } else {
+                NetworkManager.Instance.Rpcs.ClientArenaLoaded();
+            }
         }
 
         public override void _ExitTree()
