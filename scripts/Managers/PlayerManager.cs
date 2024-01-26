@@ -1,5 +1,6 @@
 using Godot;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +13,19 @@ namespace pdxpartyparrot.ggj2024.Managers
 {
     public partial class PlayerManager : SingletonNode<PlayerManager>
     {
+        public class PlayerStateEventArgs : EventArgs
+        {
+            public long ClientId { get; set; }
+
+            public int DeviceId { get; set; }
+        }
+
+        #region Events
+
+        public event EventHandler<PlayerStateEventArgs> PlayerStateChangedEvent;
+
+        #endregion
+
         private struct PlayerIndex
         {
             public long ClientId;
@@ -45,12 +59,30 @@ namespace pdxpartyparrot.ggj2024.Managers
                     ClientId = player.ClientId,
                     DeviceId = player.DeviceId,
                 }, player);
+
+                PlayerStateChanged(player.ClientId, player.DeviceId, false);
             }
         }
 
         public int GetPlayersInStateCount(PlayerInfo.PlayerState state)
         {
             return _players.Values.Count(player => player.State == state);
+        }
+
+        public bool AreAllPlayersInState(PlayerInfo.PlayerState state)
+        {
+            return GetPlayersInStateCount(state) == PlayerCount;
+        }
+
+        public PlayerInfo.PlayerState GetPlayerState(long clientId, int deviceId)
+        {
+            if(!_players.TryGetValue(new PlayerIndex {
+                ClientId = clientId,
+                DeviceId = deviceId,
+            }, out var player)) {
+                return PlayerInfo.PlayerState.Disconnected;
+            }
+            return player.State;
         }
 
         public void RegisterLocalPlayer(int deviceId, PlayerInfo.PlayerState initialState)
@@ -90,7 +122,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
             _players.Add(key, player);
 
-            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+            PlayerStateChanged(player.ClientId, player.DeviceId, true);
         }
 
         public void UnRegisterRemotePlayer(long clientId)
@@ -102,7 +134,7 @@ namespace pdxpartyparrot.ggj2024.Managers
                 DeviceId = PlayerInfo.RemotePlayerDeviceId,
             });
 
-            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+            PlayerStateChanged(clientId, PlayerInfo.RemotePlayerDeviceId, true);
         }
 
         public void UpdateLocalPlayersState(PlayerInfo.PlayerState state)
@@ -113,6 +145,8 @@ namespace pdxpartyparrot.ggj2024.Managers
                     continue;
                 }
                 player.State = state;
+
+                PlayerStateChanged(player.ClientId, player.DeviceId, false);
             }
 
             NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
@@ -131,7 +165,16 @@ namespace pdxpartyparrot.ggj2024.Managers
                 return;
             }
 
-            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+            PlayerStateChanged(clientId, PlayerInfo.RemotePlayerDeviceId, true);
+        }
+
+        private void PlayerStateChanged(long clientId, int deviceId, bool broadcast)
+        {
+            PlayerStateChangedEvent?.Invoke(this, new PlayerStateEventArgs { ClientId = clientId, DeviceId = deviceId });
+
+            if(broadcast) {
+                NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+            }
         }
     }
 }

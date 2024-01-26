@@ -16,6 +16,7 @@ namespace pdxpartyparrot.ggj2024.Levels
         public override void _Ready()
         {
             NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
+            PlayerManager.Instance.PlayerStateChangedEvent += PlayerStateChangedEventHandler;
 
             if(NetworkManager.Instance.IsHost) {
                 PlayerManager.Instance.UpdateLocalPlayersState(PlayerInfo.PlayerState.ArenaReady);
@@ -26,6 +27,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _ExitTree()
         {
+            PlayerManager.Instance.PlayerStateChangedEvent -= PlayerStateChangedEventHandler;
             NetworkManager.Instance.ServerDisconnectedEvent -= ServerDisconnectedEventHandler;
         }
 
@@ -47,6 +49,21 @@ namespace pdxpartyparrot.ggj2024.Levels
         private async void ServerDisconnectedEventHandler(object sender, EventArgs args)
         {
             await LevelManager.Instance.LoadMainMenuAsync().ConfigureAwait(false);
+        }
+
+        private void PlayerStateChangedEventHandler(object sender, PlayerManager.PlayerStateEventArgs args)
+        {
+            if(PlayerManager.Instance.GetPlayerState(args.ClientId, args.DeviceId) == PlayerInfo.PlayerState.ArenaReady) {
+                GD.Print($"Player {args.ClientId}:{args.DeviceId} is ready, spawning ...");
+
+                // TODO: spawn the player
+            }
+
+            if(PlayerManager.Instance.AreAllPlayersInState(PlayerInfo.PlayerState.ArenaReady)) {
+                GD.Print("All players are ready, start game ...");
+
+                // TODO: start the game
+            }
         }
 
         #endregion
