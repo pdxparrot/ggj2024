@@ -12,21 +12,40 @@ namespace pdxpartyparrot.ggj2024.Managers
 {
     public partial class PlayerManager : SingletonNode<PlayerManager>
     {
+        private struct PlayerIndex
+        {
+            public long ClientId;
+
+            public int DeviceId;
+        }
+
         [Export]
         private PackedScene _playerScene;
 
-        private List<PlayerInfo> _players = new List<PlayerInfo>();
+        private Dictionary<PlayerIndex, PlayerInfo> _players = new Dictionary<PlayerIndex, PlayerInfo>();
 
-        public int ReadyPlayerCount => _players.Count(p => p.IsReady);
+        public int ReadyPlayerCount => _players.Values.Count(p => p.IsReady);
 
         public string SerializePlayerState()
         {
-            return JsonConvert.SerializeObject(_players);
+            return JsonConvert.SerializeObject(_players.Values);
         }
 
         public void DeserializePlayerState(string playerState)
         {
-            _players = JsonConvert.DeserializeObject<List<PlayerInfo>>(playerState);
+            var players = JsonConvert.DeserializeObject<List<PlayerInfo>>(playerState);
+            if(players == null) {
+                GD.PrintErr($"[PlayerManager] failed to deserialize player state!");
+                return;
+            }
+
+            _players.Clear();
+            foreach(var player in players) {
+                _players.Add(new PlayerIndex {
+                    ClientId = player.ClientId,
+                    DeviceId = player.DeviceId,
+                }, player);
+            }
         }
 
         public void RegisterLocalPlayer(int deviceId)
@@ -55,12 +74,16 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private void RegisterPlayer(PlayerInfo player)
         {
-            var existing = _players.Find(p => p.ClientId == player.ClientId && p.DeviceId == player.DeviceId);
-            if(null != existing) {
-                GD.PushWarning($"[PlayerManager] Overwriting player {player.ClientId}:{player.DeviceId} already registered!");
+            var key = new PlayerIndex {
+                ClientId = player.ClientId,
+                DeviceId = player.DeviceId,
+            };
+
+            if(_players.ContainsKey(key)) {
+                GD.PushWarning($"[PlayerManager] Player {player.ClientId}:{player.DeviceId} already registered!");
                 return;
             }
-            _players.Add(player);
+            _players.Add(key, player);
 
             NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
         }
@@ -68,21 +91,27 @@ namespace pdxpartyparrot.ggj2024.Managers
         public void UnRegisterRemotePlayer(long clientId)
         {
             GD.Print($"[PlayerManager] UnRegistering remote player {clientId}...");
-            _players.RemoveAll(p => p.ClientId == clientId);
+
+            _players.Remove(new PlayerIndex {
+                ClientId = clientId,
+                DeviceId = PlayerInfo.RemotePlayerDeviceId,
+            });
 
             NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
         }
 
         public void RemotePlayerReady(long clientId)
         {
-            var player = _players.Find(p => p.ClientId == clientId);
-            if(null == player) {
+            if(_players.TryGetValue(new PlayerIndex {
+                ClientId = clientId,
+                DeviceId = PlayerInfo.RemotePlayerDeviceId,
+            }, out var player)) {
+                GD.Print($"[PlayerManager] Remote player {clientId} ready!");
+                player.State = PlayerInfo.PlayerState.Ready;
+            } else {
                 GD.PushWarning($"[PlayerManager] Failed to ready remote player {clientId}!");
                 return;
             }
-
-            GD.Print($"[PlayerManager] Remote player {clientId} ready!");
-            player.State = PlayerInfo.PlayerState.Ready;
 
             NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
         }

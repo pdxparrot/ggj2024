@@ -5,6 +5,8 @@ using pdxpartyparrot.ggj2024.Managers;
 // TODO: move to Network namespace
 namespace pdxpartyparrot.ggj2024
 {
+    // NOTE: RPCs only support primitive types
+    // objects need to be serialized across the wire
     public partial class RPC : Node
     {
         #region Server -> Client
