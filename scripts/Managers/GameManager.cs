@@ -74,9 +74,6 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             GD.Print($"[GameManager] Starting game ...");
 
-            // TODO 2024: move this to the level
-            //ViewerManager.Instance.InstanceViewers(1);
-
             NetworkManager.Instance.LockServer(true);
             await LevelManager.Instance.LoadLevelAsync(_gameScene).ConfigureAwait(false);
         }

@@ -54,7 +54,9 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private ENetConnection.CompressionMode _compressionMode = ENetConnection.CompressionMode.RangeCoder;
 
-        public bool IsServer => Multiplayer.MultiplayerPeer == null ? false : Multiplayer.IsServer();
+        public bool IsNetwork => Multiplayer.MultiplayerPeer != null;
+
+        public bool IsServer => IsNetwork ? Multiplayer.IsServer() : false;
 
         public bool IsHost => GetMultiplayerAuthority() == UniqueId;
 
@@ -173,7 +175,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void Disconnect(bool silent = false)
         {
-            if(Multiplayer.MultiplayerPeer == null) {
+            if(Multiplayer.MultiplayerPeer == null || IsHost) {
                 return;
             }
 

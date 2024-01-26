@@ -62,12 +62,29 @@ namespace pdxpartyparrot.ggj2024
             RpcId(1, nameof(LobbyLoaded));
         }
 
-        [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void LobbyLoaded()
         {
             GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says lobby loaded");
 
             PlayerManager.Instance.RemotePlayerReady(Multiplayer.GetRemoteSenderId());
+        }
+
+        #endregion
+
+        #region Client Broadcast
+
+        public void ClientTogglePause()
+        {
+            Rpc(nameof(TogglePause));
+        }
+
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void TogglePause()
+        {
+            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says toggle pause");
+
+            PartyParrotManager.Instance.TogglePause();
         }
 
         #endregion

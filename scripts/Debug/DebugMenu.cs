@@ -77,12 +77,12 @@ namespace pdxpartyparrot.ggj2024.Debug
 
         #region Signal Handlers
 
-        private void _on_Debug_Overlay_pressed()
+        private void _on_debug_overlay_pressed()
         {
             DebugOverlay.Instance.Toggle();
         }
 
-        private void _on_Quit_pressed()
+        private void _on_quit_pressed()
         {
             PartyParrotManager.Instance.SafeQuit();
         }

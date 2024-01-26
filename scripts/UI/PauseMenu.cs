@@ -21,32 +21,34 @@ namespace pdxpartyparrot.ggj2024.UI
         {
             _resumeButton.GrabFocus();
 
-            UpdateFullscreenButtons();
-        }
 
-        public override void _EnterTree()
-        {
-            // TODO: for some reason this isn't working if you
-            // play, pause, end the game, play again, pause again
-            _resumeButton.GrabFocus();
+            UpdateFullscreenButtons();
         }
 
         #endregion
 
         private void UpdateFullscreenButtons()
         {
-            _windowedButton.Visible = PartyParrotManager.Instance.IsFullscreen;
-            _fullscreenButton.Visible = !PartyParrotManager.Instance.IsFullscreen;
+            if(_windowedButton != null) {
+                _windowedButton.Visible = PartyParrotManager.Instance.IsFullscreen;
+            }
+            if(_fullscreenButton != null) {
+                _fullscreenButton.Visible = !PartyParrotManager.Instance.IsFullscreen;
+            }
         }
 
         #region Signal Handlers
 
-        private void _on_Resume_pressed()
+        private void _on_resume_pressed()
         {
-            PartyParrotManager.Instance.TogglePause();
+            if(NetworkManager.Instance.IsNetwork) {
+                NetworkManager.Instance.Rpcs.ClientTogglePause();
+            } else {
+                PartyParrotManager.Instance.TogglePause();
+            }
         }
 
-        private void _on_Windowed_pressed()
+        private void _on_windowed_pressed()
         {
             PartyParrotManager.Instance.IsFullscreen = false;
 
@@ -55,7 +57,7 @@ namespace pdxpartyparrot.ggj2024.UI
             _fullscreenButton.GrabFocus();
         }
 
-        private void _on_Fullscreen_pressed()
+        private void _on_fullscreen_pressed()
         {
             PartyParrotManager.Instance.IsFullscreen = true;
 
@@ -64,7 +66,7 @@ namespace pdxpartyparrot.ggj2024.UI
             _windowedButton.GrabFocus();
         }
 
-        private void _on_Quit_pressed()
+        private void _on_quit_pressed()
         {
             PartyParrotManager.Instance.SafeQuit();
         }

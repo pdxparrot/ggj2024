@@ -1,5 +1,7 @@
 using Godot;
 
+using System;
+
 using pdxpartyparrot.ggj2024.Managers;
 
 namespace pdxpartyparrot.ggj2024.Levels
@@ -16,6 +18,8 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _Ready()
         {
+            NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
+
             if(NetworkManager.Instance.IsHost) {
                 GameManager.Instance.RegisterLocalPlayers();
 
@@ -28,6 +32,13 @@ namespace pdxpartyparrot.ggj2024.Levels
             NetworkManager.Instance.Rpcs.ClientLobbyLoaded();
 
             _playerCount.Text = $"{PlayerManager.Instance.ReadyPlayerCount}/{GameManager.Instance.MaxPlayers}";
+        }
+
+        public override void _ExitTree()
+        {
+            NetworkManager.Instance.PeerConnectedEvent -= PeerConnectEventHandler;
+            NetworkManager.Instance.PeerDisconnectedEvent -= PeerDisconnectEventHandler;
+            NetworkManager.Instance.ServerDisconnectedEvent -= ServerDisconnectedEventHandler;
         }
 
         public override void _Process(double delta)
@@ -59,6 +70,11 @@ namespace pdxpartyparrot.ggj2024.Levels
         private void PeerDisconnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
         {
             PlayerManager.Instance.UnRegisterRemotePlayer(args.Id);
+        }
+
+        private async void ServerDisconnectedEventHandler(object sender, EventArgs args)
+        {
+            await LevelManager.Instance.LoadMainMenuAsync().ConfigureAwait(false);
         }
 
         #endregion

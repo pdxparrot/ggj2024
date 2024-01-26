@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://rj05i3nux2t6"]
+[gd_scene load_steps=3 format=3 uid="uid://rj05i3nux2t6"]
 
 [ext_resource type="Script" path="res://scripts/Debug/DebugMenu.cs" id="1_xammn"]
+[ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_7538q"]
 
 [node name="DebugMenu" type="Control" node_paths=PackedStringArray("_canvas", "_fps", "_staticMemory", "_staticMemoryMax")]
 layout_mode = 3
@@ -30,7 +31,7 @@ text = "FPS:"
 
 [node name="fps" type="Label" parent="CanvasLayer/VBoxContainer/fps"]
 layout_mode = 2
-text = "0"
+text = "999"
 
 [node name="static memory" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -41,8 +42,21 @@ text = "Static Memory:"
 
 [node name="static memory" type="Label" parent="CanvasLayer/VBoxContainer/static memory"]
 layout_mode = 2
-text = "0"
+text = "999"
 
 [node name="static memory max" type="Label" parent="CanvasLayer/VBoxContainer/static memory"]
 layout_mode = 2
-text = "(0)"
+text = "(999)"
+
+[node name="Debug Overlay" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_7538q")]
+layout_mode = 2
+text = "Debug Overlay"
+
+[node name="Quit" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("2_7538q")]
+layout_mode = 2
+text = "Quit"
+_hoverAudioStreamPlayer = NodePath("../Debug Overlay/Hover")
+_pressedAudioStreamPlayer = NodePath("../Debug Overlay/Pressed")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Debug Overlay" to="." method="_on_debug_overlay_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
