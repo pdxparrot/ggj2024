@@ -24,6 +24,8 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private Dictionary<PlayerIndex, PlayerInfo> _players = new Dictionary<PlayerIndex, PlayerInfo>();
 
+        public int PlayerCount => _players.Count;
+
         public int ReadyPlayerCount => _players.Values.Count(p => p.IsReady);
 
         public string SerializePlayerState()

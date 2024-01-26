@@ -3,6 +3,7 @@ using Godot;
 using System.Threading.Tasks;
 
 using pdxpartyparrot.ggj2024.Util;
+using System;
 
 namespace pdxpartyparrot.ggj2024.Managers
 {
@@ -19,7 +20,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private PackedScene _gameScene;
 
-        public int LocalPlayerCount => Input.GetConnectedJoypads().Count;
+        public int LocalPlayerCount => Math.Min(Input.GetConnectedJoypads().Count, MaxPlayers);
 
         #region Godot Lifecycle
 
@@ -67,6 +68,9 @@ namespace pdxpartyparrot.ggj2024.Managers
             GD.Print($"[GameManager] Registering {LocalPlayerCount} local players ...");
             foreach(var deviceId in Input.GetConnectedJoypads()) {
                 PlayerManager.Instance.RegisterLocalPlayer(deviceId);
+                if(PlayerManager.Instance.PlayerCount >= MaxPlayers) {
+                    break;
+                }
             }
         }
 
