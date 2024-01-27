@@ -130,10 +130,9 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             // TODO: Close is not actually closing the listener ....
             // but it works fine in other test apps, soooooo .... ???
-            // for now just forcefully destroy the host first
+            // for now just forcefully destroy the host instead
             ((ENetMultiplayerPeer)Multiplayer.MultiplayerPeer).Host.Destroy();
-
-            Multiplayer.MultiplayerPeer.Close();
+            //Multiplayer.MultiplayerPeer.Close();
             Multiplayer.MultiplayerPeer = null;
         }
 

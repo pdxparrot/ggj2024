@@ -138,6 +138,11 @@ namespace pdxpartyparrot.ggj2024.Managers
             PlayerStateChanged(playerId, true);
         }
 
+        public void UnRegisterAllPlayers()
+        {
+            _players.Clear();
+        }
+
         public void UpdateLocalPlayersState(PlayerInfo.PlayerState state)
         {
             GD.Print($"[PlayerManager] Local players update state: {state}");

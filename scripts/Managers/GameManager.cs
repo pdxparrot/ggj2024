@@ -111,6 +111,8 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.Disconnect();
             NetworkManager.Instance.StopServer();
 
+            PlayerManager.Instance.UnRegisterAllPlayers();
+
             await LevelManager.Instance.LoadMainMenuAsync().ConfigureAwait(false);
         }
     }
