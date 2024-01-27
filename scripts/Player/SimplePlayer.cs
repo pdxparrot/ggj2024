@@ -4,9 +4,9 @@ namespace pdxpartyparrot.ggj2024.Player
 {
     public abstract partial class SimplePlayer : SimpleCharacter
     {
-        [Export]
         private long _clientId;
 
+        [Export]
         public long ClientId
         {
             get => _clientId;
