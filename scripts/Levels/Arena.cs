@@ -55,7 +55,7 @@ namespace pdxpartyparrot.ggj2024.Levels
         private void PlayerStateChangedEventHandler(object sender, PlayerManager.PlayerStateEventArgs args)
         {
             if(PlayerManager.Instance.GetPlayerState(args.PlayerId) == PlayerInfo.PlayerState.ArenaReady) {
-                GD.Print($"Player {args.PlayerId.ClientId}:{args.PlayerId.DeviceId} is ready, spawning ...");
+                GD.Print($"Player {args.PlayerId} is ready, spawning ...");
                 PlayerManager.Instance.SpawnPlayer(args.PlayerId);
             }
 

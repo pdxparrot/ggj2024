@@ -8,8 +8,6 @@ namespace pdxpartyparrot.ggj2024.Player
 {
     public partial class PlayerInfo : Resource
     {
-        public const int RemotePlayerDeviceId = -1;
-
         public enum PlayerState
         {
             Disconnected,
@@ -18,14 +16,17 @@ namespace pdxpartyparrot.ggj2024.Player
             ArenaReady,
         }
 
-        public long ClientId { get; set; }
+        public long ClientId { get; set; } = 0;
 
-        public int DeviceId { get; set; }
-
-        [JsonIgnore]
-        public bool IsRemote => DeviceId == RemotePlayerDeviceId;
+        public int DeviceId { get; set; } = -1;
 
         public PlayerState State { get; set; }
+
+        [JsonIgnore]
+        public bool IsHost => ClientId == 1;
+
+        [JsonIgnore]
+        public bool IsRemote => !IsHost;
 
         [JsonIgnore]
         public PlayerManager.PlayerId PlayerId => new PlayerManager.PlayerId {

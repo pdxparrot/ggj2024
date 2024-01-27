@@ -15,13 +15,20 @@ namespace pdxpartyparrot.ggj2024.Managers
     {
         public struct PlayerId
         {
-            public long ClientId;
+            public long ClientId = 0;
 
-            public int DeviceId;
+            public int DeviceId = -1;
 
-            public bool IsHost => ClientId == 1;
+            public bool IsRemote => ClientId != 1;
 
-            public bool IsRemote => DeviceId == PlayerInfo.RemotePlayerDeviceId;
+            public PlayerId()
+            {
+            }
+
+            public override string ToString()
+            {
+                return $"{ClientId}:{DeviceId}";
+            }
         }
 
         public class PlayerStateEventArgs : EventArgs
@@ -100,7 +107,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             var player = new PlayerInfo {
                 ClientId = clientId,
-                DeviceId = PlayerInfo.RemotePlayerDeviceId,
                 State = initialState
             };
             RegisterPlayer(player);
@@ -111,7 +117,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             var playerId = player.PlayerId;
 
             if(_players.TryGetValue(playerId, out var existingPlayer)) {
-                GD.PushWarning($"[PlayerManager] Player {player.ClientId}:{player.DeviceId} already registered: {existingPlayer.State}");
+                GD.PushWarning($"[PlayerManager] Player {playerId} already registered: {existingPlayer.State}");
                 return;
             }
             _players.Add(playerId, player);
@@ -125,7 +131,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             var playerId = new PlayerId {
                 ClientId = clientId,
-                DeviceId = PlayerInfo.RemotePlayerDeviceId,
             };
 
             _players.Remove(playerId);
@@ -152,11 +157,10 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             var playerId = new PlayerId {
                 ClientId = clientId,
-                DeviceId = PlayerInfo.RemotePlayerDeviceId,
             };
 
             if(!_players.TryGetValue(playerId, out var player)) {
-                GD.PushWarning($"[PlayerManager] Failed to update remote player {clientId} state!");
+                GD.PushWarning($"[PlayerManager] Failed to update remote player {playerId} state!");
                 return;
             }
 
@@ -177,7 +181,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public SimplePlayer SpawnPlayer(PlayerId playerId)
         {
-            GD.Print($"[PlayerManager] Spawning player {playerId.ClientId}:{playerId.DeviceId}...");
+            GD.Print($"[PlayerManager] Spawning player {playerId}...");
 
             if(!_players.TryGetValue(playerId, out var player)) {
                 GD.PushError("Player not registered!");
@@ -193,7 +197,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             if(player.Player != null) {
                 spawnPoint.ReSpawnPlayer(player.Player);
             } else {
-                player.Player = spawnPoint.SpawnPlayer(_playerScene, $"Player {playerId.ClientId}:{playerId.DeviceId}");
+                player.Player = spawnPoint.SpawnPlayer(_playerScene, $"Player {playerId}");
                 player.Player.ClientId = playerId.ClientId;
                 player.Player.Input.DeviceId = playerId.DeviceId;
             }
@@ -233,7 +237,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void DestroyPlayer(PlayerId playerId, bool remove = true)
         {
-            GD.Print($"[PlayerManager] Destroying player {playerId.ClientId}:{playerId.DeviceId}");
+            GD.Print($"[PlayerManager] Destroying player {playerId}");
 
             if(!_players.TryGetValue(playerId, out var player)) {
                 GD.PushError("Player not registered!");
