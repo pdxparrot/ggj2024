@@ -118,10 +118,6 @@ namespace pdxpartyparrot.ggj2024.World
         {
             InitSpatial(player);
 
-            // have to temporarily add the player so _Ready() is called
-            AddChild(player);
-            RemoveChild(player);
-
             player.OnReSpawn(this);
         }
 

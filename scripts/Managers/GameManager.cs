@@ -21,7 +21,14 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private PackedScene _gameScene;
 
-        public int LocalPlayerCount => Math.Min(Input.GetConnectedJoypads().Count, MaxPlayers);
+        public int LocalPlayerCount
+        {
+            get
+            {
+                int joypadCount = Input.GetConnectedJoypads().Count;
+                return Math.Min(joypadCount == 0 ? 1 : joypadCount, MaxPlayers);
+            }
+        }
 
         #region Godot Lifecycle
 
@@ -67,7 +74,14 @@ namespace pdxpartyparrot.ggj2024.Managers
         public void RegisterLocalPlayers(PlayerInfo.PlayerState initialState)
         {
             GD.Print($"[GameManager] Registering {LocalPlayerCount} local players ...");
-            foreach(var deviceId in Input.GetConnectedJoypads()) {
+
+            var joypads = Input.GetConnectedJoypads();
+            if(joypads.Count == 0) {
+                PlayerManager.Instance.RegisterLocalPlayer(1, initialState);
+                return;
+            }
+
+            foreach(var deviceId in joypads) {
                 PlayerManager.Instance.RegisterLocalPlayer(deviceId, initialState);
                 if(PlayerManager.Instance.PlayerCount >= MaxPlayers) {
                     break;
