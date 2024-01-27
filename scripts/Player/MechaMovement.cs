@@ -1,5 +1,7 @@
 using Godot;
 
+using pdxpartyparrot.ggj2024.Managers;
+
 namespace pdxpartyparrot.ggj2024.Player
 {
     // bespoke movement because wtf (characater body may not work for this lol)
@@ -14,6 +16,12 @@ namespace pdxpartyparrot.ggj2024.Player
         // both client and server run physics
         public override void _PhysicsProcess(double delta)
         {
+            if(PartyParrotManager.Instance.IsPaused) {
+                return;
+            }
+
+            // TODO: a max turn rate and smoothed heading might make this nicer
+
             var heading = new Vector3(_owner.MechaInput.LookDirection.X, 0.0f, _owner.MechaInput.LookDirection.Y);
             if(heading.LengthSquared() > 0.01) {
                 heading = heading.Normalized();

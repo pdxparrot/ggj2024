@@ -1,5 +1,7 @@
 using Godot;
 
+using pdxpartyparrot.ggj2024.Managers;
+
 namespace pdxpartyparrot.ggj2024.Player
 {
     public partial class MechaInput : SimplePlayerInput
@@ -12,12 +14,14 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private Mecha Mecha => (Mecha)PlayerOwner;
 
+        private bool IsInputAllowed => !PartyParrotManager.Instance.IsPaused && DisplayServer.WindowIsFocused();
+
         #region Godot Lifecycle
 
         // only multiplayer authority processes input
         public override void _Process(double delta)
         {
-            if(!DisplayServer.WindowIsFocused()) {
+            if(!IsInputAllowed) {
                 return;
             }
 
