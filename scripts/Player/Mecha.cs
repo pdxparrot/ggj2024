@@ -15,6 +15,8 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private bool _thrustersEnabled;
 
+        public MechaInput MechaInput => (MechaInput)Input;
+
         public void MoveLeftLeg()
         {
             RpcId(1, nameof(RpcLeftLeg));

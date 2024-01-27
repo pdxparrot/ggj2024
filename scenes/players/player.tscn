@@ -39,8 +39,9 @@ replication_config = SubResource("SceneReplicationConfig_stcnq")
 script = ExtResource("2_nm1nr")
 _owner = NodePath("..")
 
-[node name="Movement" type="CharacterBody3D" parent="."]
+[node name="Movement" type="CharacterBody3D" parent="." node_paths=PackedStringArray("_owner")]
 script = ExtResource("3_uvfir")
+_owner = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Movement"]
 transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 11, 0)
@@ -50,3 +51,4 @@ shape = SubResource("CapsuleShape3D_t51w8")
 script = ExtResource("4_1efev")
 
 [node name="MechaChicken2" parent="Movement/Model" instance=ExtResource("5_xi2yj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
