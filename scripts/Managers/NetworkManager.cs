@@ -128,8 +128,11 @@ namespace pdxpartyparrot.ggj2024.Managers
             Multiplayer.PeerConnected -= OnPeerConnected;
             Multiplayer.PeerDisconnected -= OnPeerDisconnected;
 
-            // TODO: this is not actually closing the connection ....
+            // TODO: Close is not actually closing the listener ....
             // but it works fine in other test apps, soooooo .... ???
+            // for now just forcefully destroy the host first
+            ((ENetMultiplayerPeer)Multiplayer.MultiplayerPeer).Host.Destroy();
+
             Multiplayer.MultiplayerPeer.Close();
             Multiplayer.MultiplayerPeer = null;
         }
