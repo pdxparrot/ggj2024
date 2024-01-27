@@ -27,12 +27,16 @@ namespace pdxpartyparrot.ggj2024
 
         public void UpdateMotionBlend(float amount)
         {
-            _animationTree.Set(_motionBlendPath, Math.Abs(amount));
+            if(_animationTree != null) {
+                _animationTree.Set(_motionBlendPath, Math.Abs(amount));
+            }
         }
 
         public void TriggerOneShot(string property)
         {
-            _animationTree.Set(property, true);
+            if(_animationTree != null) {
+                _animationTree.Set(property, true);
+            }
         }
 
         public void ChangeState(string toNode)
