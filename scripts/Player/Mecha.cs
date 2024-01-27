@@ -1,6 +1,7 @@
 using Godot;
 
 using pdxpartyparrot.ggj2024.Managers;
+using pdxpartyparrot.ggj2024.Util;
 
 namespace pdxpartyparrot.ggj2024.Player
 {
@@ -19,11 +20,14 @@ namespace pdxpartyparrot.ggj2024.Player
 
         protected MechaInput MechaInput => (MechaInput)Input;
 
+        // sync'd server -> client
+        [Export]
         private bool _move;
 
         #region Godot Lifecycle
 
         // both client and server run physics
+        // bespoke because this thing is a goober movement
         public override void _PhysicsProcess(double delta)
         {
             if(PartyParrotManager.Instance.IsPaused) {
@@ -32,22 +36,27 @@ namespace pdxpartyparrot.ggj2024.Player
 
             // TODO: a max turn rate and smoothed heading might make this nicer
 
-            var heading = new Vector3(MechaInput.LookDirection.X, 0.0f, MechaInput.LookDirection.Y);
-            if(heading.LengthSquared() > 0.01) {
-                heading = heading.Normalized();
+            ApplyAcceleration((float)delta);
 
-                var lookAt = GlobalPosition + heading;
-                Model.LookAt(lookAt, Vector3.Up);
+            Heading = new Vector3(MechaInput.LookDirection.X, 0.0f, MechaInput.LookDirection.Y);
+            if(Heading.LengthSquared() > 0.01) {
+                Heading = Heading.Normalized();
+
+                // look in the direction we're heading
+                Model.LookAt(GlobalPosition + Heading, Vector3.Up);
             }
+
+            Side = Heading.Perpendicular();
 
             if(_move) {
-                // move in the direction the model is facing
-                var forward = -Model.GlobalTransform.Basis.Z;
-                Velocity = new Vector3(forward.X, Velocity.Y, forward.Z) * Speed;
-                MoveAndSlide();
-
+                Velocity = LimitVelocity(new Vector3(Forward.X, Velocity.Y, Forward.Z) * MaxSpeed);
                 _move = false;
+            } else {
+                Velocity = LimitVelocity(new Vector3(0.0f, Velocity.Y, 0.0f) * MaxSpeed);
             }
+
+            // move the player
+            MoveAndSlide();
         }
 
         #endregion
