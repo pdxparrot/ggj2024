@@ -13,7 +13,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 {
     public partial class PlayerManager : SingletonNode<PlayerManager>
     {
-        public class PlayerId
+        public struct PlayerId
         {
             public long ClientId;
 
