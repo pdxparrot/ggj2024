@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using pdxpartyparrot.ggj2024.Collections;
+using pdxpartyparrot.ggj2024.Managers;
 using pdxpartyparrot.ggj2024.Util;
 using pdxpartyparrot.ggj2024.World;
 
@@ -171,23 +172,26 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         #region Player Spawnpoints
 
-        public SpawnPoint GetPlayerSpawnPoint(int clientId)
+        public SpawnPoint GetPlayerSpawnPoint(PlayerManager.PlayerId playerId)
         {
-            int spawnPointIdx = clientId % _playerSpawnPointTags.Length;
+            // TODO: this isn't great
+            int spawnPointIdx = playerId.IsRemote ? ((int)playerId.ClientId % _playerSpawnPointTags.Length) : (playerId.DeviceId % _playerSpawnPointTags.Length);
             return GetSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx));
         }
 
         // gets a random player spawnpoint regardless of how the spawnpoints are configured
-        public SpawnPoint GetRandomPlayerSpawnPoint(int clientId)
+        public SpawnPoint GetRandomPlayerSpawnPoint(PlayerManager.PlayerId playerId)
         {
-            int spawnPointIdx = clientId % _playerSpawnPointTags.Length;
+            // TODO: this isn't great
+            int spawnPointIdx = playerId.IsRemote ? ((int)playerId.ClientId % _playerSpawnPointTags.Length) : (playerId.DeviceId % _playerSpawnPointTags.Length);
             return GetRandomSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx));
         }
 
         // gets the player spawnpoint nearest the given position
-        public SpawnPoint GetNearestPlayerSpawnPoint(int clientId, Vector3 position)
+        public SpawnPoint GetNearestPlayerSpawnPoint(PlayerManager.PlayerId playerId, Vector3 position)
         {
-            int spawnPointIdx = clientId % _playerSpawnPointTags.Length;
+            // TODO: this isn't great
+            int spawnPointIdx = playerId.IsRemote ? ((int)playerId.ClientId % _playerSpawnPointTags.Length) : (playerId.DeviceId % _playerSpawnPointTags.Length);
             return GetNearestSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx), position);
         }
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=6 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
 [ext_resource type="PackedScene" uid="uid://1sbg6cmvuqi2" path="res://scenes/camera.tscn" id="2_fo1sa"]
+[ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3qm2k"]
 
@@ -24,3 +25,17 @@ _noise = SubResource("FastNoiseLite_3qm2k")
 
 [node name="BlockoutArea" parent="World" instance=ExtResource("1_gh4wy")]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, 30)
+
+[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 30)
+
+[node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -30)
+
+[node name="SpawnPoint4" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, -30)
