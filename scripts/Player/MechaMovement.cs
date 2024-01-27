@@ -11,7 +11,9 @@ namespace pdxpartyparrot.ggj2024.Player
         private Mecha _owner;
 
         [Export]
-        private float _speed = 5.0f;
+        private float _speed = 100.0f;
+
+        public bool Move { get; set; }
 
         // both client and server run physics
         public override void _PhysicsProcess(double delta)
@@ -28,6 +30,15 @@ namespace pdxpartyparrot.ggj2024.Player
 
                 var lookAt = GlobalPosition + heading;
                 _owner.Model.LookAt(lookAt, Vector3.Up);
+            }
+
+            if(Move) {
+                // move in the direction the model is facing
+                var forward = -_owner.Model.GlobalTransform.Basis.Z;
+                Velocity = new Vector3(forward.X, Velocity.Y, forward.Z) * _speed;
+                MoveAndSlide();
+
+                Move = false;
             }
         }
     }

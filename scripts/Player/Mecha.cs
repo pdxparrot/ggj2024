@@ -17,6 +17,8 @@ namespace pdxpartyparrot.ggj2024.Player
 
         public MechaInput MechaInput => (MechaInput)Input;
 
+        protected MechaMovement MechaMovement => (MechaMovement)Movement;
+
         public void MoveLeftLeg()
         {
             RpcId(1, nameof(RpcLeftLeg));
@@ -52,6 +54,13 @@ namespace pdxpartyparrot.ggj2024.Player
             RpcId(1, nameof(RpcThrusters), false);
         }
 
+        private void Fall()
+        {
+            // TODO:
+
+            MechaMovement.Move = false;
+        }
+
         #region RPCs
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -59,14 +68,15 @@ namespace pdxpartyparrot.ggj2024.Player
         {
             if(_lastLeg == Leg.Left) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] falls over (left)!");
-                // TODO: fall over
                 _lastLeg = Leg.None;
+
+                Fall();
                 return;
             }
 
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] moves forward (left)!");
-            // TODO: move forward
             _lastLeg = Leg.Left;
+            MechaMovement.Move = true;
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -74,22 +84,24 @@ namespace pdxpartyparrot.ggj2024.Player
         {
             if(_lastLeg == Leg.Right) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] falls over (right)!");
-                // TODO: fall over
                 _lastLeg = Leg.None;
+
+                Fall();
                 return;
             }
 
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] moves forward (right)!");
-            // TODO: move forward
             _lastLeg = Leg.Right;
+            MechaMovement.Move = true;
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcBothLegs()
         {
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] falls over (both)!");
-            // TODO: fall over
             _lastLeg = Leg.None;
+
+            Fall();
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
