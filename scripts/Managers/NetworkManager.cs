@@ -45,6 +45,11 @@ namespace pdxpartyparrot.ggj2024.Managers
         public MultiplayerSpawner Spawner => _spawner;
 
         [Export]
+        private Node _spawnRoot;
+
+        public Node SpawnRoot => _spawnRoot;
+
+        [Export]
         private int _listeningPort = 7575;
 
         public int ListenPort => _listeningPort;

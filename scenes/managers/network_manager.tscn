@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://scripts/Managers/NetworkManager.cs" id="1_44qdo"]
 [ext_resource type="Script" path="res://scripts/RPC.cs" id="2_26bru"]
 
-[node name="NetworkManager" type="Node" node_paths=PackedStringArray("_rpc", "_spawner")]
+[node name="NetworkManager" type="Node" node_paths=PackedStringArray("_rpc", "_spawner", "_spawnRoot")]
 script = ExtResource("1_44qdo")
 _rpc = NodePath("RPC")
 _spawner = NodePath("MultiplayerSpawner")
+_spawnRoot = NodePath("SpawnRoot")
 
 [node name="RPC" type="Node" parent="."]
 script = ExtResource("2_26bru")

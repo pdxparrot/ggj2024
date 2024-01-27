@@ -197,7 +197,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
 
             if(NetworkManager.Instance.IsNetwork) {
-                NetworkManager.Instance.Spawner.AddChild(player.Player);
+                NetworkManager.Instance.SpawnRoot.AddChild(player.Player);
             } else {
                 AddChild(player.Player);
             }
@@ -212,7 +212,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             player.OnDeSpawn();
 
             if(NetworkManager.Instance.IsNetwork) {
-                NetworkManager.Instance.Spawner.RemoveChild(player);
+                NetworkManager.Instance.SpawnRoot.RemoveChild(player);
             } else {
                 RemoveChild(player);
             }
