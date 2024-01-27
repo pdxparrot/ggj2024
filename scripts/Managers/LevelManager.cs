@@ -10,6 +10,9 @@ namespace pdxpartyparrot.ggj2024.Managers
     public partial class LevelManager : SingletonNode<LevelManager>
     {
         [Export]
+        private bool _verbose = false;
+
+        [Export]
         private PackedScene _loadingScreenScene;
 
         public LoadingScreen LoadingScreen { get; private set; }
@@ -44,13 +47,17 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void ShowLoadingScreen()
         {
-            GD.Print("[LevelManager] Showing loading screen...");
+            if(_verbose) {
+                GD.Print("[LevelManager] Showing loading screen...");
+            }
             AddChild(LoadingScreen);
         }
 
         public void HideLoadingScreen()
         {
-            GD.Print("[LevelManager] Hiding loading screen...");
+            if(_verbose) {
+                GD.Print("[LevelManager] Hiding loading screen...");
+            }
             RemoveChild(LoadingScreen);
         }
 
@@ -67,7 +74,10 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private void UpdateProgress(float progress)
         {
-            GD.Print($"[LevelManager] {progress * 100.0}%");
+            if(_verbose) {
+                GD.Print($"[LevelManager] {progress * 100.0}%");
+            }
+
             // TODO: update loading screen ?
         }
 

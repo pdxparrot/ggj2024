@@ -82,5 +82,15 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.LockServer(true);
             await LevelManager.Instance.LoadLevelAsync(_gameScene).ConfigureAwait(false);
         }
+
+        public async Task RestartAsync()
+        {
+            GD.Print("[GameManager] Restarting game ...");
+
+            NetworkManager.Instance.Disconnect();
+            NetworkManager.Instance.StopServer();
+
+            await LevelManager.Instance.LoadMainMenuAsync().ConfigureAwait(false);
+        }
     }
 }

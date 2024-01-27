@@ -27,6 +27,12 @@ text = "Game Paused"
 layout_mode = 2
 text = "Resume"
 
+[node name="Exit" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("2_tkyh8")]
+layout_mode = 2
+text = "Exit"
+_hoverAudioStreamPlayer = NodePath("../Resume/Hover")
+_pressedAudioStreamPlayer = NodePath("../Resume/Pressed")
+
 [node name="Quit" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("2_tkyh8")]
 layout_mode = 2
 text = "Quit"
@@ -34,4 +40,5 @@ _hoverAudioStreamPlayer = NodePath("../Resume/Hover")
 _pressedAudioStreamPlayer = NodePath("../Resume/Pressed")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

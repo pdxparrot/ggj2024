@@ -58,8 +58,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public bool IsServer => IsNetwork ? Multiplayer.IsServer() : false;
 
-        public bool IsHost => GetMultiplayerAuthority() == UniqueId;
-
         public long UniqueId => Multiplayer.GetUniqueId();
 
         #region Godot Lifecycle
@@ -116,7 +114,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void StopServer()
         {
-            if(Multiplayer.MultiplayerPeer == null) {
+            if(Multiplayer.MultiplayerPeer == null || !IsServer) {
                 return;
             }
 
@@ -125,6 +123,9 @@ namespace pdxpartyparrot.ggj2024.Managers
             Multiplayer.PeerConnected -= OnPeerConnected;
             Multiplayer.PeerDisconnected -= OnPeerDisconnected;
 
+            // TODO: this is not actually closing the connection ....
+            // but it works fine in other test apps, soooooo .... ???
+            Multiplayer.MultiplayerPeer.Close();
             Multiplayer.MultiplayerPeer = null;
         }
 
@@ -175,7 +176,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void Disconnect(bool silent = false)
         {
-            if(Multiplayer.MultiplayerPeer == null || IsHost) {
+            if(Multiplayer.MultiplayerPeer == null || IsServer) {
                 return;
             }
 
@@ -187,6 +188,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             Multiplayer.ConnectionFailed -= OnConnectionFailed;
             Multiplayer.ServerDisconnected -= OnServerDisconnected;
 
+            Multiplayer.MultiplayerPeer.Close();
             Multiplayer.MultiplayerPeer = null;
         }
 

@@ -55,7 +55,7 @@ namespace pdxpartyparrot.ggj2024
         {
             QueueFree();
 
-            await LevelManager.Instance.LoadMainMenuAsync().ConfigureAwait(false);
+            await GameManager.Instance.RestartAsync().ConfigureAwait(false);
         }
 
         private async Task ShowNextSplashImageAsync()

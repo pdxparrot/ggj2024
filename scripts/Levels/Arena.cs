@@ -15,12 +15,13 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _Ready()
         {
-            NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
-            PlayerManager.Instance.PlayerStateChangedEvent += PlayerStateChangedEventHandler;
+            if(NetworkManager.Instance.IsServer) {
+                PlayerManager.Instance.PlayerStateChangedEvent += PlayerStateChangedEventHandler;
 
-            if(NetworkManager.Instance.IsHost) {
                 PlayerManager.Instance.UpdateLocalPlayersState(PlayerInfo.PlayerState.ArenaReady);
             } else {
+                NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
+
                 NetworkManager.Instance.Rpcs.ClientArenaLoaded();
             }
         }
@@ -48,7 +49,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         private async void ServerDisconnectedEventHandler(object sender, EventArgs args)
         {
-            await LevelManager.Instance.LoadMainMenuAsync().ConfigureAwait(false);
+            await GameManager.Instance.RestartAsync().ConfigureAwait(false);
         }
 
         private void PlayerStateChangedEventHandler(object sender, PlayerManager.PlayerStateEventArgs args)

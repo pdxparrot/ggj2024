@@ -66,6 +66,17 @@ namespace pdxpartyparrot.ggj2024.UI
             _windowedButton.GrabFocus();
         }
 
+        private async void _on_exit_pressed()
+        {
+            if(NetworkManager.Instance.IsNetwork) {
+                NetworkManager.Instance.Rpcs.ClientTogglePause();
+            } else {
+                PartyParrotManager.Instance.TogglePause();
+            }
+
+            await GameManager.Instance.RestartAsync().ConfigureAwait(false);
+        }
+
         private void _on_quit_pressed()
         {
             PartyParrotManager.Instance.SafeQuit();

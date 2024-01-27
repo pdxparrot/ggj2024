@@ -59,13 +59,19 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
         }
 
+        [Export]
+        private bool _verbose = false;
+
         private readonly Dictionary<string, Notifier> _loadingSet = new Dictionary<string, Notifier>();
 
         public async Task LoadResourceAsync(string path, EventHandler<SuccessEventArgs> onSuccess = null, EventHandler<FailureEventArgs> onFailure = null, EventHandler<ProgressEventArgs> onProgress = null)
         {
             // if the resource is already loaded, just return it
             if(ResourceLoader.HasCached(path)) {
-                GD.Print($"[ResourceManager] returning cached resource '{path}'");
+                if(_verbose) {
+                    GD.Print($"[ResourceManager] returning cached resource '{path}'");
+                }
+
                 onSuccess?.Invoke(this, new SuccessEventArgs {
                     Resource = ResourceLoader.Load(path),
                 });
@@ -75,7 +81,10 @@ namespace pdxpartyparrot.ggj2024.Managers
             // if we're already loading this resource
             // just subscribe for notifications
             if(_loadingSet.TryGetValue(path, out Notifier notifier)) {
-                GD.Print($"[ResourceManager] registering listener for resource '{path}'");
+                if(_verbose) {
+                    GD.Print($"[ResourceManager] registering listener for resource '{path}'");
+                }
+
                 notifier.SuccessEvent += onSuccess;
                 notifier.FailureEvent += onFailure;
                 notifier.ProgressEvent += onProgress;
