@@ -1,5 +1,7 @@
 using Godot;
 
+using pdxpartyparrot.ggj2024.Managers;
+
 namespace pdxpartyparrot.ggj2024.Player
 {
     public partial class Mecha : SimplePlayer
@@ -15,9 +17,40 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private bool _thrustersEnabled;
 
-        public MechaInput MechaInput => (MechaInput)Input;
+        protected MechaInput MechaInput => (MechaInput)Input;
 
-        protected MechaMovement MechaMovement => (MechaMovement)Movement;
+        private bool _move;
+
+        #region Godot Lifecycle
+
+        // both client and server run physics
+        public override void _PhysicsProcess(double delta)
+        {
+            if(PartyParrotManager.Instance.IsPaused) {
+                return;
+            }
+
+            // TODO: a max turn rate and smoothed heading might make this nicer
+
+            var heading = new Vector3(MechaInput.LookDirection.X, 0.0f, MechaInput.LookDirection.Y);
+            if(heading.LengthSquared() > 0.01) {
+                heading = heading.Normalized();
+
+                var lookAt = GlobalPosition + heading;
+                Model.LookAt(lookAt, Vector3.Up);
+            }
+
+            if(_move) {
+                // move in the direction the model is facing
+                var forward = -Model.GlobalTransform.Basis.Z;
+                Velocity = new Vector3(forward.X, Velocity.Y, forward.Z) * Speed;
+                MoveAndSlide();
+
+                _move = false;
+            }
+        }
+
+        #endregion
 
         public void MoveLeftLeg()
         {
@@ -58,7 +91,7 @@ namespace pdxpartyparrot.ggj2024.Player
         {
             // TODO:
 
-            MechaMovement.Move = false;
+            _move = false;
         }
 
         #region RPCs
@@ -74,9 +107,8 @@ namespace pdxpartyparrot.ggj2024.Player
                 return;
             }
 
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] moves forward (left)!");
             _lastLeg = Leg.Left;
-            MechaMovement.Move = true;
+            _move = true;
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -90,9 +122,8 @@ namespace pdxpartyparrot.ggj2024.Player
                 return;
             }
 
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] moves forward (right)!");
             _lastLeg = Leg.Right;
-            MechaMovement.Move = true;
+            _move = true;
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]

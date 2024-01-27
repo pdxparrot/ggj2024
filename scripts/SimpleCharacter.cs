@@ -5,13 +5,8 @@ using pdxpartyparrot.ggj2024.World;
 
 namespace pdxpartyparrot.ggj2024
 {
-    public abstract partial class SimpleCharacter : Node3D, IDebugDraw
+    public abstract partial class SimpleCharacter : CharacterBody3D, IDebugDraw
     {
-        [Export]
-        private CharacterBody3D _movement;
-
-        protected CharacterBody3D Movement => _movement;
-
         [Export]
         private Model _model;
 
@@ -22,6 +17,11 @@ namespace pdxpartyparrot.ggj2024
 
         protected CollisionShape3D Collider => _collider;
 
+        [Export]
+        private float _speed = 100.0f;
+
+        public float Speed => _speed;
+
         #region Godot Lifecycle
 
         public override void _EnterTree()
@@ -29,16 +29,16 @@ namespace pdxpartyparrot.ggj2024
             DebugOverlay.Instance.RegisterDebugDraw(this);
         }
 
-        public override void _Ready()
-        {
-            Model.UpdateMotionBlend(0.0f);
-        }
-
         public override void _ExitTree()
         {
             if(DebugOverlay.HasInstance) {
                 DebugOverlay.Instance.UnRegisterDebugDraw(this);
             }
+        }
+
+        public override void _Ready()
+        {
+            Model.UpdateMotionBlend(0.0f);
         }
 
         public override void _Process(double delta)
@@ -67,8 +67,8 @@ namespace pdxpartyparrot.ggj2024
         public virtual void OnSpawn(SpawnPoint spawnPoint)
         {
             // spawnpoint rotates the main object
-            // but what we actually want to rotate is the pivot
-            _movement.Rotation = Rotation;
+            // but what we actually want to rotate is the model
+            Model.Rotation = Rotation;
             Rotation = Vector3.Zero;
 
             OnIdle();

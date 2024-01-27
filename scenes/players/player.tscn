@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b54i32jei7hdt"]
+[gd_scene load_steps=8 format=3 uid="uid://b54i32jei7hdt"]
 
 [ext_resource type="Script" path="res://scripts/Player/Mecha.cs" id="1_63y7g"]
 [ext_resource type="Script" path="res://scripts/Player/MechaInput.cs" id="2_nm1nr"]
-[ext_resource type="Script" path="res://scripts/Player/MechaMovement.cs" id="3_uvfir"]
 [ext_resource type="Script" path="res://scripts/Model.cs" id="4_1efev"]
 [ext_resource type="PackedScene" uid="uid://c7ecvqejpnw6d" path="res://art/character/MechaChicken.glb" id="5_xi2yj"]
 
@@ -24,12 +23,11 @@ properties/1/replication_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t51w8"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("_input", "_movement", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_input", "_model", "_collider")]
 script = ExtResource("1_63y7g")
 _input = NodePath("Input")
-_movement = NodePath("Movement")
-_model = NodePath("Movement/Model")
-_collider = NodePath("Movement/CollisionShape3D")
+_model = NodePath("Model")
+_collider = NodePath("CollisionShape3D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ok77n")
@@ -39,16 +37,12 @@ replication_config = SubResource("SceneReplicationConfig_stcnq")
 script = ExtResource("2_nm1nr")
 _owner = NodePath("..")
 
-[node name="Movement" type="CharacterBody3D" parent="." node_paths=PackedStringArray("_owner")]
-script = ExtResource("3_uvfir")
-_owner = NodePath("..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Movement"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 11, 0)
 shape = SubResource("CapsuleShape3D_t51w8")
 
-[node name="Model" type="Node3D" parent="Movement"]
+[node name="Model" type="Node3D" parent="."]
 script = ExtResource("4_1efev")
 
-[node name="MechaChicken2" parent="Movement/Model" instance=ExtResource("5_xi2yj")]
+[node name="MechaChicken2" parent="Model" instance=ExtResource("5_xi2yj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
