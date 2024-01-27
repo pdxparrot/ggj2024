@@ -194,6 +194,8 @@ namespace pdxpartyparrot.ggj2024.Managers
                 spawnPoint.ReSpawnPlayer(player.Player);
             } else {
                 player.Player = spawnPoint.SpawnPlayer(_playerScene, $"Player {playerId.ClientId}:{playerId.DeviceId}");
+                player.Player.ClientId = playerId.ClientId;
+                player.Player.Input.DeviceId = playerId.DeviceId;
             }
 
             if(NetworkManager.Instance.IsNetwork) {

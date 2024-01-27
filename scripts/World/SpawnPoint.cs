@@ -109,10 +109,6 @@ namespace pdxpartyparrot.ggj2024.World
         {
             var player = SpawnFromScene<SimplePlayer>(playerScene, name);
 
-            // have to temporarily add the player so _Ready() is called
-            AddChild(player);
-            RemoveChild(player);
-
             player.OnSpawn(this);
 
             return player;

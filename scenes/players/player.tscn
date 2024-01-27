@@ -28,9 +28,10 @@ _collider = NodePath("Movement/CollisionShape3D")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ok77n")
 
-[node name="Input" type="MultiplayerSynchronizer" parent="."]
+[node name="Input" type="MultiplayerSynchronizer" parent="." node_paths=PackedStringArray("_owner")]
 replication_config = SubResource("SceneReplicationConfig_stcnq")
 script = ExtResource("2_nm1nr")
+_owner = NodePath("..")
 
 [node name="Movement" type="CharacterBody3D" parent="."]
 script = ExtResource("3_uvfir")
