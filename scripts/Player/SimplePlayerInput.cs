@@ -21,6 +21,7 @@ namespace pdxpartyparrot.ggj2024.Player
             bool isAuthority = GetMultiplayerAuthority() == NetworkManager.Instance.UniqueId;
             GD.Print($"[Player {PlayerOwner.ClientId}:{DeviceId}] Input authority: {isAuthority}");
             SetProcess(isAuthority);
+            SetProcessInput(isAuthority);
         }
 
         #endregion

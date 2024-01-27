@@ -174,7 +174,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public SpawnPoint GetPlayerSpawnPoint(PlayerManager.PlayerId playerId)
         {
-            // TODO: this isn't great
+            // TODO: this isn't great, we're going to overlap
             int spawnPointIdx = playerId.IsRemote ? ((int)playerId.ClientId % _playerSpawnPointTags.Length) : (playerId.DeviceId % _playerSpawnPointTags.Length);
             return GetSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx));
         }
@@ -182,7 +182,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         // gets a random player spawnpoint regardless of how the spawnpoints are configured
         public SpawnPoint GetRandomPlayerSpawnPoint(PlayerManager.PlayerId playerId)
         {
-            // TODO: this isn't great
+            // TODO: this isn't great, we're going to overlap
             int spawnPointIdx = playerId.IsRemote ? ((int)playerId.ClientId % _playerSpawnPointTags.Length) : (playerId.DeviceId % _playerSpawnPointTags.Length);
             return GetRandomSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx));
         }
@@ -190,7 +190,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         // gets the player spawnpoint nearest the given position
         public SpawnPoint GetNearestPlayerSpawnPoint(PlayerManager.PlayerId playerId, Vector3 position)
         {
-            // TODO: this isn't great
+            // TODO: this isn't great, we're going to overlap
             int spawnPointIdx = playerId.IsRemote ? ((int)playerId.ClientId % _playerSpawnPointTags.Length) : (playerId.DeviceId % _playerSpawnPointTags.Length);
             return GetNearestSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx), position);
         }
