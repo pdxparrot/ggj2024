@@ -24,7 +24,7 @@ script = ExtResource("3_uvfir")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Movement"]
 shape = SubResource("CapsuleShape3D_t51w8")
 
-[node name="Model" type="Node" parent="Movement"]
+[node name="Model" type="Node3D" parent="Movement"]
 script = ExtResource("4_1efev")
 
 [node name="MechaChicken2" parent="Movement/Model" instance=ExtResource("5_xi2yj")]

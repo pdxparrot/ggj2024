@@ -4,7 +4,7 @@ using System;
 
 namespace pdxpartyparrot.ggj2024
 {
-    public partial class Model : Node
+    public partial class Model : Node3D
     {
         [Export]
         private string _motionBlendPath;
