@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxx854vihgahm"]
+[gd_scene load_steps=5 format=3 uid="uid://dxx854vihgahm"]
 
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.cs" id="1_cimc5"]
+[ext_resource type="Texture2D" uid="uid://bdorvct650ecs" path="res://art/ui/WIP Title Screen.png" id="2_72gf8"]
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_ffntl"]
 [ext_resource type="Script" path="res://scripts/UI/JoinMenu.cs" id="3_v625v"]
 
@@ -18,6 +19,15 @@ _joinMenuJoinButton = NodePath("CanvasLayer/JoinGame/VBoxContainer/HBoxContainer
 _creditsBackButton = NodePath("CanvasLayer/Credits/VBoxContainer/Back")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+texture = ExtResource("2_72gf8")
+expand_mode = 1
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
