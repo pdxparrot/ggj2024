@@ -13,6 +13,7 @@ _spawnRoot = NodePath("SpawnRoot")
 script = ExtResource("2_26bru")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/players/player.tscn")
 spawn_path = NodePath("../SpawnRoot")
 
 [node name="SpawnRoot" type="Node" parent="."]
