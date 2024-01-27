@@ -28,19 +28,18 @@ _collider = NodePath("Movement/CollisionShape3D")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ok77n")
 
-[node name="Input" type="MultiplayerSynchronizer" parent="." node_paths=PackedStringArray("_owner")]
+[node name="Input" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_stcnq")
 script = ExtResource("2_nm1nr")
-_owner = NodePath("..")
 
 [node name="Movement" type="CharacterBody3D" parent="."]
 script = ExtResource("3_uvfir")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Movement"]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 11, 0)
 shape = SubResource("CapsuleShape3D_t51w8")
 
 [node name="Model" type="Node3D" parent="Movement"]
 script = ExtResource("4_1efev")
 
 [node name="MechaChicken2" parent="Movement/Model" instance=ExtResource("5_xi2yj")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -1, 0)
