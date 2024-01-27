@@ -59,6 +59,11 @@ namespace pdxpartyparrot.ggj2024.Levels
             NetworkManager.Instance.Rpcs.ServerStartGame();
         }
 
+        private async void _on_cancel_pressed()
+        {
+            await GameManager.Instance.RestartAsync().ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Event Handlers
