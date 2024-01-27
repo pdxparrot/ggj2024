@@ -87,6 +87,13 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             GD.Print("[GameManager] Restarting game ...");
 
+            // this prevents a weird edge case where
+            // a server quitting while everyone paused
+            // would leave things in a weird state
+            if(PartyParrotManager.Instance.IsPaused) {
+                PartyParrotManager.Instance.TogglePause();
+            }
+
             NetworkManager.Instance.Disconnect();
             NetworkManager.Instance.StopServer();
 

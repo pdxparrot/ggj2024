@@ -68,12 +68,6 @@ namespace pdxpartyparrot.ggj2024.UI
 
         private async void _on_exit_pressed()
         {
-            if(NetworkManager.Instance.IsNetwork) {
-                NetworkManager.Instance.Rpcs.ClientTogglePause();
-            } else {
-                PartyParrotManager.Instance.TogglePause();
-            }
-
             await GameManager.Instance.RestartAsync().ConfigureAwait(false);
         }
 

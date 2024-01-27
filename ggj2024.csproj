@@ -2,7 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <PublishAOT>true</PublishAOT>
+    <!-- disable AOT becuase it's messing with JSON serialization -->
+    <!--<PublishAOT>true</PublishAOT>-->
   </PropertyGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="GodotSharp" />
