@@ -11,6 +11,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         protected SimplePlayer PlayerOwner => _owner;
 
+        // sync'd client -> server
         [Export]
         public int DeviceId { get; set; }
 

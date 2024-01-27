@@ -6,6 +6,7 @@ namespace pdxpartyparrot.ggj2024.Player
     {
         private long _clientId;
 
+        // sync'd client -> server
         [Export]
         public long ClientId
         {

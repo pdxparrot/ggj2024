@@ -8,7 +8,9 @@ namespace pdxpartyparrot.ggj2024
     public abstract partial class SimpleCharacter : Node3D, IDebugDraw
     {
         [Export]
-        private Node3D _movement;
+        private CharacterBody3D _movement;
+
+        protected CharacterBody3D Movement => _movement;
 
         [Export]
         private Model _model;
