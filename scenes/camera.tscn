@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://1sbg6cmvuqi2"]
+[gd_scene load_steps=3 format=3 uid="uid://1sbg6cmvuqi2"]
 
 [ext_resource type="Script" path="res://scripts/Camera/StaticCamera.cs" id="1_w77ri"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ctb6a"]
 
 [node name="Camera" type="Node3D" node_paths=PackedStringArray("_camera")]
 script = ExtResource("1_w77ri")
 _camera = NodePath("Camera3D")
+_noise = SubResource("FastNoiseLite_ctb6a")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+fov = 40.0
