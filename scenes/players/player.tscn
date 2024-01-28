@@ -15,6 +15,9 @@ properties/1/replication_mode = 2
 properties/2/path = NodePath(".:_move")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:_stunned")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stcnq"]
 properties/0/path = NodePath("Input:_lookDirection")
