@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b54i32jei7hdt"]
+[gd_scene load_steps=12 format=3 uid="uid://b54i32jei7hdt"]
 
 [ext_resource type="Script" path="res://scripts/Player/Mecha.cs" id="1_63y7g"]
 [ext_resource type="Script" path="res://scripts/Player/MechaInput.cs" id="2_nm1nr"]
 [ext_resource type="Script" path="res://scripts/Model.cs" id="4_1efev"]
+[ext_resource type="PackedScene" uid="uid://cyh5c66v3jeg1" path="res://art/animation/ybot/YbotAnim.tscn" id="5_hewkx"]
 [ext_resource type="Script" path="res://scripts/Interactables/Interactables.cs" id="5_hkx48"]
 [ext_resource type="PackedScene" uid="uid://c7ecvqejpnw6d" path="res://art/character/MechaChicken.glb" id="5_xi2yj"]
 
@@ -70,6 +71,10 @@ script = ExtResource("4_1efev")
 
 [node name="MechaChicken2" parent="Model" instance=ExtResource("5_xi2yj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+
+[node name="YbotAnim" parent="Model" instance=ExtResource("5_hewkx")]
+transform = Transform3D(-11, 0, -9.61651e-07, 0, 11, 0, 9.61651e-07, 0, -11, 0, 0, 0)
 
 [node name="FallTimer" type="Timer" parent="."]
 wait_time = 2.0
