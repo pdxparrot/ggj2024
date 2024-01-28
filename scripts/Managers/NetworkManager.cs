@@ -40,16 +40,6 @@ namespace pdxpartyparrot.ggj2024.Managers
         public RPC Rpcs => _rpc;
 
         [Export]
-        private MultiplayerSpawner _spawner;
-
-        public MultiplayerSpawner Spawner => _spawner;
-
-        [Export]
-        private Node _spawnRoot;
-
-        public Node SpawnRoot => _spawnRoot;
-
-        [Export]
         private int _listeningPort = 7575;
 
         public int ListenPort => _listeningPort;
@@ -62,8 +52,6 @@ namespace pdxpartyparrot.ggj2024.Managers
         public bool IsNetwork => RootMultiplayer.MultiplayerPeer != null;
 
         public bool IsServer => IsNetwork ? Multiplayer.IsServer() : false;
-
-        public long UniqueId => Multiplayer.GetUniqueId();
 
         private MultiplayerApi RootMultiplayer => GetTree().Root.Multiplayer;
 
@@ -227,7 +215,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private void OnConnectedToServer()
         {
-            GD.Print($"[NetworkManager] Peer {UniqueId} connected to server!");
+            GD.Print($"[NetworkManager] Peer {Multiplayer.GetUniqueId()} connected to server!");
 
             ConnectedToServerEvent?.Invoke(this, EventArgs.Empty);
         }

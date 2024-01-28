@@ -20,7 +20,7 @@ namespace pdxpartyparrot.ggj2024.Player
         public override void _Ready()
         {
             // multiplayer authority set by parent (sync'd from server)
-            bool isAuthority = GetMultiplayerAuthority() == NetworkManager.Instance.UniqueId;
+            bool isAuthority = GetMultiplayerAuthority() == Multiplayer.GetUniqueId();
             GD.Print($"[Player {PlayerOwner.ClientId}:{DeviceId}] Input authority: {isAuthority}");
             SetProcess(isAuthority);
             SetProcessInput(isAuthority);

@@ -3,6 +3,14 @@
 [ext_resource type="Script" path="res://scripts/Managers/PlayerManager.cs" id="1_efcge"]
 [ext_resource type="PackedScene" uid="uid://b54i32jei7hdt" path="res://scenes/players/player.tscn" id="2_0ow8k"]
 
-[node name="PlayerManager" type="Node"]
+[node name="PlayerManager" type="Node" node_paths=PackedStringArray("_spawner", "_spawnRoot")]
 script = ExtResource("1_efcge")
 _playerScene = ExtResource("2_0ow8k")
+_spawner = NodePath("MultiplayerSpawner")
+_spawnRoot = NodePath("SpawnRoot")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/players/player.tscn")
+spawn_path = NodePath("../SpawnRoot")
+
+[node name="SpawnRoot" type="Node" parent="."]

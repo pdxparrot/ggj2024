@@ -45,6 +45,12 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private PackedScene _playerScene;
 
+        [Export]
+        private MultiplayerSpawner _spawner;
+
+        [Export]
+        private Node _spawnRoot;
+
         private Dictionary<PlayerId, PlayerInfo> _players = new Dictionary<PlayerId, PlayerInfo>();
 
         public int PlayerCount => _players.Count;
@@ -208,7 +214,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
 
             if(NetworkManager.Instance.IsNetwork) {
-                NetworkManager.Instance.SpawnRoot.AddChild(player.Player);
+                _spawnRoot.AddChild(player.Player);
             } else {
                 AddChild(player.Player);
             }
@@ -223,7 +229,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             player.OnDeSpawn();
 
             if(NetworkManager.Instance.IsNetwork) {
-                NetworkManager.Instance.SpawnRoot.RemoveChild(player);
+                _spawnRoot.RemoveChild(player);
             } else {
                 RemoveChild(player);
             }
