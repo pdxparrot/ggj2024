@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b54i32jei7hdt"]
+[gd_scene load_steps=11 format=3 uid="uid://b54i32jei7hdt"]
 
 [ext_resource type="Script" path="res://scripts/Player/Mecha.cs" id="1_63y7g"]
 [ext_resource type="Script" path="res://scripts/Player/MechaInput.cs" id="2_nm1nr"]
 [ext_resource type="Script" path="res://scripts/Model.cs" id="4_1efev"]
+[ext_resource type="Script" path="res://scripts/Interactables/Interactables.cs" id="5_hkx48"]
 [ext_resource type="PackedScene" uid="uid://c7ecvqejpnw6d" path="res://art/character/MechaChicken.glb" id="5_xi2yj"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ok77n"]
@@ -18,6 +19,9 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath(".:_stunned")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath(".:_currentHealth")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stcnq"]
 properties/0/path = NodePath("Input:_lookDirection")
@@ -29,9 +33,15 @@ properties/1/replication_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t51w8"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_thrusterTimer", "_fallTimer", "_input", "_model", "_collider")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_kh711"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5myjb"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_leftArmInteractables", "_rightArmInteractables", "_thrusterTimer", "_fallTimer", "_input", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
+_leftArmInteractables = NodePath("Left Punch Hitbox")
+_rightArmInteractables = NodePath("Right Punch Hitbox")
 _thrusterModifier = 1.25
 _thrusterTimer = NodePath("ThrusterTimer")
 _fallTimer = NodePath("FallTimer")
@@ -66,5 +76,32 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="Hurtbox" type="Area3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("BoxShape3D_kh711")
+
+[node name="Left Punch Hitbox" type="Area3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -8, 15, -12)
+monitorable = false
+script = ExtResource("5_hkx48")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Left Punch Hitbox"]
+shape = SubResource("SphereShape3D_5myjb")
+
+[node name="Right Punch Hitbox" type="Area3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 8, 15, -12)
+monitorable = false
+script = ExtResource("5_hkx48")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Right Punch Hitbox"]
+shape = SubResource("SphereShape3D_5myjb")
+
 [connection signal="timeout" from="FallTimer" to="." method="_on_fall_timer_timeout"]
 [connection signal="timeout" from="ThrusterTimer" to="." method="_on_thruster_timer_timeout"]
+[connection signal="area_entered" from="Left Punch Hitbox" to="Left Punch Hitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Left Punch Hitbox" to="Left Punch Hitbox" method="_on_area_exited"]
+[connection signal="area_entered" from="Right Punch Hitbox" to="Right Punch Hitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Right Punch Hitbox" to="Right Punch Hitbox" method="_on_area_exited"]

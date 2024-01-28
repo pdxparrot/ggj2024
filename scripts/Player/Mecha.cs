@@ -1,11 +1,15 @@
 using Godot;
 
+using System;
+using System.Linq;
+
+using pdxpartyparrot.ggj2024.Interactables;
 using pdxpartyparrot.ggj2024.Managers;
 using pdxpartyparrot.ggj2024.Util;
 
 namespace pdxpartyparrot.ggj2024.Player
 {
-    public partial class Mecha : SimplePlayer
+    public partial class Mecha : SimplePlayer, IInteractable
     {
         public enum Leg
         {
@@ -14,15 +18,33 @@ namespace pdxpartyparrot.ggj2024.Player
             Right,
         }
 
+        [Export]
+        private int _maxHealth = 10;
+
+        // sync'd server -> client
+        [Export]
+        private int _currentHealth;
+
+        public bool IsDead => _currentHealth <= 0;
+
         private Leg _lastLeg;
 
         protected MechaInput MechaInput => (MechaInput)Input;
 
-        public bool CanMove => !IsStunned && !IsThrustering;
+        public bool CanMove => !IsDead && !IsStunned && !IsThrustering;
 
         #region Punch
 
-        private bool CanPunch => !IsStunned && !IsThrustering;
+        [Export]
+        private int _punchDamage = 1;
+
+        private bool CanPunch => !IsDead && !IsStunned && !IsThrustering;
+
+        [Export]
+        private Interactables.Interactables _leftArmInteractables;
+
+        [Export]
+        private Interactables.Interactables _rightArmInteractables;
 
         #endregion
 
@@ -40,7 +62,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private bool IsThrustering => _thrusters;
 
-        private bool CanThruster => !IsStunned && !IsThrustering;
+        private bool CanThruster => !IsDead && !IsStunned && !IsThrustering;
 
         #endregion
 
@@ -61,7 +83,22 @@ namespace pdxpartyparrot.ggj2024.Player
 
         #endregion
 
+        #region IInteractable
+
+        public bool CanInteract => !IsDead;
+
+        public Type InteractableType => GetType();
+
+        #endregion
+
         #region Godot Lifecycle
+
+        public override void _Ready()
+        {
+            base._Ready();
+
+            _currentHealth = _maxHealth;
+        }
 
         // both client and server run physics
         // bespoke because this thing is a goober movement
@@ -132,6 +169,33 @@ namespace pdxpartyparrot.ggj2024.Player
             Rpc(nameof(RpcThrusters));
         }
 
+        private void Damage(Mecha attacker, int amount)
+        {
+            if(IsDead) {
+                return;
+            }
+
+            GD.Print($"[Player {ClientId}:{Input.DeviceId}] hit for {amount} by {attacker.ClientId}:{attacker.Input.DeviceId}!");
+
+            _currentHealth = Math.Max(_currentHealth - amount, 0);
+            if(IsDead) {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] died!");
+            }
+        }
+
+        private void Punch(Interactables.Interactables interactables)
+        {
+            var enemies = interactables.GetInteractables<Mecha>();
+
+            foreach(var enemy in enemies) {
+                var enemyMecha = (Mecha)enemy;
+                if(enemyMecha == this) {
+                    continue;
+                }
+                enemyMecha.Damage(this, _punchDamage);
+            }
+        }
+
         private void Fall()
         {
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] fell over lol");
@@ -195,8 +259,7 @@ namespace pdxpartyparrot.ggj2024.Player
                 return;
             }
 
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] punches left!");
-            // TODO: punch left
+            Punch(_leftArmInteractables);
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -206,8 +269,7 @@ namespace pdxpartyparrot.ggj2024.Player
                 return;
             }
 
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] punches right!");
-            // TODO: punch right
+            Punch(_rightArmInteractables);
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]

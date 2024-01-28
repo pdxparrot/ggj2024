@@ -25,14 +25,6 @@ namespace pdxpartyparrot.ggj2024.Interactables
 
         private readonly Dictionary<Type, HashSet<IInteractable>> _interactables = new Dictionary<Type, HashSet<IInteractable>>();
 
-        #region Godot Lifecycle
-
-        public override void _Ready()
-        {
-        }
-
-        #endregion
-
         // NOTE: this doesn't check to see if the interactable actually collides with us
         public bool AddInteractable(IInteractable interactable)
         {
