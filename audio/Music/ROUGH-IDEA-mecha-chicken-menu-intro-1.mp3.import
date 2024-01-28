@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ROUGH-IDEA-mecha-chicken-menu-intro-1.mp3-f2b
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
