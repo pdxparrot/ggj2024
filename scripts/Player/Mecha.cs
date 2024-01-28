@@ -213,6 +213,8 @@ namespace pdxpartyparrot.ggj2024.Player
             _move = false;
 
             _fallTimer.Start();
+
+            Model.ChangeState("Fall");
         }
 
         #region RPCs
@@ -231,6 +233,8 @@ namespace pdxpartyparrot.ggj2024.Player
 
             _lastLeg = Leg.Left;
             _move = true;
+
+            Model.ChangeState("StepRight");
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -247,6 +251,8 @@ namespace pdxpartyparrot.ggj2024.Player
 
             _lastLeg = Leg.Right;
             _move = true;
+
+            Model.ChangeState("StepLeft");
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -267,6 +273,8 @@ namespace pdxpartyparrot.ggj2024.Player
             }
 
             Punch(_leftArmInteractables);
+
+            Model.ChangeState("PunchLeft");
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -277,6 +285,8 @@ namespace pdxpartyparrot.ggj2024.Player
             }
 
             Punch(_rightArmInteractables);
+
+            Model.ChangeState("PunchRight");
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -306,6 +316,17 @@ namespace pdxpartyparrot.ggj2024.Player
         private void _on_fall_timer_timeout()
         {
             _stunned = false;
+        }
+
+        #endregion
+
+        #region Events
+
+        public override void OnIdle()
+        {
+            base.OnIdle();
+
+            Model.ChangeState("Idle");
         }
 
         #endregion
