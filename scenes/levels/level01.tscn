@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=7 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
 [ext_resource type="PackedScene" uid="uid://1sbg6cmvuqi2" path="res://scenes/camera.tscn" id="2_fo1sa"]
 [ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
+[ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="5_qxvwr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3qm2k"]
 
@@ -48,3 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 
 [node name="Camera" parent="Camera_Mover/Camera_Pan/Camera_Tilt" instance=ExtResource("2_fo1sa")]
 _noise = SubResource("FastNoiseLite_3qm2k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qxvwr")
+volume_db = -15.0

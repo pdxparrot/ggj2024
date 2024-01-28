@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxx854vihgahm"]
+[gd_scene load_steps=7 format=3 uid="uid://dxx854vihgahm"]
 
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.cs" id="1_cimc5"]
 [ext_resource type="Texture2D" uid="uid://bdorvct650ecs" path="res://art/ui/WIP Title Screen.png" id="2_72gf8"]
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_ffntl"]
 [ext_resource type="Script" path="res://scripts/UI/JoinMenu.cs" id="3_v625v"]
+[ext_resource type="AudioStream" uid="uid://d2mrmdyii6cww" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-main-menu1.mp3" id="5_u5rdw"]
+[ext_resource type="AudioStream" uid="uid://bhw3n3wsuj7ca" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-menu-intro-1.mp3" id="6_487fy"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("_mainMenu", "_joinMenu", "_credits", "_hostButton", "_joinButton", "_creditsButton", "_joinMenuJoinButton", "_creditsBackButton")]
 layout_mode = 3
@@ -107,6 +109,18 @@ offset_bottom = 40.0
 [node name="Back" parent="CanvasLayer/Credits/VBoxContainer" instance=ExtResource("2_ffntl")]
 layout_mode = 2
 text = "Back"
+
+[node name="MainMenuLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_u5rdw")
+volume_db = -5.0
+
+[node name="MainMenIntro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_487fy")
+volume_db = -5.0
+
+[node name="Credits" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_487fy")
+volume_db = -5.0
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Join" to="." method="_on_join_pressed"]
