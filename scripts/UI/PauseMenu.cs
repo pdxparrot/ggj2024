@@ -21,7 +21,6 @@ namespace pdxpartyparrot.ggj2024.UI
         {
             _resumeButton.GrabFocus();
 
-
             UpdateFullscreenButtons();
         }
 

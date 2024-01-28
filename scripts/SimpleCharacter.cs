@@ -78,6 +78,11 @@ namespace pdxpartyparrot.ggj2024
             Model.UpdateMotionBlend(0.0f);
         }
 
+        public override void _Process(double delta)
+        {
+            Model.UpdateMotionBlend(MaxSpeed > 0.0f ? HorizontalSpeed / MaxSpeed : 0.0f);
+        }
+
         // both client and server run physics
         public override void _PhysicsProcess(double delta)
         {
@@ -104,11 +109,6 @@ namespace pdxpartyparrot.ggj2024
 
             // move the player
             MoveAndSlide();
-        }
-
-        public override void _Process(double delta)
-        {
-            Model.UpdateMotionBlend(MaxSpeed > 0.0f ? HorizontalSpeed / MaxSpeed : 0.0f);
         }
 
         #endregion

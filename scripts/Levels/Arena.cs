@@ -9,12 +9,25 @@ namespace pdxpartyparrot.ggj2024.Levels
 {
     public partial class Arena : Node
     {
-        private int ReadyPlayerCount => PlayerManager.Instance.GetPlayersInStateCount(PlayerInfo.PlayerState.ArenaReady);
+        [Export]
+        private AudioStreamPlayer _musicPlayer;
 
         #region Godot Lifecycle
 
+        public override void _ExitTree()
+        {
+            PlayerManager.Instance.PlayerStateChangedEvent -= PlayerStateChangedEventHandler;
+            NetworkManager.Instance.ServerDisconnectedEvent -= ServerDisconnectedEventHandler;
+        }
+
         public override void _Ready()
         {
+            if(_musicPlayer != null) {
+                _musicPlayer.Play();
+            }
+
+            SpawnManager.Instance.Initialize();
+
             if(NetworkManager.Instance.IsServer) {
                 PlayerManager.Instance.PlayerStateChangedEvent += PlayerStateChangedEventHandler;
 
@@ -24,12 +37,6 @@ namespace pdxpartyparrot.ggj2024.Levels
 
                 NetworkManager.Instance.Rpcs.ClientArenaLoaded();
             }
-        }
-
-        public override void _ExitTree()
-        {
-            PlayerManager.Instance.PlayerStateChangedEvent -= PlayerStateChangedEventHandler;
-            NetworkManager.Instance.ServerDisconnectedEvent -= ServerDisconnectedEventHandler;
         }
 
         public override void _UnhandledInput(InputEvent @event)

@@ -16,12 +16,17 @@ namespace pdxpartyparrot.ggj2024.Levels
         [Export]
         private UI.Button _startButton;
 
-        private int ReadyPlayerCount => PlayerManager.Instance.GetPlayersInStateCount(PlayerInfo.PlayerState.LobbyReady);
+        [Export]
+        private AudioStreamPlayer _musicPlayer;
 
         #region Godot Lifecycle
 
         public override void _Ready()
         {
+            if(_musicPlayer != null) {
+                _musicPlayer.Play();
+            }
+
             for(int i = 0; i < GameManager.Instance.MaxPlayers; ++i) {
                 UpdatePlayerSlot(i);
             }
