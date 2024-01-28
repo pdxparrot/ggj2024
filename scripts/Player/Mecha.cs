@@ -187,12 +187,19 @@ namespace pdxpartyparrot.ggj2024.Player
         {
             var enemies = interactables.GetInteractables<Mecha>();
 
+            bool hitSomething = false;
             foreach(var enemy in enemies) {
                 var enemyMecha = (Mecha)enemy;
                 if(enemyMecha == this) {
                     continue;
                 }
+
+                hitSomething = true;
                 enemyMecha.Damage(this, _punchDamage);
+            }
+
+            if(!hitSomething) {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] wiffed!");
             }
         }
 
