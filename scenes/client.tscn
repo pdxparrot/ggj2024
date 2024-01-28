@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpsquq25tmdhn"]
+[gd_scene load_steps=3 format=3 uid="uid://dpsquq25tmdhn"]
 
 [ext_resource type="Script" path="res://scripts/SplashScreen.cs" id="1_fwsyr"]
+[ext_resource type="Texture2D" uid="uid://c5s7nuyu0brl3" path="res://art/ui/splash/ggj24hor.png" id="2_h7jbb"]
 
 [node name="Client" type="Node3D" node_paths=PackedStringArray("_splashImage", "_fadeTimer", "_displayTimer")]
 script = ExtResource("1_fwsyr")
+_splashImages = [ExtResource("2_h7jbb")]
 _splashImage = NodePath("Control/CanvasLayer/TextureRect")
 _fadeTimer = NodePath("FadeTimer")
 _displayTimer = NodePath("Timer")
@@ -19,6 +21,7 @@ offset_bottom = 40.0
 [node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer"]
 offset_right = 1280.0
 offset_bottom = 720.0
+expand_mode = 2
 
 [node name="FadeTimer" type="Timer" parent="."]
 one_shot = true
