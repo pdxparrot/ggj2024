@@ -7,6 +7,9 @@ namespace pdxpartyparrot.ggj2024.Player
 {
     public partial class Mecha : SimplePlayer
     {
+        [Export]
+        private Timer _fallTimer;
+
         public enum Leg
         {
             None,
@@ -23,6 +26,11 @@ namespace pdxpartyparrot.ggj2024.Player
         // sync'd server -> client
         [Export]
         private bool _move;
+
+        [Export]
+        private bool _stunned;
+
+        public bool IsStunned => _stunned;
 
         #region Godot Lifecycle
 
@@ -98,9 +106,14 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private void Fall()
         {
-            // TODO:
+            GD.Print($"[Player {ClientId}:{Input.DeviceId}] fell over lol");
 
+            _stunned = true;
+
+            _lastLeg = Leg.None;
             _move = false;
+
+            _fallTimer.Start();
         }
 
         #region RPCs
@@ -109,9 +122,6 @@ namespace pdxpartyparrot.ggj2024.Player
         private void RpcLeftLeg()
         {
             if(_lastLeg == Leg.Left) {
-                GD.Print($"[Player {ClientId}:{Input.DeviceId}] falls over (left)!");
-                _lastLeg = Leg.None;
-
                 Fall();
                 return;
             }
@@ -124,9 +134,6 @@ namespace pdxpartyparrot.ggj2024.Player
         private void RpcRightLeg()
         {
             if(_lastLeg == Leg.Right) {
-                GD.Print($"[Player {ClientId}:{Input.DeviceId}] falls over (right)!");
-                _lastLeg = Leg.None;
-
                 Fall();
                 return;
             }
@@ -138,9 +145,6 @@ namespace pdxpartyparrot.ggj2024.Player
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcBothLegs()
         {
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] falls over (both)!");
-            _lastLeg = Leg.None;
-
             Fall();
         }
 
@@ -163,6 +167,15 @@ namespace pdxpartyparrot.ggj2024.Player
         {
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] thrusters: {enable}!");
             _thrustersEnabled = enable;
+        }
+
+        #endregion
+
+        #region Signal Handlers
+
+        private void _on_fall_timer_timeout()
+        {
+            _stunned = false;
         }
 
         #endregion

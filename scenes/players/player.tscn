@@ -26,9 +26,10 @@ properties/1/replication_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t51w8"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_input", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_fallTimer", "_input", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
+_fallTimer = NodePath("FallTimer")
 _input = NodePath("Input")
 _model = NodePath("Model")
 _collider = NodePath("CollisionShape3D")
@@ -51,3 +52,9 @@ script = ExtResource("4_1efev")
 
 [node name="MechaChicken2" parent="Model" instance=ExtResource("5_xi2yj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="FallTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="FallTimer" to="." method="_on_fall_timer_timeout"]
