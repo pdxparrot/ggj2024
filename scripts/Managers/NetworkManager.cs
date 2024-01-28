@@ -59,11 +59,13 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private ENetConnection.CompressionMode _compressionMode = ENetConnection.CompressionMode.RangeCoder;
 
-        public bool IsNetwork => Multiplayer.MultiplayerPeer != null;
+        public bool IsNetwork => RootMultiplayer.MultiplayerPeer != null;
 
         public bool IsServer => IsNetwork ? Multiplayer.IsServer() : false;
 
         public long UniqueId => Multiplayer.GetUniqueId();
+
+        private MultiplayerApi RootMultiplayer => GetTree().Root.Multiplayer;
 
         #region Godot Lifecycle
 
@@ -71,7 +73,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             base._EnterTree();
 
-            Multiplayer.MultiplayerPeer = null; // clear the default "offline" peer
+            RootMultiplayer.MultiplayerPeer = null; // clear the default "offline" peer
         }
 
         public override void _ExitTree()
@@ -107,7 +109,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             peer.Host.Compress(_compressionMode);
 
-            Multiplayer.MultiplayerPeer = peer;
+            RootMultiplayer.MultiplayerPeer = peer;
 
             Multiplayer.PeerConnected += OnPeerConnected;
             Multiplayer.PeerDisconnected += OnPeerDisconnected;
@@ -119,7 +121,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void StopServer()
         {
-            if(Multiplayer.MultiplayerPeer == null || !IsServer) {
+            if(!IsNetwork || !IsServer) {
                 return;
             }
 
@@ -131,16 +133,16 @@ namespace pdxpartyparrot.ggj2024.Managers
             // TODO: Close is not actually closing the listener ....
             // but it works fine in other test apps, soooooo .... ???
             // for now just forcefully destroy the host instead
-            ((ENetMultiplayerPeer)Multiplayer.MultiplayerPeer).Host.Destroy();
-            //Multiplayer.MultiplayerPeer.Close();
-            Multiplayer.MultiplayerPeer = null;
+            ((ENetMultiplayerPeer)RootMultiplayer.MultiplayerPeer).Host.Destroy();
+            //RootMultiplayer.MultiplayerPeer.Close();
+            RootMultiplayer.MultiplayerPeer = null;
         }
 
         public void LockServer(bool locked)
         {
             if(IsServer) {
                 GD.Print($"[NetworkManager] {(locked ? "locking" : "unlocking")} server ...");
-                Multiplayer.MultiplayerPeer.RefuseNewConnections = locked;
+                RootMultiplayer.MultiplayerPeer.RefuseNewConnections = locked;
             }
         }
 
@@ -174,7 +176,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             peer.Host.Compress(_compressionMode);
 
-            Multiplayer.MultiplayerPeer = peer;
+            RootMultiplayer.MultiplayerPeer = peer;
 
             Multiplayer.ConnectedToServer += OnConnectedToServer;
             Multiplayer.ConnectionFailed += OnConnectionFailed;
@@ -183,7 +185,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void Disconnect(bool silent = false)
         {
-            if(Multiplayer.MultiplayerPeer == null || IsServer) {
+            if(!IsNetwork || IsServer) {
                 return;
             }
 
@@ -195,8 +197,8 @@ namespace pdxpartyparrot.ggj2024.Managers
             Multiplayer.ConnectionFailed -= OnConnectionFailed;
             Multiplayer.ServerDisconnected -= OnServerDisconnected;
 
-            Multiplayer.MultiplayerPeer.Close();
-            Multiplayer.MultiplayerPeer = null;
+            RootMultiplayer.MultiplayerPeer.Close();
+            RootMultiplayer.MultiplayerPeer = null;
         }
 
         #endregion
