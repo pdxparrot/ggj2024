@@ -10,12 +10,17 @@ namespace pdxpartyparrot.ggj2024.UI
         private Label _playerId;
 
         [Export]
-        private Label _color;
+        private Label _playerState;
 
-        public void Initialize(PlayerInfo player)
+        public void UpdatePlayer(PlayerInfo player)
         {
-            _playerId.Text = player.PlayerId.ToString();
-            _color.Text = player.Color.ToString();
+            if(player == null) {
+                _playerId.Text = "No Player";
+                _playerState.Text = PlayerInfo.PlayerState.Disconnected.ToString();
+            } else {
+                _playerId.Text = $"{(player.ClientId == Multiplayer.GetUniqueId() ? "* " : "")}Player {player.PlayerSlot}";
+                _playerState.Text = player.State.ToString();
+            }
         }
     }
 }

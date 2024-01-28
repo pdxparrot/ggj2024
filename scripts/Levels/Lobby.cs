@@ -11,16 +11,10 @@ namespace pdxpartyparrot.ggj2024.Levels
     public partial class Lobby : Node
     {
         [Export]
-        private PackedScene _lobbyPlayerScene;
-
-        [Export]
         private Node _lobbyPlayerContainer;
 
         [Export]
         private UI.Button _startButton;
-
-        [Export]
-        private Label _playerCount;
 
         private int ReadyPlayerCount => PlayerManager.Instance.GetPlayersInStateCount(PlayerInfo.PlayerState.LobbyReady);
 
@@ -28,10 +22,14 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _Ready()
         {
+            for(int i = 0; i < GameManager.Instance.MaxPlayers; ++i) {
+                UpdatePlayerSlot(i);
+            }
+
+            PlayerManager.Instance.PlayerStateChangedEvent += PlayerStateChangedEventHandler;
+
             if(NetworkManager.Instance.IsServer) {
-                foreach(var player in GameManager.Instance.RegisterLocalPlayers(PlayerInfo.PlayerState.LobbyReady)) {
-                    AddPlayer(player);
-                }
+                GameManager.Instance.RegisterLocalPlayers(PlayerInfo.PlayerState.LobbyReady);
 
                 NetworkManager.Instance.PeerConnectedEvent += PeerConnectEventHandler;
                 NetworkManager.Instance.PeerDisconnectedEvent += PeerDisconnectEventHandler;
@@ -44,31 +42,32 @@ namespace pdxpartyparrot.ggj2024.Levels
 
                 _startButton.Hide();
             }
-
-            _playerCount.Text = $"{ReadyPlayerCount}/{GameManager.Instance.MaxPlayers}";
         }
 
         public override void _ExitTree()
         {
+            PlayerManager.Instance.PlayerStateChangedEvent -= PlayerStateChangedEventHandler;
+
             NetworkManager.Instance.PeerConnectedEvent -= PeerConnectEventHandler;
             NetworkManager.Instance.PeerDisconnectedEvent -= PeerDisconnectEventHandler;
             NetworkManager.Instance.ServerDisconnectedEvent -= ServerDisconnectedEventHandler;
         }
 
-        public override void _Process(double delta)
-        {
-            // TODO: update this in an event handler, not here
-            _playerCount.Text = $"{ReadyPlayerCount}/{GameManager.Instance.MaxPlayers}";
-        }
-
         #endregion
 
-        private void AddPlayer(PlayerInfo player)
+        private void UpdatePlayerSlot(int playerSlot)
         {
-            var lobbyPlayer = _lobbyPlayerScene.Instantiate<LobbyPlayer>();
-            lobbyPlayer.Initialize(player);
-            lobbyPlayer.Name = player.PlayerId.ToString();
-            _lobbyPlayerContainer.AddChild(lobbyPlayer);
+            var lobbyPlayer = (LobbyPlayer)_lobbyPlayerContainer.GetChild(playerSlot);
+
+            var player = PlayerManager.Instance.GetPlayer(playerSlot);
+            if(null == player) {
+                lobbyPlayer.UpdatePlayer(null);
+                lobbyPlayer.Visible = false;
+                return;
+            }
+
+            lobbyPlayer.UpdatePlayer(player);
+            lobbyPlayer.Visible = true;
         }
 
         #region Signal Handlers
@@ -89,7 +88,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         private void PeerConnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
         {
-            AddPlayer(PlayerManager.Instance.RegisterRemotePlayer(args.Id, PlayerInfo.PlayerState.Connected));
+            PlayerManager.Instance.RegisterRemotePlayer(args.Id, PlayerInfo.PlayerState.Connected);
 
             NetworkManager.Instance.Rpcs.ServerLoadLobby(args.Id);
         }
@@ -97,14 +96,16 @@ namespace pdxpartyparrot.ggj2024.Levels
         private void PeerDisconnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
         {
             PlayerManager.Instance.UnRegisterRemotePlayer(args.Id);
-
-            var child = _lobbyPlayerContainer.FindChild(args.Id.ToString());
-            _lobbyPlayerContainer.RemoveChild(child);
         }
 
         private async void ServerDisconnectedEventHandler(object sender, EventArgs args)
         {
             await GameManager.Instance.RestartAsync().ConfigureAwait(false);
+        }
+
+        private void PlayerStateChangedEventHandler(object sender, PlayerManager.PlayerStateEventArgs args)
+        {
+            UpdatePlayerSlot(args.PlayerSlot);
         }
 
         #endregion

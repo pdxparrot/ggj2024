@@ -72,20 +72,18 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.BeginJoinGameSession(address);
         }
 
-        public IEnumerable<PlayerInfo> RegisterLocalPlayers(PlayerInfo.PlayerState initialState)
+        public void RegisterLocalPlayers(PlayerInfo.PlayerState initialState)
         {
             GD.Print($"[GameManager] Registering {LocalPlayerCount} local players ...");
 
             var joypads = Input.GetConnectedJoypads();
             if(joypads.Count == 0) {
-                var player = PlayerManager.Instance.RegisterLocalPlayer(1, initialState);
-                yield return player;
+                PlayerManager.Instance.RegisterLocalPlayer(1, initialState);
+                return;
             }
 
             foreach(var deviceId in joypads) {
-                var player = PlayerManager.Instance.RegisterLocalPlayer(deviceId, initialState);
-                yield return player;
-
+                PlayerManager.Instance.RegisterLocalPlayer(deviceId, initialState);
                 if(PlayerManager.Instance.PlayerCount >= MaxPlayers) {
                     break;
                 }

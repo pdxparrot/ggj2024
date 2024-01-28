@@ -4,12 +4,10 @@
 [ext_resource type="Script" path="res://scripts/Levels/Lobby.cs" id="1_an5xv"]
 [ext_resource type="PackedScene" uid="uid://cpkraolxxd5tb" path="res://scenes/ui/lobby_player.tscn" id="2_kr6ua"]
 
-[node name="Lobby" type="Node3D" node_paths=PackedStringArray("_lobbyPlayerContainer", "_startButton", "_playerCount")]
+[node name="Lobby" type="Node3D" node_paths=PackedStringArray("_lobbyPlayerContainer", "_startButton")]
 script = ExtResource("1_an5xv")
-_lobbyPlayerScene = ExtResource("2_kr6ua")
 _lobbyPlayerContainer = NodePath("Control/CanvasLayer/VBoxContainer/Players")
 _startButton = NodePath("Control/CanvasLayer/VBoxContainer/HBoxContainer2/Start")
-_playerCount = NodePath("Control/CanvasLayer/VBoxContainer/HBoxContainer/PlayerCount")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -25,20 +23,25 @@ offset_bottom = 225.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Players:"
-
-[node name="PlayerCount" type="Label" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "0"
-
 [node name="Players" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="LobbyPlayer" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 2
+
+[node name="LobbyPlayer2" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 2
+
+[node name="LobbyPlayer3" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 2
+
+[node name="LobbyPlayer4" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
 layout_mode = 2

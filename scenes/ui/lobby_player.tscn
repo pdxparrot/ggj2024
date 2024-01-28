@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/UI/LobbyPlayer.cs" id="1_guqq5"]
 
-[node name="LobbyPlayer" type="Control" node_paths=PackedStringArray("_playerId", "_color")]
+[node name="LobbyPlayer" type="Control" node_paths=PackedStringArray("_playerId", "_playerState")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_guqq5")
 _playerId = NodePath("VBoxContainer/PlayerId")
-_color = NodePath("VBoxContainer/Color")
+_playerState = NodePath("VBoxContainer/PlayerState")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -22,8 +22,8 @@ offset_bottom = 40.0
 
 [node name="PlayerId" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "0:0"
+text = "Player 0"
 
-[node name="Color" type="Label" parent="VBoxContainer"]
+[node name="PlayerState" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Black"
+text = "Disconnected"

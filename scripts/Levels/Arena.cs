@@ -54,15 +54,16 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         private void PlayerStateChangedEventHandler(object sender, PlayerManager.PlayerStateEventArgs args)
         {
-            if(PlayerManager.Instance.GetPlayerState(args.PlayerId) == PlayerInfo.PlayerState.ArenaReady) {
-                GD.Print($"Player {args.PlayerId} is ready, spawning ...");
-                PlayerManager.Instance.SpawnPlayer(args.PlayerId);
+            if(PlayerManager.Instance.GetPlayerState(args.PlayerSlot) == PlayerInfo.PlayerState.ArenaReady) {
+                GD.Print($"Player {args.PlayerSlot} is ready, spawning ...");
+                PlayerManager.Instance.SpawnPlayer(args.PlayerSlot);
             }
 
             if(PlayerManager.Instance.AreAllPlayersInState(PlayerInfo.PlayerState.ArenaReady)) {
                 GD.Print("All players are ready, start game ...");
 
                 // TODO: start the game
+                GD.PushWarning("TODO: start the game");
             }
         }
 
