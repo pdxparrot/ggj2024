@@ -4,11 +4,18 @@ using System;
 
 using pdxpartyparrot.ggj2024.Managers;
 using pdxpartyparrot.ggj2024.Player;
+using pdxpartyparrot.ggj2024.UI;
 
 namespace pdxpartyparrot.ggj2024.Levels
 {
     public partial class Lobby : Node
     {
+        [Export]
+        private PackedScene _lobbyPlayerScene;
+
+        [Export]
+        private Node _lobbyPlayerContainer;
+
         [Export]
         private UI.Button _startButton;
 
@@ -22,7 +29,9 @@ namespace pdxpartyparrot.ggj2024.Levels
         public override void _Ready()
         {
             if(NetworkManager.Instance.IsServer) {
-                GameManager.Instance.RegisterLocalPlayers(PlayerInfo.PlayerState.LobbyReady);
+                foreach(var player in GameManager.Instance.RegisterLocalPlayers(PlayerInfo.PlayerState.LobbyReady)) {
+                    AddPlayer(player);
+                }
 
                 NetworkManager.Instance.PeerConnectedEvent += PeerConnectEventHandler;
                 NetworkManager.Instance.PeerDisconnectedEvent += PeerDisconnectEventHandler;
@@ -54,6 +63,14 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         #endregion
 
+        private void AddPlayer(PlayerInfo player)
+        {
+            var lobbyPlayer = _lobbyPlayerScene.Instantiate<LobbyPlayer>();
+            lobbyPlayer.Initialize(player);
+            lobbyPlayer.Name = player.PlayerId.ToString();
+            _lobbyPlayerContainer.AddChild(lobbyPlayer);
+        }
+
         #region Signal Handlers
 
         private void _on_start_pressed()
@@ -72,7 +89,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         private void PeerConnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
         {
-            PlayerManager.Instance.RegisterRemotePlayer(args.Id, PlayerInfo.PlayerState.Connected);
+            AddPlayer(PlayerManager.Instance.RegisterRemotePlayer(args.Id, PlayerInfo.PlayerState.Connected));
 
             NetworkManager.Instance.Rpcs.ServerLoadLobby(args.Id);
         }
@@ -80,6 +97,9 @@ namespace pdxpartyparrot.ggj2024.Levels
         private void PeerDisconnectEventHandler(object sender, NetworkManager.PeerEventArgs args)
         {
             PlayerManager.Instance.UnRegisterRemotePlayer(args.Id);
+
+            var child = _lobbyPlayerContainer.FindChild(args.Id.ToString());
+            _lobbyPlayerContainer.RemoveChild(child);
         }
 
         private async void ServerDisconnectedEventHandler(object sender, EventArgs args)

@@ -1,6 +1,7 @@
 using Godot;
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using pdxpartyparrot.ggj2024.Util;
@@ -71,18 +72,20 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.BeginJoinGameSession(address);
         }
 
-        public void RegisterLocalPlayers(PlayerInfo.PlayerState initialState)
+        public IEnumerable<PlayerInfo> RegisterLocalPlayers(PlayerInfo.PlayerState initialState)
         {
             GD.Print($"[GameManager] Registering {LocalPlayerCount} local players ...");
 
             var joypads = Input.GetConnectedJoypads();
             if(joypads.Count == 0) {
-                PlayerManager.Instance.RegisterLocalPlayer(1, initialState);
-                return;
+                var player = PlayerManager.Instance.RegisterLocalPlayer(1, initialState);
+                yield return player;
             }
 
             foreach(var deviceId in joypads) {
-                PlayerManager.Instance.RegisterLocalPlayer(deviceId, initialState);
+                var player = PlayerManager.Instance.RegisterLocalPlayer(deviceId, initialState);
+                yield return player;
+
                 if(PlayerManager.Instance.PlayerCount >= MaxPlayers) {
                     break;
                 }

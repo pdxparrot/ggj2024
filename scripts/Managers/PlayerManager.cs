@@ -24,7 +24,6 @@ namespace pdxpartyparrot.ggj2024.Managers
             public PlayerId()
             {
             }
-
             public override string ToString()
             {
                 return $"{ClientId}:{DeviceId}";
@@ -95,40 +94,44 @@ namespace pdxpartyparrot.ggj2024.Managers
             return player.State;
         }
 
-        public void RegisterLocalPlayer(int deviceId, PlayerInfo.PlayerState initialState)
+        public PlayerInfo RegisterLocalPlayer(int deviceId, PlayerInfo.PlayerState initialState)
         {
             GD.Print($"[PlayerManager] Registering local player {deviceId}: {initialState}");
 
             var player = new PlayerInfo {
                 ClientId = 1,
                 DeviceId = deviceId,
-                State = initialState
+                State = initialState,
+                Color = (PlayerInfo.PlayerColor)_players.Count,
             };
-            RegisterPlayer(player);
+            return RegisterPlayer(player);
         }
 
-        public void RegisterRemotePlayer(long clientId, PlayerInfo.PlayerState initialState)
+        public PlayerInfo RegisterRemotePlayer(long clientId, PlayerInfo.PlayerState initialState)
         {
             GD.Print($"[PlayerManager] Registering remote player {clientId}: {initialState}");
 
             var player = new PlayerInfo {
                 ClientId = clientId,
-                State = initialState
+                State = initialState,
+                Color = (PlayerInfo.PlayerColor)_players.Count,
             };
-            RegisterPlayer(player);
+            return RegisterPlayer(player);
         }
 
-        private void RegisterPlayer(PlayerInfo player)
+        private PlayerInfo RegisterPlayer(PlayerInfo player)
         {
             var playerId = player.PlayerId;
 
             if(_players.TryGetValue(playerId, out var existingPlayer)) {
                 GD.PushWarning($"[PlayerManager] Player {playerId} already registered: {existingPlayer.State}");
-                return;
+                return existingPlayer;
             }
             _players.Add(playerId, player);
 
             PlayerStateChanged(playerId, true);
+
+            return player;
         }
 
         public void UnRegisterRemotePlayer(long clientId)

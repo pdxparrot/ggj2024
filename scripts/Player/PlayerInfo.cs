@@ -16,9 +16,19 @@ namespace pdxpartyparrot.ggj2024.Player
             ArenaReady,
         }
 
+        public enum PlayerColor
+        {
+            Orange,
+            Blue,
+            Green,
+            White,
+        }
+
         public long ClientId { get; set; } = 0;
 
         public int DeviceId { get; set; } = -1;
+
+        public PlayerColor Color { get; set; }
 
         public PlayerState State { get; set; }
 

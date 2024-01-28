@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyoxwjirorhlm"]
+[gd_scene load_steps=4 format=3 uid="uid://cyoxwjirorhlm"]
 
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="1_1ymsw"]
 [ext_resource type="Script" path="res://scripts/Levels/Lobby.cs" id="1_an5xv"]
+[ext_resource type="PackedScene" uid="uid://cpkraolxxd5tb" path="res://scenes/ui/lobby_player.tscn" id="2_kr6ua"]
 
-[node name="Lobby" type="Node3D" node_paths=PackedStringArray("_startButton", "_playerCount")]
+[node name="Lobby" type="Node3D" node_paths=PackedStringArray("_lobbyPlayerContainer", "_startButton", "_playerCount")]
 script = ExtResource("1_an5xv")
+_lobbyPlayerScene = ExtResource("2_kr6ua")
+_lobbyPlayerContainer = NodePath("Control/CanvasLayer/VBoxContainer/Players")
 _startButton = NodePath("Control/CanvasLayer/VBoxContainer/HBoxContainer2/Start")
 _playerCount = NodePath("Control/CanvasLayer/VBoxContainer/HBoxContainer/PlayerCount")
 
@@ -17,8 +20,10 @@ offset_bottom = 40.0
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 741.0
+offset_bottom = 225.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -30,6 +35,10 @@ text = "Players:"
 [node name="PlayerCount" type="Label" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "0"
+
+[node name="Players" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
 layout_mode = 2
