@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/SplashScreen.cs" id="1_fwsyr"]
 
-[node name="Client" type="Node" node_paths=PackedStringArray("_splashImage", "_fadeTimer", "_displayTimer")]
+[node name="Client" type="Node3D" node_paths=PackedStringArray("_splashImage", "_fadeTimer", "_displayTimer")]
 script = ExtResource("1_fwsyr")
-_skipSplashImagesInEditor = null
-_splashImages = null
 _splashImage = NodePath("Control/CanvasLayer/TextureRect")
 _fadeTimer = NodePath("FadeTimer")
 _displayTimer = NodePath("Timer")

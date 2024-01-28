@@ -29,9 +29,11 @@ properties/1/replication_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t51w8"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_fallTimer", "_input", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_thrusterTimer", "_fallTimer", "_input", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
+_thrusterModifier = 1.25
+_thrusterTimer = NodePath("ThrusterTimer")
 _fallTimer = NodePath("FallTimer")
 _input = NodePath("Input")
 _model = NodePath("Model")
@@ -60,4 +62,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 wait_time = 2.0
 one_shot = true
 
+[node name="ThrusterTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="FallTimer" to="." method="_on_fall_timer_timeout"]
+[connection signal="timeout" from="ThrusterTimer" to="." method="_on_thruster_timer_timeout"]

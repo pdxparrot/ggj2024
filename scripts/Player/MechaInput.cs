@@ -14,7 +14,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private Mecha Mecha => (Mecha)PlayerOwner;
 
-        private bool IsInputAllowed => !PartyParrotManager.Instance.IsPaused && DisplayServer.WindowIsFocused() && !Mecha.IsStunned;
+        private bool IsInputAllowed => !PartyParrotManager.Instance.IsPaused && DisplayServer.WindowIsFocused();
 
         #region Godot Lifecycle
 
@@ -51,9 +51,7 @@ namespace pdxpartyparrot.ggj2024.Player
             }
 
             if(Input.IsActionJustPressed($"{DeviceId}_thrusters")) {
-                Mecha.ThrustersOn();
-            } else if(Input.IsActionJustReleased($"{DeviceId}_thrusters")) {
-                Mecha.ThrustersOff();
+                Mecha.Thrusters();
             }
         }
 

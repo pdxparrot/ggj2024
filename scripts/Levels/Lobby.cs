@@ -26,6 +26,8 @@ namespace pdxpartyparrot.ggj2024.Levels
 
                 NetworkManager.Instance.PeerConnectedEvent += PeerConnectEventHandler;
                 NetworkManager.Instance.PeerDisconnectedEvent += PeerDisconnectEventHandler;
+
+                _startButton.GrabFocus();
             } else {
                 NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
 

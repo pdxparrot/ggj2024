@@ -7,9 +7,6 @@ namespace pdxpartyparrot.ggj2024.Player
 {
     public partial class Mecha : SimplePlayer
     {
-        [Export]
-        private Timer _fallTimer;
-
         public enum Leg
         {
             None,
@@ -19,18 +16,50 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private Leg _lastLeg;
 
-        private bool _thrustersEnabled;
-
         protected MechaInput MechaInput => (MechaInput)Input;
+
+        public bool CanMove => !IsStunned && !IsThrustering;
+
+        #region Punch
+
+        private bool CanPunch => !IsStunned && !IsThrustering;
+
+        #endregion
+
+        #region Thrusters
+
+        [Export]
+        private float _thrusterModifier = 3.0f;
+
+        [Export]
+        private Timer _thrusterTimer;
+
+        // sync'd client -> server
+        [Export]
+        private bool _thrusters;
+
+        private bool IsThrustering => _thrusters;
+
+        private bool CanThruster => !IsStunned && !IsThrustering;
+
+        #endregion
 
         // sync'd server -> client
         [Export]
         private bool _move;
 
+        #region Fall
+
+        [Export]
+        private Timer _fallTimer;
+
+        // sync'd server -> client
         [Export]
         private bool _stunned;
 
         public bool IsStunned => _stunned;
+
+        #endregion
 
         #region Godot Lifecycle
 
@@ -46,21 +75,25 @@ namespace pdxpartyparrot.ggj2024.Player
 
             ApplyAcceleration((float)delta);
 
-            Heading = new Vector3(MechaInput.LookDirection.X, 0.0f, MechaInput.LookDirection.Y);
-            if(Heading.LengthSquared() > 0.01) {
-                Heading = Heading.Normalized();
+            if(CanMove) {
+                Heading = new Vector3(MechaInput.LookDirection.X, 0.0f, MechaInput.LookDirection.Y);
+                if(Heading.LengthSquared() > 0.01) {
+                    Heading = Heading.Normalized();
 
-                // look in the direction we're heading
-                Model.LookAt(GlobalPosition + Heading, Vector3.Up);
+                    // look in the direction we're heading
+                    Model.LookAt(GlobalPosition + Heading, Vector3.Up);
+                }
             }
 
             Side = Heading.Perpendicular();
 
-            if(_move) {
-                Velocity = LimitVelocity(new Vector3(Forward.X, Velocity.Y, Forward.Z) * MaxSpeed);
+            if(IsThrustering) {
+                Velocity = LimitVelocity(new Vector3(Forward.X, 0.0f, Forward.Z) * MaxSpeed * _thrusterModifier);
+            } else if(_move) {
+                Velocity = LimitVelocity(new Vector3(Forward.X * MaxSpeed, Velocity.Y, Forward.Z * MaxSpeed));
                 _move = false;
             } else {
-                Velocity = LimitVelocity(new Vector3(0.0f, Velocity.Y, 0.0f) * MaxSpeed);
+                Stop();
             }
 
             // move the player
@@ -71,37 +104,32 @@ namespace pdxpartyparrot.ggj2024.Player
 
         public void MoveLeftLeg()
         {
-            RpcId(1, nameof(RpcLeftLeg));
+            Rpc(nameof(RpcLeftLeg));
         }
 
         public void MoveRightLeg()
         {
-            RpcId(1, nameof(RpcRightLeg));
+            Rpc(nameof(RpcRightLeg));
         }
 
         public void MoveBothLegs()
         {
-            RpcId(1, nameof(RpcBothLegs));
+            Rpc(nameof(RpcBothLegs));
         }
 
         public void MoveLeftArm()
         {
-            RpcId(1, nameof(RpcLeftArm));
+            Rpc(nameof(RpcLeftArm));
         }
 
         public void MoveRightArm()
         {
-            RpcId(1, nameof(RpcRightArm));
+            Rpc(nameof(RpcRightArm));
         }
 
-        public void ThrustersOn()
+        public void Thrusters()
         {
-            RpcId(1, nameof(RpcThrusters), true);
-        }
-
-        public void ThrustersOff()
-        {
-            RpcId(1, nameof(RpcThrusters), false);
+            Rpc(nameof(RpcThrusters));
         }
 
         private void Fall()
@@ -121,6 +149,10 @@ namespace pdxpartyparrot.ggj2024.Player
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcLeftLeg()
         {
+            if(!CanMove) {
+                return;
+            }
+
             if(_lastLeg == Leg.Left) {
                 Fall();
                 return;
@@ -133,6 +165,10 @@ namespace pdxpartyparrot.ggj2024.Player
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcRightLeg()
         {
+            if(!CanMove) {
+                return;
+            }
+
             if(_lastLeg == Leg.Right) {
                 Fall();
                 return;
@@ -145,12 +181,20 @@ namespace pdxpartyparrot.ggj2024.Player
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcBothLegs()
         {
+            if(!CanMove) {
+                return;
+            }
+
             Fall();
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcLeftArm()
         {
+            if(!CanPunch) {
+                return;
+            }
+
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] punches left!");
             // TODO: punch left
         }
@@ -158,20 +202,37 @@ namespace pdxpartyparrot.ggj2024.Player
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcRightArm()
         {
+            if(!CanPunch) {
+                return;
+            }
+
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] punches right!");
             // TODO: punch right
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-        private void RpcThrusters(bool enable)
+        private void RpcThrusters()
         {
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] thrusters: {enable}!");
-            _thrustersEnabled = enable;
+            if(!CanThruster) {
+                return;
+            }
+
+            _thrusters = true;
+
+            _lastLeg = Leg.None;
+            _move = false;
+
+            _thrusterTimer.Start();
         }
 
         #endregion
 
         #region Signal Handlers
+
+        private void _on_thruster_timer_timeout()
+        {
+            _thrusters = false;
+        }
 
         private void _on_fall_timer_timeout()
         {
