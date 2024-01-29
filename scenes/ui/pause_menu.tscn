@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw01bcfbm0fdd"]
+[gd_scene load_steps=4 format=3 uid="uid://cw01bcfbm0fdd"]
 
 [ext_resource type="Script" path="res://scripts/UI/PauseMenu.cs" id="1_6o0ih"]
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_tkyh8"]
+[ext_resource type="Texture2D" uid="uid://bsnhofk0o0elm" path="res://art/ui/Buttons/Quit - Pressed.png" id="3_0gwjr"]
 
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("_resumeButton")]
 layout_mode = 3
@@ -25,17 +26,18 @@ text = "Game Paused"
 
 [node name="Resume" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_tkyh8")]
 layout_mode = 2
-text = "Resume"
+size_flags_vertical = 3
 
 [node name="Exit" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("2_tkyh8")]
 layout_mode = 2
-text = "Exit"
+size_flags_vertical = 3
 _hoverAudioStreamPlayer = NodePath("../Resume/Hover")
 _pressedAudioStreamPlayer = NodePath("../Resume/Pressed")
 
 [node name="Quit" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("2_tkyh8")]
 layout_mode = 2
-text = "Quit"
+size_flags_vertical = 3
+texture_normal = ExtResource("3_0gwjr")
 _hoverAudioStreamPlayer = NodePath("../Resume/Hover")
 _pressedAudioStreamPlayer = NodePath("../Resume/Pressed")
 

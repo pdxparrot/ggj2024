@@ -195,7 +195,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _currentHealth = Math.Max(_currentHealth - amount, 0);
             if(IsDead) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] died!");
-                //Model.ChangeState("Dead");
+                Model.ChangeState("Death");
             }
         }
 
