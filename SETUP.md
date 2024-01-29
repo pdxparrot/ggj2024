@@ -23,3 +23,4 @@
 * NPCs are special SimpleCharacter type SimpleNPC
 * Players are special SimpleCharacter type SimplePlayer
   * Controlled by player input
+* Music has to be imported with Loop set to true

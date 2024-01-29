@@ -18,6 +18,8 @@ namespace pdxpartyparrot.ggj2024.Player
             Right,
         }
 
+        protected MechaInput MechaInput => (MechaInput)Input;
+
         [Export]
         private int _maxHealth = 10;
 
@@ -27,11 +29,23 @@ namespace pdxpartyparrot.ggj2024.Player
 
         public bool IsDead => _currentHealth <= 0;
 
+        [Export]
+        private AudioStreamPlayer _impactAudioPlayer;
+
+        #region Walk
+
+        [Export]
+        private AudioStreamPlayer _stepAudioPlayer;
+
         private Leg _lastLeg;
 
-        protected MechaInput MechaInput => (MechaInput)Input;
+        // sync'd server -> client
+        [Export]
+        private bool _move;
 
         public bool CanMove => !IsDead && !IsStunned && !IsThrustering;
+
+        #endregion
 
         #region Punch
 
@@ -45,6 +59,9 @@ namespace pdxpartyparrot.ggj2024.Player
 
         [Export]
         private Interactables.Interactables _rightArmInteractables;
+
+        [Export]
+        private AudioStreamPlayer _punchAudioPlayer;
 
         #endregion
 
@@ -65,10 +82,6 @@ namespace pdxpartyparrot.ggj2024.Player
         private bool CanThruster => !IsDead && !IsStunned && !IsThrustering;
 
         #endregion
-
-        // sync'd server -> client
-        [Export]
-        private bool _move;
 
         #region Fall
 
@@ -177,6 +190,8 @@ namespace pdxpartyparrot.ggj2024.Player
 
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] hit for {amount} by {attacker.ClientId}:{attacker.Input.DeviceId}!");
 
+            _impactAudioPlayer.Play();
+
             _currentHealth = Math.Max(_currentHealth - amount, 0);
             if(IsDead) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] died!");
@@ -235,6 +250,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _move = true;
 
             Model.ChangeState("StepRight");
+            _stepAudioPlayer.Play();
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -253,6 +269,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _move = true;
 
             Model.ChangeState("StepLeft");
+            _stepAudioPlayer.Play();
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -275,6 +292,7 @@ namespace pdxpartyparrot.ggj2024.Player
             Punch(_leftArmInteractables);
 
             Model.ChangeState("PunchLeft");
+            _punchAudioPlayer.Play();
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -287,6 +305,7 @@ namespace pdxpartyparrot.ggj2024.Player
             Punch(_rightArmInteractables);
 
             Model.ChangeState("PunchRight");
+            _punchAudioPlayer.Play();
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
