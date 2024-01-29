@@ -95,7 +95,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             var result = peer.CreateServer(port, maxPlayers);
             if(result != Error.Ok) {
-                GD.PrintErr($"[NetworkManager] Failed to create server: {result}");
+                GD.PushError($"[NetworkManager] Failed to create server: {result}");
                 return false;
             }
 
@@ -161,7 +161,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             var result = peer.CreateClient(address, port);
             if(result != Error.Ok) {
-                GD.PrintErr($"[NetworkManager] Failed to create client: {result}");
+                GD.PushError($"[NetworkManager] Failed to create client: {result}");
                 OnConnectionFailed();
                 return;
             }
@@ -197,18 +197,20 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         #region RPCs
 
+        // server -> client
         [Rpc(TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private async void RpcLoadLobbyAsync()
         {
-            GD.Print($"[RPC] Server says load lobby");
+            GD.Print($"[NetworkManager] Server says load lobby");
 
             await GameManager.Instance.CreateGameAsync().ConfigureAwait(false);
         }
 
+        // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcTogglePause()
         {
-            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says toggle pause");
+            GD.Print($"[NetworkManager] Client {Multiplayer.GetRemoteSenderId()} says toggle pause");
 
             PartyParrotManager.Instance.TogglePause();
         }
@@ -246,7 +248,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private void OnConnectionFailed()
         {
-            GD.PrintErr($"[NetworkManager] Failed to connect to server!");
+            GD.PushError($"[NetworkManager] Failed to connect to server!");
 
             ConnectionFailedEvent?.Invoke(this, EventArgs.Empty);
         }

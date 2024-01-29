@@ -54,10 +54,20 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         #region RPCs
 
+        // server broadcast
+        [Rpc(CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void StartGame()
+        {
+            GD.Print($"Server says start game");
+
+            GameManager.Instance.StartGame();
+        }
+
+        // client -> server
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void ArenaLoaded()
         {
-            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says arena loaded");
+            GD.Print($"Client {Multiplayer.GetRemoteSenderId()} says arena loaded");
 
             PlayerManager.Instance.UpdateRemotePlayerState(Multiplayer.GetRemoteSenderId(), PlayerInfo.PlayerState.ArenaReady);
         }
@@ -81,7 +91,7 @@ namespace pdxpartyparrot.ggj2024.Levels
             if(PlayerManager.Instance.AreAllPlayersInState(PlayerInfo.PlayerState.ArenaReady)) {
                 GD.Print("All players are ready, starting game ...");
 
-                GameManager.Instance.StartGame();
+                Rpc(nameof(StartGame));
             }
         }
 

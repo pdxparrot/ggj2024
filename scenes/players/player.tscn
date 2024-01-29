@@ -201,7 +201,6 @@ bones/63/rotation = Quaternion(0.0682251, 0.0530534, 0.0253519, 0.995936)
 bones/64/position = Vector3(7.56979e-06, 10, -1.86265e-06)
 
 [node name="AnimationTree" parent="Model/YbotAnim" index="2"]
-parameters/conditions/Death = false
 parameters/PunchLeft/TimeScale/scale = 1.0
 
 [node name="FallTimer" type="Timer" parent="."]

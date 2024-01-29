@@ -56,7 +56,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             var players = JsonConvert.DeserializeObject<PlayerInfo[]>(playerState);
             if(players == null) {
-                GD.PrintErr($"[PlayerManager] failed to deserialize player state!");
+                GD.PushError($"[PlayerManager] failed to deserialize player state!");
                 return;
             }
 
@@ -97,7 +97,7 @@ namespace pdxpartyparrot.ggj2024.Managers
                     PlayerStateChanged(existingPlayer.PlayerSlot, false);
                 }
 
-                GD.PushWarning("skipping missing player slot");
+                GD.PushWarning("[PlayerManager] Skipping missing player slot");
                 return;
             }
 
@@ -358,10 +358,11 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         #region RPCs
 
+        // server broadcast
         [Rpc(TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcUpdatePlayerState(string playerState)
         {
-            GD.Print($"[RPC] Server update player state");
+            GD.Print($"[PlayerManager] Server update player state");
 
             DeserializePlayerState(playerState);
         }

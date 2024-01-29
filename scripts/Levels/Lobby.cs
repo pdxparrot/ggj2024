@@ -77,18 +77,20 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         #region RPCs
 
+        // server broadcast
         [Rpc(CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private async void LoadGameAsync()
         {
-            GD.Print($"[RPC] Server says load game");
+            GD.Print($"Server says load game");
 
             await GameManager.Instance.LoadGameAsync().ConfigureAwait(false);
         }
 
+        // client -> server
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void LobbyLoaded()
         {
-            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says lobby loaded");
+            GD.Print($"Client {Multiplayer.GetRemoteSenderId()} says lobby loaded");
 
             PlayerManager.Instance.UpdateRemotePlayerState(Multiplayer.GetRemoteSenderId(), PlayerInfo.PlayerState.LobbyReady);
         }

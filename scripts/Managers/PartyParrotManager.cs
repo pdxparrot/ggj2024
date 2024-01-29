@@ -153,7 +153,7 @@ namespace pdxpartyparrot.ggj2024.Managers
                 } else if(parts.Length == 2) {
                     _commandLineArgs[parts[0].TrimStart('-')] = parts[1];
                 } else {
-                    GD.PrintErr($"Invalid command line argument: {arg}");
+                    GD.PushError($"Invalid command line argument: {arg}");
                 }
             }
         }

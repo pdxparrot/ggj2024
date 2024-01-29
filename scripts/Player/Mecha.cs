@@ -235,6 +235,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         #region RPCs
 
+        // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcLeftLeg()
         {
@@ -254,6 +255,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _stepAudioPlayer.Play();
         }
 
+        // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcRightLeg()
         {
@@ -273,6 +275,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _stepAudioPlayer.Play();
         }
 
+        // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcBothLegs()
         {
@@ -283,6 +286,7 @@ namespace pdxpartyparrot.ggj2024.Player
             Fall();
         }
 
+        // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcLeftArm()
         {
@@ -296,6 +300,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _punchAudioPlayer.Play();
         }
 
+        // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcRightArm()
         {
@@ -309,6 +314,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _punchAudioPlayer.Play();
         }
 
+        // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcThrusters()
         {
