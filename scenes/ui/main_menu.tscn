@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxx854vihgahm"]
+[gd_scene load_steps=12 format=3 uid="uid://dxx854vihgahm"]
 
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.cs" id="1_cimc5"]
 [ext_resource type="Texture2D" uid="uid://bdorvct650ecs" path="res://art/ui/WIP Title Screen.png" id="2_72gf8"]
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_ffntl"]
 [ext_resource type="Script" path="res://scripts/UI/JoinMenu.cs" id="3_v625v"]
+[ext_resource type="Texture2D" uid="uid://bl2olsyj6cqoo" path="res://art/ui/Buttons/Create Game - Pressed.png" id="4_bj6jw"]
+[ext_resource type="Texture2D" uid="uid://d0ely7523sbd4" path="res://art/ui/Buttons/Join Game - Hover.png" id="5_njt6j"]
 [ext_resource type="AudioStream" uid="uid://d2mrmdyii6cww" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-main-menu1.mp3" id="5_u5rdw"]
 [ext_resource type="AudioStream" uid="uid://bhw3n3wsuj7ca" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-menu-intro-1.mp3" id="6_487fy"]
+[ext_resource type="Texture2D" uid="uid://b8hxm2xm3a76c" path="res://art/ui/Buttons/Credits-Hover.png" id="6_hjlcp"]
+[ext_resource type="Texture2D" uid="uid://t07swdkgejdx" path="res://art/ui/Buttons/Quit - Hover.png" id="7_mrqyr"]
+[ext_resource type="Texture2D" uid="uid://d2bjio5fyh4jt" path="res://art/ui/Buttons/Back-Hover.png" id="9_2gpym"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("_mainMenu", "_joinMenu", "_credits", "_hostButton", "_joinButton", "_creditsButton", "_joinMenuJoinButton", "_creditsBackButton", "_musicPlayer")]
 layout_mode = 3
@@ -33,46 +38,69 @@ texture = ExtResource("2_72gf8")
 expand_mode = 1
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_direction = 2
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.422
+anchor_top = 0.795
+anchor_right = 0.628
+anchor_bottom = 0.974
+offset_left = -0.160034
+offset_top = 10.6
+offset_right = 1.15997
+offset_bottom = -0.280029
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
 [node name="Host" parent="CanvasLayer/MainMenu/VBoxContainer" instance=ExtResource("2_ffntl")]
 layout_mode = 2
-text = "Create Game"
+size_flags_vertical = 3
+texture_normal = ExtResource("4_bj6jw")
 
 [node name="Join" parent="CanvasLayer/MainMenu/VBoxContainer" instance=ExtResource("2_ffntl")]
 layout_mode = 2
-text = "Join Game"
+size_flags_vertical = 3
+texture_normal = ExtResource("5_njt6j")
 
 [node name="Credits" parent="CanvasLayer/MainMenu/VBoxContainer" instance=ExtResource("2_ffntl")]
 layout_mode = 2
-text = "Credits"
+size_flags_vertical = 3
+texture_normal = ExtResource("6_hjlcp")
 
 [node name="Quit" parent="CanvasLayer/MainMenu/VBoxContainer" instance=ExtResource("2_ffntl")]
 layout_mode = 2
-text = "Quit"
+size_flags_vertical = 3
+texture_normal = ExtResource("7_mrqyr")
 
 [node name="JoinGame" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_addressInput", "_joinButton", "_backButton")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_v625v")
 _addressInput = NodePath("VBoxContainer/HBoxContainer/LineEdit")
 _joinButton = NodePath("VBoxContainer/HBoxContainer2/Join")
 _backButton = NodePath("VBoxContainer/HBoxContainer2/Back")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/JoinGame"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -7.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/JoinGame/VBoxContainer"]
 layout_mode = 2
@@ -87,14 +115,17 @@ layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/JoinGame/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Join" parent="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer2" instance=ExtResource("2_ffntl")]
 layout_mode = 2
-text = "Join Game"
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_njt6j")
 
 [node name="Back" parent="CanvasLayer/JoinGame/VBoxContainer/HBoxContainer2" instance=ExtResource("2_ffntl")]
 layout_mode = 2
-text = "Back"
+size_flags_horizontal = 3
+texture_normal = ExtResource("9_2gpym")
 
 [node name="Credits" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -109,7 +140,6 @@ offset_bottom = 40.0
 
 [node name="Back" parent="CanvasLayer/Credits/VBoxContainer" instance=ExtResource("2_ffntl")]
 layout_mode = 2
-text = "Back"
 
 [node name="MainMenuLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_u5rdw")
