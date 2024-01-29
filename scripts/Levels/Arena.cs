@@ -35,7 +35,7 @@ namespace pdxpartyparrot.ggj2024.Levels
             } else {
                 NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
 
-                NetworkManager.Instance.Rpcs.ClientArenaLoaded();
+                RpcId(1, nameof(ArenaLoaded));
             }
         }
 
@@ -43,11 +43,23 @@ namespace pdxpartyparrot.ggj2024.Levels
         {
             if(@event.IsActionPressed("pause") && !PartyParrotManager.Instance.IsPaused) {
                 if(NetworkManager.Instance.IsNetwork) {
-                    NetworkManager.Instance.Rpcs.ClientTogglePause();
+                    NetworkManager.Instance.TogglePause();
                 } else {
                     PartyParrotManager.Instance.TogglePause();
                 }
             }
+        }
+
+        #endregion
+
+        #region RPCs
+
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void ArenaLoaded()
+        {
+            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says arena loaded");
+
+            PlayerManager.Instance.UpdateRemotePlayerState(Multiplayer.GetRemoteSenderId(), PlayerInfo.PlayerState.ArenaReady);
         }
 
         #endregion

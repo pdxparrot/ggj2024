@@ -33,12 +33,6 @@ namespace pdxpartyparrot.ggj2024.Managers
         #endregion
 
         #endregion
-
-        [Export]
-        private RPC _rpc;
-
-        public RPC Rpcs => _rpc;
-
         [Export]
         private int _listeningPort = 7575;
 
@@ -73,6 +67,11 @@ namespace pdxpartyparrot.ggj2024.Managers
         }
 
         #endregion
+
+        public void TogglePause()
+        {
+            Rpc(nameof(RpcTogglePause));
+        }
 
         #region Server
 
@@ -187,6 +186,18 @@ namespace pdxpartyparrot.ggj2024.Managers
 
             RootMultiplayer.MultiplayerPeer.Close();
             RootMultiplayer.MultiplayerPeer = null;
+        }
+
+        #endregion
+
+        #region RPCs
+
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void RpcTogglePause()
+        {
+            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says toggle pause");
+
+            PartyParrotManager.Instance.TogglePause();
         }
 
         #endregion

@@ -41,7 +41,7 @@ namespace pdxpartyparrot.ggj2024.UI
         private void _on_resume_pressed()
         {
             if(NetworkManager.Instance.IsNetwork) {
-                NetworkManager.Instance.Rpcs.ClientTogglePause();
+                NetworkManager.Instance.TogglePause();
             } else {
                 PartyParrotManager.Instance.TogglePause();
             }

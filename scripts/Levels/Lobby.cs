@@ -43,7 +43,7 @@ namespace pdxpartyparrot.ggj2024.Levels
             } else {
                 NetworkManager.Instance.ServerDisconnectedEvent += ServerDisconnectedEventHandler;
 
-                NetworkManager.Instance.Rpcs.ClientLobbyLoaded();
+                RpcId(1, nameof(LobbyLoaded));
 
                 _startButton.Hide();
             }
@@ -75,11 +75,39 @@ namespace pdxpartyparrot.ggj2024.Levels
             lobbyPlayer.Visible = true;
         }
 
+        #region RPCs
+
+        [Rpc(TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private async void LoadLobbyAsync()
+        {
+            GD.Print($"[RPC] Server says load lobby");
+
+            await GameManager.Instance.CreateGameAsync().ConfigureAwait(false);
+        }
+
+        [Rpc(CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private async void StartGameAsync()
+        {
+            GD.Print($"[RPC] Server says start game");
+
+            await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
+        }
+
+        [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void LobbyLoaded()
+        {
+            GD.Print($"[RPC] Client {Multiplayer.GetRemoteSenderId()} says lobby loaded");
+
+            PlayerManager.Instance.UpdateRemotePlayerState(Multiplayer.GetRemoteSenderId(), PlayerInfo.PlayerState.LobbyReady);
+        }
+
+        #endregion
+
         #region Signal Handlers
 
         private void _on_start_pressed()
         {
-            NetworkManager.Instance.Rpcs.ServerStartGame();
+            Rpc(nameof(StartGameAsync));
         }
 
         private async void _on_cancel_pressed()
@@ -95,7 +123,7 @@ namespace pdxpartyparrot.ggj2024.Levels
         {
             PlayerManager.Instance.RegisterRemotePlayer(args.Id, PlayerInfo.PlayerState.Connected);
 
-            NetworkManager.Instance.Rpcs.ServerLoadLobby(args.Id);
+            RpcId(args.Id, nameof(LoadLobbyAsync));
         }
 
         private void PeerDisconnectEventHandler(object sender, NetworkManager.PeerEventArgs args)

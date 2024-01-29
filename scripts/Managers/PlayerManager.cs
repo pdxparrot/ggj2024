@@ -227,7 +227,7 @@ namespace pdxpartyparrot.ggj2024.Managers
                 PlayerStateChanged(player.PlayerSlot, false);
             }
 
-            NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+            UpdatePlayerState();
         }
 
         public void UpdateRemotePlayerState(long clientId, PlayerInfo.PlayerState state)
@@ -254,7 +254,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             PlayerStateChangedEvent?.Invoke(this, new PlayerStateEventArgs { PlayerSlot = playerSlot });
 
             if(broadcast) {
-                NetworkManager.Instance.Rpcs.ServerUpdatePlayerState();
+                UpdatePlayerState();
             }
         }
 
@@ -349,5 +349,23 @@ namespace pdxpartyparrot.ggj2024.Managers
                 DestroyPlayer(i, false);
             }
         }
+
+        private void UpdatePlayerState()
+        {
+            string playerState = SerializePlayerState();
+            Rpc(nameof(RpcUpdatePlayerState), playerState);
+        }
+
+        #region RPCs
+
+        [Rpc(TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void RpcUpdatePlayerState(string playerState)
+        {
+            GD.Print($"[RPC] Server update player state");
+
+            DeserializePlayerState(playerState);
+        }
+
+        #endregion
     }
 }
