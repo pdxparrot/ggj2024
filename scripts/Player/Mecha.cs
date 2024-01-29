@@ -117,7 +117,7 @@ namespace pdxpartyparrot.ggj2024.Player
         // bespoke because this thing is a goober movement
         public override void _PhysicsProcess(double delta)
         {
-            if(PartyParrotManager.Instance.IsPaused) {
+            if(PartyParrotManager.Instance.IsPaused || GameManager.Instance.State != GameManager.GameState.GameOn) {
                 return;
             }
 
@@ -195,6 +195,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _currentHealth = Math.Max(_currentHealth - amount, 0);
             if(IsDead) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] died!");
+                //Model.ChangeState("Dead");
             }
         }
 

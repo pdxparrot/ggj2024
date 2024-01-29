@@ -73,6 +73,11 @@ namespace pdxpartyparrot.ggj2024.Managers
             Rpc(nameof(RpcTogglePause));
         }
 
+        public void LoadLobby(long clientId)
+        {
+            RpcId(clientId, nameof(RpcLoadLobbyAsync));
+        }
+
         #region Server
 
         public bool StartLocalServer(int maxPlayers)
@@ -191,6 +196,14 @@ namespace pdxpartyparrot.ggj2024.Managers
         #endregion
 
         #region RPCs
+
+        [Rpc(TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private async void RpcLoadLobbyAsync()
+        {
+            GD.Print($"[RPC] Server says load lobby");
+
+            await GameManager.Instance.CreateGameAsync().ConfigureAwait(false);
+        }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcTogglePause()

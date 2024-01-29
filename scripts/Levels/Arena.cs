@@ -79,10 +79,9 @@ namespace pdxpartyparrot.ggj2024.Levels
             }
 
             if(PlayerManager.Instance.AreAllPlayersInState(PlayerInfo.PlayerState.ArenaReady)) {
-                GD.Print("All players are ready, start game ...");
+                GD.Print("All players are ready, starting game ...");
 
-                // TODO: start the game
-                GD.PushWarning("TODO: start the game");
+                GameManager.Instance.StartGame();
             }
         }
 

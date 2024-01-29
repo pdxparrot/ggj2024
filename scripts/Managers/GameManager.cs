@@ -11,6 +11,14 @@ namespace pdxpartyparrot.ggj2024.Managers
 {
     public partial class GameManager : SingletonNode<GameManager>
     {
+        public enum GameState
+        {
+            NotStarted,
+            Loading,
+            GameOn,
+            GameOver,
+        }
+
         [Export]
         private int _maxPlayers = 4;
 
@@ -30,6 +38,8 @@ namespace pdxpartyparrot.ggj2024.Managers
                 return Math.Min(joypadCount == 0 ? 1 : joypadCount, MaxPlayers);
             }
         }
+
+        public GameState State { get; private set; } = GameState.NotStarted;
 
         #region Godot Lifecycle
 
@@ -90,17 +100,35 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
         }
 
-        public async Task StartGameAsync()
+        public async Task LoadGameAsync()
         {
-            GD.Print($"[GameManager] Starting game ...");
+            GD.Print($"[GameManager] Loading game ...");
+
+            State = GameState.Loading;
 
             NetworkManager.Instance.LockServer(true);
             await LevelManager.Instance.LoadLevelAsync(_gameScene).ConfigureAwait(false);
         }
 
+        public void StartGame()
+        {
+            GD.Print($"[GameManager] Starting game ...");
+
+            State = GameState.GameOn;
+        }
+
+        public void GameOver()
+        {
+            GD.Print("[GameManager] Game over!");
+
+            State = GameState.GameOver;
+        }
+
         public async Task RestartAsync()
         {
             GD.Print("[GameManager] Restarting game ...");
+
+            State = GameState.NotStarted;
 
             // this prevents a weird edge case where
             // a server quitting while everyone paused

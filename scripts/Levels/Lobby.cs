@@ -77,20 +77,12 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         #region RPCs
 
-        [Rpc(TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-        private async void LoadLobbyAsync()
-        {
-            GD.Print($"[RPC] Server says load lobby");
-
-            await GameManager.Instance.CreateGameAsync().ConfigureAwait(false);
-        }
-
         [Rpc(CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-        private async void StartGameAsync()
+        private async void LoadGameAsync()
         {
-            GD.Print($"[RPC] Server says start game");
+            GD.Print($"[RPC] Server says load game");
 
-            await GameManager.Instance.StartGameAsync().ConfigureAwait(false);
+            await GameManager.Instance.LoadGameAsync().ConfigureAwait(false);
         }
 
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -107,7 +99,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         private void _on_start_pressed()
         {
-            Rpc(nameof(StartGameAsync));
+            Rpc(nameof(LoadGameAsync));
         }
 
         private async void _on_cancel_pressed()
@@ -123,7 +115,7 @@ namespace pdxpartyparrot.ggj2024.Levels
         {
             PlayerManager.Instance.RegisterRemotePlayer(args.Id, PlayerInfo.PlayerState.Connected);
 
-            RpcId(args.Id, nameof(LoadLobbyAsync));
+            NetworkManager.Instance.LoadLobby(args.Id);
         }
 
         private void PeerDisconnectEventHandler(object sender, NetworkManager.PeerEventArgs args)

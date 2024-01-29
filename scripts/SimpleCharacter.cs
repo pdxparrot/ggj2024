@@ -86,7 +86,7 @@ namespace pdxpartyparrot.ggj2024
         // both client and server run physics
         public override void _PhysicsProcess(double delta)
         {
-            if(PartyParrotManager.Instance.IsPaused) {
+            if(PartyParrotManager.Instance.IsPaused || GameManager.Instance.State != GameManager.GameState.GameOn) {
                 return;
             }
 
