@@ -7,9 +7,6 @@ using pdxpartyparrot.ggj2024.World;
 
 namespace pdxpartyparrot.ggj2024
 {
-    // TODO: when the character collides with the floor
-    // it needs to reset the velocity Y to zero?
-
     public abstract partial class SimpleCharacter : CharacterBody3D, IDebugDraw
     {
         [Export]
@@ -129,8 +126,10 @@ namespace pdxpartyparrot.ggj2024
 
         protected void ApplyAcceleration(float delta)
         {
-            // apply gravity
-            _acceleration += Vector3.Down * _gravity * _gravityMultiplier;
+            // apply
+            if(!IsOnFloor()) {
+                _acceleration += Vector3.Down * _gravity * _gravityMultiplier;
+            }
 
             // apply acceleration
             Velocity += _acceleration * delta;
