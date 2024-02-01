@@ -14,3 +14,7 @@
 
 * https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html
 * https://godotengine.org/article/multiplayer-in-godot-4-0-scene-replication/
+
+## Debuging Tips
+
+* Enable Debug -> Visible * to see colliders and nav details

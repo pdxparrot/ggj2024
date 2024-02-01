@@ -149,7 +149,7 @@ namespace pdxpartyparrot.ggj2024.Player
                     Heading = Heading.Normalized();
 
                     // look in the direction we're heading
-                    Model.LookAt(GlobalPosition + Heading, Vector3.Up);
+                    Pivot.LookAt(GlobalPosition + Heading, Vector3.Up);
                 }
             }
 

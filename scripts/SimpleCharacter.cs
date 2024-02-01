@@ -9,10 +9,18 @@ namespace pdxpartyparrot.ggj2024
 {
     public abstract partial class SimpleCharacter : CharacterBody3D, IDebugDraw
     {
+        // the pivot is used for rotation
+        // anything that should rotate with the character should be a child of the pivot
+        // (hit/hurt boxes, meshes, etc)
+        [Export]
+        private Node3D _pivot;
+
+        protected Node3D Pivot => _pivot;
+
         [Export]
         private Model _model;
 
-        public Model Model => _model;
+        protected Model Model => _model;
 
         [Export]
         private CollisionShape3D _collider;
@@ -40,7 +48,7 @@ namespace pdxpartyparrot.ggj2024
 
         public float HorizontalSpeed => new Vector3(Velocity.X, 0.0f, Velocity.Z).Length();
 
-        public Vector3 Forward => -Model.Transform.Basis.Z;
+        public Vector3 Forward => -Pivot.Transform.Basis.Z;
 
         public Vector3 Heading { get; protected set; }
 
@@ -97,7 +105,7 @@ namespace pdxpartyparrot.ggj2024
                 Heading = Heading.Normalized();
 
                 // look in the direction we're heading
-                Model.LookAt(GlobalPosition + Heading, Vector3.Up);
+                Pivot.LookAt(GlobalPosition + Heading, Vector3.Up);
             } else {
                 Heading = Forward;
             }
@@ -167,8 +175,8 @@ namespace pdxpartyparrot.ggj2024
         public virtual void OnSpawn(SpawnPoint spawnPoint)
         {
             // spawnpoint rotates the main object
-            // but what we actually want to rotate is the model
-            Model.Rotation = Rotation;
+            // but what we actually want to rotate is the pivot
+            Pivot.Rotation = Rotation;
             Rotation = Vector3.Zero;
 
             OnIdle();

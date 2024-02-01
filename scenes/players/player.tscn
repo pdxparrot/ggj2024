@@ -47,20 +47,21 @@ properties/1/replication_mode = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5myjb"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_fallTimer", "_input", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
 _playerIndicator = NodePath("PlayerIndicator")
 _impactAudioPlayer = NodePath("SFX/Impact")
 _stepAudioPlayer = NodePath("SFX/Step")
-_leftArmInteractables = NodePath("Left Punch Hitbox")
-_rightArmInteractables = NodePath("Right Punch Hitbox")
+_leftArmInteractables = NodePath("Pivot/Left Punch Hitbox")
+_rightArmInteractables = NodePath("Pivot/Right Punch Hitbox")
 _punchAudioPlayer = NodePath("SFX/Punch")
 _thrusterModifier = 1.25
 _thrusterTimer = NodePath("ThrusterTimer")
 _fallTimer = NodePath("FallTimer")
 _input = NodePath("Input")
-_model = NodePath("Model")
+_pivot = NodePath("Pivot")
+_model = NodePath("Pivot/Model")
 _collider = NodePath("CollisionShape3D")
 _maxSpeed = 100.0
 
@@ -76,14 +77,16 @@ _owner = NodePath("..")
 transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 11, 0)
 shape = SubResource("CapsuleShape3D_t51w8")
 
-[node name="Model" type="Node3D" parent="." node_paths=PackedStringArray("_animationTree")]
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Model" type="Node3D" parent="Pivot" node_paths=PackedStringArray("_animationTree")]
 script = ExtResource("4_1efev")
 _animationTree = NodePath("mechaChicken4/AnimationTree")
 
-[node name="mechaChicken4" parent="Model" instance=ExtResource("4_jrq1e")]
+[node name="mechaChicken4" parent="Pivot/Model" instance=ExtResource("4_jrq1e")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Model/mechaChicken4/Armature" index="0"]
+[node name="Skeleton3D" parent="Pivot/Model/mechaChicken4/Armature" index="0"]
 bones/0/position = Vector3(-0.580067, -0.298506, -10.3464)
 bones/0/rotation = Quaternion(-0.726548, -0.00424251, 0.00692315, 0.687068)
 bones/1/rotation = Quaternion(0.0151184, -0.00251048, 0.00209566, 0.99988)
@@ -106,6 +109,31 @@ bones/21/rotation = Quaternion(-0.320814, 0.0351399, -0.0241503, 0.946182)
 bones/22/rotation = Quaternion(0.581806, 0.0745294, 0.0407516, 0.80888)
 bones/23/rotation = Quaternion(0.354704, 0.00697127, -0.00243734, 0.93495)
 
+[node name="Hurtbox" type="Area3D" parent="Pivot"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Hurtbox"]
+shape = SubResource("BoxShape3D_kh711")
+
+[node name="Left Punch Hitbox" type="Area3D" parent="Pivot"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -4, 15, -12)
+monitorable = false
+script = ExtResource("5_hkx48")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Left Punch Hitbox"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_5myjb")
+
+[node name="Right Punch Hitbox" type="Area3D" parent="Pivot"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 15, -12)
+monitorable = false
+script = ExtResource("5_hkx48")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Right Punch Hitbox"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_5myjb")
+
 [node name="PlayerIndicator" parent="." instance=ExtResource("5_xgvjf")]
 
 [node name="FallTimer" type="Timer" parent="."]
@@ -115,31 +143,6 @@ one_shot = true
 [node name="ThrusterTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
-
-[node name="Hurtbox" type="Area3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0)
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
-shape = SubResource("BoxShape3D_kh711")
-
-[node name="Left Punch Hitbox" type="Area3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -4, 15, -12)
-monitorable = false
-script = ExtResource("5_hkx48")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Left Punch Hitbox"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-shape = SubResource("SphereShape3D_5myjb")
-
-[node name="Right Punch Hitbox" type="Area3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 15, -12)
-monitorable = false
-script = ExtResource("5_hkx48")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Right Punch Hitbox"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-shape = SubResource("SphereShape3D_5myjb")
 
 [node name="SFX" type="Node" parent="."]
 
@@ -152,11 +155,11 @@ stream = ExtResource("8_t3ted")
 [node name="Impact" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("9_angcy")
 
+[connection signal="area_entered" from="Pivot/Left Punch Hitbox" to="Pivot/Left Punch Hitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Pivot/Left Punch Hitbox" to="Pivot/Left Punch Hitbox" method="_on_area_exited"]
+[connection signal="area_entered" from="Pivot/Right Punch Hitbox" to="Pivot/Right Punch Hitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Pivot/Right Punch Hitbox" to="Pivot/Right Punch Hitbox" method="_on_area_exited"]
 [connection signal="timeout" from="FallTimer" to="." method="_on_fall_timer_timeout"]
 [connection signal="timeout" from="ThrusterTimer" to="." method="_on_thruster_timer_timeout"]
-[connection signal="area_entered" from="Left Punch Hitbox" to="Left Punch Hitbox" method="_on_area_entered"]
-[connection signal="area_exited" from="Left Punch Hitbox" to="Left Punch Hitbox" method="_on_area_exited"]
-[connection signal="area_entered" from="Right Punch Hitbox" to="Right Punch Hitbox" method="_on_area_entered"]
-[connection signal="area_exited" from="Right Punch Hitbox" to="Right Punch Hitbox" method="_on_area_exited"]
 
-[editable path="Model/mechaChicken4"]
+[editable path="Pivot/Model/mechaChicken4"]
