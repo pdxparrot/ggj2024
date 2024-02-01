@@ -19,19 +19,22 @@ properties/1/spawn = true
 properties/1/replication_mode = 2
 properties/2/path = NodePath(".:_move")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 properties/3/path = NodePath(".:_stunned")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath(".:_currentHealth")
 properties/4/spawn = true
-properties/4/replication_mode = 1
+properties/4/replication_mode = 2
 properties/5/path = NodePath(".:_thrusters")
 properties/5/spawn = true
-properties/5/replication_mode = 1
+properties/5/replication_mode = 2
 properties/6/path = NodePath(".:PlayerSlot")
 properties/6/spawn = true
 properties/6/replication_mode = 2
+properties/7/path = NodePath(".:_thrustersCooldown")
+properties/7/spawn = true
+properties/7/replication_mode = 2
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stcnq"]
 properties/0/path = NodePath("Input:_lookDirection")
@@ -47,7 +50,7 @@ properties/1/replication_mode = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5myjb"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_thrusterCooldown", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
 _playerIndicator = NodePath("PlayerIndicator")
@@ -57,8 +60,9 @@ _leftArmInteractables = NodePath("Pivot/Left Punch Hitbox")
 _rightArmInteractables = NodePath("Pivot/Right Punch Hitbox")
 _punchAudioPlayer = NodePath("SFX/Punch")
 _thrusterModifier = 1.25
-_thrusterTimer = NodePath("ThrusterTimer")
-_fallTimer = NodePath("FallTimer")
+_thrusterTimer = NodePath("Timers/ThrusterTimer")
+_thrusterCooldown = NodePath("Timers/ThrusterCooldown")
+_fallTimer = NodePath("Timers/FallTimer")
 _input = NodePath("Input")
 _pivot = NodePath("Pivot")
 _model = NodePath("Pivot/Model")
@@ -136,12 +140,17 @@ shape = SubResource("SphereShape3D_5myjb")
 
 [node name="PlayerIndicator" parent="." instance=ExtResource("5_xgvjf")]
 
-[node name="FallTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="FallTimer" type="Timer" parent="Timers"]
 wait_time = 4.0
 one_shot = true
 
-[node name="ThrusterTimer" type="Timer" parent="."]
+[node name="ThrusterTimer" type="Timer" parent="Timers"]
 wait_time = 0.2
+one_shot = true
+
+[node name="ThrusterCooldown" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="SFX" type="Node" parent="."]
@@ -159,7 +168,8 @@ stream = ExtResource("9_angcy")
 [connection signal="area_exited" from="Pivot/Left Punch Hitbox" to="Pivot/Left Punch Hitbox" method="_on_area_exited"]
 [connection signal="area_entered" from="Pivot/Right Punch Hitbox" to="Pivot/Right Punch Hitbox" method="_on_area_entered"]
 [connection signal="area_exited" from="Pivot/Right Punch Hitbox" to="Pivot/Right Punch Hitbox" method="_on_area_exited"]
-[connection signal="timeout" from="FallTimer" to="." method="_on_fall_timer_timeout"]
-[connection signal="timeout" from="ThrusterTimer" to="." method="_on_thruster_timer_timeout"]
+[connection signal="timeout" from="Timers/FallTimer" to="." method="_on_fall_timer_timeout"]
+[connection signal="timeout" from="Timers/ThrusterTimer" to="." method="_on_thruster_timer_timeout"]
+[connection signal="timeout" from="Timers/ThrusterCooldown" to="." method="_on_thruster_cooldown_timeout"]
 
 [editable path="Pivot/Model/mechaChicken4"]

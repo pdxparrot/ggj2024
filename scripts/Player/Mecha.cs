@@ -91,13 +91,22 @@ namespace pdxpartyparrot.ggj2024.Player
         [Export]
         private Timer _thrusterTimer;
 
+        [Export]
+        private Timer _thrusterCooldown;
+
         // sync'd client -> server
         [Export]
         private bool _thrusters;
 
         private bool IsThrustering => _thrusters;
 
-        private bool CanThruster => !IsDead && !IsStunned && !IsThrustering;
+        // sync'd server -> client
+        [Export]
+        private bool _thrustersCooldown;
+
+        private bool IsThrusterCooldown => _thrustersCooldown;
+
+        private bool CanThruster => CanMove && !IsThrusterCooldown;
 
         #endregion
 
@@ -358,6 +367,14 @@ namespace pdxpartyparrot.ggj2024.Player
         private void _on_thruster_timer_timeout()
         {
             _thrusters = false;
+
+            _thrustersCooldown = true;
+            _thrusterCooldown.Start();
+        }
+
+        private void _on_thruster_cooldown_timeout()
+        {
+            _thrustersCooldown = false;
         }
 
         private void _on_fall_timer_timeout()

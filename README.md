@@ -14,7 +14,8 @@
 
 * https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html
 * https://godotengine.org/article/multiplayer-in-godot-4-0-scene-replication/
+* Easiest way to test networking is by exporting and running from a terminal
 
-## Debuging Tips
+## Debugging Tips
 
 * Enable Debug -> Visible * to see colliders and nav details
