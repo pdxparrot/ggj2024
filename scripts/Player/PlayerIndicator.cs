@@ -10,8 +10,12 @@ namespace pdxpartyparrot.ggj2024.Player
         [Export]
         private MeshInstance3D _ring;
 
-        public void SetColor(Color color)
+        [Export]
+        private Color[] _colors = new Color[4];
+
+        public void SetColor(int playerSlot)
         {
+            var color = _colors[playerSlot];
             ((BaseMaterial3D)_pointer.GetActiveMaterial(0)).AlbedoColor = color;
             ((BaseMaterial3D)_ring.GetActiveMaterial(0)).AlbedoColor = color;
         }

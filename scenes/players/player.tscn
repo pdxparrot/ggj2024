@@ -29,6 +29,9 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath(".:_thrusters")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath(".:PlayerSlot")
+properties/6/spawn = true
+properties/6/replication_mode = 2
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stcnq"]
 properties/0/path = NodePath("Input:_lookDirection")

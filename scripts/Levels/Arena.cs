@@ -85,7 +85,8 @@ namespace pdxpartyparrot.ggj2024.Levels
         {
             if(PlayerManager.Instance.GetPlayerState(args.PlayerSlot) == PlayerInfo.PlayerState.ArenaReady) {
                 GD.Print($"Player {args.PlayerSlot} is ready, spawning ...");
-                PlayerManager.Instance.SpawnPlayer(args.PlayerSlot);
+                var mecha = (Mecha)PlayerManager.Instance.SpawnPlayer(args.PlayerSlot);
+                mecha.PlayerSlot = args.PlayerSlot;
             }
 
             if(PlayerManager.Instance.AreAllPlayersInState(PlayerInfo.PlayerState.ArenaReady)) {
