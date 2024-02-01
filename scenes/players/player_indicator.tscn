@@ -1,25 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjot7kaubetmt"]
+[gd_scene load_steps=5 format=3 uid="uid://cjot7kaubetmt"]
 
 [ext_resource type="ArrayMesh" uid="uid://cmh3tn6km3ovn" path="res://art/character/PlayerPointer.obj" id="1_gri4k"]
 [ext_resource type="Script" path="res://scripts/Player/PlayerIndicator.cs" id="1_h3j0s"]
-[ext_resource type="Material" uid="uid://54b2pnbrd8c6" path="res://art/materials/Indicator_P4.tres" id="2_uolx4"]
 [ext_resource type="ArrayMesh" uid="uid://sdfjil57cjpb" path="res://art/character/PlayerRing.obj" id="3_g8pff"]
 [ext_resource type="Material" uid="uid://drhynyjysv0vg" path="res://art/materials/Indicator_P1.tres" id="4_umeav"]
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_i33ee"]
-shading_mode = 0
-albedo_color = Color(1, 0, 0.0509804, 1)
 
 [node name="PlayerIndicator" type="Node3D" node_paths=PackedStringArray("_pointer", "_ring")]
 script = ExtResource("1_h3j0s")
 _pointer = NodePath("PlayerPointer")
 _ring = NodePath("PlayerRing")
+_colors = PackedColorArray(1, 0, 0.0313726, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1)
 
 [node name="PlayerPointer" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 28.9088, 0)
-material_override = SubResource("ORMMaterial3D_i33ee")
 mesh = ExtResource("1_gri4k")
-surface_material_override/0 = ExtResource("2_uolx4")
+surface_material_override/0 = ExtResource("4_umeav")
 
 [node name="PlayerRing" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
