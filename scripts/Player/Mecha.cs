@@ -30,6 +30,9 @@ namespace pdxpartyparrot.ggj2024.Player
         public bool IsDead => _currentHealth <= 0;
 
         [Export]
+        private PlayerIndicator _playerIndicator;
+
+        [Export]
         private AudioStreamPlayer _impactAudioPlayer;
 
         #region Walk
@@ -196,6 +199,8 @@ namespace pdxpartyparrot.ggj2024.Player
             if(IsDead) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] died!");
                 Model.ChangeState("Death");
+            } else {
+                Model.ChangeState("Hit");
             }
         }
 
@@ -327,6 +332,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _lastLeg = Leg.None;
             _move = false;
 
+            Model.ChangeState("Dash");
             _thrusterTimer.Start();
         }
 

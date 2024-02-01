@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/Model.cs" id="4_1efev"]
 [ext_resource type="Script" path="res://scripts/Interactables/Interactables.cs" id="5_hkx48"]
 [ext_resource type="PackedScene" uid="uid://crw1m878625b5" path="res://art/animation/temp chicken/mechaChicken03.tscn" id="5_k4yq6"]
+[ext_resource type="PackedScene" uid="uid://cjot7kaubetmt" path="res://scenes/players/player_indicator.tscn" id="5_xgvjf"]
 [ext_resource type="AudioStream" uid="uid://bbm8d0li18uc" path="res://audio/SFX/SFX_Punch.wav" id="7_2k7q1"]
 [ext_resource type="AudioStream" uid="uid://bp5lecivl6qrd" path="res://audio/SFX/SFX_Step.wav" id="8_t3ted"]
-[ext_resource type="PackedScene" uid="uid://cjot7kaubetmt" path="res://art/character/player_indicator.tscn" id="9_aeym8"]
 [ext_resource type="AudioStream" uid="uid://ct10e1ig1qgfe" path="res://audio/SFX/SFX_PunchImpact.wav" id="9_angcy"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ok77n"]
@@ -44,9 +44,10 @@ properties/1/replication_mode = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5myjb"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_fallTimer", "_input", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_fallTimer", "_input", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
+_playerIndicator = NodePath("PlayerIndicator")
 _impactAudioPlayer = NodePath("SFX/Impact")
 _stepAudioPlayer = NodePath("SFX/Step")
 _leftArmInteractables = NodePath("Left Punch Hitbox")
@@ -102,7 +103,7 @@ bones/21/rotation = Quaternion(-0.320229, 0.0417047, -0.0281976, 0.946002)
 bones/22/rotation = Quaternion(0.599396, 0.0791467, 0.032291, 0.795875)
 bones/23/rotation = Quaternion(0.354689, 0.0069463, -0.00244517, 0.934955)
 
-[node name="PlayerIndicator" parent="Model" instance=ExtResource("9_aeym8")]
+[node name="PlayerIndicator" parent="." instance=ExtResource("5_xgvjf")]
 
 [node name="FallTimer" type="Timer" parent="."]
 wait_time = 4.0
