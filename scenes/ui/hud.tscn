@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo8ai7x75s8oq"]
+[gd_scene load_steps=5 format=3 uid="uid://bo8ai7x75s8oq"]
 
 [ext_resource type="Script" path="res://scripts/UI/PlayerHUD.cs" id="1_kahip"]
+[ext_resource type="Texture2D" uid="uid://c1u3dwtrfkspp" path="res://art/ui/hud/player 1 mock bar.png" id="2_8y041"]
+[ext_resource type="Texture2D" uid="uid://p8xqm0gt5cu5" path="res://art/ui/hud/player 2 mock bar.png" id="3_nc8rw"]
+[ext_resource type="Texture2D" uid="uid://bxwbjl2ye3kaq" path="res://art/ui/hud/hud lifebar spacer.png" id="4_wohdg"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -10,3 +13,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kahip")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_8y041")
+expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_nc8rw")
+expand_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_wohdg")
+expand_mode = 3
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_wohdg")
+expand_mode = 3
