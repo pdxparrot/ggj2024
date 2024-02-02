@@ -1,15 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo8ai7x75s8oq"]
+[gd_scene load_steps=12 format=3 uid="uid://bo8ai7x75s8oq"]
 
 [ext_resource type="Script" path="res://scripts/UI/PlayerHUD.cs" id="1_kahip"]
-[ext_resource type="Texture2D" uid="uid://c1u3dwtrfkspp" path="res://art/ui/hud/player 1 mock bar.png" id="2_8y041"]
-[ext_resource type="Texture2D" uid="uid://p8xqm0gt5cu5" path="res://art/ui/hud/player 2 mock bar.png" id="3_nc8rw"]
-[ext_resource type="Texture2D" uid="uid://bxwbjl2ye3kaq" path="res://art/ui/hud/hud lifebar spacer.png" id="4_wohdg"]
+[ext_resource type="Texture2D" uid="uid://h77og3vj3npg" path="res://art/ui/hud/playerHUD/HUD Character Nameplate.png" id="2_2nxrb"]
+[ext_resource type="Texture2D" uid="uid://cn6bcuoighg6u" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar BG.png" id="3_16n4g"]
+[ext_resource type="Texture2D" uid="uid://dwoghuyfwh26x" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar Frame.png" id="4_jmkau"]
+[ext_resource type="Texture2D" uid="uid://cim4b7dvosnel" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar Fill.png" id="5_cebwc"]
+[ext_resource type="Texture2D" uid="uid://cc88pi4dj8ggm" path="res://art/ui/hud/playerHUD/HUD Player Indicator.png" id="6_lt8yq"]
+[ext_resource type="Texture2D" uid="uid://cy7gtv83o4uxe" path="res://art/ui/hud/playerHUD/Character Icon Mock.png" id="7_b6m45"]
+[ext_resource type="Texture2D" uid="uid://y8jipy4t1pwd" path="res://art/ui/hud/playerHUD/HUD Player Name.png" id="8_c4ru5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am1vc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtrhq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miv55"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -0.00012207
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kahip")
@@ -38,30 +49,413 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(900, 64)
+alignment = 1
+
+[node name="Player1_HUDPanel" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer"]
+custom_minimum_size = Vector2(300, 128)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_am1vc")
+
+[node name="NoPlayer" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
+[node name="PlayerInfo" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
+
+[node name="NamePlate" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2nxrb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBarPanel" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_miv55")
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel/PlayerInfo/HealthBarPanel"]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+value = -1.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+nine_patch_stretch = true
+stretch_margin_top = 5
+stretch_margin_right = 4
+stretch_margin_bottom = 10
+texture_under = ExtResource("3_16n4g")
+texture_over = ExtResource("4_jmkau")
+texture_progress = ExtResource("5_cebwc")
+
+[node name="PlayerIndicator" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel/PlayerInfo"]
+modulate = Color(1, 0.176471, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_lt8yq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Character Icon" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_b6m45")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerName" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_c4ru5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player1_HUDPanel2" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer"]
+custom_minimum_size = Vector2(300, 128)
+layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_8y041")
-expand_mode = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_am1vc")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("3_nc8rw")
-expand_mode = 3
+[node name="NoPlayer" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_wohdg")
-expand_mode = 3
+[node name="PlayerInfo" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer"]
+[node name="NamePlate" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2nxrb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBarPanel" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_miv55")
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2/PlayerInfo/HealthBarPanel"]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+nine_patch_stretch = true
+stretch_margin_top = 5
+stretch_margin_right = 4
+stretch_margin_bottom = 10
+texture_under = ExtResource("3_16n4g")
+texture_over = ExtResource("4_jmkau")
+texture_progress = ExtResource("5_cebwc")
+
+[node name="PlayerIndicator" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2/PlayerInfo"]
+modulate = Color(1, 0.176471, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_lt8yq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Character Icon" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_b6m45")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerName" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel2/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_c4ru5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player1_HUDPanel3" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer"]
+custom_minimum_size = Vector2(300, 128)
+layout_direction = 1
 layout_mode = 2
-texture = ExtResource("4_wohdg")
-expand_mode = 3
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_am1vc")
+
+[node name="NoPlayer" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
+
+[node name="PlayerInfo" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
+
+[node name="NamePlate" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2nxrb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBarPanel" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_miv55")
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3/PlayerInfo/HealthBarPanel"]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+nine_patch_stretch = true
+stretch_margin_top = 5
+stretch_margin_right = 4
+stretch_margin_bottom = 10
+texture_under = ExtResource("3_16n4g")
+texture_over = ExtResource("4_jmkau")
+texture_progress = ExtResource("5_cebwc")
+
+[node name="PlayerIndicator" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3/PlayerInfo"]
+modulate = Color(1, 0.176471, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_lt8yq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Character Icon" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_b6m45")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerName" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel3/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_c4ru5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player1_HUDPanel4" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer"]
+custom_minimum_size = Vector2(300, 128)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_am1vc")
+
+[node name="NoPlayer" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
+
+[node name="PlayerInfo" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
+
+[node name="NamePlate" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2nxrb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBarPanel" type="Panel" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_miv55")
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4/PlayerInfo/HealthBarPanel"]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+nine_patch_stretch = true
+stretch_margin_top = 5
+stretch_margin_right = 4
+stretch_margin_bottom = 10
+texture_under = ExtResource("3_16n4g")
+texture_over = ExtResource("4_jmkau")
+texture_progress = ExtResource("5_cebwc")
+
+[node name="PlayerIndicator" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4/PlayerInfo"]
+modulate = Color(1, 0.176471, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_lt8yq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Character Icon" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_b6m45")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerName" type="TextureRect" parent="CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel4/PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_c4ru5")
+expand_mode = 1
+stretch_mode = 5
