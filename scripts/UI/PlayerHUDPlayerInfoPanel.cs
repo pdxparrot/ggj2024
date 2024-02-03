@@ -2,7 +2,7 @@ using Godot;
 
 namespace pdxpartyparrot.ggj2024.UI
 {
-    public partial class PlayerHUDPlayerInfoPanel : Control
+    public partial class PlayerHUDPlayerInfoPanel : Panel
     {
         [Export]
         private TextureProgressBar _healthBar;

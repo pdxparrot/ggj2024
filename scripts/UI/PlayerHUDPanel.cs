@@ -2,13 +2,13 @@ using Godot;
 
 namespace pdxpartyparrot.ggj2024.UI
 {
-    public partial class PlayerHUDPanel : Control
+    public partial class PlayerHUDPanel : Panel
     {
         [Export]
         private Panel _noPlayerPanel;
 
         [Export]
-        private Panel _playerPanel;
+        private PlayerHUDPlayerInfoPanel _playerPanel;
 
         #region Godot Lifecycle
 
