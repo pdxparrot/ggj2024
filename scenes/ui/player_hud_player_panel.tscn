@@ -1,0 +1,120 @@
+[gd_scene load_steps=13 format=3 uid="uid://4u5t7kv5q6a0"]
+
+[ext_resource type="Script" path="res://scripts/UI/PlayerHUDPanel.cs" id="1_7ab21"]
+[ext_resource type="Script" path="res://scripts/UI/PlayerHUDPlayerInfoPanel.cs" id="2_eivxk"]
+[ext_resource type="Texture2D" uid="uid://h77og3vj3npg" path="res://art/ui/hud/playerHUD/HUD Character Nameplate.png" id="3_p6s2v"]
+[ext_resource type="Texture2D" uid="uid://cn6bcuoighg6u" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar BG.png" id="4_bi334"]
+[ext_resource type="Texture2D" uid="uid://dwoghuyfwh26x" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar Frame.png" id="5_ld456"]
+[ext_resource type="Texture2D" uid="uid://cim4b7dvosnel" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar Fill.png" id="6_1tew4"]
+[ext_resource type="Texture2D" uid="uid://cc88pi4dj8ggm" path="res://art/ui/hud/playerHUD/HUD Player Indicator.png" id="7_yi78e"]
+[ext_resource type="Texture2D" uid="uid://cy7gtv83o4uxe" path="res://art/ui/hud/playerHUD/Character Icon Mock.png" id="8_1dx4q"]
+[ext_resource type="Texture2D" uid="uid://y8jipy4t1pwd" path="res://art/ui/hud/playerHUD/HUD Player Name.png" id="9_aa61i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am1vc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtrhq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miv55"]
+
+[node name="Player1_HUDPanel" type="Panel"]
+custom_minimum_size = Vector2(300, 128)
+layout_direction = 1
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_am1vc")
+script = ExtResource("1_7ab21")
+
+[node name="NoPlayer" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
+
+[node name="PlayerInfo" type="Panel" parent="." node_paths=PackedStringArray("_healthBar")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
+script = ExtResource("2_eivxk")
+_healthBar = NodePath("HealthBarPanel/PlayerHealthBar")
+
+[node name="NamePlate" type="TextureRect" parent="PlayerInfo"]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_p6s2v")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBarPanel" type="Panel" parent="PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_miv55")
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="PlayerInfo/HealthBarPanel"]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+nine_patch_stretch = true
+stretch_margin_top = 5
+stretch_margin_right = 4
+stretch_margin_bottom = 10
+texture_under = ExtResource("4_bi334")
+texture_over = ExtResource("5_ld456")
+texture_progress = ExtResource("6_1tew4")
+
+[node name="PlayerIndicator" type="TextureRect" parent="PlayerInfo"]
+modulate = Color(0.662745, 0.403922, 0.231373, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_yi78e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Character Icon" type="TextureRect" parent="PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_1dx4q")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerName" type="TextureRect" parent="PlayerInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_aa61i")
+expand_mode = 1
+stretch_mode = 5

@@ -16,6 +16,10 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _ExitTree()
         {
+            if(GameUIManager.HasInstance) {
+                GameUIManager.Instance.HideHUD();
+            }
+
             PlayerManager.Instance.PlayerStateChangedEvent -= PlayerStateChangedEventHandler;
             NetworkManager.Instance.ServerDisconnectedEvent -= ServerDisconnectedEventHandler;
         }
@@ -25,6 +29,7 @@ namespace pdxpartyparrot.ggj2024.Levels
             if(_musicPlayer != null) {
                 _musicPlayer.Play();
             }
+            GameUIManager.Instance.ShowHUD();
 
             SpawnManager.Instance.Initialize();
 
