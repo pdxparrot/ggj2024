@@ -16,7 +16,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miv55"]
 
-[node name="Player1_HUDPanel" type="Panel" node_paths=PackedStringArray("_noPlayerPanel", "_playerPanel")]
+[node name="PlayerHUDPlayerPanel" type="Panel" node_paths=PackedStringArray("_noPlayerPanel", "_playerPanel")]
 custom_minimum_size = Vector2(300, 128)
 layout_direction = 1
 size_flags_horizontal = 3
