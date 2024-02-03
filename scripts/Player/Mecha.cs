@@ -38,9 +38,13 @@ namespace pdxpartyparrot.ggj2024.Player
         [Export]
         private int _maxHealth = 10;
 
+        public int MaxHealth => _maxHealth;
+
         // sync'd server -> client
         [Export]
         private int _currentHealth;
+
+        public int CurrentHealth => _currentHealth;
 
         public bool IsDead => _currentHealth <= 0;
 

@@ -1,5 +1,7 @@
 using Godot;
 
+using pdxpartyparrot.ggj2024.Managers;
+
 namespace pdxpartyparrot.ggj2024.Player
 {
     public partial class PlayerIndicator : Node
@@ -10,12 +12,9 @@ namespace pdxpartyparrot.ggj2024.Player
         [Export]
         private MeshInstance3D _ring;
 
-        [Export]
-        private Color[] _colors = new Color[4];
-
         public void SetColor(int playerSlot)
         {
-            var color = _colors[playerSlot];
+            var color = GameManager.Instance.PlayerColors[playerSlot];
             ((BaseMaterial3D)_pointer.GetActiveMaterial(0)).AlbedoColor = color;
             ((BaseMaterial3D)_ring.GetActiveMaterial(0)).AlbedoColor = color;
         }

@@ -36,6 +36,8 @@ namespace pdxpartyparrot.ggj2024.Managers
         // TODO: the way this is managed right now is pretty sloppy and bad
         private PlayerInfo[] _players;
 
+        public PlayerInfo[] Players => _players;
+
         public int PlayerCount => _players.Count(player => player != null);
 
         #region Godot Lifecycle

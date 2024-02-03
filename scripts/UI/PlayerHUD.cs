@@ -12,27 +12,11 @@ namespace pdxpartyparrot.ggj2024.UI
         [Export]
         PlayerHUDPanel[] _panels = Array.Empty<PlayerHUDPanel>();
 
-        #region Godot Lifecycle
-
-        public override void _Ready()
+        public void Initialize()
         {
-            HideHUD();
-
-            foreach(PlayerHUDPanel panel in _panels) {
-                panel.Visible = false;
+            for(int i = 0; i < _panels.Length; ++i) {
+                _panels[i].Initialize(i);
             }
-        }
-
-        #endregion
-
-        public void HideHUD()
-        {
-            _canvas.Hide();
-        }
-
-        public void ShowHUD()
-        {
-            _canvas.Show();
         }
     }
 }

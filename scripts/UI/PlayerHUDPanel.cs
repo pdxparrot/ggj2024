@@ -1,5 +1,7 @@
 using Godot;
 
+using pdxpartyparrot.ggj2024.Managers;
+
 namespace pdxpartyparrot.ggj2024.UI
 {
     public partial class PlayerHUDPanel : Panel
@@ -19,5 +21,15 @@ namespace pdxpartyparrot.ggj2024.UI
         }
 
         #endregion
+
+        public void Initialize(int playerSlot)
+        {
+            _playerPanel.Initialize(playerSlot);
+
+            if(PlayerManager.Instance.Players[playerSlot] != null) {
+                _noPlayerPanel.Hide();
+                _playerPanel.Show();
+            }
+        }
     }
 }

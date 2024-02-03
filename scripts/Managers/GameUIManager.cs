@@ -73,11 +73,13 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void ShowHUD()
         {
+            GD.Print("[GameUIManager] Showing HUD");
             AddChild(HUD);
         }
 
         public void HideHUD()
         {
+            GD.Print("[GameUIManager] Hiding HUD");
             RemoveChild(HUD);
         }
 

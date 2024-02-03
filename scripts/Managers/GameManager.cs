@@ -25,6 +25,11 @@ namespace pdxpartyparrot.ggj2024.Managers
         public int MaxPlayers => _maxPlayers;
 
         [Export]
+        private Color[] _playerColors = new Color[4];
+
+        public Color[] PlayerColors => _playerColors;
+
+        [Export]
         private PackedScene _lobbyScene;
 
         [Export]
