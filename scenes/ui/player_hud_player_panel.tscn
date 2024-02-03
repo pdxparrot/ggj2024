@@ -16,12 +16,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miv55"]
 
-[node name="Player1_HUDPanel" type="Panel"]
+[node name="Player1_HUDPanel" type="Panel" node_paths=PackedStringArray("_noPlayerPanel", "_playerPanel")]
 custom_minimum_size = Vector2(300, 128)
 layout_direction = 1
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_am1vc")
 script = ExtResource("1_7ab21")
+_noPlayerPanel = NodePath("NoPlayer")
+_playerPanel = NodePath("PlayerInfo")
 
 [node name="NoPlayer" type="Panel" parent="."]
 visible = false
