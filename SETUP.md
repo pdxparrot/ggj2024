@@ -1,5 +1,9 @@
 # Setup
 
+# Editor Setup
+
+* Set external editor under the Dotnet settings, not the external editor settings
+
 ## TODO
 
 * Move core scripts into a Core module so they're easier to copy
