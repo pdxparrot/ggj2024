@@ -31,9 +31,6 @@ namespace pdxpartyparrot.ggj2024.Player
         [JsonIgnore]
         public bool IsRemote => !IsHost;
 
-        [JsonIgnore]
-        public SimplePlayer Player { get; set; }
-
         public override bool Equals(object obj)
         {
             var player = obj as PlayerInfo;

@@ -32,6 +32,11 @@ namespace pdxpartyparrot.ggj2024.Player
             {
                 _playerSlot = value;
                 _playerIndicator.SetColor(_playerSlot);
+
+                if(!NetworkManager.Instance.IsServer) {
+                    PlayerManager.Instance.PlayerObjects[_playerSlot] = this;
+                }
+                GameUIManager.Instance.HUD.InitializePlayer(_playerSlot);
             }
         }
 

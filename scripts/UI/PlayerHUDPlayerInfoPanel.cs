@@ -22,17 +22,15 @@ namespace pdxpartyparrot.ggj2024.UI
 
         public override void _Process(double delta)
         {
-            var player = PlayerManager.Instance.Players[_playerSlot];
-            if(player == null) {
-                _healthBar.Value = Mathf.Lerp(_healthBar.Value, 0.0, (float)delta);
+            var mecha = (Mecha)PlayerManager.Instance.PlayerObjects[_playerSlot];
+            if(mecha == null) {
+                //_healthBar.Value = Mathf.Lerp(_healthBar.Value, 0.0, (float)delta);
+                _healthBar.Value = 0.0f;
                 return;
             }
 
-            var mecha = (Mecha)player.Player;
-            if(mecha == null) {
-                GD.PushError("player object is null");
-            }
-            _healthBar.Value = Mathf.Lerp(_healthBar.Value, mecha.CurrentHealth, (float)delta);
+            //_healthBar.Value = Mathf.Lerp(_healthBar.Value, mecha.CurrentHealth, (float)delta);
+            _healthBar.Value = mecha.CurrentHealth;
         }
 
         #endregion
@@ -41,14 +39,12 @@ namespace pdxpartyparrot.ggj2024.UI
         {
             _playerSlot = playerSlot;
 
-            var player = PlayerManager.Instance.Players[playerSlot];
-            if(player != null) {
-                var mecha = (Mecha)player.Player;
-                if(mecha == null) {
-                    GD.PushError("player object is null");
-                }
-                _healthBar.MaxValue = _healthBar.Value = mecha.MaxHealth;
+            var mecha = (Mecha)PlayerManager.Instance.PlayerObjects[_playerSlot];
+            if(mecha == null) {
+                GD.PushError("player object is null");
+                return;
             }
+            _healthBar.MaxValue = _healthBar.Value = mecha.MaxHealth;
         }
     }
 }

@@ -29,6 +29,7 @@ namespace pdxpartyparrot.ggj2024.Levels
             if(_musicPlayer != null) {
                 _musicPlayer.Play();
             }
+            GameUIManager.Instance.ShowHUD();
 
             SpawnManager.Instance.Initialize();
 
@@ -65,9 +66,6 @@ namespace pdxpartyparrot.ggj2024.Levels
             GD.Print($"Server says start game");
 
             GameManager.Instance.StartGame();
-
-            GameUIManager.Instance.ShowHUD();
-            GameUIManager.Instance.HUD.Initialize();
         }
 
         // client -> server

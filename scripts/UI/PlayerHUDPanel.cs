@@ -24,12 +24,12 @@ namespace pdxpartyparrot.ggj2024.UI
 
         public void Initialize(int playerSlot)
         {
-            _playerPanel.Initialize(playerSlot);
+            GD.Print($"init player {playerSlot}");
 
-            if(PlayerManager.Instance.Players[playerSlot] != null) {
-                _noPlayerPanel.Hide();
-                _playerPanel.Show();
-            }
+            _noPlayerPanel.Visible = false;
+            _playerPanel.Visible = true;
+
+            _playerPanel.Initialize(playerSlot);
         }
     }
 }

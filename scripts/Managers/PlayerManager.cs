@@ -40,11 +40,16 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public int PlayerCount => _players.Count(player => player != null);
 
+        private SimplePlayer[] _playerObjects;
+
+        public SimplePlayer[] PlayerObjects => _playerObjects;
+
         #region Godot Lifecycle
 
         public override void _Ready()
         {
             _players = new PlayerInfo[GameManager.Instance.MaxPlayers];
+            _playerObjects = new SimplePlayer[GameManager.Instance.MaxPlayers];
         }
 
         #endregion
@@ -276,21 +281,23 @@ namespace pdxpartyparrot.ggj2024.Managers
                 return null;
             }
 
-            if(player.Player != null) {
-                spawnPoint.ReSpawnPlayer(player.Player);
+            var playerObject = _playerObjects[playerSlot];
+            if(playerObject != null) {
+                spawnPoint.ReSpawnPlayer(playerObject);
             } else {
-                player.Player = spawnPoint.SpawnPlayer(_playerScene, $"Player {playerSlot}");
-                player.Player.ClientId = player.ClientId;
-                player.Player.Input.DeviceId = player.DeviceId;
+                playerObject = spawnPoint.SpawnPlayer(_playerScene, $"Player {playerSlot}");
+                playerObject.ClientId = player.ClientId;
+                playerObject.Input.DeviceId = player.DeviceId;
+                _playerObjects[playerSlot] = playerObject;
             }
 
             if(NetworkManager.Instance.IsNetwork) {
-                _spawnRoot.AddChild(player.Player);
+                _spawnRoot.AddChild(playerObject);
             } else {
-                AddChild(player.Player);
+                AddChild(playerObject);
             }
 
-            return player.Player;
+            return playerObject;
         }
 
         public void DeSpawnPlayer(SimplePlayer player)
@@ -317,7 +324,7 @@ namespace pdxpartyparrot.ggj2024.Managers
                 if(player == null) {
                     continue;
                 }
-                DeSpawnPlayer(player.Player);
+                DeSpawnPlayer(_playerObjects[i]);
             }
         }
 
@@ -331,13 +338,14 @@ namespace pdxpartyparrot.ggj2024.Managers
                 return;
             }
 
-            if(remove) {
-                _players[playerSlot] = null;
+            var playerObject = _playerObjects[playerSlot];
+            if(playerObject != null) {
+                playerObject.QueueFree();
+                _playerObjects[playerSlot] = null;
             }
 
-            if(player.Player != null) {
-                player.Player.QueueFree();
-                player.Player = null;
+            if(remove) {
+                _players[playerSlot] = null;
             }
         }
 

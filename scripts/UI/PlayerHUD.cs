@@ -12,11 +12,9 @@ namespace pdxpartyparrot.ggj2024.UI
         [Export]
         PlayerHUDPanel[] _panels = Array.Empty<PlayerHUDPanel>();
 
-        public void Initialize()
+        public void InitializePlayer(int playerSlot)
         {
-            for(int i = 0; i < _panels.Length; ++i) {
-                _panels[i].Initialize(i);
-            }
+            _panels[playerSlot].Initialize(playerSlot);
         }
     }
 }
