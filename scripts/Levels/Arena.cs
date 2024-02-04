@@ -53,6 +53,20 @@ namespace pdxpartyparrot.ggj2024.Levels
                     PartyParrotManager.Instance.TogglePause();
                 }
             }
+
+            if(!PartyParrotManager.Instance.IsEditor || PartyParrotManager.Instance.IsPaused) {
+                return;
+            }
+
+            if(@event is InputEventKey eventKey) {
+                if(eventKey.Pressed) {
+                    if(eventKey.Keycode == Key.K) {
+                        ((Mecha)PlayerManager.Instance.PlayerObjects[0]).Damage(null, 1);
+                    } else if(eventKey.Keycode == Key.M) {
+                        _musicPlayer.Stop();
+                    }
+                }
+            }
         }
 
         #endregion

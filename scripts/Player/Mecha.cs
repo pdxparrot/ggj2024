@@ -218,13 +218,18 @@ namespace pdxpartyparrot.ggj2024.Player
             Rpc(nameof(RpcThrusters));
         }
 
-        private void Damage(Mecha attacker, int amount)
+        public void Damage(Mecha attacker, int amount)
         {
             if(IsDead) {
                 return;
             }
 
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] hit for {amount} by {attacker.ClientId}:{attacker.Input.DeviceId}!");
+            if(attacker != null) {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] hit for {amount} by {attacker.ClientId}:{attacker.Input.DeviceId}!");
+            } else {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] hit for {amount} by system!");
+
+            }
 
             _impactAudioPlayer.Play();
 

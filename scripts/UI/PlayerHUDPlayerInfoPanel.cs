@@ -11,6 +11,8 @@ namespace pdxpartyparrot.ggj2024.UI
         [Export]
         private TextureProgressBar _healthBar;
 
+        private Tween _healthTween;
+
         private int _playerSlot;
 
         #region Godot Lifecycle
@@ -18,19 +20,19 @@ namespace pdxpartyparrot.ggj2024.UI
         public override void _Ready()
         {
             _healthBar.MinValue = 0.0;
+
+            SetProcess(false);
         }
 
+        // this is pretty bad
         public override void _Process(double delta)
         {
             var mecha = (Mecha)PlayerManager.Instance.PlayerObjects[_playerSlot];
             if(mecha == null) {
-                //_healthBar.Value = Mathf.Lerp(_healthBar.Value, 0.0, (float)delta);
                 _healthBar.Value = 0.0f;
                 return;
             }
-
-            //_healthBar.Value = Mathf.Lerp(_healthBar.Value, mecha.CurrentHealth, (float)delta);
-            _healthBar.Value = mecha.CurrentHealth;
+            UpdateHealth(mecha.CurrentHealth);
         }
 
         #endregion
@@ -45,6 +47,24 @@ namespace pdxpartyparrot.ggj2024.UI
                 return;
             }
             _healthBar.MaxValue = _healthBar.Value = mecha.MaxHealth;
+
+            SetProcess(true);
+        }
+
+        private void UpdateHealth(float value)
+        {
+            // not sure what's up with tweening the value not working
+            // but in the past we tweened a local float
+            // and then assigned that to the progress value
+
+            /*if(_healthTween != null) {
+                _healthTween.Kill();
+            }
+
+            _healthTween = CreateTween().SetEase(Tween.EaseType.In);
+            _healthTween.TweenProperty(_healthBar, "value", value, 0.25);*/
+
+            _healthBar.Value = value;
         }
     }
 }
