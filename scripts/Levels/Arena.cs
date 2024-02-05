@@ -10,6 +10,13 @@ namespace pdxpartyparrot.ggj2024.Levels
     public partial class Arena : Node
     {
         [Export]
+        private Timer _gameTimer;
+
+        // sync'd
+        [Export]
+        private int _timeRemaining;
+
+        [Export]
         private AudioStreamPlayer _musicPlayer;
 
         #region Godot Lifecycle
@@ -42,6 +49,11 @@ namespace pdxpartyparrot.ggj2024.Levels
 
                 RpcId(1, nameof(ArenaLoaded));
             }
+        }
+
+        public override void _Process(double delta)
+        {
+            _timeRemaining = (int)_gameTimer.TimeLeft;
         }
 
         public override void _UnhandledInput(InputEvent @event)
@@ -80,6 +92,16 @@ namespace pdxpartyparrot.ggj2024.Levels
             GD.Print($"Server says start game");
 
             GameManager.Instance.StartGame();
+
+            _gameTimer.Start();
+        }
+
+        [Rpc(CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+        private void GameOver()
+        {
+            GD.Print($"Server says game over");
+
+            GameManager.Instance.GameOver();
         }
 
         // client -> server
@@ -89,6 +111,17 @@ namespace pdxpartyparrot.ggj2024.Levels
             GD.Print($"Client {Multiplayer.GetRemoteSenderId()} says arena loaded");
 
             PlayerManager.Instance.UpdateRemotePlayerState(Multiplayer.GetRemoteSenderId(), PlayerInfo.PlayerState.ArenaReady);
+        }
+
+        #endregion
+
+        #region Signal Handlers
+
+        private void _on_game_timer_timeout()
+        {
+            if(NetworkManager.Instance.IsServer) {
+                Rpc(nameof(GameOver));
+            }
         }
 
         #endregion

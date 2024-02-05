@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=8 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
@@ -6,11 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
 [ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="5_qxvwr"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
+properties/0/path = NodePath(".:_timeRemaining")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3qm2k"]
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("_musicPlayer")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer")]
 script = ExtResource("1_avn16")
+_gameTimer = NodePath("GameTimer")
 _musicPlayer = NodePath("Music")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_woxuc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 0)
@@ -54,3 +63,9 @@ _noise = SubResource("FastNoiseLite_3qm2k")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qxvwr")
 volume_db = -15.0
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
