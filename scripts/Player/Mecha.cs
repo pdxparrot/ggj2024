@@ -20,26 +20,6 @@ namespace pdxpartyparrot.ggj2024.Player
 
         protected MechaInput MechaInput => (MechaInput)Input;
 
-        // sync'd server -> client
-        private int _playerSlot;
-
-        // sync'd server -> client
-        [Export]
-        public int PlayerSlot
-        {
-            get => _playerSlot;
-            set
-            {
-                _playerSlot = value;
-                _playerIndicator.SetColor(_playerSlot);
-
-                if(!NetworkManager.Instance.IsServer) {
-                    PlayerManager.Instance.PlayerObjects[_playerSlot] = this;
-                }
-                GameUIManager.Instance.HUD.InitializePlayer(_playerSlot);
-            }
-        }
-
         [Export]
         private int _maxHealth = 10;
 
@@ -234,6 +214,8 @@ namespace pdxpartyparrot.ggj2024.Player
             _impactAudioPlayer.Play();
 
             _currentHealth = Math.Max(_currentHealth - amount, 0);
+            GameUIManager.Instance.HUD.UpdatePlayerHealth(PlayerSlot, _currentHealth);
+
             if(IsDead) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] died!");
                 Model.ChangeState("Death");
@@ -274,6 +256,11 @@ namespace pdxpartyparrot.ggj2024.Player
             _fallTimer.Start();
 
             Model.ChangeState("Fall");
+        }
+
+        protected override void OnPlayerSlotChanged()
+        {
+            _playerIndicator.SetColor(PlayerSlot);
         }
 
         #region RPCs

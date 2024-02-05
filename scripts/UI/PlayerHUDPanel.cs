@@ -1,7 +1,5 @@
 using Godot;
 
-using pdxpartyparrot.ggj2024.Managers;
-
 namespace pdxpartyparrot.ggj2024.UI
 {
     public partial class PlayerHUDPanel : Panel
@@ -11,6 +9,8 @@ namespace pdxpartyparrot.ggj2024.UI
 
         [Export]
         private PlayerHUDPlayerInfoPanel _playerPanel;
+
+        public PlayerHUDPlayerInfoPanel PlayerPanel => _playerPanel;
 
         #region Godot Lifecycle
 
@@ -24,8 +24,6 @@ namespace pdxpartyparrot.ggj2024.UI
 
         public void Initialize(int playerSlot)
         {
-            GD.Print($"init player {playerSlot}");
-
             _noPlayerPanel.Visible = false;
             _playerPanel.Visible = true;
 

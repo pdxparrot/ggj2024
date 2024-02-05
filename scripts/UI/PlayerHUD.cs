@@ -16,5 +16,10 @@ namespace pdxpartyparrot.ggj2024.UI
         {
             _panels[playerSlot].Initialize(playerSlot);
         }
+
+        public void UpdatePlayerHealth(int playerSlot, int value)
+        {
+            _panels[playerSlot].PlayerPanel.UpdateHealth(value);
+        }
     }
 }
