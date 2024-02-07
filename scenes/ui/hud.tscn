@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo8ai7x75s8oq"]
+[gd_scene load_steps=6 format=3 uid="uid://bo8ai7x75s8oq"]
 
 [ext_resource type="Script" path="res://scripts/UI/PlayerHUD.cs" id="1_kahip"]
 [ext_resource type="PackedScene" uid="uid://4u5t7kv5q6a0" path="res://scenes/ui/player_hud_player_panel.tscn" id="2_2t0r0"]
+[ext_resource type="FontFile" uid="uid://cj8w6j0m06vls" path="res://art/font/Slowdex.otf" id="2_ekcxc"]
+[ext_resource type="FontFile" uid="uid://ct6ib7v02fm4b" path="res://art/font/Subwich.otf" id="3_lmt0w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rkyhd"]
 
 [node name="Hud" type="Control" node_paths=PackedStringArray("_canvas", "_panels")]
 layout_mode = 3
@@ -13,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kahip")
 _canvas = NodePath("CanvasLayer")
-_panels = [NodePath("CanvasLayer/Control/Control/HBoxContainer/Player1_HUDPanel"), NodePath("CanvasLayer/Control/Control/HBoxContainer/Player2_HUDPanel"), NodePath("CanvasLayer/Control/Control/HBoxContainer/Player3_HUDPanel"), NodePath("CanvasLayer/Control/Control/HBoxContainer/Player4_HUDPanel")]
+_panels = [NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player1_HUDPanel"), NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player2_HUDPanel"), NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player3_HUDPanel"), NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player4_HUDPanel")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -27,18 +31,28 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="CanvasLayer/Control"]
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
-anchor_top = 0.8
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinnerPanel" type="Control" parent="CanvasLayer/Control/GameOverPanel"]
+visible = false
+layout_mode = 1
+anchor_top = 0.622
+anchor_right = 1.0
+anchor_bottom = 0.8
 offset_left = 50.0
+offset_top = 14.16
 offset_right = -50.0
-offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/GameOverPanel/WinnerPanel"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
@@ -49,14 +63,87 @@ grow_vertical = 2
 pivot_offset = Vector2(900, 64)
 alignment = 1
 
-[node name="Player1_HUDPanel" parent="CanvasLayer/Control/Control/HBoxContainer" instance=ExtResource("2_2t0r0")]
+[node name="Player1_Winner" type="Panel" parent="CanvasLayer/Control/GameOverPanel/WinnerPanel/HBoxContainer"]
+custom_minimum_size = Vector2(300, 128)
 layout_mode = 2
 
-[node name="Player2_HUDPanel" parent="CanvasLayer/Control/Control/HBoxContainer" instance=ExtResource("2_2t0r0")]
+[node name="Label" type="Label" parent="CanvasLayer/Control/GameOverPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.5
+offset_left = 0.639984
+offset_right = -0.47998
+offset_bottom = 0.359985
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ekcxc")
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerHUDPanel" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PlayerHUDPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(900, 64)
+alignment = 1
+
+[node name="Player1_HUDPanel" parent="CanvasLayer/Control/PlayerHUDPanel/HBoxContainer" instance=ExtResource("2_2t0r0")]
 layout_mode = 2
 
-[node name="Player3_HUDPanel" parent="CanvasLayer/Control/Control/HBoxContainer" instance=ExtResource("2_2t0r0")]
+[node name="Player2_HUDPanel" parent="CanvasLayer/Control/PlayerHUDPanel/HBoxContainer" instance=ExtResource("2_2t0r0")]
 layout_mode = 2
 
-[node name="Player4_HUDPanel" parent="CanvasLayer/Control/Control/HBoxContainer" instance=ExtResource("2_2t0r0")]
+[node name="Player3_HUDPanel" parent="CanvasLayer/Control/PlayerHUDPanel/HBoxContainer" instance=ExtResource("2_2t0r0")]
 layout_mode = 2
+
+[node name="Player4_HUDPanel" parent="CanvasLayer/Control/PlayerHUDPanel/HBoxContainer" instance=ExtResource("2_2t0r0")]
+layout_mode = 2
+
+[node name="TimerPanel" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.76
+anchor_bottom = 0.15
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rkyhd")
+
+[node name="Timer" type="Label" parent="CanvasLayer/Control/TimerPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.186
+anchor_top = 0.5
+anchor_right = 0.844
+anchor_bottom = 1.0
+offset_left = 55.5792
+offset_right = -48.9633
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_lmt0w")
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
