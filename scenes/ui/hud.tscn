@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rkyhd"]
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("_canvas", "_panels", "_timerLabel")]
+[node name="Hud" type="Control" node_paths=PackedStringArray("_canvas", "_panels", "_timerLabel", "_gameOverPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,7 @@ script = ExtResource("1_kahip")
 _canvas = NodePath("CanvasLayer")
 _panels = [NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player1_HUDPanel"), NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player2_HUDPanel"), NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player3_HUDPanel"), NodePath("CanvasLayer/Control/PlayerHUDPanel/HBoxContainer/Player4_HUDPanel")]
 _timerLabel = NodePath("CanvasLayer/Control/TimerPanel/Timer")
+_gameOverPanel = NodePath("CanvasLayer/Control/GameOverPanel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

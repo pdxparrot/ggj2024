@@ -127,6 +127,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             GD.Print("[GameManager] Game over!");
 
             State = GameState.GameOver;
+            GameUIManager.Instance.HUD.ShowGameOver();
         }
 
         public async Task RestartAsync()
@@ -146,6 +147,8 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.StopServer();
 
             PlayerManager.Instance.UnRegisterAllPlayers();
+
+            GameUIManager.Instance.HUD.HideGameOver();
 
             await LevelManager.Instance.LoadMainMenuAsync().ConfigureAwait(false);
         }
