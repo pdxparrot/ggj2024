@@ -146,15 +146,15 @@ texture_normal = ExtResource("10_w84bk")
 
 [node name="MainMenuLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_u5rdw")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="MainMenIntro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_487fy")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="Credits" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_487fy")
-volume_db = -5.0
+volume_db = -15.0
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Join" to="." method="_on_join_pressed"]
