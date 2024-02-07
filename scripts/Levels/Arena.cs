@@ -53,7 +53,10 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _Process(double delta)
         {
-            _timeRemaining = (int)_gameTimer.TimeLeft;
+            if(NetworkManager.Instance.IsServer) {
+                _timeRemaining = (int)_gameTimer.TimeLeft;
+            }
+            GameUIManager.Instance.HUD.UpdateTimer(_timeRemaining);
         }
 
         public override void _UnhandledInput(InputEvent @event)
