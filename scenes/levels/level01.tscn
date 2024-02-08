@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=10 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
 [ext_resource type="PackedScene" uid="uid://1sbg6cmvuqi2" path="res://scenes/camera.tscn" id="2_fo1sa"]
+[ext_resource type="PackedScene" uid="uid://cahkwcyaqjh8y" path="res://art/environment/Blockout Full.glb" id="3_rn5ev"]
+[ext_resource type="PackedScene" uid="uid://bv5b8rypdrot8" path="res://art/environment/Outer Area.glb" id="4_tvfg4"]
 [ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
 [ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="5_qxvwr"]
 
@@ -22,17 +24,56 @@ _musicPlayer = NodePath("Music")
 replication_config = SubResource("SceneReplicationConfig_woxuc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 0)
+transform = Transform3D(0.973746, 0.0308464, 0.225538, -0.185396, 0.68237, 0.707107, -0.132089, -0.730356, 0.670173, 0, 5, 0)
+light_energy = 3.718
 
-[node name="Floor" type="CSGBox3D" parent="."]
+[node name="Bounds" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+visible = false
 use_collision = true
 collision_layer = 2
 size = Vector3(200, 0.1, 200)
+
+[node name="NW_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -65, 22.8677, 13.1844)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="NW_Wall2" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 105, 22.868, 15.966)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="SW_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, 117)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="NE_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, -95)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
 
 [node name="World" type="Node3D" parent="."]
 
 [node name="BlockoutArea" parent="World" instance=ExtResource("1_gh4wy")]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+visible = false
+
+[node name="Blockout Full" parent="World" instance=ExtResource("3_rn5ev")]
+visible = false
+
+[node name="Outer Area" parent="World" instance=ExtResource("4_tvfg4")]
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 
@@ -49,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -30)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, -30)
 
 [node name="Camera_Mover" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 141.91, 130)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.332, 183.318, 146.659)
 
 [node name="Camera_Pan" type="Node3D" parent="Camera_Mover"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
@@ -62,7 +103,7 @@ _noise = SubResource("FastNoiseLite_3qm2k")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qxvwr")
-volume_db = -15.0
+volume_db = -45.0
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 60.0

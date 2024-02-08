@@ -53,13 +53,14 @@ properties/1/replication_mode = 2
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_thrusterCooldown", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
+_maxHealth = 20
 _playerIndicator = NodePath("PlayerIndicator")
 _impactAudioPlayer = NodePath("SFX/Impact")
 _stepAudioPlayer = NodePath("SFX/Step")
 _leftArmInteractables = NodePath("Pivot/Left Punch Hitbox")
 _rightArmInteractables = NodePath("Pivot/Right Punch Hitbox")
 _punchAudioPlayer = NodePath("SFX/Punch")
-_thrusterModifier = 1.25
+_thrusterModifier = 0.75
 _thrusterTimer = NodePath("Timers/ThrusterTimer")
 _thrusterCooldown = NodePath("Timers/ThrusterCooldown")
 _fallTimer = NodePath("Timers/FallTimer")
@@ -67,7 +68,7 @@ _input = NodePath("Input")
 _pivot = NodePath("Pivot")
 _model = NodePath("Pivot/Model")
 _collider = NodePath("CollisionShape3D")
-_maxSpeed = 100.0
+_maxSpeed = 300.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ok77n")
@@ -91,27 +92,27 @@ _animationTree = NodePath("mechaChicken4/AnimationTree")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Pivot/Model/mechaChicken4/Armature" index="0"]
-bones/0/position = Vector3(-0.580067, -0.298506, -10.3464)
-bones/0/rotation = Quaternion(-0.726548, -0.00424251, 0.00692315, 0.687068)
-bones/1/rotation = Quaternion(0.0151184, -0.00251048, 0.00209566, 0.99988)
-bones/2/rotation = Quaternion(0.00615804, -0.0245826, 0.00505436, 0.999666)
-bones/3/rotation = Quaternion(0.00594232, -0.0244929, 0.00526879, 0.999668)
-bones/4/rotation = Quaternion(-0.0103661, 0.0147556, -0.0142917, 0.999735)
-bones/5/rotation = Quaternion(0.0558632, 0.000613014, 0.0244387, 0.998139)
-bones/7/rotation = Quaternion(0.564459, 0.40873, -0.607759, 0.380729)
-bones/8/rotation = Quaternion(0.356333, 0.101981, 0.111139, 0.922103)
-bones/9/rotation = Quaternion(0.0213548, -0.0389786, 0.249603, 0.967328)
-bones/11/rotation = Quaternion(0.611919, -0.397633, 0.537306, 0.422783)
-bones/12/rotation = Quaternion(0.361876, -0.0631118, -0.125469, 0.921586)
-bones/13/rotation = Quaternion(0.0277079, 0.0357102, -0.227774, 0.972665)
-bones/15/rotation = Quaternion(0.036888, 0.055561, 0.996766, -0.0448384)
-bones/16/rotation = Quaternion(-0.293287, -0.0749354, 0.0383541, 0.952311)
-bones/17/rotation = Quaternion(0.579079, -0.0531877, -0.0643208, 0.810988)
-bones/18/rotation = Quaternion(0.355686, -0.00649083, 0.00246288, 0.93458)
-bones/20/rotation = Quaternion(-0.0838093, 0.0837731, 0.991735, 0.0491843)
-bones/21/rotation = Quaternion(-0.320814, 0.0351399, -0.0241503, 0.946182)
-bones/22/rotation = Quaternion(0.581806, 0.0745294, 0.0407516, 0.80888)
-bones/23/rotation = Quaternion(0.354704, 0.00697127, -0.00243734, 0.93495)
+bones/0/position = Vector3(-0.0516552, -0.308113, -10.3477)
+bones/0/rotation = Quaternion(-0.719831, -0.0314377, 0.0196451, 0.693159)
+bones/1/rotation = Quaternion(0.0167123, -0.00137143, -0.000127151, 0.999859)
+bones/2/rotation = Quaternion(0.00974668, -0.0202192, 0.0010523, 0.999748)
+bones/3/rotation = Quaternion(0.00971894, -0.0201781, 0.00148001, 0.999748)
+bones/4/rotation = Quaternion(-0.00225694, 0.0128533, -0.00690568, 0.999891)
+bones/5/rotation = Quaternion(0.0725406, -0.00466839, 0.0387106, 0.996603)
+bones/7/rotation = Quaternion(0.556288, 0.427561, -0.581942, 0.411191)
+bones/8/rotation = Quaternion(0.390515, 0.0907129, 0.0795569, 0.912655)
+bones/9/rotation = Quaternion(0.0218694, -0.039936, 0.255618, 0.965705)
+bones/11/rotation = Quaternion(0.610375, -0.398587, 0.5387, 0.422342)
+bones/12/rotation = Quaternion(0.362212, -0.0765008, -0.129928, 0.91982)
+bones/13/rotation = Quaternion(0.028289, 0.0364731, -0.23255, 0.971488)
+bones/15/rotation = Quaternion(0.0427729, 0.0612443, 0.996856, -0.0264321)
+bones/16/rotation = Quaternion(-0.317152, -0.0745144, 0.0329409, 0.944869)
+bones/17/rotation = Quaternion(0.606154, -0.0727779, -0.0395786, 0.791021)
+bones/18/rotation = Quaternion(0.356558, -0.00650656, 0.00246461, 0.934247)
+bones/20/rotation = Quaternion(-0.105857, 0.0965733, 0.987231, 0.0695933)
+bones/21/rotation = Quaternion(-0.284118, 0.0197913, -0.0227567, 0.958315)
+bones/22/rotation = Quaternion(0.544742, 0.0491707, 0.068201, 0.834378)
+bones/23/rotation = Quaternion(0.354833, 0.00718518, -0.00236609, 0.934899)
 
 [node name="Hurtbox" type="Area3D" parent="Pivot"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0)
@@ -157,12 +158,15 @@ one_shot = true
 
 [node name="Punch" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("7_2k7q1")
+volume_db = -15.0
 
 [node name="Step" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("8_t3ted")
+volume_db = -15.0
 
 [node name="Impact" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("9_angcy")
+volume_db = -15.0
 
 [connection signal="area_entered" from="Pivot/Left Punch Hitbox" to="Pivot/Left Punch Hitbox" method="_on_area_entered"]
 [connection signal="area_exited" from="Pivot/Left Punch Hitbox" to="Pivot/Left Punch Hitbox" method="_on_area_exited"]
