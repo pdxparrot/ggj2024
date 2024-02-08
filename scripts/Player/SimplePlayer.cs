@@ -31,6 +31,7 @@ namespace pdxpartyparrot.ggj2024.Player
             set
             {
                 _playerSlot = value;
+                OnPlayerSlotChanged();
 
                 if(!NetworkManager.Instance.IsServer) {
                     PlayerManager.Instance.PlayerObjects[_playerSlot] = this;
