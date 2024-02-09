@@ -23,6 +23,10 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _ExitTree()
         {
+            if(PartyParrotManager.HasInstance) {
+                PartyParrotManager.Instance.PauseEvent -= PauseEventHandler;
+            }
+
             if(GameUIManager.HasInstance) {
                 GameUIManager.Instance.HideHUD();
             }
@@ -33,6 +37,8 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _Ready()
         {
+            PartyParrotManager.Instance.PauseEvent += PauseEventHandler;
+
             if(_musicPlayer != null) {
                 _musicPlayer.Play();
             }
@@ -61,7 +67,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _UnhandledInput(InputEvent @event)
         {
-            if(@event.IsActionPressed("pause") && !PartyParrotManager.Instance.IsPaused) {
+            if(@event.IsActionPressed("pause")) {
                 if(NetworkManager.Instance.IsNetwork) {
                     NetworkManager.Instance.TogglePause();
                 } else {
@@ -149,6 +155,11 @@ namespace pdxpartyparrot.ggj2024.Levels
 
                 Rpc(nameof(StartGame));
             }
+        }
+
+        private void PauseEventHandler(object sender, EventArgs args)
+        {
+            _gameTimer.Paused = PartyParrotManager.Instance.IsPaused;
         }
 
         #endregion
