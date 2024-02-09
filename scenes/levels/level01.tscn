@@ -1,21 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=13 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
 [ext_resource type="PackedScene" uid="uid://c8cuge5aw4jnc" path="res://scenes/world/city blocks/city_block_ne.tscn" id="2_0k1go"]
-[ext_resource type="PackedScene" uid="uid://1sbg6cmvuqi2" path="res://scenes/camera.tscn" id="2_fo1sa"]
 [ext_resource type="PackedScene" uid="uid://cahkwcyaqjh8y" path="res://art/environment/Blockout Full.glb" id="3_rn5ev"]
 [ext_resource type="PackedScene" uid="uid://bv5b8rypdrot8" path="res://art/environment/Outer Area.glb" id="4_tvfg4"]
 [ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
 [ext_resource type="PackedScene" uid="uid://dg81r0f0u7vva" path="res://art/environment/Outer Area.tscn" id="5_7uad2"]
 [ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="5_qxvwr"]
+[ext_resource type="Script" path="res://scripts/Camera/StaticCamera.cs" id="9_hvbyv"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="10_hdwk3"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
 properties/0/path = NodePath(".:_timeRemaining")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3qm2k"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a0ds0"]
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer")]
 script = ExtResource("1_avn16")
@@ -104,15 +105,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, -30)
 
 [node name="Camera_Mover" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.332, 183.318, 146.659)
+visible = false
 
 [node name="Camera_Pan" type="Node3D" parent="Camera_Mover"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+visible = false
 
 [node name="Camera_Tilt" type="Node3D" parent="Camera_Mover/Camera_Pan"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
-
-[node name="Camera" parent="Camera_Mover/Camera_Pan/Camera_Tilt" instance=ExtResource("2_fo1sa")]
-_noise = SubResource("FastNoiseLite_3qm2k")
+visible = false
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qxvwr")
@@ -121,5 +122,28 @@ volume_db = -45.0
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 60.0
 one_shot = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 153, 183, 146)
+script = ExtResource("9_hvbyv")
+_noise = SubResource("FastNoiseLite_a0ds0")
+
+[node name="PhantomCamera3D" type="Node3D" parent="Camera3D"]
+script = ExtResource("10_hdwk3")
+priority_override = false
+priority = 0
+follow_mode = 3
+follow_group = Array[NodePath]([])
+follow_parameters/distance = 1.0
+follow_parameters/auto_distance = false
+follow_parameters/target_offset = Vector3(0, 0, 0)
+follow_parameters/damping = false
+look_at_mode = 2
+look_at_target = NodePath("")
+look_at_parameters/look_at_target_offset = Vector3(0, 0, 0)
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = null
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

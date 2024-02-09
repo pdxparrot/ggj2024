@@ -38,6 +38,10 @@ window/size/viewport_height=720
 
 project/assembly_name="ggj2024"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+
 [filesystem]
 
 import/fbx/enabled=false
