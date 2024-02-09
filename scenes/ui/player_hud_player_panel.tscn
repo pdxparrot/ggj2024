@@ -35,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
 
-[node name="PlayerInfo" type="Panel" parent="." node_paths=PackedStringArray("_healthBar")]
+[node name="PlayerInfo" type="Panel" parent="." node_paths=PackedStringArray("_healthBar", "_playerIndicator", "_playerIcon")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +45,9 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jtrhq")
 script = ExtResource("2_eivxk")
 _healthBar = NodePath("HealthBarPanel/PlayerHealthBar")
+_playerIndicator = NodePath("PlayerIndicator")
+_playerIcon = NodePath("Character Icon")
+_playerIcons = [ExtResource("8_1dx4q"), ExtResource("8_1dx4q"), ExtResource("8_1dx4q"), ExtResource("8_1dx4q")]
 
 [node name="NamePlate" type="TextureRect" parent="PlayerInfo"]
 modulate = Color(1, 1, 1, 0.501961)

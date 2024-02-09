@@ -10,9 +10,16 @@ namespace pdxpartyparrot.ggj2024.UI
         [Export]
         private TextureProgressBar _healthBar;
 
-        private float _value;
+        [Export]
+        private TextureRect _playerIndicator;
 
-        private int _playerSlot;
+        [Export]
+        private TextureRect _playerIcon;
+
+        [Export]
+        private Texture2D[] _playerIcons = new Texture2D[4];
+
+        private float _healthValue;
 
         #region Godot Lifecycle
 
@@ -25,22 +32,22 @@ namespace pdxpartyparrot.ggj2024.UI
 
         public override void _Process(double delta)
         {
-            _healthBar.Value = _value;
+            _healthBar.Value = _healthValue;
         }
 
         #endregion
 
         public void Initialize(int playerSlot)
         {
-            _playerSlot = playerSlot;
-
-            var mecha = (Mecha)PlayerManager.Instance.PlayerObjects[_playerSlot];
+            var mecha = (Mecha)PlayerManager.Instance.PlayerObjects[playerSlot];
             if(mecha == null) {
                 GD.PushError("player object is null");
                 return;
             }
 
             _healthBar.MaxValue = mecha.MaxHealth;
+            _playerIndicator.Modulate = GameManager.Instance.PlayerColors[playerSlot];
+            _playerIcon.Texture = _playerIcons[playerSlot];
 
             SetProcess(true);
 
@@ -50,7 +57,7 @@ namespace pdxpartyparrot.ggj2024.UI
         public void UpdateHealth(int value)
         {
             var tween = CreateTween().SetEase(Tween.EaseType.In);
-            tween.TweenProperty(this, "_value", (float)value, 0.5);
+            tween.TweenProperty(this, "_healthValue", (float)value, 0.5);
         }
     }
 }
