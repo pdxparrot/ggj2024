@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://ds28jbuo5w7ev"]
 
+[ext_resource type="Material" uid="uid://b5ldyiiu74hpb" path="res://art/materials/Env All Textures.tres" id="1_1lrl5"]
 [ext_resource type="Texture2D" uid="uid://q2qhjq8j3ljg" path="res://art/environment/city blocks/Block_NE_Building texture.png" id="1_u2sqq"]
-[ext_resource type="Material" uid="uid://qucv4k13l0us" path="res://art/materials/Level.tres" id="1_vrf4b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1v4y4"]
 resource_name = "BuildingTextures"
@@ -418,60 +418,61 @@ transform = Transform3D(0.01, 0, 0, 0, -1.19209e-09, -0.01, 0, 0.01, -1.19209e-0
 [node name="Buildings" type="Node3D" parent="NE_Block"]
 
 [node name="Building01" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_axqch")
 skeleton = NodePath("")
 
 [node name="Building02" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_mnqat")
 skeleton = NodePath("")
 
 [node name="Building03" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_d2138")
 skeleton = NodePath("")
 
 [node name="Building04" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_3g3nw")
 skeleton = NodePath("")
 
 [node name="Building05" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_u7tvw")
 skeleton = NodePath("")
 
 [node name="Building06" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_e0lv7")
 skeleton = NodePath("")
 
 [node name="Building07" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_fdcxb")
 skeleton = NodePath("")
 
 [node name="Building08" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_7qp6k")
 skeleton = NodePath("")
 
 [node name="Building09" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_q1q2a")
 skeleton = NodePath("")
 
 [node name="Building10" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_xux8s")
 skeleton = NodePath("")
 
 [node name="Building11" type="MeshInstance3D" parent="NE_Block/Buildings"]
-material_override = ExtResource("1_vrf4b")
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_rhkep")
 skeleton = NodePath("")
 
 [node name="Sidewalk1" type="MeshInstance3D" parent="NE_Block"]
+material_override = ExtResource("1_1lrl5")
 mesh = SubResource("ArrayMesh_y03kh")
 skeleton = NodePath("")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0hwvds4eqapn"]
+
+[ext_resource type="PackedScene" uid="uid://cfdnn1wo3snm0" path="res://art/environment/city blocks/Block_TokyoTower.tscn" id="1_urhhy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lek5g"]
+size = Vector3(0.601746, 1.20782, 0.551544)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bfyhd"]
+size = Vector3(0.361603, 0.629425, 0.347168)
+
+[node name="CityBlock_TokyoTower" type="Node3D"]
+
+[node name="Block_TokyoTower" parent="." instance=ExtResource("1_urhhy")]
+
+[node name="Collider" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collider"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0.282288, 30.0491, -0.0038147)
+shape = SubResource("BoxShape3D_lek5g")
+
+[node name="Hurtbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.483704, 32.3746, 0.12207)
+shape = SubResource("BoxShape3D_bfyhd")

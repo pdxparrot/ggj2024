@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c6a4nboy8cfk0"]
+
+[ext_resource type="Texture2D" uid="uid://cdjcky3a70vwy" path="res://art/textures/ARMTest-Metal.png" id="2_h8qvp"]
+[ext_resource type="Texture2D" uid="uid://ci4g4hsu5h6ht" path="res://art/textures/ARMTest-Roughness.png" id="3_icmvp"]
+
+[resource]
+albedo_texture = ExtResource("2_h8qvp")
+metallic = 1.0
+metallic_texture = ExtResource("2_h8qvp")
+roughness_texture = ExtResource("3_icmvp")

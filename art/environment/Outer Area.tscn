@@ -1,7 +1,7 @@
 [gd_scene load_steps=68 format=3 uid="uid://dg81r0f0u7vva"]
 
 [ext_resource type="Material" uid="uid://qucv4k13l0us" path="res://art/materials/Level.tres" id="1_iasxy"]
-[ext_resource type="Texture2D" uid="uid://bkm0ni5h3nhyv" path="res://art/environment/Outer Area_Building texture.png" id="2_egvon"]
+[ext_resource type="Texture2D" uid="uid://bkm0ni5h3nhyv" path="res://art/environment/Env All Texture.png" id="2_egvon"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lw3d1"]
 resource_name = "BuildingTextures"

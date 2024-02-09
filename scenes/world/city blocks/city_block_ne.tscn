@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://ds28jbuo5w7ev" path="res://art/environment/city blocks/Block_NE.tscn" id="1_3vsqo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lek5g"]
-size = Vector3(0.601746, 0.433228, 0.551544)
+size = Vector3(0.601746, 1.20782, 0.551544)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bfyhd"]
-size = Vector3(0.361603, 0.220032, 0.347168)
+size = Vector3(0.361603, 0.629425, 0.347168)
 
 [node name="CityBlock_NE" type="Node3D"]
 
@@ -14,6 +14,7 @@ size = Vector3(0.361603, 0.220032, 0.347168)
 
 [node name="Collider" type="Area3D" parent="."]
 collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collider"]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0.282288, 10.6842, -0.0038147)
