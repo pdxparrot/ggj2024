@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using pdxpartyparrot.ggj2024.Collections;
-using pdxpartyparrot.ggj2024.Managers;
 using pdxpartyparrot.ggj2024.Util;
 using pdxpartyparrot.ggj2024.World;
 
@@ -18,6 +17,19 @@ namespace pdxpartyparrot.ggj2024.Managers
             Random,
 
             RoundRobin
+        }
+
+        public struct SpawnPointType
+        {
+            [Export]
+            private string _tag;
+
+            public string Tag => _tag;
+
+            [Export]
+            private SpawnMethod _spawnMethod;
+
+            public SpawnMethod SpawnMethod => _spawnMethod;
         }
 
         private sealed class SpawnPointSet
@@ -71,8 +83,15 @@ namespace pdxpartyparrot.ggj2024.Managers
         [Export]
         private string[] _playerSpawnPointTags = Array.Empty<string>();
 
+        // TODO: can't export structs
+        /*[Export]
+        private SpawnPointType[] _types;
+
+        public IReadOnlyCollection<SpawnPointType> Types => _types;*/
+
+        // TODO: can't export Dictionaries
         //[Export]
-        private Dictionary<string, SpawnMethod> _spawnTypes = new Dictionary<string, SpawnMethod>();
+        private readonly Dictionary<string, /*SpawnPointType*/SpawnMethod> _spawnTypes = new Dictionary<string, /*SpawnPointType*/SpawnMethod>();
 
         private readonly Dictionary<string, SpawnPointSet> _spawnPoints = new Dictionary<string, SpawnPointSet>();
 
@@ -83,6 +102,22 @@ namespace pdxpartyparrot.ggj2024.Managers
             base._Ready();
 
             System.Diagnostics.Debug.Assert(_playerSpawnPointTags.Length > 0);
+
+            // TODO: can't export the types needed for this
+            /*foreach(var spawnPointType in _types) {
+                if(_spawnTypes.ContainsKey(spawnPointType.Tag)) {
+                    GD.PushWarning($"Duplicate spawn point tag '{spawnPointType.Tag}', ignoring");
+                    continue;
+                }
+                _spawnTypes.Add(spawnPointType.Tag, spawnPointType);
+            }*/
+            foreach(var tag in _playerSpawnPointTags) {
+                if(_spawnTypes.ContainsKey(tag)) {
+                    GD.PushWarning($"Duplicate player spawn point tag '{tag}', ignoring");
+                    continue;
+                }
+                _spawnTypes.Add(tag, SpawnMethod.RoundRobin);
+            }
         }
 
         #endregion
@@ -174,22 +209,22 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public SpawnPoint GetPlayerSpawnPoint(int playerId)
         {
-            int spawnPointIdx = playerId % _playerSpawnPointTags.Length;
-            return GetSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx));
+            int spawnPointTagIdx = playerId % _playerSpawnPointTags.Length;
+            return GetSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointTagIdx));
         }
 
         // gets a random player spawnpoint regardless of how the spawnpoints are configured
         public SpawnPoint GetRandomPlayerSpawnPoint(int playerId)
         {
-            int spawnPointIdx = playerId % _playerSpawnPointTags.Length;
-            return GetRandomSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx));
+            int spawnPointTagIdx = playerId % _playerSpawnPointTags.Length;
+            return GetRandomSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointTagIdx));
         }
 
         // gets the player spawnpoint nearest the given position
         public SpawnPoint GetNearestPlayerSpawnPoint(int playerId, Vector3 position)
         {
-            int spawnPointIdx = playerId % _playerSpawnPointTags.Length;
-            return GetNearestSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointIdx), position);
+            int spawnPointTagIdx = playerId % _playerSpawnPointTags.Length;
+            return GetNearestSpawnPoint(_playerSpawnPointTags.ElementAt(spawnPointTagIdx), position);
         }
 
         public SpawnPoint GetPlayerSpawnPoint(string tag)
