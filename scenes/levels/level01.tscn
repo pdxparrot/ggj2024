@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=12 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
+[ext_resource type="PackedScene" uid="uid://c8cuge5aw4jnc" path="res://scenes/world/city blocks/city_block_ne.tscn" id="2_0k1go"]
 [ext_resource type="PackedScene" uid="uid://1sbg6cmvuqi2" path="res://scenes/camera.tscn" id="2_fo1sa"]
 [ext_resource type="PackedScene" uid="uid://cahkwcyaqjh8y" path="res://art/environment/Blockout Full.glb" id="3_rn5ev"]
 [ext_resource type="PackedScene" uid="uid://bv5b8rypdrot8" path="res://art/environment/Outer Area.glb" id="4_tvfg4"]
 [ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
+[ext_resource type="PackedScene" uid="uid://dg81r0f0u7vva" path="res://art/environment/Outer Area.tscn" id="5_7uad2"]
 [ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="5_qxvwr"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
@@ -25,7 +27,15 @@ replication_config = SubResource("SceneReplicationConfig_woxuc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.973746, 0.0308464, 0.225538, -0.185396, 0.68237, 0.707107, -0.132089, -0.730356, 0.670173, 0, 5, 0)
-light_energy = 3.718
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 1.0
+
+[node name="CityBlocks" type="Node3D" parent="."]
+
+[node name="CityBlock_NE" parent="CityBlocks" instance=ExtResource("2_0k1go")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -52)
 
 [node name="Bounds" type="Node3D" parent="."]
 
@@ -74,6 +84,9 @@ visible = false
 visible = false
 
 [node name="Outer Area" parent="World" instance=ExtResource("4_tvfg4")]
+visible = false
+
+[node name="Outer Area2" parent="World" instance=ExtResource("5_7uad2")]
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 
