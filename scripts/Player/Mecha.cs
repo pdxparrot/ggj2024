@@ -25,7 +25,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         public int MaxHealth => _maxHealth;
 
-        // sync'd server -> client
+        // sync'd
         [Export]
         private int _currentHealth;
 
@@ -46,7 +46,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private Leg _lastLeg;
 
-        // sync'd server -> client
+        // sync'd
         [Export]
         private bool _move;
 
@@ -59,7 +59,16 @@ namespace pdxpartyparrot.ggj2024.Player
         [Export]
         private int _punchDamage = 1;
 
-        private bool CanPunch => !IsDead && !IsStunned && !IsThrustering;
+        [Export]
+        private Timer _punchCooldownTimer;
+
+        // sync'd
+        [Export]
+        private bool _punchCooldown;
+
+        private bool IsPunchCooldown => _punchCooldown;
+
+        private bool CanPunch => !IsDead && !IsStunned && !IsThrustering && !IsPunchCooldown;
 
         [Export]
         private Interactables.Interactables _leftArmInteractables;
@@ -81,15 +90,15 @@ namespace pdxpartyparrot.ggj2024.Player
         private Timer _thrusterTimer;
 
         [Export]
-        private Timer _thrusterCooldown;
+        private Timer _thrusterCooldown/*Timer*/;
 
-        // sync'd client -> server
+        // sync'd
         [Export]
         private bool _thrusters;
 
         private bool IsThrustering => _thrusters;
 
-        // sync'd server -> client
+        // sync'd
         [Export]
         private bool _thrustersCooldown;
 
@@ -104,7 +113,7 @@ namespace pdxpartyparrot.ggj2024.Player
         [Export]
         private Timer _fallTimer;
 
-        // sync'd server -> client
+        // sync'd
         [Export]
         private bool _stunned;
 
@@ -281,7 +290,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _lastLeg = Leg.Left;
             _move = true;
 
-            Model.ChangeState("StepRight");
+            Model.ChangeState("StepLeft");
             _stepAudioPlayer.Play();
         }
 
@@ -301,7 +310,7 @@ namespace pdxpartyparrot.ggj2024.Player
             _lastLeg = Leg.Right;
             _move = true;
 
-            Model.ChangeState("StepLeft");
+            Model.ChangeState("StepRight");
             _stepAudioPlayer.Play();
         }
 
@@ -328,6 +337,9 @@ namespace pdxpartyparrot.ggj2024.Player
 
             Model.ChangeState("PunchLeft");
             _punchAudioPlayer.Play();
+
+            _punchCooldown = true;
+            _punchCooldownTimer.Start();
         }
 
         // client broadcast
@@ -342,6 +354,9 @@ namespace pdxpartyparrot.ggj2024.Player
 
             Model.ChangeState("PunchRight");
             _punchAudioPlayer.Play();
+
+            _punchCooldown = true;
+            _punchCooldownTimer.Start();
         }
 
         // client broadcast
@@ -364,6 +379,11 @@ namespace pdxpartyparrot.ggj2024.Player
         #endregion
 
         #region Signal Handlers
+
+        private void _on_punch_cooldown_timeout()
+        {
+            _punchCooldown = false;
+        }
 
         private void _on_thruster_timer_timeout()
         {

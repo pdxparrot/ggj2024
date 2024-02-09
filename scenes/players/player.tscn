@@ -35,6 +35,9 @@ properties/6/replication_mode = 2
 properties/7/path = NodePath(".:_thrustersCooldown")
 properties/7/spawn = true
 properties/7/replication_mode = 2
+properties/8/path = NodePath(".:_punchCooldown")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stcnq"]
 properties/0/path = NodePath("Input:_lookDirection")
@@ -50,13 +53,14 @@ properties/1/replication_mode = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5myjb"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_thrusterCooldown", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_punchCooldownTimer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_thrusterCooldown", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
 _maxHealth = 20
 _playerIndicator = NodePath("PlayerIndicator")
 _impactAudioPlayer = NodePath("SFX/Impact")
 _stepAudioPlayer = NodePath("SFX/Step")
+_punchCooldownTimer = NodePath("Timers/PunchCooldown")
 _leftArmInteractables = NodePath("Pivot/Left Punch Hitbox")
 _rightArmInteractables = NodePath("Pivot/Right Punch Hitbox")
 _punchAudioPlayer = NodePath("SFX/Punch")
@@ -154,6 +158,9 @@ one_shot = true
 [node name="ThrusterCooldown" type="Timer" parent="Timers"]
 one_shot = true
 
+[node name="PunchCooldown" type="Timer" parent="Timers"]
+wait_time = 0.5
+
 [node name="SFX" type="Node" parent="."]
 
 [node name="Punch" type="AudioStreamPlayer" parent="SFX"]
@@ -175,5 +182,6 @@ volume_db = -15.0
 [connection signal="timeout" from="Timers/FallTimer" to="." method="_on_fall_timer_timeout"]
 [connection signal="timeout" from="Timers/ThrusterTimer" to="." method="_on_thruster_timer_timeout"]
 [connection signal="timeout" from="Timers/ThrusterCooldown" to="." method="_on_thruster_cooldown_timeout"]
+[connection signal="timeout" from="Timers/PunchCooldown" to="." method="_on_punch_cooldown_timeout"]
 
 [editable path="Pivot/Model/mechaChicken4"]
