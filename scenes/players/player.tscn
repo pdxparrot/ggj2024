@@ -35,9 +35,12 @@ properties/6/replication_mode = 2
 properties/7/path = NodePath(".:_thrustersCooldown")
 properties/7/spawn = true
 properties/7/replication_mode = 2
-properties/8/path = NodePath(".:_punchCooldown")
+properties/8/path = NodePath(".:_leftPunchCooldown")
 properties/8/spawn = true
-properties/8/replication_mode = 1
+properties/8/replication_mode = 2
+properties/9/path = NodePath(".:_rightPunchCooldown")
+properties/9/spawn = true
+properties/9/replication_mode = 2
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stcnq"]
 properties/0/path = NodePath("Input:_lookDirection")
@@ -53,14 +56,15 @@ properties/1/replication_mode = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5myjb"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_punchCooldownTimer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_thrusterCooldown", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_playerIndicator", "_impactAudioPlayer", "_stepAudioPlayer", "_leftPunchCooldownTimer", "_rightPunchCooldownTimer", "_leftArmInteractables", "_rightArmInteractables", "_punchAudioPlayer", "_thrusterTimer", "_thrusterCooldown", "_fallTimer", "_input", "_pivot", "_model", "_collider")]
 collision_mask = 2
 script = ExtResource("1_63y7g")
 _maxHealth = 20
 _playerIndicator = NodePath("PlayerIndicator")
 _impactAudioPlayer = NodePath("SFX/Impact")
 _stepAudioPlayer = NodePath("SFX/Step")
-_punchCooldownTimer = NodePath("Timers/PunchCooldown")
+_leftPunchCooldownTimer = NodePath("Timers/LeftPunchCooldown")
+_rightPunchCooldownTimer = NodePath("Timers/RightPunchCooldown")
 _leftArmInteractables = NodePath("Pivot/Left Punch Hitbox")
 _rightArmInteractables = NodePath("Pivot/Right Punch Hitbox")
 _punchAudioPlayer = NodePath("SFX/Punch")
@@ -96,27 +100,27 @@ _animationTree = NodePath("mechaChicken4/AnimationTree")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Pivot/Model/mechaChicken4/Armature" index="0"]
-bones/0/position = Vector3(-0.0516552, -0.308113, -10.3477)
-bones/0/rotation = Quaternion(-0.719831, -0.0314377, 0.0196451, 0.693159)
-bones/1/rotation = Quaternion(0.0167123, -0.00137143, -0.000127151, 0.999859)
-bones/2/rotation = Quaternion(0.00974668, -0.0202192, 0.0010523, 0.999748)
-bones/3/rotation = Quaternion(0.00971894, -0.0201781, 0.00148001, 0.999748)
-bones/4/rotation = Quaternion(-0.00225694, 0.0128533, -0.00690568, 0.999891)
-bones/5/rotation = Quaternion(0.0725406, -0.00466839, 0.0387106, 0.996603)
-bones/7/rotation = Quaternion(0.556288, 0.427561, -0.581942, 0.411191)
-bones/8/rotation = Quaternion(0.390515, 0.0907129, 0.0795569, 0.912655)
-bones/9/rotation = Quaternion(0.0218694, -0.039936, 0.255618, 0.965705)
-bones/11/rotation = Quaternion(0.610375, -0.398587, 0.5387, 0.422342)
-bones/12/rotation = Quaternion(0.362212, -0.0765008, -0.129928, 0.91982)
-bones/13/rotation = Quaternion(0.028289, 0.0364731, -0.23255, 0.971488)
-bones/15/rotation = Quaternion(0.0427729, 0.0612443, 0.996856, -0.0264321)
-bones/16/rotation = Quaternion(-0.317152, -0.0745144, 0.0329409, 0.944869)
-bones/17/rotation = Quaternion(0.606154, -0.0727779, -0.0395786, 0.791021)
-bones/18/rotation = Quaternion(0.356558, -0.00650656, 0.00246461, 0.934247)
-bones/20/rotation = Quaternion(-0.105857, 0.0965733, 0.987231, 0.0695933)
-bones/21/rotation = Quaternion(-0.284118, 0.0197913, -0.0227567, 0.958315)
-bones/22/rotation = Quaternion(0.544742, 0.0491707, 0.068201, 0.834378)
-bones/23/rotation = Quaternion(0.354833, 0.00718518, -0.00236609, 0.934899)
+bones/0/position = Vector3(-0.278739, -0.322376, -10.2784)
+bones/0/rotation = Quaternion(-0.726508, -0.015754, 0.00116394, 0.686977)
+bones/1/rotation = Quaternion(0.0178349, -0.00168166, -0.000577059, 0.999839)
+bones/2/rotation = Quaternion(0.010975, -0.0240904, 0.00197526, 0.999648)
+bones/3/rotation = Quaternion(0.0108939, -0.0240288, 0.00241774, 0.999649)
+bones/4/rotation = Quaternion(0.0026362, 0.0101907, -0.0074888, 0.999917)
+bones/5/rotation = Quaternion(0.0529274, -0.00425308, 0.0312895, 0.998099)
+bones/7/rotation = Quaternion(0.578276, 0.39982, -0.598117, 0.384705)
+bones/8/rotation = Quaternion(0.353015, 0.110997, 0.111186, 0.922333)
+bones/9/rotation = Quaternion(0.0208999, -0.0381326, 0.244287, 0.968728)
+bones/11/rotation = Quaternion(0.634775, -0.379713, 0.52645, 0.419201)
+bones/12/rotation = Quaternion(0.350225, -0.0770628, -0.128137, 0.924654)
+bones/13/rotation = Quaternion(0.028767, 0.0371004, -0.236478, 0.970502)
+bones/15/rotation = Quaternion(0.0256177, 0.0856293, 0.995189, -0.0401344)
+bones/16/rotation = Quaternion(-0.352415, -0.0707742, 0.0422654, 0.932206)
+bones/17/rotation = Quaternion(0.607272, -0.0674546, -0.0593559, 0.789397)
+bones/18/rotation = Quaternion(0.355566, -0.00648867, 0.00246264, 0.934626)
+bones/20/rotation = Quaternion(-0.102951, 0.0807218, 0.989819, 0.0560579)
+bones/21/rotation = Quaternion(-0.302977, 0.0218656, -0.0229078, 0.952472)
+bones/22/rotation = Quaternion(0.566911, 0.0687475, 0.0544151, 0.8191)
+bones/23/rotation = Quaternion(0.354645, 0.0068747, -0.00246917, 0.934972)
 
 [node name="Hurtbox" type="Area3D" parent="Pivot"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0)
@@ -158,7 +162,10 @@ one_shot = true
 [node name="ThrusterCooldown" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="PunchCooldown" type="Timer" parent="Timers"]
+[node name="LeftPunchCooldown" type="Timer" parent="Timers"]
+wait_time = 0.5
+
+[node name="RightPunchCooldown" type="Timer" parent="Timers"]
 wait_time = 0.5
 
 [node name="SFX" type="Node" parent="."]
@@ -182,6 +189,7 @@ volume_db = -15.0
 [connection signal="timeout" from="Timers/FallTimer" to="." method="_on_fall_timer_timeout"]
 [connection signal="timeout" from="Timers/ThrusterTimer" to="." method="_on_thruster_timer_timeout"]
 [connection signal="timeout" from="Timers/ThrusterCooldown" to="." method="_on_thruster_cooldown_timeout"]
-[connection signal="timeout" from="Timers/PunchCooldown" to="." method="_on_punch_cooldown_timeout"]
+[connection signal="timeout" from="Timers/LeftPunchCooldown" to="." method="_on_left_punch_cooldown_timeout"]
+[connection signal="timeout" from="Timers/RightPunchCooldown" to="." method="_on_right_punch_cooldown_timeout"]
 
 [editable path="Pivot/Model/mechaChicken4"]

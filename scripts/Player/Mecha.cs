@@ -60,15 +60,26 @@ namespace pdxpartyparrot.ggj2024.Player
         private int _punchDamage = 1;
 
         [Export]
-        private Timer _punchCooldownTimer;
+        private Timer _leftPunchCooldownTimer;
 
         // sync'd
         [Export]
-        private bool _punchCooldown;
+        private bool _leftPunchCooldown;
 
-        private bool IsPunchCooldown => _punchCooldown;
+        private bool IsLeftPunchCooldown => _leftPunchCooldown;
 
-        private bool CanPunch => !IsDead && !IsStunned && !IsThrustering && !IsPunchCooldown;
+        private bool CanLeftPunch => !IsDead && !IsStunned && !IsThrustering && !IsLeftPunchCooldown;
+
+        [Export]
+        private Timer _rightPunchCooldownTimer;
+
+        // sync'd
+        [Export]
+        private bool _rightPunchCooldown;
+
+        private bool IsRightPunchCooldown => _rightPunchCooldown;
+
+        private bool CanRightPunch => !IsDead && !IsStunned && !IsThrustering && !IsRightPunchCooldown;
 
         [Export]
         private Interactables.Interactables _leftArmInteractables;
@@ -329,7 +340,7 @@ namespace pdxpartyparrot.ggj2024.Player
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcLeftArm()
         {
-            if(!CanPunch) {
+            if(!CanLeftPunch) {
                 return;
             }
 
@@ -338,15 +349,15 @@ namespace pdxpartyparrot.ggj2024.Player
             Model.ChangeState("PunchLeft");
             _punchAudioPlayer.Play();
 
-            _punchCooldown = true;
-            _punchCooldownTimer.Start();
+            _leftPunchCooldown = true;
+            _leftPunchCooldownTimer.Start();
         }
 
         // client broadcast
         [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
         private void RpcRightArm()
         {
-            if(!CanPunch) {
+            if(!CanRightPunch) {
                 return;
             }
 
@@ -355,8 +366,8 @@ namespace pdxpartyparrot.ggj2024.Player
             Model.ChangeState("PunchRight");
             _punchAudioPlayer.Play();
 
-            _punchCooldown = true;
-            _punchCooldownTimer.Start();
+            _rightPunchCooldown = true;
+            _rightPunchCooldownTimer.Start();
         }
 
         // client broadcast
@@ -380,9 +391,14 @@ namespace pdxpartyparrot.ggj2024.Player
 
         #region Signal Handlers
 
-        private void _on_punch_cooldown_timeout()
+        private void _on_left_punch_cooldown_timeout()
         {
-            _punchCooldown = false;
+            _leftPunchCooldown = false;
+        }
+
+        private void _on_right_punch_cooldown_timeout()
+        {
+            _rightPunchCooldown = false;
         }
 
         private void _on_thruster_timer_timeout()
