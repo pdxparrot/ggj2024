@@ -100,27 +100,27 @@ _animationTree = NodePath("mechaChicken4/AnimationTree")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Pivot/Model/mechaChicken4/Armature" index="0"]
-bones/0/position = Vector3(-0.278739, -0.322376, -10.2784)
-bones/0/rotation = Quaternion(-0.726508, -0.015754, 0.00116394, 0.686977)
-bones/1/rotation = Quaternion(0.0178349, -0.00168166, -0.000577059, 0.999839)
-bones/2/rotation = Quaternion(0.010975, -0.0240904, 0.00197526, 0.999648)
-bones/3/rotation = Quaternion(0.0108939, -0.0240288, 0.00241774, 0.999649)
-bones/4/rotation = Quaternion(0.0026362, 0.0101907, -0.0074888, 0.999917)
-bones/5/rotation = Quaternion(0.0529274, -0.00425308, 0.0312895, 0.998099)
-bones/7/rotation = Quaternion(0.578276, 0.39982, -0.598117, 0.384705)
-bones/8/rotation = Quaternion(0.353015, 0.110997, 0.111186, 0.922333)
-bones/9/rotation = Quaternion(0.0208999, -0.0381326, 0.244287, 0.968728)
-bones/11/rotation = Quaternion(0.634775, -0.379713, 0.52645, 0.419201)
-bones/12/rotation = Quaternion(0.350225, -0.0770628, -0.128137, 0.924654)
-bones/13/rotation = Quaternion(0.028767, 0.0371004, -0.236478, 0.970502)
-bones/15/rotation = Quaternion(0.0256177, 0.0856293, 0.995189, -0.0401344)
-bones/16/rotation = Quaternion(-0.352415, -0.0707742, 0.0422654, 0.932206)
-bones/17/rotation = Quaternion(0.607272, -0.0674546, -0.0593559, 0.789397)
-bones/18/rotation = Quaternion(0.355566, -0.00648867, 0.00246264, 0.934626)
-bones/20/rotation = Quaternion(-0.102951, 0.0807218, 0.989819, 0.0560579)
-bones/21/rotation = Quaternion(-0.302977, 0.0218656, -0.0229078, 0.952472)
-bones/22/rotation = Quaternion(0.566911, 0.0687475, 0.0544151, 0.8191)
-bones/23/rotation = Quaternion(0.354645, 0.0068747, -0.00246917, 0.934972)
+bones/0/position = Vector3(-0.443281, -0.325204, -10.3371)
+bones/0/rotation = Quaternion(-0.726557, -0.011058, 0.00479826, 0.687001)
+bones/1/rotation = Quaternion(0.0165969, -0.00235325, 0.00128541, 0.999859)
+bones/2/rotation = Quaternion(0.00882999, -0.0247414, 0.00418842, 0.999646)
+bones/3/rotation = Quaternion(0.00865088, -0.0246483, 0.00454691, 0.999648)
+bones/4/rotation = Quaternion(-0.00962187, 0.0136522, -0.0130591, 0.999775)
+bones/5/rotation = Quaternion(0.0525397, -0.000925094, 0.0267242, 0.998261)
+bones/7/rotation = Quaternion(0.567013, 0.401796, -0.61686, 0.369513)
+bones/8/rotation = Quaternion(0.339584, 0.119141, 0.128189, 0.924151)
+bones/9/rotation = Quaternion(0.021401, -0.0390648, 0.250144, 0.967184)
+bones/11/rotation = Quaternion(0.615701, -0.394254, 0.536504, 0.421473)
+bones/12/rotation = Quaternion(0.359471, -0.0741504, -0.135798, 0.92024)
+bones/13/rotation = Quaternion(0.0282482, 0.0364197, -0.232215, 0.971572)
+bones/15/rotation = Quaternion(0.0311749, 0.0653776, 0.996358, -0.0450009)
+bones/16/rotation = Quaternion(-0.313693, -0.0721755, 0.0376184, 0.94603)
+bones/17/rotation = Quaternion(0.589144, -0.0631769, -0.0650204, 0.802927)
+bones/18/rotation = Quaternion(0.355634, -0.00648989, 0.00246278, 0.9346)
+bones/20/rotation = Quaternion(-0.0971863, 0.0803526, 0.990604, 0.0529347)
+bones/21/rotation = Quaternion(-0.304469, 0.02317, -0.0198476, 0.952034)
+bones/22/rotation = Quaternion(0.570727, 0.0707571, 0.0435007, 0.816928)
+bones/23/rotation = Quaternion(0.354678, 0.00692929, -0.00245118, 0.93496)
 
 [node name="Hurtbox" type="Area3D" parent="Pivot"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0)
@@ -163,10 +163,10 @@ one_shot = true
 one_shot = true
 
 [node name="LeftPunchCooldown" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 1.5
 
 [node name="RightPunchCooldown" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 1.5
 
 [node name="SFX" type="Node" parent="."]
 
