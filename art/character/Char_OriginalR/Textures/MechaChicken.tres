@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://d1e26sb6cab3b"]
+
+[ext_resource type="Texture2D" uid="uid://ioxxpijxmjbh" path="res://art/character/Char_OriginalR/Textures/MechaChicken_Color.png" id="1_acikm"]
+[ext_resource type="Texture2D" uid="uid://dlas1iuo2gr3v" path="res://art/character/Char_OriginalR/Textures/MechaChicken_AO.png" id="2_y0nvw"]
+[ext_resource type="Texture2D" uid="uid://cbbeefna6f6oa" path="res://art/character/Char_OriginalR/Textures/MechaChicken_Metal.png" id="3_j7ei0"]
+[ext_resource type="Texture2D" uid="uid://bnsn6eql3782s" path="res://art/character/Char_OriginalR/Textures/MechaChicken_Roughness.png" id="4_6a5nn"]
+
+[resource]
+albedo_texture = ExtResource("1_acikm")
+metallic = 1.0
+metallic_texture = ExtResource("3_j7ei0")
+roughness_texture = ExtResource("4_6a5nn")
+ao_enabled = true
+ao_texture = ExtResource("2_y0nvw")

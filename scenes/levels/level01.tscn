@@ -37,10 +37,9 @@ reflected_light_source = 2
 ssao_intensity = 100.0
 fog_enabled = true
 fog_light_color = Color(1, 1, 1, 1)
-fog_light_energy = 0.2
+fog_light_energy = 0.1
 fog_sun_scatter = 1.0
-fog_density = 0.001
-fog_aerial_perspective = 1.0
+fog_density = 0.005
 fog_height = 35.0
 fog_height_density = 0.02
 
@@ -58,7 +57,7 @@ replication_config = SubResource("SceneReplicationConfig_woxuc")
 environment = SubResource("Environment_rsl7s")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.973746, 0.0308465, 0.225539, -0.185396, 0.68237, 0.707107, -0.132089, -0.730356, 0.670174, 0, 5, 0)
+transform = Transform3D(0.973746, 0.0308465, 0.225539, -0.185396, 0.68237, 0.707107, -0.132089, -0.730356, 0.670174, 47.2182, 41.9933, -7.9015)
 light_color = Color(1, 1, 0.839216, 1)
 light_volumetric_fog_energy = 2.0
 shadow_enabled = true
@@ -71,6 +70,7 @@ shadow_normal_bias = 1.0
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -52)
 
 [node name="CityBlock_TokyoTower" parent="CityBlocks" instance=ExtResource("3_kan02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Bounds" type="Node3D" parent="."]
 
@@ -112,7 +112,7 @@ size = Vector3(245.735, 0.1, 364.37)
 [node name="World" type="Node3D" parent="."]
 
 [node name="BlockoutArea" parent="World" instance=ExtResource("1_gh4wy")]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.0547028, 0.835197, -0.302475)
 visible = false
 
 [node name="Blockout Full" parent="World" instance=ExtResource("3_rn5ev")]
@@ -173,8 +173,9 @@ follow_parameters/distance = 1.0
 follow_parameters/auto_distance = false
 follow_parameters/target_offset = Vector3(0, 0, 0)
 follow_parameters/damping = false
-look_at_mode = 2
-look_at_target = NodePath("")
+look_at_mode = 3
+look_at_group = Array[NodePath]([NodePath(""), NodePath("")])
+look_at_parameters/look_at_target_offset = Vector3(0, 0, 0)
 tween_parameters = null
 tween_on_load = true
 inactive_update_mode = 0

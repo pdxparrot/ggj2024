@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Player/Mecha.cs" id="1_63y7g"]
 [ext_resource type="Script" path="res://scripts/Player/MechaInput.cs" id="2_nm1nr"]
 [ext_resource type="Script" path="res://scripts/Model.cs" id="4_1efev"]
-[ext_resource type="PackedScene" uid="uid://c6q1jhevfp2tk" path="res://art/animation/temp chicken/mechaChicken04.tscn" id="4_jrq1e"]
+[ext_resource type="PackedScene" uid="uid://b3vhy32ediss2" path="res://art/character/Char_OriginalR/char_original_r.tscn" id="4_nhrme"]
 [ext_resource type="Script" path="res://scripts/Interactables/Interactables.cs" id="5_hkx48"]
 [ext_resource type="PackedScene" uid="uid://cjot7kaubetmt" path="res://scenes/players/player_indicator.tscn" id="5_xgvjf"]
 [ext_resource type="AudioStream" uid="uid://bbm8d0li18uc" path="res://audio/SFX/SFX_Punch.wav" id="7_2k7q1"]
@@ -94,33 +94,33 @@ shape = SubResource("CapsuleShape3D_t51w8")
 
 [node name="Model" type="Node3D" parent="Pivot" node_paths=PackedStringArray("_animationTree")]
 script = ExtResource("4_1efev")
-_animationTree = NodePath("mechaChicken4/AnimationTree")
+_animationTree = NodePath("Char_OriginalR/AnimationTree")
 
-[node name="mechaChicken4" parent="Pivot/Model" instance=ExtResource("4_jrq1e")]
+[node name="Char_OriginalR" parent="Pivot/Model" instance=ExtResource("4_nhrme")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Pivot/Model/mechaChicken4/Armature" index="0"]
-bones/0/position = Vector3(-0.443281, -0.325204, -10.3371)
-bones/0/rotation = Quaternion(-0.726557, -0.011058, 0.00479826, 0.687001)
-bones/1/rotation = Quaternion(0.0165969, -0.00235325, 0.00128541, 0.999859)
-bones/2/rotation = Quaternion(0.00882999, -0.0247414, 0.00418842, 0.999646)
-bones/3/rotation = Quaternion(0.00865088, -0.0246483, 0.00454691, 0.999648)
-bones/4/rotation = Quaternion(-0.00962187, 0.0136522, -0.0130591, 0.999775)
-bones/5/rotation = Quaternion(0.0525397, -0.000925094, 0.0267242, 0.998261)
-bones/7/rotation = Quaternion(0.567013, 0.401796, -0.61686, 0.369513)
-bones/8/rotation = Quaternion(0.339584, 0.119141, 0.128189, 0.924151)
-bones/9/rotation = Quaternion(0.021401, -0.0390648, 0.250144, 0.967184)
-bones/11/rotation = Quaternion(0.615701, -0.394254, 0.536504, 0.421473)
-bones/12/rotation = Quaternion(0.359471, -0.0741504, -0.135798, 0.92024)
-bones/13/rotation = Quaternion(0.0282482, 0.0364197, -0.232215, 0.971572)
-bones/15/rotation = Quaternion(0.0311749, 0.0653776, 0.996358, -0.0450009)
-bones/16/rotation = Quaternion(-0.313693, -0.0721755, 0.0376184, 0.94603)
-bones/17/rotation = Quaternion(0.589144, -0.0631769, -0.0650204, 0.802927)
-bones/18/rotation = Quaternion(0.355634, -0.00648989, 0.00246278, 0.9346)
-bones/20/rotation = Quaternion(-0.0971863, 0.0803526, 0.990604, 0.0529347)
-bones/21/rotation = Quaternion(-0.304469, 0.02317, -0.0198476, 0.952034)
-bones/22/rotation = Quaternion(0.570727, 0.0707571, 0.0435007, 0.816928)
-bones/23/rotation = Quaternion(0.354678, 0.00692929, -0.00245118, 0.93496)
+[node name="Skeleton3D" parent="Pivot/Model/Char_OriginalR/Armature" index="0"]
+bones/0/position = Vector3(-0.998244, -0.0857631, -10.3226)
+bones/0/rotation = Quaternion(-0.715068, 0.0396933, -0.0283644, 0.697351)
+bones/1/rotation = Quaternion(0.00716166, -0.00215256, 0.00260604, 0.999969)
+bones/2/rotation = Quaternion(0.0064701, -0.0224146, 0.00675947, 0.999705)
+bones/3/rotation = Quaternion(0.00628631, -0.0223657, 0.00709038, 0.999705)
+bones/4/rotation = Quaternion(-0.0178681, 0.0118959, -0.0300438, 0.999318)
+bones/5/rotation = Quaternion(0.0577935, -0.0261626, 0.0259638, 0.997648)
+bones/7/rotation = Quaternion(-0.546813, -0.409824, 0.638914, -0.353311)
+bones/8/rotation = Quaternion(0.323896, 0.12225, 0.127118, 0.929509)
+bones/9/rotation = Quaternion(0.0217875, -0.0423168, 0.270934, 0.961421)
+bones/11/rotation = Quaternion(0.582516, -0.417703, 0.553107, 0.424585)
+bones/12/rotation = Quaternion(0.351659, -0.107979, -0.166201, 0.914906)
+bones/13/rotation = Quaternion(0.0301678, 0.0387608, -0.249985, 0.967003)
+bones/15/rotation = Quaternion(0.0439714, 0.089776, 0.991505, -0.0832182)
+bones/16/rotation = Quaternion(-0.278904, -0.0474562, 0.0124296, 0.959065)
+bones/17/rotation = Quaternion(0.550492, -0.0215917, -0.09808, 0.828778)
+bones/18/rotation = Quaternion(0.360248, -0.00233986, 0.000848403, 0.932853)
+bones/20/rotation = Quaternion(-0.11859, 0.0498209, 0.990547, 0.0476534)
+bones/21/rotation = Quaternion(-0.313671, 0.0491767, -0.0119904, 0.948182)
+bones/22/rotation = Quaternion(0.616418, 0.0855745, 0.038434, 0.781811)
+bones/23/rotation = Quaternion(0.350861, 0.00233274, -0.000872864, 0.936424)
 
 [node name="Hurtbox" type="Area3D" parent="Pivot"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0)
@@ -192,4 +192,4 @@ volume_db = -15.0
 [connection signal="timeout" from="Timers/LeftPunchCooldown" to="." method="_on_left_punch_cooldown_timeout"]
 [connection signal="timeout" from="Timers/RightPunchCooldown" to="." method="_on_right_punch_cooldown_timeout"]
 
-[editable path="Pivot/Model/mechaChicken4"]
+[editable path="Pivot/Model/Char_OriginalR"]
