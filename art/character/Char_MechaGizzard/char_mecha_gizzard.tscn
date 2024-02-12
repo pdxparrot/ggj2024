@@ -1,10 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://tnflc3gnddr6"]
+[gd_scene load_steps=41 format=3 uid="uid://qoyyb3i2m101"]
 
-[ext_resource type="PackedScene" uid="uid://34kt4djptc71" path="res://art/character/Char_KungPao/Char_KungPao.glb" id="1_nrsgd"]
-[ext_resource type="Material" uid="uid://c37ejl7l3mvj" path="res://art/character/Char_KungPao/Textures/KungPao.tres" id="2_78t3d"]
-[ext_resource type="AnimationLibrary" uid="uid://cuoiwu3vnuoyd" path="res://art/animation/Char_MechaChicken_Anims.glb" id="2_41051"]
+[ext_resource type="PackedScene" uid="uid://btkdhdxtvgnkf" path="res://art/character/Char_MechaGizzard/Char_MechaGizzard.glb" id="1_5loyp"]
+[ext_resource type="Material" uid="uid://4hnob4ixml23" path="res://art/character/Char_MechaGizzard/Textures/MechaGizzard.tres" id="2_36t55"]
+[ext_resource type="AnimationLibrary" uid="uid://cuoiwu3vnuoyd" path="res://art/animation/Char_MechaChicken_Anims.glb" id="3_3sj0g"]
 
-[sub_resource type="Animation" id="Animation_yk1qm"]
+[sub_resource type="Animation" id="Animation_3xqm0"]
 resource_name = "Armature|mixamo_com|Layer0"
 length = 0.0666667
 tracks/0/type = "position_3d"
@@ -13,91 +13,91 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("%GeneralSkeleton:Hips")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -5.32577e-07, 0.982519, -0.0246096)
+tracks/0/keys = PackedFloat32Array(0, 1, 4.25902e-07, 0.981386, -0.0363978)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
 tracks/1/path = NodePath("%GeneralSkeleton:LeftShoulder")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.500358, 0.499642, 0.500358, -0.499642)
+tracks/1/keys = PackedFloat32Array(0, 1, 0.500407, 0.499592, 0.500407, -0.499592)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = true
 tracks/2/enabled = true
 tracks/2/path = NodePath("%GeneralSkeleton:LeftUpperArm")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.011488, 0.999836, -0.0140199, -5.0649e-05)
+tracks/2/keys = PackedFloat32Array(0, 1, 0.0117943, 0.999916, -0.00530982, -5.82337e-05)
 tracks/3/type = "rotation_3d"
 tracks/3/imported = true
 tracks/3/enabled = true
 tracks/3/path = NodePath("%GeneralSkeleton:LeftLowerArm")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -0.0218677, -0.706737, 0.00922106, 0.707078)
+tracks/3/keys = PackedFloat32Array(0, 1, -0.0173758, -0.707063, -0.0116793, 0.706841)
 tracks/4/type = "rotation_3d"
 tracks/4/imported = true
 tracks/4/enabled = true
 tracks/4/path = NodePath("%GeneralSkeleton:RightShoulder")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.502949, -0.497033, -0.502936, -0.497046)
+tracks/4/keys = PackedFloat32Array(0, 1, 0.500409, -0.49959, -0.500409, -0.49959)
 tracks/5/type = "rotation_3d"
 tracks/5/imported = true
 tracks/5/enabled = true
 tracks/5/path = NodePath("%GeneralSkeleton:RightUpperArm")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, -0.0355883, 0.999268, -0.0139985, 0.000156611)
+tracks/5/keys = PackedFloat32Array(0, 1, -0.0154975, 0.999866, -0.00531459, 7.62939e-05)
 tracks/6/type = "rotation_3d"
 tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/path = NodePath("%GeneralSkeleton:RightLowerArm")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, -0.0552911, 0.705884, 0.024251, 0.70575)
+tracks/6/keys = PackedFloat32Array(0, 1, -0.0170635, 0.707044, 0.0113678, 0.706872)
 tracks/7/type = "rotation_3d"
 tracks/7/imported = true
 tracks/7/enabled = true
 tracks/7/path = NodePath("%GeneralSkeleton:LeftUpperLeg")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0.000614715, -0.0939499, -0.995553, -0.00689835)
+tracks/7/keys = PackedFloat32Array(0, 1, 0.000411703, -0.092342, -0.995717, -0.0045467)
 tracks/8/type = "rotation_3d"
 tracks/8/imported = true
 tracks/8/enabled = true
 tracks/8/path = NodePath("%GeneralSkeleton:LeftLowerLeg")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, -0.000220077, 0.974183, -0.225754, 0.00129146)
+tracks/8/keys = PackedFloat32Array(0, 1, -3.73335e-05, 0.97357, -0.228385, 0.00134229)
 tracks/9/type = "rotation_3d"
 tracks/9/imported = true
 tracks/9/enabled = true
 tracks/9/path = NodePath("%GeneralSkeleton:LeftFoot")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, 0.00519324, 0.606576, -0.794998, -0.00398214)
+tracks/9/keys = PackedFloat32Array(0, 1, 0.0031971, 0.603147, -0.797618, -0.00305036)
 tracks/10/type = "rotation_3d"
 tracks/10/imported = true
 tracks/10/enabled = true
 tracks/10/path = NodePath("%GeneralSkeleton:RightUpperLeg")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0.000587441, 0.0892854, 0.995982, -0.0068439)
+tracks/10/keys = PackedFloat32Array(0, 1, 0.000389031, 0.0866284, 0.99623, -0.00450633)
 tracks/11/type = "rotation_3d"
 tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/path = NodePath("%GeneralSkeleton:RightLowerLeg")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, 0.000102647, 0.977419, -0.211307, -0.00121657)
+tracks/11/keys = PackedFloat32Array(0, 1, -5.36107e-05, 0.977397, -0.211407, -0.00124243)
 tracks/12/type = "rotation_3d"
 tracks/12/imported = true
 tracks/12/enabled = true
 tracks/12/path = NodePath("%GeneralSkeleton:RightFoot")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
-tracks/12/keys = PackedFloat32Array(0, 1, -0.00520466, 0.614591, -0.788818, 0.00408304)
+tracks/12/keys = PackedFloat32Array(0, 1, -0.0032349, 0.612413, -0.790526, 0.00310091)
 tracks/13/type = "rotation_3d"
 tracks/13/imported = true
 tracks/13/enabled = true
@@ -111,7 +111,7 @@ tracks/14/enabled = true
 tracks/14/path = NodePath("%GeneralSkeleton:Spine")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
-tracks/14/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/14/keys = PackedFloat32Array(0, 1, -7.10543e-15, 0, 0, 1)
 tracks/15/type = "rotation_3d"
 tracks/15/imported = true
 tracks/15/enabled = true
@@ -146,31 +146,31 @@ tracks/19/enabled = true
 tracks/19/path = NodePath("%GeneralSkeleton:LeftHand")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
-tracks/19/keys = PackedFloat32Array(0, 1, 1.01281e-08, 0.707107, 1.01281e-08, 0.707107)
+tracks/19/keys = PackedFloat32Array(0, 1, 1.63004e-08, 0.707107, -2.58465e-08, 0.707107)
 tracks/20/type = "rotation_3d"
 tracks/20/imported = true
 tracks/20/enabled = true
 tracks/20/path = NodePath("%GeneralSkeleton:RightHand")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
-tracks/20/keys = PackedFloat32Array(0, 1, 6.63567e-09, -0.707107, -6.63567e-09, 0.707107)
+tracks/20/keys = PackedFloat32Array(0, 1, -4.02237e-08, -0.707107, -1.92311e-09, 0.707107)
 tracks/21/type = "rotation_3d"
 tracks/21/imported = true
 tracks/21/enabled = true
 tracks/21/path = NodePath("%GeneralSkeleton:LeftToes")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
-tracks/21/keys = PackedFloat32Array(0, 1, 7.40862e-10, 1, 2.98023e-08, -1.39941e-09)
+tracks/21/keys = PackedFloat32Array(0, 1, -2.22259e-09, 1, -2.98023e-08, 2.46954e-10)
 tracks/22/type = "rotation_3d"
 tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/path = NodePath("%GeneralSkeleton:RightToes")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
-tracks/22/keys = PackedFloat32Array(0, 1, -4.1159e-10, 1, 0, 7.40863e-10)
+tracks/22/keys = PackedFloat32Array(0, 1, 1.64636e-10, 1, 0, -1.64636e-10)
 
-[sub_resource type="Animation" id="Animation_m8b0x"]
-resource_name = "MechaKungPao"
+[sub_resource type="Animation" id="Animation_sqvfu"]
+resource_name = "MechaGizzard"
 length = 0.0666667
 tracks/0/type = "position_3d"
 tracks/0/imported = true
@@ -178,7 +178,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("%GeneralSkeleton:Hips")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, -0.00855995)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, -0.0204227)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
@@ -192,14 +192,14 @@ tracks/2/enabled = true
 tracks/2/path = NodePath("%GeneralSkeleton:LeftUpperArm")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 2.98023e-08, 1, -2.98023e-08, 2.98023e-08)
+tracks/2/keys = PackedFloat32Array(0, 1, -2.98023e-08, 1, 2.98023e-08, -2.98023e-08)
 tracks/3/type = "rotation_3d"
 tracks/3/imported = true
 tracks/3/enabled = true
 tracks/3/path = NodePath("%GeneralSkeleton:LeftLowerArm")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -2.10734e-08, -0.707107, 0, 0.707107)
+tracks/3/keys = PackedFloat32Array(0, 1, 0, -0.707107, 4.21468e-08, 0.707107)
 tracks/4/type = "rotation_3d"
 tracks/4/imported = true
 tracks/4/enabled = true
@@ -213,7 +213,7 @@ tracks/5/enabled = true
 tracks/5/path = NodePath("%GeneralSkeleton:RightUpperArm")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 2.98023e-08, 1, -2.98023e-08, -2.98023e-08)
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 1, -2.98023e-08, 2.98023e-08)
 tracks/6/type = "rotation_3d"
 tracks/6/imported = true
 tracks/6/enabled = true
@@ -227,42 +227,42 @@ tracks/7/enabled = true
 tracks/7/path = NodePath("%GeneralSkeleton:LeftUpperLeg")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 7.27607e-12, 2.32824e-10, -1, 1.86265e-09)
+tracks/7/keys = PackedFloat32Array(0, 1, -2.84772e-14, -7.10543e-15, -1, -9.31322e-10)
 tracks/8/type = "rotation_3d"
 tracks/8/imported = true
 tracks/8/enabled = true
 tracks/8/path = NodePath("%GeneralSkeleton:LeftLowerLeg")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 9.31323e-10, 1, 0, -7.27596e-12)
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 1, -7.60338e-10, 6.53699e-12)
 tracks/9/type = "rotation_3d"
 tracks/9/imported = true
 tracks/9/enabled = true
 tracks/9/path = NodePath("%GeneralSkeleton:LeftFoot")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -5.28717e-10, 0.707107, -0.707107, -3.93904e-12)
+tracks/9/keys = PackedFloat32Array(0, 1, 1.41122e-10, 0.707107, -0.707107, -6.82058e-10)
 tracks/10/type = "rotation_3d"
 tracks/10/imported = true
 tracks/10/enabled = true
 tracks/10/path = NodePath("%GeneralSkeleton:RightUpperLeg")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, -7.27601e-12, 7.10543e-15, 1, -9.31351e-10)
+tracks/10/keys = PackedFloat32Array(0, 1, -1.45519e-11, -4.65654e-10, 1, -1.13686e-13)
 tracks/11/type = "rotation_3d"
 tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/path = NodePath("%GeneralSkeleton:RightLowerLeg")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, -1.86265e-09, 1, 2.32831e-10, 3.63798e-12)
+tracks/11/keys = PackedFloat32Array(0, 1, 4.65661e-10, 1, 4.65661e-10, 1.09139e-11)
 tracks/12/type = "rotation_3d"
 tracks/12/imported = true
 tracks/12/enabled = true
 tracks/12/path = NodePath("%GeneralSkeleton:RightFoot")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
-tracks/12/keys = PackedFloat32Array(0, 1, 2.28465e-10, 0.707107, -0.707107, 6.38287e-11)
+tracks/12/keys = PackedFloat32Array(0, 1, 1.23477e-10, 0.707107, -0.707107, 7.82022e-10)
 tracks/13/type = "rotation_3d"
 tracks/13/imported = true
 tracks/13/enabled = true
@@ -276,7 +276,7 @@ tracks/14/enabled = true
 tracks/14/path = NodePath("%GeneralSkeleton:Spine")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
-tracks/14/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/14/keys = PackedFloat32Array(0, 1, -7.10543e-15, 0, 0, 1)
 tracks/15/type = "rotation_3d"
 tracks/15/imported = true
 tracks/15/enabled = true
@@ -311,33 +311,33 @@ tracks/19/enabled = true
 tracks/19/path = NodePath("%GeneralSkeleton:LeftHand")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
-tracks/19/keys = PackedFloat32Array(0, 1, 1.01281e-08, 0.707107, 1.01281e-08, 0.707107)
+tracks/19/keys = PackedFloat32Array(0, 1, 1.63004e-08, 0.707107, -2.58465e-08, 0.707107)
 tracks/20/type = "rotation_3d"
 tracks/20/imported = true
 tracks/20/enabled = true
 tracks/20/path = NodePath("%GeneralSkeleton:RightHand")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
-tracks/20/keys = PackedFloat32Array(0, 1, 6.63567e-09, -0.707107, -6.63567e-09, 0.707107)
+tracks/20/keys = PackedFloat32Array(0, 1, -4.02237e-08, -0.707107, -1.92311e-09, 0.707107)
 tracks/21/type = "rotation_3d"
 tracks/21/imported = true
 tracks/21/enabled = true
 tracks/21/path = NodePath("%GeneralSkeleton:LeftToes")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
-tracks/21/keys = PackedFloat32Array(0, 1, 7.40862e-10, 1, 2.98023e-08, -1.39941e-09)
+tracks/21/keys = PackedFloat32Array(0, 1, -2.22259e-09, 1, -2.98023e-08, 2.46954e-10)
 tracks/22/type = "rotation_3d"
 tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/path = NodePath("%GeneralSkeleton:RightToes")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
-tracks/22/keys = PackedFloat32Array(0, 1, -4.1159e-10, 1, 0, 7.40863e-10)
+tracks/22/keys = PackedFloat32Array(0, 1, 1.64636e-10, 1, 0, -1.64636e-10)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2lfnl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7jc4"]
 _data = {
-"Armature|mixamo_com|Layer0": SubResource("Animation_yk1qm"),
-"MechaKungPao": SubResource("Animation_m8b0x")
+"Armature|mixamo_com|Layer0": SubResource("Animation_3xqm0"),
+"MechaGizzard": SubResource("Animation_sqvfu")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_innlr"]
@@ -468,7 +468,7 @@ xfade_time = 0.5
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yo6hh"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1sdun"]
 states/Dash/node = SubResource("AnimationNodeAnimation_innlr")
 states/Dash/position = Vector2(381, 324)
 states/Death/node = SubResource("AnimationNodeAnimation_r4nkc")
@@ -493,50 +493,50 @@ states/StepLeft/position = Vector2(599, 138)
 states/StepRight/node = SubResource("AnimationNodeAnimation_4b1pe")
 states/StepRight/position = Vector2(599, 8)
 transitions = ["Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_bldoi"), "Fall", "GetUp", SubResource("AnimationNodeStateMachineTransition_yrl40"), "GetUp", "Idle", SubResource("AnimationNodeStateMachineTransition_ow0f2"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_7yoxn"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_arci3"), "Idle", "PunchLeft", SubResource("AnimationNodeStateMachineTransition_fppbx"), "Idle", "PunchRight", SubResource("AnimationNodeStateMachineTransition_pe8n2"), "Idle", "StepRight", SubResource("AnimationNodeStateMachineTransition_8fyj6"), "Idle", "StepLeft", SubResource("AnimationNodeStateMachineTransition_w0r8q"), "StepRight", "StepLeft", SubResource("AnimationNodeStateMachineTransition_ssamm"), "StepLeft", "StepRight", SubResource("AnimationNodeStateMachineTransition_fucb7"), "PunchLeft", "PunchRight", SubResource("AnimationNodeStateMachineTransition_mkvij"), "PunchRight", "PunchLeft", SubResource("AnimationNodeStateMachineTransition_3iegt"), "PunchLeft", "Idle", SubResource("AnimationNodeStateMachineTransition_6dsdv"), "PunchRight", "Idle", SubResource("AnimationNodeStateMachineTransition_8ogxq"), "StepRight", "Idle", SubResource("AnimationNodeStateMachineTransition_5ij0e"), "StepLeft", "Idle", SubResource("AnimationNodeStateMachineTransition_bq05k"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_3rncs"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_5rgk2"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_a7m2o"), "Start", "LandingHard", SubResource("AnimationNodeStateMachineTransition_c3miq"), "LandingHard", "Idle", SubResource("AnimationNodeStateMachineTransition_dwlo2")]
-graph_offset = Vector2(-175, 116)
+graph_offset = Vector2(-55, -58)
 
-[node name="Char_KungPao" instance=ExtResource("1_nrsgd")]
+[node name="Char_MechaGizzard" instance=ExtResource("1_5loyp")]
 
 [node name="GeneralSkeleton" parent="Armature" index="0"]
-bones/0/position = Vector3(-0.554907, 10.3231, -0.186357)
-bones/0/rotation = Quaternion(-0.00108561, 0.00864218, -0.00330205, 0.999957)
-bones/1/rotation = Quaternion(-0.0010383, -0.00259355, 0.000869317, 0.999996)
-bones/2/rotation = Quaternion(-0.00423859, -0.019436, 0.00189401, 0.9998)
-bones/3/rotation = Quaternion(-0.00431274, -0.0193868, 0.00186585, 0.999801)
-bones/4/rotation = Quaternion(-0.0183468, 0.017126, -0.0177008, 0.999528)
-bones/5/rotation = Quaternion(0.0691431, -0.00305878, 0.0137731, 0.997507)
-bones/7/rotation = Quaternion(0.544475, 0.455732, 0.431228, -0.556684)
-bones/8/rotation = Quaternion(0.108466, 0.839933, -0.517626, -0.121697)
-bones/9/rotation = Quaternion(0.189067, -0.710932, 0.188334, 0.650661)
+bones/0/position = Vector3(0.163305, 10.085, -0.311331)
+bones/0/rotation = Quaternion(-0.013394, -0.0279327, -0.0221847, 0.999274)
+bones/1/rotation = Quaternion(0.00953146, 0.00188854, -0.00483252, 0.999941)
+bones/2/rotation = Quaternion(0.0126938, -0.0182866, -0.00473395, 0.999741)
+bones/3/rotation = Quaternion(0.0128526, -0.0183101, -0.00432212, 0.99974)
+bones/4/rotation = Quaternion(-0.00911306, 0.0038714, 0.00500057, 0.999938)
+bones/5/rotation = Quaternion(0.0688153, -0.0117524, 0.0392143, 0.996789)
+bones/7/rotation = Quaternion(0.514417, 0.485877, 0.45766, -0.538373)
+bones/8/rotation = Quaternion(0.184747, 0.829364, -0.511206, -0.129202)
+bones/9/rotation = Quaternion(0.178491, -0.712157, 0.177799, 0.655257)
 bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
-bones/11/rotation = Quaternion(0.474446, -0.521902, -0.455572, -0.543116)
-bones/12/rotation = Quaternion(-0.154833, 0.802527, -0.565612, 0.109817)
-bones/13/rotation = Quaternion(0.164199, 0.713515, -0.163905, 0.661113)
+bones/11/rotation = Quaternion(0.453767, -0.528916, -0.528895, -0.48437)
+bones/12/rotation = Quaternion(-0.167874, 0.829771, -0.52488, 0.088315)
+bones/13/rotation = Quaternion(0.173073, 0.712698, -0.172762, 0.657465)
 bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
-bones/15/rotation = Quaternion(0.0333546, 0.0927609, 0.993968, -0.0480787)
-bones/16/rotation = Quaternion(-0.0362395, 0.949276, -0.303905, 0.0721372)
-bones/17/rotation = Quaternion(-0.0567719, 0.545754, -0.833212, 0.0684628)
-bones/18/rotation = Quaternion(-1.22805e-08, 0.999999, 0.00139661, -5.14766e-10)
-bones/20/rotation = Quaternion(-0.10371, 0.0736712, 0.990774, 0.0467269)
-bones/21/rotation = Quaternion(0.0187149, 0.960361, -0.274532, -0.0445991)
-bones/22/rotation = Quaternion(0.0210562, 0.556843, -0.825941, -0.0854646)
-bones/23/rotation = Quaternion(-2.25043e-07, 1, 0.000953463, -2.8318e-09)
+bones/15/rotation = Quaternion(0.0277084, 0.105955, 0.9936, -0.027646)
+bones/16/rotation = Quaternion(-0.027269, 0.918204, -0.387054, 0.0796684)
+bones/17/rotation = Quaternion(-0.00362761, 0.486997, -0.870036, 0.0765412)
+bones/18/rotation = Quaternion(6.62564e-09, 1, 0.000261903, -1.79872e-08)
+bones/20/rotation = Quaternion(-0.130892, 0.0776046, 0.986058, 0.0673331)
+bones/21/rotation = Quaternion(0.024807, 0.971086, -0.236383, -0.0223609)
+bones/22/rotation = Quaternion(0.0686829, 0.606407, -0.788833, -0.0727804)
+bones/23/rotation = Quaternion(-1.00968e-08, 1, 0.000782233, -6.63548e-09)
 
-[node name="MechaKungPao" parent="Armature/GeneralSkeleton" index="0"]
-material_override = ExtResource("2_78t3d")
+[node name="MechaGizzard" parent="Armature/GeneralSkeleton" index="0"]
+material_override = ExtResource("2_36t55")
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_2lfnl"),
-"Char_MechaChicken_Anims": ExtResource("2_41051")
+"": SubResource("AnimationLibrary_c7jc4"),
+"Char_MechaChicken_Anims": ExtResource("3_3sj0g")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_2lfnl"),
-"Char_MechaChicken_Anims": ExtResource("2_41051")
+"": SubResource("AnimationLibrary_c7jc4"),
+"Char_MechaChicken_Anims": ExtResource("3_3sj0g")
 }
-tree_root = SubResource("AnimationNodeStateMachine_yo6hh")
+tree_root = SubResource("AnimationNodeStateMachine_1sdun")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/Dash = false
 parameters/conditions/Death = false
