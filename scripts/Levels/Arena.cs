@@ -98,7 +98,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public void PlayerObjectReady(Mecha mecha)
         {
-            var phantom = (PhantomCamera)_viewer;
+            var phantom = _viewer as PhantomCamera;
             if(phantom != null) {
                 phantom.AddToFollowGroup(mecha);
             }
@@ -106,7 +106,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public void PlayerObjectExitTree(Mecha mecha)
         {
-            var phantom = (PhantomCamera)_viewer;
+            var phantom = _viewer as PhantomCamera;
             if(phantom != null) {
                 phantom.RemoveFromFollowGroup(mecha);
             }
