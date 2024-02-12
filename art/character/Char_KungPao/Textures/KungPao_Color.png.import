@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch3ltfwqwj6l"
-path.s3tc="res://.godot/imported/KungPao_Color.png-9ee16ada26cb5092941ef2f58fbce216.s3tc.ctex"
+path.s3tc="res://.godot/imported/KungPao_Color.png-dee3e50ff5104b69e151dbe1e1a750f6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/character/Char_KungPao/Texture/KungPao_Color.png"
-dest_files=["res://.godot/imported/KungPao_Color.png-9ee16ada26cb5092941ef2f58fbce216.s3tc.ctex"]
+source_file="res://art/character/Char_KungPao/Textures/KungPao_Color.png"
+dest_files=["res://.godot/imported/KungPao_Color.png-dee3e50ff5104b69e151dbe1e1a750f6.s3tc.ctex"]
 
 [params]
 

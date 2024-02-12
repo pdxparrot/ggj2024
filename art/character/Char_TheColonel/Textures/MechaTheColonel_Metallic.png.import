@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgrr5a0m7h67k"
-path.s3tc="res://.godot/imported/KungPao_Metallic.png-d373f16b1f737e39946f3f13fc2ccc04.s3tc.ctex"
+uid="uid://b06iggwp42h03"
+path.s3tc="res://.godot/imported/MechaTheColonel_Metallic.png-d3b29d6ba03daa3e3044e62905a7a9bc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/character/Char_KungPao/Texture/KungPao_Metallic.png"
-dest_files=["res://.godot/imported/KungPao_Metallic.png-d373f16b1f737e39946f3f13fc2ccc04.s3tc.ctex"]
+source_file="res://art/character/Char_TheColonel/Textures/MechaTheColonel_Metallic.png"
+dest_files=["res://.godot/imported/MechaTheColonel_Metallic.png-d3b29d6ba03daa3e3044e62905a7a9bc.s3tc.ctex"]
 
 [params]
 

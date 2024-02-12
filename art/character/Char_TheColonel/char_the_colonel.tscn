@@ -1,0 +1,548 @@
+[gd_scene load_steps=41 format=3 uid="uid://bvcnuuvhbcfy6"]
+
+[ext_resource type="PackedScene" uid="uid://cok6rnv16u44i" path="res://art/character/Char_TheColonel/Char_TheColonel.glb" id="1_jcyn0"]
+[ext_resource type="AnimationLibrary" uid="uid://cuoiwu3vnuoyd" path="res://art/animation/Char_MechaChicken_Anims.glb" id="2_jmi3r"]
+[ext_resource type="Material" uid="uid://cfyp037ewnfec" path="res://art/character/Char_TheColonel/Textures/TheColonel.tres" id="2_tnv76"]
+
+[sub_resource type="Animation" id="Animation_53vke"]
+resource_name = "Armature|mixamo_com|Layer0"
+length = 0.0666667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:Hips")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -8.39685e-07, 0.982615, -0.0247049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftShoulder")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.500428, -0.499572, -0.500427, 0.499572)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:LeftUpperArm")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.0120188, 0.999899, -0.00757876, -5.81741e-05)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("%GeneralSkeleton:LeftLowerArm")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.0168214, -0.707029, -0.0044494, 0.70697)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("%GeneralSkeleton:RightShoulder")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.50041, -0.49959, -0.50041, -0.49959)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("%GeneralSkeleton:RightUpperArm")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.0277525, 0.999586, -0.00756012, 0.000134617)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("%GeneralSkeleton:RightLowerArm")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.0352453, 0.706626, 0.022884, 0.706338)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("%GeneralSkeleton:LeftUpperLeg")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.00059615, -0.0922693, -0.99571, -0.00689089)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("%GeneralSkeleton:LeftLowerLeg")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.000256293, 0.97474, -0.223342, 0.000924767)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("%GeneralSkeleton:LeftFoot")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.00537083, 0.607204, -0.794519, -0.00370236)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = true
+tracks/10/enabled = true
+tracks/10/path = NodePath("%GeneralSkeleton:RightUpperLeg")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.000573504, 0.0882411, 0.996076, -0.00683438)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = true
+tracks/11/enabled = true
+tracks/11/path = NodePath("%GeneralSkeleton:RightLowerLeg")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0.00013651, 0.977407, -0.211364, -0.000883309)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = true
+tracks/12/enabled = true
+tracks/12/path = NodePath("%GeneralSkeleton:RightFoot")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, -0.00537385, 0.61372, -0.789497, 0.00380626)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = true
+tracks/13/enabled = true
+tracks/13/path = NodePath("%GeneralSkeleton:Hips")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = true
+tracks/14/enabled = true
+tracks/14/path = NodePath("%GeneralSkeleton:Spine")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -7.10543e-15, 0, 0, 1)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = true
+tracks/15/enabled = true
+tracks/15/path = NodePath("%GeneralSkeleton:Chest")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = true
+tracks/16/enabled = true
+tracks/16/path = NodePath("%GeneralSkeleton:UpperChest")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = true
+tracks/17/enabled = true
+tracks/17/path = NodePath("%GeneralSkeleton:Neck")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = true
+tracks/18/enabled = true
+tracks/18/path = NodePath("%GeneralSkeleton:Head")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = true
+tracks/19/enabled = true
+tracks/19/path = NodePath("%GeneralSkeleton:LeftHand")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, -1.45519e-10, 0.707107, -1.45519e-10, 0.707107)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = true
+tracks/20/enabled = true
+tracks/20/path = NodePath("%GeneralSkeleton:RightHand")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, -3.30642e-08, -0.707107, -9.08265e-09, 0.707107)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = true
+tracks/21/enabled = true
+tracks/21/path = NodePath("%GeneralSkeleton:LeftToes")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, 7.40863e-10, 1, -5.96046e-08, -5.76226e-10)
+tracks/22/type = "rotation_3d"
+tracks/22/imported = true
+tracks/22/enabled = true
+tracks/22/path = NodePath("%GeneralSkeleton:RightToes")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, 0, 1, -2.98023e-08, 0)
+
+[sub_resource type="Animation" id="Animation_twfkp"]
+resource_name = "TheColonel"
+length = 0.0666667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:Hips")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, -0.00939367)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftShoulder")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.5, -0.5, -0.5, 0.5)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:LeftUpperArm")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("%GeneralSkeleton:LeftLowerArm")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 2.10734e-08, -0.707107, 2.10734e-08, 0.707107)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("%GeneralSkeleton:RightShoulder")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.5, -0.5, -0.5, -0.5)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("%GeneralSkeleton:RightUpperArm")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -2.98023e-08, 1, -8.9407e-08, 1.49012e-08)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("%GeneralSkeleton:RightLowerArm")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0.707107, -2.10734e-08, 0.707107)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("%GeneralSkeleton:LeftUpperLeg")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.81904e-12, -7.10543e-15, -1, 9.31315e-10)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("%GeneralSkeleton:LeftLowerLeg")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -2.79397e-09, 1, 6.98492e-10, -1.63709e-11)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("%GeneralSkeleton:LeftFoot")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 3.98728e-11, 0.707107, -0.707107, -2.89399e-10)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = true
+tracks/10/enabled = true
+tracks/10/path = NodePath("%GeneralSkeleton:RightUpperLeg")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 1.45518e-11, -2.32824e-10, 1, -1.86262e-09)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = true
+tracks/11/enabled = true
+tracks/11/path = NodePath("%GeneralSkeleton:RightLowerLeg")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -9.31323e-10, 1, 2.32831e-10, 0)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = true
+tracks/12/enabled = true
+tracks/12/path = NodePath("%GeneralSkeleton:RightFoot")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 1.73961e-10, 0.707107, -0.707107, -1.55311e-10)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = true
+tracks/13/enabled = true
+tracks/13/path = NodePath("%GeneralSkeleton:Hips")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = true
+tracks/14/enabled = true
+tracks/14/path = NodePath("%GeneralSkeleton:Spine")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -7.10543e-15, 0, 0, 1)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = true
+tracks/15/enabled = true
+tracks/15/path = NodePath("%GeneralSkeleton:Chest")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = true
+tracks/16/enabled = true
+tracks/16/path = NodePath("%GeneralSkeleton:UpperChest")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = true
+tracks/17/enabled = true
+tracks/17/path = NodePath("%GeneralSkeleton:Neck")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = true
+tracks/18/enabled = true
+tracks/18/path = NodePath("%GeneralSkeleton:Head")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = true
+tracks/19/enabled = true
+tracks/19/path = NodePath("%GeneralSkeleton:LeftHand")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, -1.45519e-10, 0.707107, -1.45519e-10, 0.707107)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = true
+tracks/20/enabled = true
+tracks/20/path = NodePath("%GeneralSkeleton:RightHand")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, -3.30642e-08, -0.707107, -9.08265e-09, 0.707107)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = true
+tracks/21/enabled = true
+tracks/21/path = NodePath("%GeneralSkeleton:LeftToes")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, 7.40863e-10, 1, -5.96046e-08, -5.76226e-10)
+tracks/22/type = "rotation_3d"
+tracks/22/imported = true
+tracks/22/enabled = true
+tracks/22/path = NodePath("%GeneralSkeleton:RightToes")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, 0, 1, -2.98023e-08, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y2qaj"]
+_data = {
+"Armature|mixamo_com|Layer0": SubResource("Animation_53vke"),
+"TheColonel": SubResource("Animation_twfkp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_innlr"]
+animation = &"Char_MechaChicken_Anims/Dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4nkc"]
+animation = &"Char_MechaChicken_Anims/Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ptklw"]
+animation = &"Char_MechaChicken_Anims/Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vl1m0"]
+animation = &"Char_MechaChicken_Anims/GetUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gduvf"]
+animation = &"Char_MechaChicken_Anims/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pyf7m"]
+animation = &"Char_MechaChicken_Anims/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ul0m"]
+animation = &"Char_MechaChicken_Anims/LandingStraight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_66sgr"]
+animation = &"Char_MechaChicken_Anims/PunchQuickL"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pfycs"]
+animation = &"Char_MechaChicken_Anims/PunchQuickR"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qyq2k"]
+animation = &"Char_MechaChicken_Anims/StepL"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4b1pe"]
+animation = &"Char_MechaChicken_Anims/StepR"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bldoi"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"Fall"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yrl40"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ow0f2"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7yoxn"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"Death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_arci3"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"Hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fppbx"]
+advance_mode = 2
+advance_condition = &"PunchLeft"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pe8n2"]
+advance_mode = 2
+advance_condition = &"PunchRight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8fyj6"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"StepRight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w0r8q"]
+advance_mode = 2
+advance_condition = &"StepLeft"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ssamm"]
+advance_mode = 2
+advance_condition = &"StepLeft"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fucb7"]
+advance_mode = 2
+advance_condition = &"StepRight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mkvij"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3iegt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6dsdv"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ogxq"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ij0e"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bq05k"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3rncs"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"Dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5rgk2"]
+xfade_time = 0.5
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a7m2o"]
+xfade_time = 0.5
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3miq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dwlo2"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mevps"]
+states/Dash/node = SubResource("AnimationNodeAnimation_innlr")
+states/Dash/position = Vector2(381, 324)
+states/Death/node = SubResource("AnimationNodeAnimation_r4nkc")
+states/Death/position = Vector2(599, 275)
+states/Fall/node = SubResource("AnimationNodeAnimation_ptklw")
+states/Fall/position = Vector2(295, 275)
+states/GetUp/node = SubResource("AnimationNodeAnimation_vl1m0")
+states/GetUp/position = Vector2(139, 275)
+states/Hit/node = SubResource("AnimationNodeAnimation_gduvf")
+states/Hit/position = Vector2(451, 275)
+states/Idle/node = SubResource("AnimationNodeAnimation_pyf7m")
+states/Idle/position = Vector2(340, 123)
+states/LandingHard/node = SubResource("AnimationNodeAnimation_6ul0m")
+states/LandingHard/position = Vector2(32, 158)
+states/PunchLeft/node = SubResource("AnimationNodeAnimation_66sgr")
+states/PunchLeft/position = Vector2(258, -15)
+states/PunchRight/node = SubResource("AnimationNodeAnimation_pfycs")
+states/PunchRight/position = Vector2(403, -15)
+states/Start/position = Vector2(-162, 123)
+states/StepLeft/node = SubResource("AnimationNodeAnimation_qyq2k")
+states/StepLeft/position = Vector2(599, 138)
+states/StepRight/node = SubResource("AnimationNodeAnimation_4b1pe")
+states/StepRight/position = Vector2(599, 8)
+transitions = ["Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_bldoi"), "Fall", "GetUp", SubResource("AnimationNodeStateMachineTransition_yrl40"), "GetUp", "Idle", SubResource("AnimationNodeStateMachineTransition_ow0f2"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_7yoxn"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_arci3"), "Idle", "PunchLeft", SubResource("AnimationNodeStateMachineTransition_fppbx"), "Idle", "PunchRight", SubResource("AnimationNodeStateMachineTransition_pe8n2"), "Idle", "StepRight", SubResource("AnimationNodeStateMachineTransition_8fyj6"), "Idle", "StepLeft", SubResource("AnimationNodeStateMachineTransition_w0r8q"), "StepRight", "StepLeft", SubResource("AnimationNodeStateMachineTransition_ssamm"), "StepLeft", "StepRight", SubResource("AnimationNodeStateMachineTransition_fucb7"), "PunchLeft", "PunchRight", SubResource("AnimationNodeStateMachineTransition_mkvij"), "PunchRight", "PunchLeft", SubResource("AnimationNodeStateMachineTransition_3iegt"), "PunchLeft", "Idle", SubResource("AnimationNodeStateMachineTransition_6dsdv"), "PunchRight", "Idle", SubResource("AnimationNodeStateMachineTransition_8ogxq"), "StepRight", "Idle", SubResource("AnimationNodeStateMachineTransition_5ij0e"), "StepLeft", "Idle", SubResource("AnimationNodeStateMachineTransition_bq05k"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_3rncs"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_5rgk2"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_a7m2o"), "Start", "LandingHard", SubResource("AnimationNodeStateMachineTransition_c3miq"), "LandingHard", "Idle", SubResource("AnimationNodeStateMachineTransition_dwlo2")]
+graph_offset = Vector2(-175, 116)
+
+[node name="Char_TheColonel" instance=ExtResource("1_jcyn0")]
+
+[node name="GeneralSkeleton" parent="Armature" index="0"]
+bones/0/position = Vector3(-0.755305, 10.3, -0.224312)
+bones/0/rotation = Quaternion(-0.000379288, 0.012078, 0.00242359, 0.999924)
+bones/1/rotation = Quaternion(0.00105532, -0.00323807, 0.00219172, 0.999992)
+bones/2/rotation = Quaternion(-0.0013163, -0.0221796, 0.00440996, 0.999743)
+bones/3/rotation = Quaternion(-0.00145455, -0.0221433, 0.00442502, 0.999744)
+bones/4/rotation = Quaternion(-0.0156887, 0.0176572, -0.0250489, 0.999407)
+bones/5/rotation = Quaternion(0.0688878, -0.0103557, 0.0151124, 0.997456)
+bones/7/rotation = Quaternion(0.554916, 0.444803, 0.444402, -0.544725)
+bones/8/rotation = Quaternion(0.135301, 0.843637, -0.503254, -0.12925)
+bones/9/rotation = Quaternion(0.188447, -0.711009, 0.187716, 0.650935)
+bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
+bones/11/rotation = Quaternion(0.468693, -0.526194, -0.464083, -0.536726)
+bones/12/rotation = Quaternion(-0.184595, 0.803705, -0.555887, 0.104749)
+bones/13/rotation = Quaternion(0.165369, 0.713414, -0.165072, 0.66064)
+bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
+bones/15/rotation = Quaternion(0.0428746, 0.093192, 0.99319, -0.0552331)
+bones/16/rotation = Quaternion(-0.0368871, 0.952974, -0.292027, 0.0721137)
+bones/17/rotation = Quaternion(-0.0729228, 0.557226, -0.824643, 0.0643839)
+bones/18/rotation = Quaternion(6.11992e-08, 0.999998, 0.00179351, 3.89301e-09)
+bones/20/rotation = Quaternion(-0.100276, 0.0913433, 0.9898, 0.0435549)
+bones/21/rotation = Quaternion(0.0175034, 0.94986, -0.30861, -0.0471183)
+bones/22/rotation = Quaternion(0.0121557, 0.539239, -0.838116, -0.0814509)
+bones/23/rotation = Quaternion(-2.11668e-07, 1, 0.000900453, -3.35008e-09)
+
+[node name="TheColonel" parent="Armature/GeneralSkeleton" index="0"]
+material_override = ExtResource("2_tnv76")
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_y2qaj"),
+"Char_MechaChicken_Anims": ExtResource("2_jmi3r")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_y2qaj"),
+"Char_MechaChicken_Anims": ExtResource("2_jmi3r")
+}
+tree_root = SubResource("AnimationNodeStateMachine_mevps")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/Dash = false
+parameters/conditions/Death = false
+parameters/conditions/Fall = false
+parameters/conditions/Hit = false
+parameters/conditions/PunchLeft = false
+parameters/conditions/PunchRight = false
+parameters/conditions/StepLeft = false
+parameters/conditions/StepRight = false

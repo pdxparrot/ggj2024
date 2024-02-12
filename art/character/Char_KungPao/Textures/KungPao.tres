@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://c37ejl7l3mvj"]
+
+[ext_resource type="Texture2D" uid="uid://ch3ltfwqwj6l" path="res://art/character/Char_KungPao/Textures/KungPao_Color.png" id="1_fwdpv"]
+[ext_resource type="Texture2D" uid="uid://df6hxbvdelthd" path="res://art/character/Char_KungPao/Textures/KungPao_AO.png" id="2_1dopq"]
+[ext_resource type="Texture2D" uid="uid://bgrr5a0m7h67k" path="res://art/character/Char_KungPao/Textures/KungPao_Metallic.png" id="3_cg8e7"]
+[ext_resource type="Texture2D" uid="uid://d3sngtd6hwuaw" path="res://art/character/Char_KungPao/Textures/KungPao_Roughness.png" id="4_ajbiw"]
+
+[resource]
+albedo_texture = ExtResource("1_fwdpv")
+metallic = 1.0
+metallic_texture = ExtResource("3_cg8e7")
+roughness_texture = ExtResource("4_ajbiw")
+ao_enabled = true
+ao_texture = ExtResource("2_1dopq")

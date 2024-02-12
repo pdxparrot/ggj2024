@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cfyp037ewnfec"]
+
+[ext_resource type="Texture2D" uid="uid://b281swkpswmvr" path="res://art/character/Char_TheColonel/Textures/MechaTheColonel_BaseColor.png" id="1_a57i2"]
+[ext_resource type="Texture2D" uid="uid://b0mxlpti7u20r" path="res://art/character/Char_TheColonel/Textures/MechaTheColonel_AO.png" id="2_pp6xn"]
+[ext_resource type="Texture2D" uid="uid://b06iggwp42h03" path="res://art/character/Char_TheColonel/Textures/MechaTheColonel_Metallic.png" id="3_m3a3o"]
+[ext_resource type="Texture2D" uid="uid://q5l3c3y7y8pb" path="res://art/character/Char_TheColonel/Textures/MechaTheColonel_Roughness.png" id="4_d8k70"]
+
+[resource]
+albedo_texture = ExtResource("1_a57i2")
+metallic = 1.0
+metallic_texture = ExtResource("3_m3a3o")
+roughness_texture = ExtResource("4_d8k70")
+ao_enabled = true
+ao_texture = ExtResource("2_pp6xn")
