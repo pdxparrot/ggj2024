@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://1sbg6cmvuqi2"]
 
-[ext_resource type="Script" path="res://scripts/Camera/StaticCamera.cs" id="1_w77ri"]
+[ext_resource type="Script" path="res://scripts/Camera/StaticCamera.cs" id="1_3ye22"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ctb6a"]
 
 [node name="Camera" type="Node3D" node_paths=PackedStringArray("_camera")]
-script = ExtResource("1_w77ri")
+script = ExtResource("1_3ye22")
 _camera = NodePath("Camera3D")
 _noise = SubResource("FastNoiseLite_ctb6a")
 

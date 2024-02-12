@@ -1,11 +1,11 @@
 using Godot;
 
 using System;
-using System.Linq;
 
 using pdxpartyparrot.ggj2024.Interactables;
 using pdxpartyparrot.ggj2024.Managers;
 using pdxpartyparrot.ggj2024.Util;
+using pdxpartyparrot.ggj2024.Levels;
 
 namespace pdxpartyparrot.ggj2024.Player
 {
@@ -142,11 +142,25 @@ namespace pdxpartyparrot.ggj2024.Player
 
         #region Godot Lifecycle
 
+        public override void _ExitTree()
+        {
+            if(LevelManager.HasInstance) {
+                var arena = (Arena)LevelManager.Instance.CurrentLevel;
+                if(arena != null) {
+                    arena.PlayerObjectExitTree(this);
+                }
+            }
+
+            base._ExitTree();
+        }
+
         public override void _Ready()
         {
             base._Ready();
 
             _currentHealth = _maxHealth;
+
+            ((Arena)LevelManager.Instance.CurrentLevel).PlayerObjectReady(this);
         }
 
         // both client and server run physics

@@ -4,6 +4,7 @@ using System;
 
 using pdxpartyparrot.ggj2024.Managers;
 using pdxpartyparrot.ggj2024.Player;
+using pdxpartyparrot.ggj2024.Camera;
 
 namespace pdxpartyparrot.ggj2024.Levels
 {
@@ -18,6 +19,9 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         [Export]
         private AudioStreamPlayer _musicPlayer;
+
+        [Export]
+        private Viewer _viewer;
 
         #region Godot Lifecycle
 
@@ -91,6 +95,22 @@ namespace pdxpartyparrot.ggj2024.Levels
         }
 
         #endregion
+
+        public void PlayerObjectReady(Mecha mecha)
+        {
+            var phantom = (PhantomCamera)_viewer;
+            if(phantom != null) {
+                phantom.AddToFollowGroup(mecha);
+            }
+        }
+
+        public void PlayerObjectExitTree(Mecha mecha)
+        {
+            var phantom = (PhantomCamera)_viewer;
+            if(phantom != null) {
+                phantom.RemoveFromFollowGroup(mecha);
+            }
+        }
 
         #region RPCs
 

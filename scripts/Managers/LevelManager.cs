@@ -22,6 +22,8 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         private Node _currentLevel;
 
+        public Node CurrentLevel => _currentLevel;
+
         #region Godot Lifecycle
 
         public override void _Ready()

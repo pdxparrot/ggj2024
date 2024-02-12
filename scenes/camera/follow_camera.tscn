@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmr2suug7clty"]
+
+[ext_resource type="Script" path="res://scripts/Camera/PhantomCamera.cs" id="1_gn7ab"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_ncis5"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="3_7tcqu"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ctb6a"]
+
+[node name="Camera" type="Node3D" node_paths=PackedStringArray("_phantomCamera", "_camera")]
+script = ExtResource("1_gn7ab")
+_phantomCamera = NodePath("PhantomCamera3D")
+_camera = NodePath("Camera3D")
+_noise = SubResource("FastNoiseLite_ctb6a")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 40.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("2_ncis5")
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+script = ExtResource("3_7tcqu")
+priority_override = false
+priority = 0
+follow_mode = 3
+follow_group = Array[NodePath]([])
+follow_parameters/distance = 1.0
+follow_parameters/auto_distance = false
+follow_parameters/target_offset = Vector3(0, 0, 0)
+follow_parameters/damping = false
+look_at_mode = 3
+look_at_group = Array[NodePath]([])
+look_at_parameters/look_at_target_offset = Vector3(0, 0, 0)
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = null
