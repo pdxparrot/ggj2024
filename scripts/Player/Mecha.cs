@@ -20,9 +20,8 @@ namespace pdxpartyparrot.ggj2024.Player
 
         protected MechaInput MechaInput => (MechaInput)Input;
 
-        // TODO: this is very low effort model swapping
         [Export]
-        private Model[] _models = Array.Empty<Model>();
+        private PackedScene[] _playerModelScenes = Array.Empty<PackedScene>();
 
         [Export]
         private int _maxHealth = 10;
@@ -300,11 +299,7 @@ namespace pdxpartyparrot.ggj2024.Player
         {
             _playerIndicator.SetColor(PlayerSlot);
 
-            // TODO: this is very low effort model swapping
-            foreach(var model in _models) {
-                model.Visible = false;
-            }
-            _models[PlayerSlot].Visible = true;
+            Model.InstantiateModel(_playerModelScenes[PlayerSlot]);
         }
 
         #region RPCs

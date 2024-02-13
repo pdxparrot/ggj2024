@@ -2,6 +2,10 @@ using Godot;
 
 using System;
 
+using JetBrains.Annotations;
+
+using pdxpartyparrot.ggj2024.Util;
+
 namespace pdxpartyparrot.ggj2024
 {
     public partial class Model : Node3D
@@ -10,6 +14,7 @@ namespace pdxpartyparrot.ggj2024
         private string _motionBlendPath;
 
         [Export]
+        [CanBeNull]
         private AnimationTree _animationTree;
 
         private AnimationNodeStateMachinePlayback _animationStateMachine;
@@ -18,12 +23,21 @@ namespace pdxpartyparrot.ggj2024
 
         public override void _Ready()
         {
-            if(_animationTree != null) {
-                _animationStateMachine = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
-            }
+            OnModelChanged();
         }
 
         #endregion
+
+        public void InstantiateModel(PackedScene modelScene)
+        {
+            this.QueueFreeAllChildren();
+
+            var model = modelScene.Instantiate();
+            AddChild(model);
+
+            _animationTree = model.GetNode<AnimationTree>("AnimationTree");
+            OnModelChanged();
+        }
 
         public void UpdateMotionBlend(float amount)
         {
@@ -44,6 +58,14 @@ namespace pdxpartyparrot.ggj2024
             if(_animationStateMachine != null) {
                 _animationStateMachine.Travel(toNode);
             }
+        }
+
+        private void OnModelChanged()
+        {
+            if(_animationTree != null) {
+                _animationStateMachine = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
+            }
+            UpdateMotionBlend(0.0f);
         }
     }
 }

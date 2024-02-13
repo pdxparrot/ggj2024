@@ -1,7 +1,5 @@
 using Godot;
 
-using JetBrains.Annotations;
-
 using pdxpartyparrot.ggj2024.Debug;
 using pdxpartyparrot.ggj2024.Managers;
 using pdxpartyparrot.ggj2024.Util;
@@ -20,25 +18,9 @@ namespace pdxpartyparrot.ggj2024
         protected Node3D Pivot => _pivot;
 
         [Export]
-        [CanBeNull]
         private Model _model;
 
-        [CanBeNull]
-        protected Model Model
-        {
-            get => _model;
-            set
-            {
-                _model = value;
-
-                if(_model != null) {
-                    _model.UpdateMotionBlend(0.0f);
-                    SetProcess(true);
-                } else {
-                    SetProcess(false);
-                }
-            }
-        }
+        protected Model Model => _model;
 
         [Export]
         private CollisionShape3D _collider;
@@ -97,19 +79,10 @@ namespace pdxpartyparrot.ggj2024
         public override void _Ready()
         {
             _gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
-
-            if(Model != null) {
-                Model.UpdateMotionBlend(0.0f);
-                SetProcess(true);
-            } else {
-                SetProcess(false);
-            }
         }
 
         public override void _Process(double delta)
         {
-            // process should be disbled if the model is null
-            // so no need to check for null here
             Model.UpdateMotionBlend(MaxSpeed > 0.0f ? HorizontalSpeed / MaxSpeed : 0.0f);
         }
 
