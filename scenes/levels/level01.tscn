@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=16 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
@@ -27,20 +27,22 @@ sky_material = SubResource("ProceduralSkyMaterial_sbfq3")
 
 [sub_resource type="Environment" id="Environment_rsl7s"]
 background_mode = 2
-background_energy_multiplier = 2.0
 sky = SubResource("Sky_uhxcu")
 ambient_light_source = 3
 ambient_light_color = Color(0.317647, 0.533333, 1, 1)
-ambient_light_energy = 5.0
 reflected_light_source = 2
 ssao_intensity = 100.0
-fog_enabled = true
 fog_light_color = Color(1, 1, 1, 1)
 fog_light_energy = 0.1
 fog_sun_scatter = 1.0
 fog_density = 0.005
 fog_height = 35.0
 fog_height_density = 0.02
+
+[sub_resource type="BoxMesh" id="BoxMesh_md66h"]
+size = Vector3(170, 10, 195)
+subdivide_width = 1
+subdivide_height = 1
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer", "_viewer")]
 script = ExtResource("1_avn16")
@@ -94,7 +96,7 @@ collision_layer = 2
 size = Vector3(245.735, 0.1, 364.37)
 
 [node name="SW_Wall" type="CSGBox3D" parent="Bounds"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, 117)
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, 100.181)
 visible = false
 use_collision = true
 collision_layer = 2
@@ -106,6 +108,12 @@ visible = false
 use_collision = true
 collision_layer = 2
 size = Vector3(245.735, 0.1, 364.37)
+
+[node name="Play Area - 170x195" type="MeshInstance3D" parent="Bounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.063, 114.879, 3.08666)
+visible = false
+mesh = SubResource("BoxMesh_md66h")
+skeleton = NodePath("../..")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -124,16 +132,16 @@ visible = false
 [node name="SpawnPoints" type="Node3D" parent="."]
 
 [node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, 30)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -55, 1, 50)
 
 [node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 30)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 95, 1, 50)
 
 [node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -30)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 95, 1, -50)
 
 [node name="SpawnPoint4" parent="SpawnPoints" instance=ExtResource("4_tvxu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, -30)
+transform = Transform3D(-0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, -0.984808, -55, 1, -50)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qxvwr")
@@ -146,11 +154,11 @@ one_shot = true
 [node name="Camera" parent="." instance=ExtResource("10_6rkt4")]
 
 [node name="Camera3D" parent="Camera" index="0"]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 162.685, 192.002, 175.972)
-fov = 25.0
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 192.5, 168.928, 176.572)
+fov = 30.0
 
 [node name="PhantomCamera3D" parent="Camera" index="1"]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 162.685, 192.002, 175.972)
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 192.5, 168.928, 176.572)
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 
