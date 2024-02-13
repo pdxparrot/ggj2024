@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://4u5t7kv5q6a0"]
+[gd_scene load_steps=15 format=3 uid="uid://4u5t7kv5q6a0"]
 
 [ext_resource type="Script" path="res://scripts/UI/PlayerHUDPanel.cs" id="1_7ab21"]
 [ext_resource type="Script" path="res://scripts/UI/PlayerHUDPlayerInfoPanel.cs" id="2_eivxk"]
 [ext_resource type="Texture2D" uid="uid://h77og3vj3npg" path="res://art/ui/hud/playerHUD/HUD Character Nameplate.png" id="3_p6s2v"]
+[ext_resource type="Texture2D" uid="uid://86vrfx4tmtj5" path="res://art/ui/hud/playerHUD/HUD Icon Player2.png" id="4_6c88k"]
 [ext_resource type="Texture2D" uid="uid://cn6bcuoighg6u" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar BG.png" id="4_bi334"]
+[ext_resource type="Texture2D" uid="uid://bq6wlb6j5eh4x" path="res://art/ui/hud/playerHUD/HUD Icon Player3.png" id="5_la8hm"]
 [ext_resource type="Texture2D" uid="uid://dwoghuyfwh26x" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar Frame.png" id="5_ld456"]
 [ext_resource type="Texture2D" uid="uid://cim4b7dvosnel" path="res://art/ui/hud/playerHUD/HUD Player LIfeBar Fill.png" id="6_1tew4"]
+[ext_resource type="Texture2D" uid="uid://dlpri1ajy51o2" path="res://art/ui/hud/playerHUD/HUD Icon Player4.png" id="6_b4vu0"]
 [ext_resource type="Texture2D" uid="uid://cc88pi4dj8ggm" path="res://art/ui/hud/playerHUD/HUD Player Indicator.png" id="7_yi78e"]
-[ext_resource type="Texture2D" uid="uid://cy7gtv83o4uxe" path="res://art/ui/hud/playerHUD/Character Icon Mock.png" id="8_1dx4q"]
-[ext_resource type="Texture2D" uid="uid://y8jipy4t1pwd" path="res://art/ui/hud/playerHUD/HUD Player Name.png" id="9_aa61i"]
+[ext_resource type="Texture2D" uid="uid://1shbf636q87w" path="res://art/ui/hud/playerHUD/HUD Icon Player1.png" id="9_1n8vo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am1vc"]
 
@@ -47,7 +49,7 @@ script = ExtResource("2_eivxk")
 _healthBar = NodePath("HealthBarPanel/PlayerHealthBar")
 _playerIndicator = NodePath("PlayerIndicator")
 _playerIcon = NodePath("Character Icon")
-_playerIcons = [ExtResource("8_1dx4q"), ExtResource("8_1dx4q"), ExtResource("8_1dx4q"), ExtResource("8_1dx4q")]
+_playerIcons = [ExtResource("9_1n8vo"), ExtResource("4_6c88k"), ExtResource("5_la8hm"), ExtResource("6_b4vu0")]
 
 [node name="NamePlate" type="TextureRect" parent="PlayerInfo"]
 modulate = Color(1, 1, 1, 0.501961)
@@ -109,17 +111,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("8_1dx4q")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="PlayerName" type="TextureRect" parent="PlayerInfo"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_aa61i")
+texture = ExtResource("9_1n8vo")
 expand_mode = 1
 stretch_mode = 5

@@ -1,0 +1,293 @@
+[gd_scene load_steps=20 format=3 uid="uid://0ksvmms0jbt"]
+
+[ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_nv62w"]
+[ext_resource type="PackedScene" uid="uid://c8cuge5aw4jnc" path="res://scenes/world/city blocks/city_block_ne.tscn" id="2_jqy76"]
+[ext_resource type="PackedScene" uid="uid://d0hwvds4eqapn" path="res://scenes/world/city blocks/city_block_tokyotower.tscn" id="3_0rku3"]
+[ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="4_0t5ds"]
+[ext_resource type="PackedScene" uid="uid://cahkwcyaqjh8y" path="res://art/environment/Blockout Full.glb" id="5_4ehhc"]
+[ext_resource type="PackedScene" uid="uid://bv5b8rypdrot8" path="res://art/environment/Outer Area.glb" id="6_glvex"]
+[ext_resource type="PackedScene" uid="uid://dg81r0f0u7vva" path="res://art/environment/Outer Area.tscn" id="7_h5rd7"]
+[ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="8_5kph4"]
+[ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="9_4cplt"]
+[ext_resource type="PackedScene" uid="uid://b3vhy32ediss2" path="res://art/character/Char_OriginalR/char_original_r.tscn" id="10_7jrnu"]
+[ext_resource type="PackedScene" uid="uid://bvcnuuvhbcfy6" path="res://art/character/Char_TheColonel/char_the_colonel.tscn" id="11_0ok3v"]
+[ext_resource type="PackedScene" uid="uid://tnflc3gnddr6" path="res://art/character/Char_KungPao/char_kung_pao.tscn" id="12_2l083"]
+[ext_resource type="PackedScene" uid="uid://qoyyb3i2m101" path="res://art/character/Char_MechaGizzard/char_mecha_gizzard.tscn" id="13_akpm8"]
+[ext_resource type="Material" uid="uid://c6w4o1qvwja2k" path="res://art/materials/Indicator_P2.tres" id="14_kvd5p"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
+properties/0/path = NodePath(".:_timeRemaining")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sbfq3"]
+sky_top_color = Color(0.368627, 0.831373, 0.964706, 1)
+sky_horizon_color = Color(0.0941176, 0.462745, 0.647059, 1)
+ground_bottom_color = Color(0.2, 0.168627, 0.415686, 1)
+ground_horizon_color = Color(0.0901961, 0.376471, 0.662745, 1)
+
+[sub_resource type="Sky" id="Sky_uhxcu"]
+sky_material = SubResource("ProceduralSkyMaterial_sbfq3")
+
+[sub_resource type="Environment" id="Environment_rsl7s"]
+background_mode = 2
+sky = SubResource("Sky_uhxcu")
+ambient_light_source = 3
+ambient_light_color = Color(0.317647, 0.533333, 1, 1)
+reflected_light_source = 2
+ssao_intensity = 100.0
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.1
+fog_sun_scatter = 1.0
+fog_density = 0.005
+fog_height = 35.0
+fog_height_density = 0.02
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s551o"]
+size = Vector2(100, 100)
+
+[node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer", "_viewer")]
+script = ExtResource("1_nv62w")
+_gameTimer = NodePath("GameTimer")
+_musicPlayer = NodePath("Music")
+_viewer = NodePath("")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_woxuc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rsl7s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.973746, 0.0308465, 0.225539, -0.185396, 0.68237, 0.707107, -0.132089, -0.730356, 0.670174, 47.2182, 41.9933, -7.9015)
+light_color = Color(1, 1, 0.839216, 1)
+light_energy = 0.5
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 1.0
+
+[node name="CityBlocks" type="Node3D" parent="."]
+
+[node name="CityBlock_NE" parent="CityBlocks" instance=ExtResource("2_jqy76")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -52)
+
+[node name="CityBlock_TokyoTower" parent="CityBlocks" instance=ExtResource("3_0rku3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Bounds" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(200, 0.1, 200)
+
+[node name="NW_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -65, 22.8677, 13.1844)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="NW_Wall2" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 105, 22.868, 15.966)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="SW_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, 117)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="NE_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, -95)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="World" type="Node3D" parent="."]
+visible = false
+
+[node name="BlockoutArea" parent="World" instance=ExtResource("4_0t5ds")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.0547028, 0.835197, -0.302475)
+visible = false
+
+[node name="Blockout Full" parent="World" instance=ExtResource("5_4ehhc")]
+visible = false
+
+[node name="Outer Area" parent="World" instance=ExtResource("6_glvex")]
+visible = false
+
+[node name="Outer Area2" parent="World" instance=ExtResource("7_h5rd7")]
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource("8_5kph4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, 30)
+
+[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource("8_5kph4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 30)
+
+[node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource("8_5kph4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -30)
+
+[node name="SpawnPoint4" parent="SpawnPoints" instance=ExtResource("8_5kph4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, -30)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4cplt")
+volume_db = -45.0
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.3293, 18.1568, 38.4703)
+fov = 90.0
+
+[node name="Char_OriginalR" parent="." instance=ExtResource("10_7jrnu")]
+transform = Transform3D(0.791159, 0, 0.61161, 0, 1, 0, -0.61161, 0, 0.791159, 53.5733, 0, 25.3021)
+visible = false
+
+[node name="GeneralSkeleton" parent="Char_OriginalR/Armature" index="0"]
+bones/0/position = Vector3(-0.235102, 10.3145, -0.169765)
+bones/0/rotation = Quaternion(-0.013266, -0.00123464, -0.00853098, 0.999875)
+bones/1/rotation = Quaternion(0.00844369, -0.000942403, -0.000643337, 0.999964)
+bones/2/rotation = Quaternion(0.0088794, -0.0216358, 0.00108275, 0.999726)
+bones/3/rotation = Quaternion(0.00882675, -0.0216075, 0.00146076, 0.999727)
+bones/4/rotation = Quaternion(-0.0240902, 0.00738063, -0.0126373, 0.999603)
+bones/5/rotation = Quaternion(0.048197, -0.0148466, 0.0315466, 0.998229)
+bones/7/rotation = Quaternion(0.526607, 0.473697, 0.459761, -0.535646)
+bones/8/rotation = Quaternion(0.171922, 0.829076, -0.519708, -0.113926)
+bones/9/rotation = Quaternion(0.176912, -0.712324, 0.176227, 0.655927)
+bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
+bones/11/rotation = Quaternion(0.460756, -0.530149, -0.489924, -0.516353)
+bones/12/rotation = Quaternion(-0.197791, 0.812641, -0.541861, 0.0829444)
+bones/13/rotation = Quaternion(0.163721, 0.713555, -0.163427, 0.661307)
+bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
+bones/15/rotation = Quaternion(0.0324666, 0.0893945, 0.99481, -0.0361673)
+bones/16/rotation = Quaternion(-0.0335921, 0.936497, -0.341031, 0.0744525)
+bones/17/rotation = Quaternion(-0.0368526, 0.518331, -0.851721, 0.067427)
+bones/18/rotation = Quaternion(-1.42822e-07, 0.999992, 0.00405094, -2.34606e-09)
+bones/20/rotation = Quaternion(-0.117095, 0.0660328, 0.988928, 0.0628515)
+bones/21/rotation = Quaternion(0.0195003, 0.961807, -0.271665, -0.0272925)
+bones/22/rotation = Quaternion(0.0373242, 0.565309, -0.819183, -0.0892901)
+bones/23/rotation = Quaternion(1.54861e-08, 1, 1.78814e-07, -1.21522e-08)
+
+[node name="AnimationTree" parent="Char_OriginalR" index="2"]
+process_mode = 4
+
+[node name="Char_TheColonel" parent="." instance=ExtResource("11_0ok3v")]
+transform = Transform3D(0.791224, 0, 0.611527, 0, 1, 0, -0.611527, 0, 0.791224, 53.573, 0, 25.302)
+visible = false
+
+[node name="GeneralSkeleton" parent="Char_TheColonel/Armature" index="0"]
+bones/0/position = Vector3(-1.33557, 10.123, -0.153954)
+bones/0/rotation = Quaternion(-0.0203523, 0.0197789, 0.0126811, 0.999517)
+bones/1/rotation = Quaternion(0.0107389, -0.0051256, 0.00864385, 0.999892)
+bones/2/rotation = Quaternion(0.0115582, -0.0332828, 0.0158622, 0.999253)
+bones/3/rotation = Quaternion(0.0108858, -0.0329944, 0.0164593, 0.999261)
+bones/4/rotation = Quaternion(-0.0037352, 0.0121324, -0.0254553, 0.999595)
+bones/5/rotation = Quaternion(0.0667534, -0.0239596, 0.0196193, 0.997289)
+bones/7/rotation = Quaternion(0.543682, 0.454524, 0.490639, -0.507042)
+bones/8/rotation = Quaternion(0.220194, 0.827853, -0.492054, -0.155106)
+bones/9/rotation = Quaternion(0.18265, -0.711696, 0.181942, 0.653471)
+bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
+bones/11/rotation = Quaternion(0.46056, -0.529019, -0.498275, -0.509652)
+bones/12/rotation = Quaternion(-0.220463, 0.823706, -0.512905, 0.0991661)
+bones/13/rotation = Quaternion(0.161969, 0.7137, -0.161678, 0.662011)
+bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
+bones/15/rotation = Quaternion(0.0509346, 0.0822203, 0.992264, -0.0778326)
+bones/16/rotation = Quaternion(-0.0484951, 0.947635, -0.30619, 0.0767064)
+bones/17/rotation = Quaternion(-0.105909, 0.55598, -0.821989, 0.0632732)
+bones/18/rotation = Quaternion(1.63043e-07, 0.999995, 0.00324988, 9.65419e-09)
+bones/20/rotation = Quaternion(-0.0790377, 0.0961058, 0.991972, 0.0225316)
+bones/21/rotation = Quaternion(0.0129217, 0.921738, -0.383791, -0.0541942)
+bones/22/rotation = Quaternion(-0.0240295, 0.484439, -0.870411, -0.0844114)
+bones/23/rotation = Quaternion(-1.57441e-07, 1, 0.000685534, -5.45138e-09)
+
+[node name="AnimationTree" parent="Char_TheColonel" index="2"]
+process_mode = 4
+
+[node name="Char_KungPao" parent="." instance=ExtResource("12_2l083")]
+transform = Transform3D(0.791224, 0, 0.611527, 0, 1, 0, -0.611527, 0, 0.791224, 53.573, 0, 25.302)
+visible = false
+
+[node name="GeneralSkeleton" parent="Char_KungPao/Armature" index="0"]
+bones/0/position = Vector3(-1.20801, 10.1853, -0.318369)
+bones/0/rotation = Quaternion(-0.015071, 0.0442355, 0.00701455, 0.998883)
+bones/1/rotation = Quaternion(0.0154393, -0.00191041, 0.00402814, 0.999871)
+bones/2/rotation = Quaternion(0.0201614, -0.0245503, 0.0100029, 0.999445)
+bones/3/rotation = Quaternion(0.0198564, -0.0243368, 0.0107587, 0.999449)
+bones/4/rotation = Quaternion(-0.00310693, 0.00761624, -0.0243854, 0.999669)
+bones/5/rotation = Quaternion(0.0401537, -0.0357158, 0.0359947, 0.997906)
+bones/7/rotation = Quaternion(0.534808, 0.463283, 0.490742, -0.50845)
+bones/8/rotation = Quaternion(0.210621, 0.831421, -0.499516, -0.12191)
+bones/9/rotation = Quaternion(0.17042, -0.71297, 0.169759, 0.658644)
+bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
+bones/11/rotation = Quaternion(0.443328, -0.53652, -0.535143, -0.478778)
+bones/12/rotation = Quaternion(-0.243056, 0.830583, -0.488034, 0.113486)
+bones/13/rotation = Quaternion(0.171634, 0.712839, -0.171326, 0.658065)
+bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
+bones/15/rotation = Quaternion(0.0503588, 0.116384, 0.988835, -0.0782523)
+bones/16/rotation = Quaternion(-0.0464202, 0.947831, -0.30822, 0.0667997)
+bones/17/rotation = Quaternion(-0.116131, 0.573208, -0.809561, 0.0505676)
+bones/18/rotation = Quaternion(7.25269e-08, 0.999994, 0.00360219, -6.67197e-09)
+bones/20/rotation = Quaternion(-0.120092, 0.0812403, 0.989026, 0.0283905)
+bones/21/rotation = Quaternion(0.0163906, 0.935629, -0.347952, -0.0570802)
+bones/22/rotation = Quaternion(-0.00472203, 0.503169, -0.860996, -0.0740509)
+bones/23/rotation = Quaternion(2.91099e-08, 1, 0.00030022, 1.5666e-08)
+
+[node name="AnimationTree" parent="Char_KungPao" index="2"]
+process_mode = 4
+
+[node name="Char_MechaGizzard" parent="." instance=ExtResource("13_akpm8")]
+transform = Transform3D(0.791224, 0, 0.611527, 0, 1, 0, -0.611527, 0, 0.791224, 53.573, 0, 25.302)
+
+[node name="GeneralSkeleton" parent="Char_MechaGizzard/Armature" index="0"]
+bones/0/position = Vector3(-0.839136, 10.1637, -0.220386)
+bones/0/rotation = Quaternion(-0.0105254, -0.0128962, 0.0102426, 0.999809)
+bones/1/rotation = Quaternion(0.00359271, -0.00247521, 0.00449393, 0.99998)
+bones/2/rotation = Quaternion(0.00109505, -0.0224747, 0.00642127, 0.999726)
+bones/3/rotation = Quaternion(0.000894141, -0.0223985, 0.00655023, 0.999727)
+bones/4/rotation = Quaternion(-0.031648, 0.0195287, -0.0222747, 0.99906)
+bones/5/rotation = Quaternion(0.0478854, 0.00216955, 0.0175582, 0.998696)
+bones/7/rotation = Quaternion(0.496343, 0.503398, 0.421205, -0.568173)
+bones/8/rotation = Quaternion(0.0917796, 0.804172, -0.582175, -0.0771794)
+bones/9/rotation = Quaternion(0.186295, -0.71127, 0.185573, 0.651883)
+bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
+bones/11/rotation = Quaternion(0.471074, -0.52415, -0.434791, -0.560637)
+bones/12/rotation = Quaternion(-0.203225, 0.799077, -0.55918, 0.0865615)
+bones/13/rotation = Quaternion(0.157506, 0.714048, -0.157223, 0.663783)
+bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
+bones/15/rotation = Quaternion(0.0623, 0.0405063, 0.995767, -0.0540904)
+bones/16/rotation = Quaternion(-0.0268776, 0.967698, -0.242031, 0.0652612)
+bones/17/rotation = Quaternion(-0.0616155, 0.567026, -0.81771, 0.0776827)
+bones/18/rotation = Quaternion(-6.4942e-08, 0.999981, 0.00612753, -1.46864e-10)
+bones/20/rotation = Quaternion(-0.0911508, 0.109401, 0.988667, 0.0475373)
+bones/21/rotation = Quaternion(0.0196342, 0.940034, -0.337545, -0.0448746)
+bones/22/rotation = Quaternion(0.015117, 0.535038, -0.842071, -0.0664969)
+bones/23/rotation = Quaternion(1.30194e-08, 1, 0.00049804, 6.51341e-09)
+
+[node name="AnimationTree" parent="Char_MechaGizzard" index="2"]
+process_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999956, 0.00935486, -4.08914e-10, 0, -4.37114e-08, -1, -0.00935486, 0.999956, -4.37095e-08, 60.7747, 19.752, 16.3201)
+material_override = ExtResource("14_kvd5p")
+mesh = SubResource("PlaneMesh_s551o")
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+
+[editable path="Char_OriginalR"]
+[editable path="Char_TheColonel"]
+[editable path="Char_KungPao"]
+[editable path="Char_MechaGizzard"]
