@@ -101,6 +101,7 @@ namespace pdxpartyparrot.ggj2024.Levels
             var phantom = _viewer as PhantomCamera;
             if(phantom != null) {
                 phantom.AddToFollowGroup(mecha);
+                phantom.AddToLookAtGroup(mecha);
             }
         }
 
@@ -108,6 +109,7 @@ namespace pdxpartyparrot.ggj2024.Levels
         {
             var phantom = _viewer as PhantomCamera;
             if(phantom != null) {
+                phantom.RemoveFromLookAtGroup(mecha);
                 phantom.RemoveFromFollowGroup(mecha);
             }
         }

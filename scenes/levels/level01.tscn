@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
 [ext_resource type="PackedScene" uid="uid://dg81r0f0u7vva" path="res://art/environment/Outer Area.tscn" id="5_7uad2"]
 [ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="5_qxvwr"]
-[ext_resource type="PackedScene" uid="uid://1sbg6cmvuqi2" path="res://scenes/camera/static_camera.tscn" id="10_c8b37"]
+[ext_resource type="PackedScene" uid="uid://cmr2suug7clty" path="res://scenes/camera/follow_camera.tscn" id="10_6rkt4"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
 properties/0/path = NodePath(".:_timeRemaining")
@@ -46,7 +46,7 @@ fog_height_density = 0.02
 script = ExtResource("1_avn16")
 _gameTimer = NodePath("GameTimer")
 _musicPlayer = NodePath("Music")
-_viewer = NodePath("StaticCamera")
+_viewer = NodePath("Camera")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_woxuc")
@@ -143,7 +143,6 @@ volume_db = -45.0
 wait_time = 60.0
 one_shot = true
 
-[node name="StaticCamera" parent="." instance=ExtResource("10_c8b37")]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 153, 183, 146)
+[node name="Camera" parent="." instance=ExtResource("10_6rkt4")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
