@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b2d774us28v6b"]
+
+[ext_resource type="Texture2D" uid="uid://csvp4mb7bver3" path="res://art/environment/Ring_Ring texture color 01.png" id="1_2gxry"]
+[ext_resource type="Texture2D" uid="uid://oyaxtuh3h3gd" path="res://art/environment/Ring texture color 01.png" id="1_vafwb"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_vafwb")
+metallic = 1.0
+emission_enabled = true
+emission_texture = ExtResource("1_2gxry")

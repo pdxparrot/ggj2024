@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dakgiuqw5f5r4"]
+
+[ext_resource type="PackedScene" uid="uid://d0xayylbsjtym" path="res://art/environment/Ring.glb" id="1_aclir"]
+[ext_resource type="Material" uid="uid://b2d774us28v6b" path="res://art/materials/Ring02.tres" id="2_gqss2"]
+
+[node name="Ring" instance=ExtResource("1_aclir")]
+
+[node name="Ring" parent="." index="0"]
+material_override = ExtResource("2_gqss2")
