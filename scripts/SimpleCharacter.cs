@@ -20,7 +20,11 @@ namespace pdxpartyparrot.ggj2024
         [Export]
         private Model _model;
 
-        protected Model Model => _model;
+        protected Model Model
+        {
+            get => _model;
+            set => _model = value;
+        }
 
         [Export]
         private CollisionShape3D _collider;
