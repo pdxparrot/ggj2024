@@ -10,6 +10,10 @@
 
 ## Quick Setup
 
+* Setup csproj for .net8.0
+  * TODO: details
+* dotnet add package JetBrains.Annotations
+* dotnet add package Newtonsoft.Json (if using Json)
 * Copy Managers
 * Copy Utils
 * Copy Boot.cs
