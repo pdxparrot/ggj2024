@@ -1,15 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyoxwjirorhlm"]
+[gd_scene load_steps=16 format=3 uid="uid://cyoxwjirorhlm"]
 
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="1_1ymsw"]
 [ext_resource type="Script" path="res://scripts/Levels/Lobby.cs" id="1_an5xv"]
+[ext_resource type="FontFile" uid="uid://bnknyypvla4mt" path="res://art/font/Equalize.ttf" id="2_7asiw"]
 [ext_resource type="PackedScene" uid="uid://cpkraolxxd5tb" path="res://scenes/ui/lobby_player.tscn" id="2_kr6ua"]
+[ext_resource type="FontFile" uid="uid://ct6ib7v02fm4b" path="res://art/font/Subwich.otf" id="3_lemqo"]
+[ext_resource type="Texture2D" uid="uid://byr3xykmadyk" path="res://art/ui/lobby/StageIcon.png" id="5_4yn2v"]
+[ext_resource type="Texture2D" uid="uid://c7hcxryk3aywb" path="res://art/ui/lobby/Lobby P2 Icon.png" id="7_c1q0q"]
+[ext_resource type="Texture2D" uid="uid://e71ow7kjekpg" path="res://art/ui/lobby/Lobby P3 Icon.png" id="8_srdas"]
+[ext_resource type="Texture2D" uid="uid://i0jwmwosdjnv" path="res://art/ui/lobby/Lobby P4 Icon.png" id="9_sjj4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uh0i1"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ma7re"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1smpd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yhrhc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqq71"]
+bg_color = Color(1, 1, 1, 0.0823529)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjrgo"]
 
 [node name="Lobby" type="Node3D" node_paths=PackedStringArray("_lobbyPlayerContainer", "_startButton")]
 script = ExtResource("1_an5xv")
-_lobbyPlayerContainer = NodePath("Control/CanvasLayer/VBoxContainer/Players")
-_startButton = NodePath("Control/CanvasLayer/VBoxContainer/HBoxContainer2/Start")
+_lobbyPlayerContainer = NodePath("Control/CanvasLayer/Panel BG/Players")
+_startButton = NodePath("Control/CanvasLayer/Panel BG/LobbyInfo/Info/HBoxContainer2/Start")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -21,7 +39,289 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
+[node name="Panel BG" type="Panel" parent="Control/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uh0i1")
+
+[node name="LobbyInfo" type="Panel" parent="Control/CanvasLayer/Panel BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ma7re")
+
+[node name="Info" type="Panel" parent="Control/CanvasLayer/Panel BG/LobbyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.6
+anchor_bottom = 0.85
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1smpd")
+
+[node name="Label_Title" type="Label" parent="Control/CanvasLayer/Panel BG/LobbyInfo/Info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.85
+anchor_bottom = 0.26
+offset_right = 0.440002
+offset_bottom = -0.160004
+theme_override_colors/font_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_fonts/font = ExtResource("2_7asiw")
+theme_override_font_sizes/font_size = 80
+text = "Mechawings"
+
+[node name="Label_Lobby" type="Label" parent="Control/CanvasLayer/Panel BG/LobbyInfo/Info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.26
+anchor_right = 0.423
+anchor_bottom = 0.5
+offset_top = -0.350006
+offset_right = -0.0527954
+theme_override_fonts/font = ExtResource("3_lemqo")
+theme_override_font_sizes/font_size = 100
+text = "lobby"
+
+[node name="Label_PVP" type="Label" parent="Control/CanvasLayer/Panel BG/LobbyInfo/Info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 0.137
+anchor_bottom = 0.925
+offset_top = -0.155029
+theme_override_fonts/font = ExtResource("3_lemqo")
+theme_override_font_sizes/font_size = 80
+text = "PVP"
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/CanvasLayer/Panel BG/LobbyInfo/Info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.925
+size_flags_vertical = 3
+
+[node name="Start" parent="Control/CanvasLayer/Panel BG/LobbyInfo/Info/HBoxContainer2" instance=ExtResource("1_1ymsw")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start Game"
+
+[node name="Cancel" parent="Control/CanvasLayer/Panel BG/LobbyInfo/Info/HBoxContainer2" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("1_1ymsw")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+_hoverAudioStreamPlayer = NodePath("../Start/Hover")
+_pressedAudioStreamPlayer = NodePath("../Start/Pressed")
+
+[node name="Label_Stage" type="Label" parent="Control/CanvasLayer/Panel BG/LobbyInfo/Info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.75
+anchor_right = 0.98
+anchor_bottom = 0.925
+offset_left = 0.411194
+offset_right = 0.0351563
+theme_override_fonts/font = ExtResource("3_lemqo")
+theme_override_font_sizes/font_size = 75
+text = "Stage"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StagePreview" type="Panel" parent="Control/CanvasLayer/Panel BG/LobbyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.85
+
+[node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer/Panel BG/LobbyInfo/StagePreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4yn2v")
+expand_mode = 3
+
+[node name="Empty Slots" type="Panel" parent="Control/CanvasLayer/Panel BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yhrhc")
+
+[node name="Empty Player Slot" type="Panel" parent="Control/CanvasLayer/Panel BG/Empty Slots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqq71")
+
+[node name="OpenSlot" type="Label" parent="Control/CanvasLayer/Panel BG/Empty Slots/Empty Player Slot"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.25
+anchor_right = 0.85
+anchor_bottom = 0.75
+offset_right = -0.355957
+theme_override_fonts/font = ExtResource("3_lemqo")
+theme_override_font_sizes/font_size = 25
+text = "Player Slot
+Open"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Empty Player Slot2" type="Panel" parent="Control/CanvasLayer/Panel BG/Empty Slots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqq71")
+
+[node name="OpenSlot" type="Label" parent="Control/CanvasLayer/Panel BG/Empty Slots/Empty Player Slot2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.25
+anchor_right = 0.85
+anchor_bottom = 0.75
+offset_right = -0.355957
+theme_override_fonts/font = ExtResource("3_lemqo")
+theme_override_font_sizes/font_size = 25
+text = "Player Slot
+Open"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Empty Player Slot3" type="Panel" parent="Control/CanvasLayer/Panel BG/Empty Slots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqq71")
+
+[node name="OpenSlot" type="Label" parent="Control/CanvasLayer/Panel BG/Empty Slots/Empty Player Slot3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.25
+anchor_right = 0.85
+anchor_bottom = 0.75
+offset_right = -0.355957
+theme_override_fonts/font = ExtResource("3_lemqo")
+theme_override_font_sizes/font_size = 25
+text = "Player Slot
+Open"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Empty Player Slot4" type="Panel" parent="Control/CanvasLayer/Panel BG/Empty Slots"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqq71")
+
+[node name="OpenSlot" type="Label" parent="Control/CanvasLayer/Panel BG/Empty Slots/Empty Player Slot4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.25
+anchor_right = 0.85
+anchor_bottom = 0.75
+offset_right = -0.355957
+theme_override_fonts/font = ExtResource("3_lemqo")
+theme_override_font_sizes/font_size = 25
+text = "Player Slot
+Open"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Players" type="Panel" parent="Control/CanvasLayer/Panel BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yhrhc")
+
+[node name="LobbyPlayer" parent="Control/CanvasLayer/Panel BG/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+offset_right = -0.640015
+
+[node name="LobbyPlayer2" parent="Control/CanvasLayer/Panel BG/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.5
+offset_left = -0.480042
+offset_right = -0.120056
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player_Lobby_Icon" parent="Control/CanvasLayer/Panel BG/Players/LobbyPlayer2" index="0"]
+texture = ExtResource("7_c1q0q")
+
+[node name="LobbyPlayer3" parent="Control/CanvasLayer/Panel BG/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.75
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player_Lobby_Icon" parent="Control/CanvasLayer/Panel BG/Players/LobbyPlayer3" index="0"]
+texture = ExtResource("8_srdas")
+
+[node name="LobbyPlayer4" parent="Control/CanvasLayer/Panel BG/Players" instance=ExtResource("2_kr6ua")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player_Lobby_Icon" parent="Control/CanvasLayer/Panel BG/Players/LobbyPlayer4" index="0"]
+texture = ExtResource("9_sjj4b")
+
 [node name="VBoxContainer" type="Panel" parent="Control/CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,52 +331,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gjrgo")
 
-[node name="Players" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.1
-anchor_right = 0.7
-anchor_bottom = 0.65
-offset_bottom = -0.280029
-size_flags_vertical = 3
+[connection signal="pressed" from="Control/CanvasLayer/Panel BG/LobbyInfo/Info/HBoxContainer2/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/Panel BG/LobbyInfo/Info/HBoxContainer2/Cancel" to="." method="_on_cancel_pressed"]
 
-[node name="LobbyPlayer" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
-visible = false
-layout_mode = 2
-
-[node name="LobbyPlayer2" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
-visible = false
-layout_mode = 2
-
-[node name="LobbyPlayer3" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
-visible = false
-layout_mode = 2
-
-[node name="LobbyPlayer4" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
-visible = false
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.7
-anchor_right = 0.7
-anchor_bottom = 0.8
-size_flags_vertical = 3
-
-[node name="Start" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_1ymsw")]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Start Game"
-
-[node name="Cancel" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("1_1ymsw")]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Cancel"
-_hoverAudioStreamPlayer = NodePath("../Start/Hover")
-_pressedAudioStreamPlayer = NodePath("../Start/Pressed")
-
-[connection signal="pressed" from="Control/CanvasLayer/VBoxContainer/HBoxContainer2/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Control/CanvasLayer/VBoxContainer/HBoxContainer2/Cancel" to="." method="_on_cancel_pressed"]
+[editable path="Control/CanvasLayer/Panel BG/Players/LobbyPlayer"]
+[editable path="Control/CanvasLayer/Panel BG/Players/LobbyPlayer2"]
+[editable path="Control/CanvasLayer/Panel BG/Players/LobbyPlayer3"]
+[editable path="Control/CanvasLayer/Panel BG/Players/LobbyPlayer4"]
