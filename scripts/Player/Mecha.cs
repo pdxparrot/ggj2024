@@ -235,6 +235,16 @@ namespace pdxpartyparrot.ggj2024.Player
             Rpc(nameof(RpcThrusters));
         }
 
+        public void Win()
+        {
+            // TODO: play the win animation
+        }
+
+        public void Lose()
+        {
+            // TODO: play the lose animation
+        }
+
         public void Damage(Mecha attacker, int amount)
         {
             if(IsDead) {
@@ -245,7 +255,6 @@ namespace pdxpartyparrot.ggj2024.Player
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] hit for {amount} by {attacker.ClientId}:{attacker.Input.DeviceId}!");
             } else {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] hit for {amount} by system!");
-
             }
 
             _impactAudioPlayer.Play();

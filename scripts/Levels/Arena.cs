@@ -126,6 +126,7 @@ namespace pdxpartyparrot.ggj2024.Levels
                 return;
             }
 
+            // TODO: this isn't great
             int aliveCount = 0;
             foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
                 if(playerObject == null) {
@@ -164,6 +165,41 @@ namespace pdxpartyparrot.ggj2024.Levels
             _gameTimer.Stop();
 
             GameManager.Instance.GameOver();
+
+            // TODO: this is terrible
+
+            int highestHealth = int.MinValue;
+            foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
+                if(playerObject == null) {
+                    continue;
+                }
+
+                var player = (Mecha)playerObject;
+                if(player.CurrentHealth > highestHealth) {
+                    highestHealth = player.CurrentHealth;
+                }
+            }
+
+            int winnerCount = 0;
+            foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
+                if(playerObject == null) {
+                    continue;
+                }
+
+                var player = (Mecha)playerObject;
+                if(player.IsDead) {
+                    continue;
+                }
+
+                if(player.CurrentHealth >= highestHealth) {
+                    player.Win();
+                    winnerCount++;
+                } else {
+                    player.Lose();
+                }
+            }
+
+            // TODO: update the HUD with the winner / draw condition
         }
 
         // client -> server
