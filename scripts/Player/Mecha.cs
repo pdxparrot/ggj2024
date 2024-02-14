@@ -235,13 +235,21 @@ namespace pdxpartyparrot.ggj2024.Player
             Rpc(nameof(RpcThrusters));
         }
 
-        public void Win()
+        public void Win(bool draw)
         {
+            if(draw) {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] drew!");
+            } else {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] won!");
+            }
+
             // TODO: play the win animation
         }
 
         public void Lose()
         {
+            GD.Print($"[Player {ClientId}:{Input.DeviceId}] lost!");
+
             // TODO: play the lose animation
         }
 

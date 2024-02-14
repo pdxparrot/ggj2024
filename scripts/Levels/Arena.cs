@@ -174,6 +174,7 @@ namespace pdxpartyparrot.ggj2024.Levels
             // TODO: this is terrible
 
             int highestHealth = int.MinValue;
+            int winnerCount = 0;
             foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
                 if(playerObject == null) {
                     continue;
@@ -182,23 +183,20 @@ namespace pdxpartyparrot.ggj2024.Levels
                 var player = (Mecha)playerObject;
                 if(player.CurrentHealth > highestHealth) {
                     highestHealth = player.CurrentHealth;
+                    winnerCount = 1;
+                } else if(player.CurrentHealth == highestHealth) {
+                    winnerCount++;
                 }
             }
 
-            int winnerCount = 0;
             foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
                 if(playerObject == null) {
                     continue;
                 }
 
                 var player = (Mecha)playerObject;
-                if(player.IsDead) {
-                    continue;
-                }
-
-                if(player.CurrentHealth >= highestHealth) {
-                    player.Win();
-                    winnerCount++;
+                if(!player.IsDead && player.CurrentHealth >= highestHealth) {
+                    player.Win(winnerCount > 1);
                 } else {
                     player.Lose();
                 }
