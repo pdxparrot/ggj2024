@@ -1083,7 +1083,7 @@ shadow_mesh = SubResource("ArrayMesh_6v1vo")
 
 [node name="Street_Layout" type="MeshInstance3D" parent="Full_Edge_Level"]
 transform = Transform3D(0.01, 0, 0, 0, -1.19209e-09, -0.01, 0, 0.01, -1.19209e-09, 0, 0, 0)
-material_override = ExtResource("1_iasxy")
+material_override = ExtResource("3_qxnqc")
 mesh = SubResource("ArrayMesh_10eoj")
 skeleton = NodePath("")
 
@@ -1235,7 +1235,7 @@ skeleton = NodePath("")
 
 [node name="Buildings465" type="MeshInstance3D" parent="Full_Edge_Level/SE_Edge_01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28.3743)
-material_override = ExtResource("3_qxnqc")
+material_override = ExtResource("1_iasxy")
 mesh = SubResource("ArrayMesh_w0o5c")
 skeleton = NodePath("")
 
@@ -1257,7 +1257,6 @@ mesh = SubResource("ArrayMesh_hgd2h")
 skeleton = NodePath("")
 
 [node name="Sidewalk2" type="MeshInstance3D" parent="Full_Edge_Level/SW_Edge_01"]
-material_override = ExtResource("3_qxnqc")
 mesh = SubResource("ArrayMesh_s05di")
 skeleton = NodePath("")
 
