@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyoxwjirorhlm"]
+[gd_scene load_steps=5 format=3 uid="uid://cyoxwjirorhlm"]
 
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="1_1ymsw"]
 [ext_resource type="Script" path="res://scripts/Levels/Lobby.cs" id="1_an5xv"]
 [ext_resource type="PackedScene" uid="uid://cpkraolxxd5tb" path="res://scenes/ui/lobby_player.tscn" id="2_kr6ua"]
-[ext_resource type="Texture2D" uid="uid://h5dx2u6m414q" path="res://art/ui/Buttons/StartGame-Hover.png" id="4_rn3s7"]
-[ext_resource type="Texture2D" uid="uid://v4jxx06ev3g0" path="res://art/ui/Buttons/Cancel-Hover.png" id="5_b8682"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjrgo"]
 
 [node name="Lobby" type="Node3D" node_paths=PackedStringArray("_lobbyPlayerContainer", "_startButton")]
 script = ExtResource("1_an5xv")
@@ -21,14 +21,24 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/CanvasLayer"]
-offset_right = 741.0
-offset_bottom = 225.0
+[node name="VBoxContainer" type="Panel" parent="Control/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gjrgo")
 
 [node name="Players" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.65
+offset_bottom = -0.280029
 size_flags_vertical = 3
 
 [node name="LobbyPlayer" parent="Control/CanvasLayer/VBoxContainer/Players" instance=ExtResource("2_kr6ua")]
@@ -48,18 +58,23 @@ visible = false
 layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.7
+anchor_right = 0.7
+anchor_bottom = 0.8
 size_flags_vertical = 3
 
 [node name="Start" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_1ymsw")]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("4_rn3s7")
+text = "Start Game"
 
 [node name="Cancel" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer") instance=ExtResource("1_1ymsw")]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("5_b8682")
+text = "Cancel"
 _hoverAudioStreamPlayer = NodePath("../Start/Hover")
 _pressedAudioStreamPlayer = NodePath("../Start/Pressed")
 

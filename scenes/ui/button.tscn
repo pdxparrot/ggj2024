@@ -1,17 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqde5dthabmu5"]
+[gd_scene load_steps=5 format=3 uid="uid://cqde5dthabmu5"]
 
+[ext_resource type="FontFile" uid="uid://ct6ib7v02fm4b" path="res://art/font/Subwich.otf" id="1_pw52o"]
 [ext_resource type="Script" path="res://scripts/UI/Button.cs" id="1_wyd8i"]
 [ext_resource type="AudioStream" uid="uid://32hcrnhxeb0t" path="res://audio/UI/SFX_UI_Click_SciFi_Thin_Select_1.wav" id="2_njoyd"]
 [ext_resource type="AudioStream" uid="uid://jtrss1of3pc6" path="res://audio/UI/SFX_UI_Confirm_Rich_Chime.wav" id="3_4lysn"]
 
-[node name="Button" type="TextureButton" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer")]
+[node name="Button" type="Button" node_paths=PackedStringArray("_hoverAudioStreamPlayer", "_pressedAudioStreamPlayer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-ignore_texture_size = true
-stretch_mode = 5
+theme_override_colors/font_color = Color(0.164706, 0.788235, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.54902, 0.705882, 1)
+theme_override_colors/font_hover_color = Color(0.741176, 0.917647, 1, 1)
+theme_override_fonts/font = ExtResource("1_pw52o")
+text = "Button"
 script = ExtResource("1_wyd8i")
 _hoverAudioStreamPlayer = NodePath("Hover")
 _pressedAudioStreamPlayer = NodePath("Pressed")
