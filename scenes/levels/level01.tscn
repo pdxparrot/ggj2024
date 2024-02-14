@@ -48,9 +48,10 @@ size = Vector3(170, 10, 195)
 subdivide_width = 1
 subdivide_height = 1
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer", "_viewer")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_gameOverTimer", "_musicPlayer", "_viewer")]
 script = ExtResource("1_avn16")
 _gameTimer = NodePath("GameTimer")
+_gameOverTimer = NodePath("GameOverTimer")
 _musicPlayer = NodePath("Music")
 _viewer = NodePath("Camera")
 
@@ -160,6 +161,10 @@ volume_db = -45.0
 wait_time = 60.0
 one_shot = true
 
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
 [node name="Camera" parent="." instance=ExtResource("10_6rkt4")]
 
 [node name="Camera3D" parent="Camera" index="0"]
@@ -171,5 +176,6 @@ fov = 30.0
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 192.5, 168.928, 176.572)
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 
 [editable path="Camera"]

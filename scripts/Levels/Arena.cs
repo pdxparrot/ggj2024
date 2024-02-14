@@ -13,6 +13,9 @@ namespace pdxpartyparrot.ggj2024.Levels
         [Export]
         private Timer _gameTimer;
 
+        [Export]
+        private Timer _gameOverTimer;
+
         // sync'd
         [Export]
         private int _timeRemaining;
@@ -166,6 +169,8 @@ namespace pdxpartyparrot.ggj2024.Levels
 
             GameManager.Instance.GameOver();
 
+            _gameOverTimer.Start();
+
             // TODO: this is terrible
 
             int highestHealth = int.MinValue;
@@ -220,6 +225,11 @@ namespace pdxpartyparrot.ggj2024.Levels
             if(NetworkManager.Instance.IsServer) {
                 Rpc(nameof(GameOver));
             }
+        }
+
+        private async void _on_game_over_timer_timeout()
+        {
+            await GameManager.Instance.RestartAsync();
         }
 
         #endregion
