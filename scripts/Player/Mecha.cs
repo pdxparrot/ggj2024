@@ -256,6 +256,8 @@ namespace pdxpartyparrot.ggj2024.Player
             if(IsDead) {
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] died!");
                 Model.ChangeState("Death");
+
+                ((Arena)LevelManager.Instance.CurrentLevel).PlayerDied(this);
             } else {
                 Model.ChangeState("Hit");
             }

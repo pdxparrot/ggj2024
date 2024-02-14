@@ -63,7 +63,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
         public override void _Process(double delta)
         {
-            if(NetworkManager.Instance.IsServer) {
+            if(NetworkManager.Instance.IsServer && !_gameTimer.IsStopped()) {
                 _timeRemaining = (int)_gameTimer.TimeLeft;
             }
             GameUIManager.Instance.HUD.UpdateTimer(_timeRemaining);
@@ -114,6 +114,35 @@ namespace pdxpartyparrot.ggj2024.Levels
             }
         }
 
+        public void PlayerDied(Mecha mecha)
+        {
+            var phantom = _viewer as PhantomCamera;
+            if(phantom != null) {
+                phantom.RemoveFromLookAtGroup(mecha);
+                phantom.RemoveFromFollowGroup(mecha);
+            }
+
+            if(!NetworkManager.Instance.IsServer) {
+                return;
+            }
+
+            int aliveCount = 0;
+            foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
+                if(playerObject == null) {
+                    continue;
+                }
+
+                var player = (Mecha)playerObject;
+                if(!player.IsDead) {
+                    aliveCount++;
+                }
+            }
+
+            if(aliveCount <= 1) {
+                Rpc(nameof(GameOver));
+            }
+        }
+
         #region RPCs
 
         // server broadcast
@@ -131,6 +160,8 @@ namespace pdxpartyparrot.ggj2024.Levels
         private void GameOver()
         {
             GD.Print($"Server says game over");
+
+            _gameTimer.Stop();
 
             GameManager.Instance.GameOver();
         }
