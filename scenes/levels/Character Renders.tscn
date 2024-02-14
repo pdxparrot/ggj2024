@@ -46,11 +46,10 @@ fog_height_density = 0.02
 [sub_resource type="PlaneMesh" id="PlaneMesh_s551o"]
 size = Vector2(100, 100)
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer", "_viewer")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer")]
 script = ExtResource("1_nv62w")
 _gameTimer = NodePath("GameTimer")
 _musicPlayer = NodePath("Music")
-_viewer = NodePath("")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_woxuc")
@@ -253,29 +252,27 @@ process_mode = 4
 transform = Transform3D(0.791224, 0, 0.611527, 0, 1, 0, -0.611527, 0, 0.791224, 53.573, 0, 25.302)
 
 [node name="GeneralSkeleton" parent="Char_MechaGizzard/Armature" index="0"]
-bones/0/position = Vector3(-0.839136, 10.1637, -0.220386)
-bones/0/rotation = Quaternion(-0.0105254, -0.0128962, 0.0102426, 0.999809)
-bones/1/rotation = Quaternion(0.00359271, -0.00247521, 0.00449393, 0.99998)
-bones/2/rotation = Quaternion(0.00109505, -0.0224747, 0.00642127, 0.999726)
-bones/3/rotation = Quaternion(0.000894141, -0.0223985, 0.00655023, 0.999727)
-bones/4/rotation = Quaternion(-0.031648, 0.0195287, -0.0222747, 0.99906)
-bones/5/rotation = Quaternion(0.0478854, 0.00216955, 0.0175582, 0.998696)
-bones/7/rotation = Quaternion(0.496343, 0.503398, 0.421205, -0.568173)
-bones/8/rotation = Quaternion(0.0917796, 0.804172, -0.582175, -0.0771794)
-bones/9/rotation = Quaternion(0.186295, -0.71127, 0.185573, 0.651883)
-bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
-bones/11/rotation = Quaternion(0.471074, -0.52415, -0.434791, -0.560637)
-bones/12/rotation = Quaternion(-0.203225, 0.799077, -0.55918, 0.0865615)
-bones/13/rotation = Quaternion(0.157506, 0.714048, -0.157223, 0.663783)
-bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
-bones/15/rotation = Quaternion(0.0623, 0.0405063, 0.995767, -0.0540904)
-bones/16/rotation = Quaternion(-0.0268776, 0.967698, -0.242031, 0.0652612)
-bones/17/rotation = Quaternion(-0.0616155, 0.567026, -0.81771, 0.0776827)
-bones/18/rotation = Quaternion(-6.4942e-08, 0.999981, 0.00612753, -1.46864e-10)
-bones/20/rotation = Quaternion(-0.0911508, 0.109401, 0.988667, 0.0475373)
-bones/21/rotation = Quaternion(0.0196342, 0.940034, -0.337545, -0.0448746)
-bones/22/rotation = Quaternion(0.015117, 0.535038, -0.842071, -0.0664969)
-bones/23/rotation = Quaternion(1.30194e-08, 1, 0.00049804, 6.51341e-09)
+bones/0/position = Vector3(0.267203, 9.57294, -0.380203)
+bones/0/rotation = Quaternion(-0.0313894, -0.13381, -0.0169765, 0.990364)
+bones/1/rotation = Quaternion(0.0130403, -0.00729297, 0.00809944, 0.999856)
+bones/2/rotation = Quaternion(0.0217133, -0.0144786, 0.00946908, 0.999615)
+bones/3/rotation = Quaternion(0.0216939, -0.0144756, 0.00947756, 0.999615)
+bones/4/rotation = Quaternion(0.0432383, -0.0181933, -0.0167354, 0.998759)
+bones/5/rotation = Quaternion(-0.102085, -0.128521, 0.0389091, 0.985671)
+bones/7/rotation = Quaternion(0.492835, 0.50753, 0.470304, -0.52758)
+bones/8/rotation = Quaternion(-0.0564803, 0.859857, 0.0216595, 0.506939)
+bones/9/rotation = Quaternion(0.485274, -0.514933, 0.485275, 0.513676)
+bones/11/rotation = Quaternion(0.471026, -0.522052, -0.518523, -0.486549)
+bones/12/rotation = Quaternion(0.175605, 0.832228, 0.175461, -0.495755)
+bones/13/rotation = Quaternion(0.44479, 0.550236, -0.44487, 0.549084)
+bones/15/rotation = Quaternion(0.139947, -0.0466918, 0.980775, -0.127734)
+bones/16/rotation = Quaternion(-0.0266021, 0.935673, -0.345578, 0.0662071)
+bones/17/rotation = Quaternion(-0.0782103, 0.439567, -0.872505, 0.198492)
+bones/18/rotation = Quaternion(3.37944e-08, 1, 0.000155477, 4.72783e-08)
+bones/20/rotation = Quaternion(-0.0997415, 0.188035, 0.969903, 0.118247)
+bones/21/rotation = Quaternion(4.95814e-05, 0.909909, -0.41204, 0.047835)
+bones/22/rotation = Quaternion(0.0698946, 0.554148, -0.825711, -0.0789634)
+bones/23/rotation = Quaternion(3.95154e-08, 0.999999, 0.00113905, 2.30594e-08)
 
 [node name="AnimationTree" parent="Char_MechaGizzard" index="2"]
 process_mode = 4

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpkraolxxd5tb"]
+[gd_scene load_steps=3 format=3 uid="uid://cpkraolxxd5tb"]
 
 [ext_resource type="Script" path="res://scripts/UI/LobbyPlayer.cs" id="1_guqq5"]
+[ext_resource type="Texture2D" uid="uid://da4lp3v1yqrkf" path="res://art/ui/lobby/Lobby P1 Icon.png" id="2_0nwrf"]
 
 [node name="LobbyPlayer" type="Control" node_paths=PackedStringArray("_playerId", "_playerState")]
 layout_mode = 3
@@ -15,13 +16,34 @@ script = ExtResource("1_guqq5")
 _playerId = NodePath("VBoxContainer/PlayerId")
 _playerState = NodePath("VBoxContainer/PlayerState")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0nwrf")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.264
+anchor_bottom = 0.261
+offset_right = 21.08
+offset_bottom = 0.0800018
 
 [node name="PlayerId" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 1
 text = "Player 0"
 
 [node name="PlayerState" type="Label" parent="VBoxContainer"]
