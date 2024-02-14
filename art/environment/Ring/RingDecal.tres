@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bgxdirsepfkpp"]
+
+[ext_resource type="Texture2D" uid="uid://dj12rfgy0mf0b" path="res://art/environment/Ring/Ring decal color 01.png" id="1_anioy"]
+[ext_resource type="Texture2D" uid="uid://bfbs0skod6hlv" path="res://art/environment/Ring/Ring decal emissive 01.png" id="2_3uqeb"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_anioy")
+metallic = 1.0
+emission_enabled = true
+emission_energy_multiplier = 2.0
+emission_texture = ExtResource("2_3uqeb")

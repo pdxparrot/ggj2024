@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0mc35dmp0ctn"]
+
+[ext_resource type="PackedScene" uid="uid://do4ynugyjc4q" path="res://art/environment/city blocks/Block_SE.glb" id="1_83nv2"]
+[ext_resource type="Material" uid="uid://b5ldyiiu74hpb" path="res://art/materials/Env All Textures.tres" id="2_6q8fn"]
+
+[node name="Block_SE" instance=ExtResource("1_83nv2")]
+
+[node name="Building01_001" parent="SE_Block" index="0"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building13" parent="SE_Block" index="1"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building14" parent="SE_Block" index="2"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building16" parent="SE_Block" index="3"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building18" parent="SE_Block" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building19" parent="SE_Block" index="5"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building20" parent="SE_Block" index="6"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building23" parent="SE_Block" index="7"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Building24" parent="SE_Block" index="8"]
+material_override = ExtResource("2_6q8fn")
+
+[node name="Sidewalk10" parent="SE_Block" index="9"]
+material_override = ExtResource("2_6q8fn")

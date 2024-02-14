@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dakgiuqw5f5r4"]
+[gd_scene load_steps=4 format=3 uid="uid://dakgiuqw5f5r4"]
 
 [ext_resource type="PackedScene" uid="uid://d0xayylbsjtym" path="res://art/environment/Ring.glb" id="1_aclir"]
-[ext_resource type="Material" uid="uid://b2d774us28v6b" path="res://art/materials/Ring02.tres" id="2_gqss2"]
+[ext_resource type="Material" uid="uid://bgxdirsepfkpp" path="res://art/environment/Ring/RingDecal.tres" id="2_3r3mv"]
+[ext_resource type="Material" uid="uid://b2d774us28v6b" path="res://art/environment/Ring/RingLine.tres" id="2_gqss2"]
 
 [node name="Ring" instance=ExtResource("1_aclir")]
 
-[node name="Ring" parent="." index="0"]
+[node name="RingDecal1" parent="Ring1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+material_override = ExtResource("2_3r3mv")
+
+[node name="RingLine" parent="Ring1" index="1"]
 material_override = ExtResource("2_gqss2")

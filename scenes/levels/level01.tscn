@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=18 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="4_tvxu2"]
 [ext_resource type="PackedScene" uid="uid://dg81r0f0u7vva" path="res://art/environment/Outer Area.tscn" id="5_7uad2"]
 [ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="5_qxvwr"]
+[ext_resource type="PackedScene" uid="uid://c0mc35dmp0ctn" path="res://art/environment/city blocks/Block_SE.tscn" id="5_x4rk3"]
 [ext_resource type="PackedScene" uid="uid://cmr2suug7clty" path="res://scenes/camera/follow_camera.tscn" id="10_6rkt4"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
@@ -76,6 +77,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Ring" parent="CityBlocks" instance=ExtResource("4_4htjn")]
+
+[node name="Block_SE" parent="CityBlocks" instance=ExtResource("5_x4rk3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 52)
 
 [node name="Bounds" type="Node3D" parent="."]
 
