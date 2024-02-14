@@ -30,6 +30,12 @@ namespace pdxpartyparrot.ggj2024.Managers
             private SpawnMethod _spawnMethod;
 
             public SpawnMethod SpawnMethod => _spawnMethod;
+
+            public SpawnPointType()
+            {
+                _tag = string.Empty;
+                _spawnMethod = SpawnMethod.RoundRobin;
+            }
         }
 
         private sealed class SpawnPointSet
