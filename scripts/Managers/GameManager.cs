@@ -145,6 +145,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             NetworkManager.Instance.Disconnect();
             NetworkManager.Instance.StopServer();
 
+            PlayerManager.Instance.DestroyPlayers();
             PlayerManager.Instance.UnRegisterAllPlayers();
 
             GameUIManager.Instance.HUD.HideGameOver();

@@ -315,10 +315,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void DeSpawnPlayers()
         {
-            if(PlayerCount < 1) {
-                return;
-            }
-
             for(int i = 0; i < _players.Length; ++i) {
                 var player = _players[i];
                 if(player == null) {
@@ -351,10 +347,6 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void DestroyPlayers()
         {
-            if(PlayerCount < 1) {
-                return;
-            }
-
             for(int i = 0; i < _players.Length; ++i) {
                 DestroyPlayer(i, false);
             }
