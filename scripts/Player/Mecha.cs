@@ -148,7 +148,7 @@ namespace pdxpartyparrot.ggj2024.Player
         public override void _ExitTree()
         {
             if(LevelManager.HasInstance) {
-                var arena = (Arena)LevelManager.Instance.CurrentLevel;
+                var arena = LevelManager.Instance.CurrentLevel as Arena;
                 if(arena != null) {
                     arena.PlayerObjectExitTree(this);
                 }
@@ -243,14 +243,14 @@ namespace pdxpartyparrot.ggj2024.Player
                 GD.Print($"[Player {ClientId}:{Input.DeviceId}] won!");
             }
 
-            // TODO: play the win animation
+            Model.ChangeState("Win");
         }
 
         public void Lose()
         {
             GD.Print($"[Player {ClientId}:{Input.DeviceId}] lost!");
 
-            // TODO: play the lose animation
+            Model.ChangeState("Lose");
         }
 
         public void Damage(Mecha attacker, int amount)

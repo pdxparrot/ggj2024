@@ -175,6 +175,7 @@ namespace pdxpartyparrot.ggj2024.Levels
 
             int highestHealth = int.MinValue;
             int winnerCount = 0;
+            int winnerSlot = 0;
             foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
                 if(playerObject == null) {
                     continue;
@@ -184,6 +185,7 @@ namespace pdxpartyparrot.ggj2024.Levels
                 if(player.CurrentHealth > highestHealth) {
                     highestHealth = player.CurrentHealth;
                     winnerCount = 1;
+                    winnerSlot = player.PlayerSlot;
                 } else if(player.CurrentHealth == highestHealth) {
                     winnerCount++;
                 }
@@ -202,7 +204,11 @@ namespace pdxpartyparrot.ggj2024.Levels
                 }
             }
 
-            // TODO: update the HUD with the winner / draw condition
+            if(winnerCount > 1) {
+                GameUIManager.Instance.HUD.ShowGameOverDraw();
+            } else {
+                GameUIManager.Instance.HUD.ShowGameOver(winnerSlot);
+            }
         }
 
         // client -> server

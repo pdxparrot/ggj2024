@@ -13,6 +13,9 @@ namespace pdxpartyparrot.ggj2024.UI
         PlayerHUDPanel[] _panels = Array.Empty<PlayerHUDPanel>();
 
         [Export]
+        Control[] _gameOverControls = Array.Empty<Control>();
+
+        [Export]
         private Label _timerLabel;
 
         [Export]
@@ -22,7 +25,7 @@ namespace pdxpartyparrot.ggj2024.UI
 
         public override void _Ready()
         {
-            _gameOverPanel.Visible = false;
+            HideGameOver();
         }
 
         #endregion
@@ -43,14 +46,24 @@ namespace pdxpartyparrot.ggj2024.UI
             _timerLabel.Text = time.ToString(@"mm\:ss");
         }
 
-        public void ShowGameOver()
+        public void ShowGameOver(int winnerSlot)
         {
             _gameOverPanel.Visible = true;
+            _gameOverControls[winnerSlot].Visible = true;
+        }
+
+        public void ShowGameOverDraw()
+        {
+            _gameOverPanel.Visible = true;
+            _gameOverControls[_gameOverControls.Length - 1].Visible = true;
         }
 
         public void HideGameOver()
         {
             _gameOverPanel.Visible = false;
+            foreach(var gameOverControl in _gameOverControls) {
+                gameOverControl.Visible = false;
+            }
         }
     }
 }

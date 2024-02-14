@@ -315,11 +315,7 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void DeSpawnPlayers()
         {
-            for(int i = 0; i < _players.Length; ++i) {
-                var player = _players[i];
-                if(player == null) {
-                    continue;
-                }
+            for(int i = 0; i < _playerObjects.Length; ++i) {
                 DeSpawnPlayer(_playerObjects[i]);
             }
         }
@@ -328,26 +324,16 @@ namespace pdxpartyparrot.ggj2024.Managers
         {
             GD.Print($"[PlayerManager] Destroying player {playerSlot}");
 
-            var player = _players[playerSlot];
-            if(player == null) {
-                GD.PushError($"Player {playerSlot} not registered!");
-                return;
-            }
-
             var playerObject = _playerObjects[playerSlot];
             if(playerObject != null) {
                 playerObject.QueueFree();
                 _playerObjects[playerSlot] = null;
             }
-
-            if(remove) {
-                _players[playerSlot] = null;
-            }
         }
 
         public void DestroyPlayers()
         {
-            for(int i = 0; i < _players.Length; ++i) {
+            for(int i = 0; i < _playerObjects.Length; ++i) {
                 DestroyPlayer(i, false);
             }
         }
