@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=25 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
@@ -16,16 +16,44 @@
 [ext_resource type="PackedScene" uid="uid://bq3p2s7oocwcs" path="res://art/environment/city blocks/Block_Trees.tscn" id="8_np4ox"]
 [ext_resource type="PackedScene" uid="uid://cmr2suug7clty" path="res://scenes/camera/follow_camera.tscn" id="10_6rkt4"]
 [ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Street.tscn" id="13_vddnr"]
+[ext_resource type="Material" uid="uid://7i3n5tx2cdat" path="res://art/environment/Street/Street.tres" id="14_5sxvs"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
 properties/0/path = NodePath(".:_timeRemaining")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l4abj"]
+sky_top_color = Color(0.529412, 0.85098, 0.996078, 1)
+sky_horizon_color = Color(0.0627451, 0.313726, 0.709804, 1)
+ground_bottom_color = Color(0.392157, 0.431373, 0.482353, 1)
+ground_horizon_color = Color(0.196078, 0.239216, 0.733333, 1)
+
+[sub_resource type="Sky" id="Sky_k6yue"]
+sky_material = SubResource("ProceduralSkyMaterial_l4abj")
+
+[sub_resource type="Environment" id="Environment_f6qlm"]
+background_mode = 2
+sky = SubResource("Sky_k6yue")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_white = 16.0
+fog_light_color = Color(0.713726, 0.858824, 0.992157, 1)
+fog_light_energy = 0.1
+fog_density = 0.0015
+fog_height = 5.0
+fog_height_density = 0.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3ubp6"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_md66h"]
 size = Vector3(170, 10, 195)
 subdivide_width = 1
 subdivide_height = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q47wc"]
+size = Vector2(1000, 1000)
 
 [node name="Arena" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_gameOverTimer", "_musicPlayer", "_viewer")]
 script = ExtResource("1_avn16")
@@ -37,9 +65,17 @@ _viewer = NodePath("Camera")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_woxuc")
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.713455, -0.416929, 0.563163, -0.192055, 0.656578, 0.729397, -0.673867, -0.628551, 0.388366, 47.0887, 42.6131, -8.2344)
-light_energy = 2.0
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f6qlm")
+camera_attributes = SubResource("CameraAttributesPractical_3ubp6")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.133004, -0.797831, 0.588027, -0.394385, 0.586907, 0.707107, -0.909269, -0.137861, -0.392714, 47.0887, 42.6131, -8.2344)
+light_color = Color(1, 0.94902, 0.784314, 1)
+shadow_enabled = true
+shadow_bias = 10.0
+shadow_normal_bias = 5.339
+directional_shadow_max_distance = 1000.0
 
 [node name="CityBlocks" type="Node3D" parent="."]
 
@@ -120,6 +156,11 @@ visible = false
 [node name="Outer Area2" parent="World" instance=ExtResource("5_7uad2")]
 
 [node name="Street" parent="World" instance=ExtResource("13_vddnr")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.3513, 0)
+material_override = ExtResource("14_5sxvs")
+mesh = SubResource("PlaneMesh_q47wc")
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 

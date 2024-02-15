@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://b3sr4ck7cbrt4"]
+
+[ext_resource type="Texture2D" uid="uid://d1shub1twupqv" path="res://art/environment/Env All Texture Outer.png" id="1_sp4s2"]
+[ext_resource type="Texture2D" uid="uid://cx73hkmcnj21a" path="res://art/environment/Env All Texture - Metalness.png" id="2_kj58e"]
+[ext_resource type="Texture2D" uid="uid://cd7slvnrplva" path="res://art/environment/Env All Texture - Roughness.png" id="3_tvktv"]
+
+[resource]
+albedo_texture = ExtResource("1_sp4s2")
+metallic = 0.8
+metallic_specular = 1.0
+metallic_texture = ExtResource("2_kj58e")
+metallic_texture_channel = 1
+roughness_texture = ExtResource("3_tvktv")
+roughness_texture_channel = 2
+rim_enabled = true
+rim = 0.5
+rim_tint = 0.0
