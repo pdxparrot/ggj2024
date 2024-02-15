@@ -384,10 +384,10 @@ namespace pdxpartyparrot.ggj2024.Player
                 return;
             }
 
-            Punch(_leftArmInteractables);
-
             Model.ChangeState("PunchLeft");
             _punchAudioPlayer.Play();
+
+            Punch(_leftArmInteractables);
 
             _leftPunchCooldown = true;
             _leftPunchCooldownTimer.Start();
@@ -401,10 +401,10 @@ namespace pdxpartyparrot.ggj2024.Player
                 return;
             }
 
-            Punch(_rightArmInteractables);
-
             Model.ChangeState("PunchRight");
             _punchAudioPlayer.Play();
+
+            Punch(_rightArmInteractables);
 
             _rightPunchCooldown = true;
             _rightPunchCooldownTimer.Start();
