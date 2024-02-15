@@ -191,20 +191,22 @@ namespace pdxpartyparrot.ggj2024.Levels
                 }
             }
 
+            bool draw = winnerCount > 1;
+
             foreach(var playerObject in PlayerManager.Instance.PlayerObjects) {
                 if(playerObject == null) {
                     continue;
                 }
 
                 var player = (Mecha)playerObject;
-                if(!player.IsDead && player.CurrentHealth >= highestHealth) {
+                if(!player.IsDead && player.CurrentHealth >= highestHealth && !draw) {
                     player.Win();
                 } else {
-                    player.Lose(winnerCount > 1);
+                    player.Lose(draw);
                 }
             }
 
-            if(winnerCount > 1) {
+            if(draw) {
                 GameUIManager.Instance.HUD.ShowGameOverDraw();
             } else {
                 GameUIManager.Instance.HUD.ShowGameOver(winnerSlot);
