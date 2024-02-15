@@ -20,10 +20,10 @@ namespace pdxpartyparrot.ggj2024.Player
             }
         }
 
-        // sync'd server -> client
+        // sync'd
         private int _playerSlot;
 
-        // sync'd server -> client
+        // sync'd
         [Export]
         public int PlayerSlot
         {
@@ -34,8 +34,12 @@ namespace pdxpartyparrot.ggj2024.Player
                 OnPlayerSlotChanged();
 
                 if(!NetworkManager.Instance.IsServer) {
+                    if(PlayerManager.Instance.PlayerObjects[_playerSlot] != null) {
+                        GD.PushWarning($"Player {_playerSlot} overwrite!");
+                    }
                     PlayerManager.Instance.PlayerObjects[_playerSlot] = this;
                 }
+
                 GameUIManager.Instance.HUD.InitializePlayer(_playerSlot);
             }
         }
