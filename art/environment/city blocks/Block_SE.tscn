@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0mc35dmp0ctn"]
+[gd_scene load_steps=4 format=3 uid="uid://c0mc35dmp0ctn"]
 
 [ext_resource type="PackedScene" uid="uid://do4ynugyjc4q" path="res://art/environment/city blocks/Block_SE.glb" id="1_83nv2"]
 [ext_resource type="Material" uid="uid://b5ldyiiu74hpb" path="res://art/materials/Env All Textures.tres" id="2_6q8fn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dxt7t"]
+size = Vector3(29.8615, 33.5657, 30.9303)
 
 [node name="Block_SE" instance=ExtResource("1_83nv2")]
 
@@ -35,3 +38,11 @@ material_override = ExtResource("2_6q8fn")
 
 [node name="Sidewalk10" parent="SE_Block" index="9"]
 material_override = ExtResource("2_6q8fn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223206, 16.1132, 1.78577)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.387314, 0, -1.49982)
+shape = SubResource("BoxShape3D_dxt7t")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://sdlrbqq5m4bt"
-path="res://.godot/imported/Block_TokyoTower.glb-65c9c6433a6655e8cce7e942d9377022.scn"
+uid="uid://dspregfqjt5so"
+path="res://.godot/imported/Block_SE_Long.glb-b884f2708d111ee3a37826c3ed2c7797.scn"
 
 [deps]
 
-source_file="res://art/environment/city blocks/Block_TokyoTower.glb"
-dest_files=["res://.godot/imported/Block_TokyoTower.glb-65c9c6433a6655e8cce7e942d9377022.scn"]
+source_file="res://art/environment/city blocks/Block_SE_Long.glb"
+dest_files=["res://.godot/imported/Block_SE_Long.glb-b884f2708d111ee3a37826c3ed2c7797.scn"]
 
 [params]
 

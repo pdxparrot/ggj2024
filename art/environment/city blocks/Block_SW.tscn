@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7srpy7shquvl"]
+
+[ext_resource type="PackedScene" uid="uid://s8q2ckgirk83" path="res://art/environment/city blocks/Block_SW.glb" id="1_4df8g"]
+[ext_resource type="Material" uid="uid://b5ldyiiu74hpb" path="res://art/materials/Env All Textures.tres" id="2_ybnv3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xnbv5"]
+size = Vector3(46.8768, 33.5657, 33.9299)
+
+[node name="Block_SW" instance=ExtResource("1_4df8g")]
+
+[node name="Building01_002" parent="SW_Block" index="0"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building25" parent="SW_Block" index="1"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building26" parent="SW_Block" index="2"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building27" parent="SW_Block" index="3"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building28" parent="SW_Block" index="4"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building29" parent="SW_Block" index="5"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building30" parent="SW_Block" index="6"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building31" parent="SW_Block" index="7"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building32" parent="SW_Block" index="8"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building33" parent="SW_Block" index="9"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building34" parent="SW_Block" index="10"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building35" parent="SW_Block" index="11"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Building36" parent="SW_Block" index="12"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="Sidewalk" parent="SW_Block" index="13"]
+material_override = ExtResource("2_ybnv3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223206, 16.1132, 1.78577)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_xnbv5")

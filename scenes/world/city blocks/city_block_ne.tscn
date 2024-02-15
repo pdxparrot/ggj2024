@@ -1,27 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8cuge5aw4jnc"]
+[gd_scene load_steps=3 format=3 uid="uid://c8cuge5aw4jnc"]
 
 [ext_resource type="PackedScene" uid="uid://ds28jbuo5w7ev" path="res://art/environment/city blocks/Block_NE.tscn" id="1_3vsqo"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lek5g"]
-size = Vector3(0.601746, 1.20782, 0.551544)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bfyhd"]
-size = Vector3(0.361603, 0.629425, 0.347168)
+[sub_resource type="BoxShape3D" id="BoxShape3D_1003v"]
+size = Vector3(31.3562, 33.5657, 30.6162)
 
 [node name="CityBlock_NE" type="Node3D"]
 
 [node name="Block_NE" parent="." instance=ExtResource("1_3vsqo")]
 
-[node name="Collider" type="Area3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223206, 16.1132, 1.78577)
 collision_layer = 2
-collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collider"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0.282288, 10.6842, -0.0038147)
-shape = SubResource("BoxShape3D_lek5g")
-
-[node name="Hurtbox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.483704, 11.9049, 0.12207)
-shape = SubResource("BoxShape3D_bfyhd")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64537, 0, -1.65686)
+shape = SubResource("BoxShape3D_1003v")

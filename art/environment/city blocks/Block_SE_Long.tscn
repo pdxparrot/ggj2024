@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqpdl6xvqm4vh"]
+
+[ext_resource type="PackedScene" uid="uid://dspregfqjt5so" path="res://art/environment/city blocks/Block_SE_Long.glb" id="1_1fk6u"]
+[ext_resource type="Material" uid="uid://b5ldyiiu74hpb" path="res://art/materials/Env All Textures.tres" id="2_v7758"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p6156"]
+size = Vector3(33.874, 33.5657, 32.343)
+
+[node name="Block_SE_Long" instance=ExtResource("1_1fk6u")]
+
+[node name="Building41" parent="SE_Block_Long" index="0"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building42" parent="SE_Block_Long" index="1"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building43" parent="SE_Block_Long" index="2"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building44" parent="SE_Block_Long" index="3"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building45" parent="SE_Block_Long" index="4"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building46" parent="SE_Block_Long" index="5"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building47" parent="SE_Block_Long" index="6"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building48" parent="SE_Block_Long" index="7"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building49" parent="SE_Block_Long" index="8"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building50" parent="SE_Block_Long" index="9"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building52" parent="SE_Block_Long" index="10"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building53" parent="SE_Block_Long" index="11"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building54" parent="SE_Block_Long" index="12"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building55" parent="SE_Block_Long" index="13"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building56" parent="SE_Block_Long" index="14"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building57" parent="SE_Block_Long" index="15"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building58" parent="SE_Block_Long" index="16"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building59" parent="SE_Block_Long" index="17"]
+material_override = ExtResource("2_v7758")
+
+[node name="Building60" parent="SE_Block_Long" index="18"]
+material_override = ExtResource("2_v7758")
+
+[node name="Sidewalk_001" parent="SE_Block_Long" index="19"]
+material_override = ExtResource("2_v7758")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223206, 16.1132, 1.78577)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.159683, 0, 23.7631)
+shape = SubResource("BoxShape3D_p6156")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.159683, 0, -25.4209)
+shape = SubResource("BoxShape3D_p6156")
