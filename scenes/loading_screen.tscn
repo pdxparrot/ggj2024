@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cedaaxqwkl6mf"]
 
 [ext_resource type="Script" path="res://scripts/LoadingScreen.cs" id="1_1jnux"]
-[ext_resource type="Texture2D" uid="uid://bdorvct650ecs" path="res://art/ui/WIP Title Screen.png" id="2_ukc0i"]
+[ext_resource type="Texture2D" uid="uid://b2cyqt861ecug" path="res://art/ui/Loading Screen.png" id="2_huc0s"]
 [ext_resource type="FontFile" uid="uid://bnknyypvla4mt" path="res://art/font/Equalize.ttf" id="3_y0yqe"]
 
 [node name="LoadingScreen" type="Node3D"]
@@ -31,7 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ukc0i")
+texture = ExtResource("2_huc0s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/CanvasLayer/Panel"]
 layout_mode = 1

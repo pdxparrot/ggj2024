@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dxx854vihgahm"]
 
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.cs" id="1_cimc5"]
-[ext_resource type="Texture2D" uid="uid://bdorvct650ecs" path="res://art/ui/WIP Title Screen.png" id="2_72gf8"]
+[ext_resource type="Texture2D" uid="uid://btum7r6v7pxwo" path="res://art/ui/Title Screen.png" id="2_5qihx"]
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_ffntl"]
 [ext_resource type="Script" path="res://scripts/UI/JoinMenu.cs" id="3_v625v"]
 [ext_resource type="AudioStream" uid="uid://d2mrmdyii6cww" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-main-menu1.mp3" id="5_u5rdw"]
@@ -38,7 +38,7 @@ offset_right = -0.00012207
 offset_bottom = -0.00012207
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_72gf8")
+texture = ExtResource("2_5qihx")
 expand_mode = 1
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
@@ -56,11 +56,12 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4
-anchor_top = 0.8
+anchor_top = 0.713
 anchor_right = 0.6
 anchor_bottom = 0.9
-offset_left = -0.160034
-offset_bottom = -0.280029
+offset_left = 6.10352e-05
+offset_top = -0.039978
+offset_bottom = 0.00012207
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1

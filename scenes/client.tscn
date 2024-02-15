@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpsquq25tmdhn"]
+[gd_scene load_steps=4 format=3 uid="uid://dpsquq25tmdhn"]
 
 [ext_resource type="Script" path="res://scripts/SplashScreen.cs" id="1_fwsyr"]
 [ext_resource type="Texture2D" uid="uid://c5s7nuyu0brl3" path="res://art/ui/splash/ggj24hor.png" id="2_h7jbb"]
+[ext_resource type="Texture2D" uid="uid://btum7r6v7pxwo" path="res://art/ui/Title Screen.png" id="3_cmj6f"]
 
 [node name="Client" type="Node3D" node_paths=PackedStringArray("_splashImage", "_fadeTimer", "_displayTimer")]
 script = ExtResource("1_fwsyr")
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_cmj6f")
 expand_mode = 2
 
 [node name="FadeTimer" type="Timer" parent="."]
