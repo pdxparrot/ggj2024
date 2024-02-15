@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bo8ai7x75s8oq"]
+[gd_scene load_steps=10 format=3 uid="uid://bo8ai7x75s8oq"]
 
 [ext_resource type="Script" path="res://scripts/UI/PlayerHUD.cs" id="1_kahip"]
 [ext_resource type="PackedScene" uid="uid://4u5t7kv5q6a0" path="res://scenes/ui/player_hud_player_panel.tscn" id="2_2t0r0"]
 [ext_resource type="FontFile" uid="uid://cj8w6j0m06vls" path="res://art/font/Slowdex.otf" id="2_ekcxc"]
 [ext_resource type="FontFile" uid="uid://ct6ib7v02fm4b" path="res://art/font/Subwich.otf" id="3_lmt0w"]
 [ext_resource type="FontFile" uid="uid://bnknyypvla4mt" path="res://art/font/Equalize.ttf" id="3_uvr23"]
+[ext_resource type="Texture2D" uid="uid://bgnphqxkpv280" path="res://art/ui/hud/UI - HUD controller layout.png" id="6_1t36k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3fbb"]
 
@@ -227,3 +228,26 @@ theme_override_font_sizes/font_size = 50
 text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Controller Layout" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.23
+anchor_bottom = 0.331
+offset_left = -0.399998
+offset_top = 0.399998
+offset_right = 0.399994
+offset_bottom = -0.480042
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Controller Layout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1t36k")
+expand_mode = 2
+stretch_mode = 5
