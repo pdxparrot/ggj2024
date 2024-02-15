@@ -44,6 +44,9 @@ properties/8/replication_mode = 2
 properties/9/path = NodePath(".:_rightPunchCooldown")
 properties/9/spawn = true
 properties/9/replication_mode = 2
+properties/10/path = NodePath("Pivot:rotation")
+properties/10/spawn = true
+properties/10/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stcnq"]
 properties/0/path = NodePath("Input:_lookDirection")
