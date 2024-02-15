@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq3p2s7oocwcs"]
+
+[ext_resource type="PackedScene" uid="uid://bhpwvncccoy7a" path="res://art/environment/city blocks/Block_Trees.glb" id="1_y2xso"]
+
+[node name="Block_Trees" instance=ExtResource("1_y2xso")]

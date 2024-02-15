@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=19 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
@@ -13,37 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://b7srpy7shquvl" path="res://art/environment/city blocks/Block_SW.tscn" id="6_vf7yr"]
 [ext_resource type="PackedScene" uid="uid://wjhml1aqokde" path="res://art/environment/city blocks/Block_TokyoTower.tscn" id="7_bp0fe"]
 [ext_resource type="PackedScene" uid="uid://cqpdl6xvqm4vh" path="res://art/environment/city blocks/Block_SE_Long.tscn" id="7_dk7b2"]
+[ext_resource type="PackedScene" uid="uid://bq3p2s7oocwcs" path="res://art/environment/city blocks/Block_Trees.tscn" id="8_np4ox"]
 [ext_resource type="PackedScene" uid="uid://cmr2suug7clty" path="res://scenes/camera/follow_camera.tscn" id="10_6rkt4"]
+[ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Street.tscn" id="13_vddnr"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
 properties/0/path = NodePath(".:_timeRemaining")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sbfq3"]
-sky_top_color = Color(0.368627, 0.831373, 0.964706, 1)
-sky_horizon_color = Color(0.0941176, 0.462745, 0.647059, 1)
-ground_bottom_color = Color(0.2, 0.168627, 0.415686, 1)
-ground_horizon_color = Color(0.0901961, 0.376471, 0.662745, 1)
-
-[sub_resource type="Sky" id="Sky_uhxcu"]
-sky_material = SubResource("ProceduralSkyMaterial_sbfq3")
-
-[sub_resource type="Environment" id="Environment_rsl7s"]
-background_mode = 2
-background_energy_multiplier = 1.2
-sky = SubResource("Sky_uhxcu")
-ambient_light_source = 3
-ambient_light_color = Color(0.317647, 0.533333, 1, 1)
-ambient_light_sky_contribution = 0.5
-reflected_light_source = 2
-ssao_intensity = 100.0
-fog_light_color = Color(1, 1, 1, 1)
-fog_light_energy = 0.1
-fog_sun_scatter = 1.0
-fog_density = 0.005
-fog_height = 35.0
-fog_height_density = 0.02
 
 [sub_resource type="BoxMesh" id="BoxMesh_md66h"]
 size = Vector3(170, 10, 195)
@@ -60,16 +37,9 @@ _viewer = NodePath("Camera")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_woxuc")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rsl7s")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.973746, 0.0308465, 0.225539, -0.185396, 0.68237, 0.707107, -0.132089, -0.730356, 0.670174, 47.2182, 41.9933, -7.9015)
-light_color = Color(1, 1, 0.839216, 1)
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-shadow_bias = 1.0
-shadow_normal_bias = 1.0
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.713455, -0.416929, 0.563163, -0.192055, 0.656578, 0.729397, -0.673867, -0.628551, 0.388366, 47.0887, 42.6131, -8.2344)
+light_energy = 2.0
 
 [node name="CityBlocks" type="Node3D" parent="."]
 
@@ -89,6 +59,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.9, -0.5, -26)
 
 [node name="Block_TokyoTower" parent="CityBlocks" instance=ExtResource("7_bp0fe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Block_Trees" parent="CityBlocks" instance=ExtResource("8_np4ox")]
 
 [node name="Bounds" type="Node3D" parent="."]
 
@@ -146,6 +118,8 @@ visible = false
 visible = false
 
 [node name="Outer Area2" parent="World" instance=ExtResource("5_7uad2")]
+
+[node name="Street" parent="World" instance=ExtResource("13_vddnr")]
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 
