@@ -70,7 +70,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
 
             _currentLevel = scene.Instantiate();
-            _currentLevel.Name = "Level";
+            //_currentLevel.Name = "Level"; // levels should give themselves unique names
             GetTree().Root.AddChild(_currentLevel);
         }
 

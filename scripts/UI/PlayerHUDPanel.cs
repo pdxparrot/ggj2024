@@ -14,7 +14,7 @@ namespace pdxpartyparrot.ggj2024.UI
 
         #region Godot Lifecycle
 
-        public override void _Ready()
+        public override void _EnterTree()
         {
             _noPlayerPanel.Visible = true;
             _playerPanel.Visible = false;

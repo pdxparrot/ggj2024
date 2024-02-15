@@ -14,7 +14,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private Mecha Mecha => (Mecha)PlayerOwner;
 
-        private bool IsInputAllowed => !PartyParrotManager.Instance.IsPaused && GameManager.Instance.State == GameManager.GameState.GameOn && DisplayServer.WindowIsFocused();
+        private bool IsInputAllowed => !PartyParrotManager.Instance.IsPaused && GameManager.Instance.IsGameOn && DisplayServer.WindowIsFocused();
 
         #region Godot Lifecycle
 

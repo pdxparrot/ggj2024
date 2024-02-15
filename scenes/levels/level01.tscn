@@ -27,7 +27,7 @@ size = Vector3(170, 10, 195)
 subdivide_width = 1
 subdivide_height = 1
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_gameOverTimer", "_musicPlayer", "_viewer")]
+[node name="Arena" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_gameOverTimer", "_musicPlayer", "_viewer")]
 script = ExtResource("1_avn16")
 _gameTimer = NodePath("GameTimer")
 _gameOverTimer = NodePath("GameOverTimer")

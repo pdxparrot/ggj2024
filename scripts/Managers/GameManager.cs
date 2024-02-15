@@ -45,6 +45,10 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public GameState State { get; private set; } = GameState.NotStarted;
 
+        public bool IsGameOn => State == GameState.GameOn;
+
+        public bool IsGameOver => State == GameState.GameOver;
+
         #region Godot Lifecycle
 
         public override void _Ready()

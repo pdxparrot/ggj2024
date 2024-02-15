@@ -53,7 +53,7 @@ namespace pdxpartyparrot.ggj2024.Player
         [Export]
         private bool _move;
 
-        public bool CanMove => !IsDead && !IsStunned && !IsThrustering;
+        public bool CanMove => CanAction;
 
         #endregion
 
@@ -71,7 +71,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private bool IsLeftPunchCooldown => _leftPunchCooldown;
 
-        private bool CanLeftPunch => !IsDead && !IsStunned && !IsThrustering && !IsLeftPunchCooldown;
+        private bool CanLeftPunch => CanAction && !IsLeftPunchCooldown;
 
         [Export]
         private Timer _rightPunchCooldownTimer;
@@ -82,7 +82,7 @@ namespace pdxpartyparrot.ggj2024.Player
 
         private bool IsRightPunchCooldown => _rightPunchCooldown;
 
-        private bool CanRightPunch => !IsDead && !IsStunned && !IsThrustering && !IsRightPunchCooldown;
+        private bool CanRightPunch => CanAction && !IsRightPunchCooldown;
 
         [Export]
         private Interactables.Interactables _leftArmInteractables;
@@ -132,6 +132,8 @@ namespace pdxpartyparrot.ggj2024.Player
         private bool _stunned;
 
         public bool IsStunned => _stunned;
+
+        private bool CanAction => GameManager.Instance.IsGameOn && !IsDead && !IsStunned && !IsThrustering;
 
         #endregion
 
@@ -235,20 +237,20 @@ namespace pdxpartyparrot.ggj2024.Player
             Rpc(nameof(RpcThrusters));
         }
 
-        public void Win(bool draw)
+        public void Win()
         {
-            if(draw) {
-                GD.Print($"[Player {ClientId}:{Input.DeviceId}] drew!");
-            } else {
-                GD.Print($"[Player {ClientId}:{Input.DeviceId}] won!");
-            }
+            GD.Print($"[Player {ClientId}:{Input.DeviceId}] won!");
 
             Model.ChangeState("Win");
         }
 
-        public void Lose()
+        public void Lose(bool draw)
         {
-            GD.Print($"[Player {ClientId}:{Input.DeviceId}] lost!");
+            if(draw) {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] drew!");
+            } else {
+                GD.Print($"[Player {ClientId}:{Input.DeviceId}] lost!");
+            }
 
             Model.ChangeState("Lose");
         }

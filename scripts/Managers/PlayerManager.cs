@@ -216,6 +216,8 @@ namespace pdxpartyparrot.ggj2024.Managers
 
         public void UnRegisterAllPlayers()
         {
+            GD.Print($"[PlayerManager] UnRegistering all players ...");
+
             for(int i = 0; i < _players.Length; ++i) {
                 _players[i] = null;
             }
@@ -320,7 +322,7 @@ namespace pdxpartyparrot.ggj2024.Managers
             }
         }
 
-        public void DestroyPlayer(int playerSlot, bool remove = true)
+        public void DestroyPlayer(int playerSlot)
         {
             GD.Print($"[PlayerManager] Destroying player {playerSlot}");
 
@@ -334,7 +336,7 @@ namespace pdxpartyparrot.ggj2024.Managers
         public void DestroyPlayers()
         {
             for(int i = 0; i < _playerObjects.Length; ++i) {
-                DestroyPlayer(i, false);
+                DestroyPlayer(i);
             }
         }
 

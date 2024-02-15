@@ -198,9 +198,9 @@ namespace pdxpartyparrot.ggj2024.Levels
 
                 var player = (Mecha)playerObject;
                 if(!player.IsDead && player.CurrentHealth >= highestHealth) {
-                    player.Win(winnerCount > 1);
+                    player.Win();
                 } else {
-                    player.Lose();
+                    player.Lose(winnerCount > 1);
                 }
             }
 
