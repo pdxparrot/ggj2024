@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxx854vihgahm"]
+[gd_scene load_steps=12 format=3 uid="uid://dxx854vihgahm"]
 
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.cs" id="1_cimc5"]
 [ext_resource type="PackedScene" uid="uid://cqde5dthabmu5" path="res://scenes/ui/button.tscn" id="2_ffntl"]
@@ -10,8 +10,6 @@
 [ext_resource type="FontFile" uid="uid://cj8w6j0m06vls" path="res://art/font/Slowdex.otf" id="5_xq8ab"]
 [ext_resource type="AudioStream" uid="uid://bhw3n3wsuj7ca" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-menu-intro-1.mp3" id="6_487fy"]
 [ext_resource type="FontFile" uid="uid://bnknyypvla4mt" path="res://art/font/Equalize.ttf" id="6_qnlkb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_thn26"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xol30"]
 
@@ -91,30 +89,19 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
 
-[node name="Title" type="Panel" parent="CanvasLayer/MainMenu"]
+[node name="Title" type="VBoxContainer" parent="CanvasLayer/MainMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.12
+anchor_top = 0.047
 anchor_right = 0.88
 anchor_bottom = 0.4
-offset_left = 0.0800171
-offset_right = 0.760132
-offset_bottom = 0.400024
-theme_override_styles/panel = SubResource("StyleBoxEmpty_thn26")
+offset_left = -0.399979
+offset_right = 0.400024
+offset_bottom = 39.0
 
 [node name="Above Title Credits" type="Label" parent="CanvasLayer/MainMenu/Title"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.039
-anchor_top = 0.162
-anchor_right = 0.979
-anchor_bottom = 0.27
-offset_left = 0.0646782
-offset_top = -0.0487976
-offset_right = -0.222534
-offset_bottom = -0.0184021
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_ql43c")
 theme_override_font_sizes/font_size = 20
@@ -123,17 +110,7 @@ vertical_alignment = 1
 script = ExtResource("4_en620")
 
 [node name="Title" type="Label" parent="CanvasLayer/MainMenu/Title"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.025
-anchor_top = 0.27
-anchor_right = 0.975
-anchor_bottom = 0.62
-offset_left = 0.0646782
-offset_right = -0.222534
-offset_bottom = -10.3328
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_qnlkb")
 theme_override_font_sizes/font_size = 125
@@ -142,16 +119,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="of" type="Label" parent="CanvasLayer/MainMenu/Title"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.47
-anchor_top = 0.633
-anchor_right = 0.528
-anchor_bottom = 0.75
-offset_left = -0.143616
-offset_right = 0.18335
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_xq8ab")
 theme_override_font_sizes/font_size = 60
@@ -160,14 +128,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Destruction" type="Label" parent="CanvasLayer/MainMenu/Title"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.262
-anchor_top = 0.795
-anchor_right = 0.747
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_xq8ab")
 theme_override_font_sizes/font_size = 125
