@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bin4utdprb24l"]
+[gd_scene load_steps=10 format=3 uid="uid://bin4utdprb24l"]
 
 [ext_resource type="PackedScene" uid="uid://dj2lmfj5kjjsg" path="res://art/environment/city blocks v2/Block_SW02.glb" id="1_cba4b"]
 [ext_resource type="Material" uid="uid://dgaiqboe2e0pl" path="res://art/environment/city blocks v2/City v2.tres" id="2_5bthk"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bmw8xr8250g60" path="res://art/environment/Signage/original_r_sign.tscn" id="6_n2een"]
 [ext_resource type="PackedScene" uid="uid://6ntibe2uiux2" path="res://art/environment/Signage/sega_sign.tscn" id="7_snucf"]
 [ext_resource type="PackedScene" uid="uid://coykkt6ud0cxv" path="res://art/environment/Signage/oni_beer_sign.tscn" id="8_6nhfk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vn3wd"]
+size = Vector3(47.1005, 33.5657, 35.4926)
 
 [node name="Block_SW02" instance=ExtResource("1_cba4b")]
 
@@ -73,3 +76,11 @@ visible = false
 
 [node name="OniBeer_Sign" parent="Signage" index="5" instance=ExtResource("8_6nhfk")]
 transform = Transform3D(0.45061, 0, 0.21668, 0, 0.5, 0, -0.21668, 0, 0.45061, 21.3329, 11.3746, 11.0872)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223206, 16.1132, 1.78577)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.409248, 0, -0.902851)
+shape = SubResource("BoxShape3D_vn3wd")

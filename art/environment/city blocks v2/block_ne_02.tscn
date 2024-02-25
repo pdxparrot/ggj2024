@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bomxy175ijydu"]
+[gd_scene load_steps=11 format=3 uid="uid://bomxy175ijydu"]
 
 [ext_resource type="PackedScene" uid="uid://d2amy3215yf2s" path="res://art/environment/city blocks v2/Block_NE02.glb" id="1_emryo"]
 [ext_resource type="Material" uid="uid://dgaiqboe2e0pl" path="res://art/environment/city blocks v2/City v2.tres" id="2_7k13d"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c1m6h8n4x51d5" path="res://art/environment/Signage/ninja_bar_sign.tscn" id="7_0c4hc"]
 [ext_resource type="PackedScene" uid="uid://ix41uy5a45n6" path="res://art/environment/Signage/mecha_gizzard_sign.tscn" id="8_y07oh"]
 [ext_resource type="PackedScene" uid="uid://bmw8xr8250g60" path="res://art/environment/Signage/original_r_sign.tscn" id="9_1abop"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6rser"]
+size = Vector3(29.8615, 33.5657, 30.9303)
 
 [node name="Block_NE02" instance=ExtResource("1_emryo")]
 
@@ -68,3 +71,11 @@ transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 
 
 [node name="OriginalR_Sign" parent="Signage" index="5" instance=ExtResource("9_1abop")]
 transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 5.45659, 21.6268, 0.744679)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223206, 16.1132, 1.78577)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.387314, 0, -1.49982)
+shape = SubResource("BoxShape3D_6rser")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsxq0bdchwhkt"]
+[gd_scene load_steps=10 format=3 uid="uid://bsxq0bdchwhkt"]
 
 [ext_resource type="PackedScene" uid="uid://cdql5gej4gwvd" path="res://art/environment/city blocks v2/Block_SE02.glb" id="1_s165x"]
 [ext_resource type="Material" uid="uid://dgaiqboe2e0pl" path="res://art/environment/city blocks v2/City v2.tres" id="2_h4uu7"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cym8u7iluhy60" path="res://art/environment/Signage/kung_pao_sign.tscn" id="6_r4s5n"]
 [ext_resource type="PackedScene" uid="uid://byv4njcltdusa" path="res://art/environment/Signage/mecha_ramen_sign.tscn" id="7_3ooa2"]
 [ext_resource type="PackedScene" uid="uid://c1m6h8n4x51d5" path="res://art/environment/Signage/ninja_bar_sign.tscn" id="8_6d6hy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6d3sv"]
+size = Vector3(29.8615, 33.5657, 30.9303)
 
 [node name="Block_SE02" instance=ExtResource("1_s165x")]
 
@@ -58,3 +61,11 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2.55458, 25.5715, 4.44
 
 [node name="NinjaBar_Sign" parent="Signage" index="4" instance=ExtResource("8_6d6hy")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 14.0826, 17.3495, 0.473138)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223206, 16.1132, 1.78577)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.387314, 0, -1.49982)
+shape = SubResource("BoxShape3D_6d3sv")
