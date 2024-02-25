@@ -30,6 +30,7 @@ ground_horizon_color = Color(0, 0, 0, 1)
 sky_material = SubResource("ProceduralSkyMaterial_sbfq3")
 
 [sub_resource type="Environment" id="Environment_rsl7s"]
+background_mode = 2
 sky = SubResource("Sky_uhxcu")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
@@ -44,7 +45,7 @@ fog_height = 35.0
 fog_height_density = 0.02
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s551o"]
-size = Vector2(100, 100)
+size = Vector2(1000, 1000)
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_musicPlayer")]
 script = ExtResource("1_70mbw")
@@ -57,10 +58,10 @@ replication_config = SubResource("SceneReplicationConfig_woxuc")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rsl7s")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.973746, 0.0308465, 0.225539, -0.185396, 0.68237, 0.707107, -0.132089, -0.730356, 0.670174, 47.2182, 41.9933, -7.9015)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.782683, -0.529813, 0.326659, -0.0826196, 0.431741, 0.898206, -0.616913, -0.729999, 0.294144, 47.2182, 41.9933, -7.9015)
 light_color = Color(0.984314, 0.988235, 0.988235, 1)
-light_energy = 0.5
+light_energy = 0.1
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 shadow_bias = 1.0
@@ -70,9 +71,11 @@ shadow_normal_bias = 1.0
 
 [node name="CityBlock_NE" parent="CityBlocks" instance=ExtResource("2_c3lj8")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -52)
+visible = false
 
 [node name="CityBlock_TokyoTower" parent="CityBlocks" instance=ExtResource("3_ojc57")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
 
 [node name="Bounds" type="Node3D" parent="."]
 
@@ -149,7 +152,7 @@ wait_time = 60.0
 one_shot = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.923793, 0, 0.382893, 0, 1, 0, -0.382893, 0, 0.923793, 62.6605, 16.4319, 48.3274)
+transform = Transform3D(0.923793, 0, 0.382893, 0, 1, 0, -0.382893, 0, 0.923793, 60.5573, 15.7067, 45.2215)
 fov = 90.0
 
 [node name="Camera3D2" type="Camera3D" parent="."]
@@ -158,7 +161,8 @@ visible = false
 fov = 90.0
 
 [node name="Char_OriginalR" parent="." instance=ExtResource("10_sg38q")]
-transform = Transform3D(0.074457, 0, -0.997224, 0, 1, 0, 0.997224, 0, 0.074457, 53.5733, 0, 25.3021)
+transform = Transform3D(0.866575, 0, -0.499047, 0, 1, 0, 0.499047, 0, 0.866575, 53.5733, 0, 25.3021)
+visible = false
 
 [node name="GeneralSkeleton" parent="Char_OriginalR/Armature" index="0"]
 bones/0/position = Vector3(0.00118655, 7.67275, -0.864639)
@@ -187,7 +191,7 @@ bones/23/rotation = Quaternion(6.14144e-07, 0.992919, 0.118797, -5.3479e-07)
 process_mode = 4
 
 [node name="Char_TheColonel" parent="." instance=ExtResource("11_7rgpw")]
-transform = Transform3D(0.791224, 0, 0.611527, 0, 1, 0, -0.611527, 0, 0.791224, 53.573, 0, 25.302)
+transform = Transform3D(0.750515, 0, 0.660854, 0, 1, 0, -0.660854, 0, 0.750515, 53.573, 0, 25.302)
 visible = false
 
 [node name="GeneralSkeleton" parent="Char_TheColonel/Armature" index="0"]
@@ -217,7 +221,7 @@ bones/23/rotation = Quaternion(3.72466e-08, 0.999998, 0.00205697, -4.5743e-09)
 process_mode = 4
 
 [node name="Char_KungPao" parent="." instance=ExtResource("12_pp18h")]
-transform = Transform3D(1, 0, -0.000506461, 0, 1, 0, 0.000506461, 0, 1, 53.573, 1.74022, 25.302)
+transform = Transform3D(0.988226, 0, -0.153003, 0, 1, 0, 0.153003, 0, 0.988226, 53.573, 1.74022, 19.5459)
 visible = false
 
 [node name="GeneralSkeleton" parent="Char_KungPao/Armature" index="0"]
@@ -248,36 +252,37 @@ process_mode = 4
 
 [node name="Char_MechaGizzard" parent="." instance=ExtResource("13_hyifw")]
 transform = Transform3D(0.791224, 0, 0.611527, 0, 1, 0, -0.611527, 0, 0.791224, 53.573, 0, 25.302)
-visible = false
 
 [node name="GeneralSkeleton" parent="Char_MechaGizzard/Armature" index="0"]
-bones/0/position = Vector3(0.267203, 9.57294, -0.380203)
-bones/0/rotation = Quaternion(-0.0313894, -0.13381, -0.0169765, 0.990364)
-bones/1/rotation = Quaternion(0.0130403, -0.00729297, 0.00809944, 0.999856)
-bones/2/rotation = Quaternion(0.0217133, -0.0144786, 0.00946908, 0.999615)
-bones/3/rotation = Quaternion(0.0216939, -0.0144756, 0.00947756, 0.999615)
-bones/4/rotation = Quaternion(0.0432383, -0.0181933, -0.0167354, 0.998759)
-bones/5/rotation = Quaternion(-0.102085, -0.128521, 0.0389091, 0.985671)
-bones/7/rotation = Quaternion(0.492835, 0.50753, 0.470304, -0.52758)
-bones/8/rotation = Quaternion(-0.0564803, 0.859857, 0.0216595, 0.506939)
-bones/9/rotation = Quaternion(0.485274, -0.514933, 0.485275, 0.513676)
-bones/11/rotation = Quaternion(0.471026, -0.522052, -0.518523, -0.486549)
-bones/12/rotation = Quaternion(0.175605, 0.832228, 0.175461, -0.495755)
-bones/13/rotation = Quaternion(0.44479, 0.550236, -0.44487, 0.549084)
-bones/15/rotation = Quaternion(0.139947, -0.0466918, 0.980775, -0.127734)
-bones/16/rotation = Quaternion(-0.0266021, 0.935673, -0.345578, 0.0662071)
-bones/17/rotation = Quaternion(-0.0782103, 0.439567, -0.872505, 0.198492)
-bones/18/rotation = Quaternion(3.37944e-08, 1, 0.000155477, 4.72783e-08)
-bones/20/rotation = Quaternion(-0.0997415, 0.188035, 0.969903, 0.118247)
-bones/21/rotation = Quaternion(4.95814e-05, 0.909909, -0.41204, 0.047835)
-bones/22/rotation = Quaternion(0.0698946, 0.554148, -0.825711, -0.0789634)
-bones/23/rotation = Quaternion(3.95154e-08, 0.999999, 0.00113905, 2.30594e-08)
+bones/0/position = Vector3(-0.0622578, 9.62071, -0.239867)
+bones/0/rotation = Quaternion(-0.0259083, -0.0669684, -0.0206694, 0.997205)
+bones/1/rotation = Quaternion(0.0128085, -0.00746888, 0.00595202, 0.999872)
+bones/2/rotation = Quaternion(0.0206899, -0.0146924, 0.0103215, 0.999625)
+bones/3/rotation = Quaternion(0.0206948, -0.0146308, 0.0103766, 0.999625)
+bones/4/rotation = Quaternion(0.0561564, 0.00872119, -0.000952257, 0.998383)
+bones/5/rotation = Quaternion(-0.0842591, 0.0315657, 0.0325364, 0.995412)
+bones/7/rotation = Quaternion(0.490651, 0.510535, 0.4647, -0.531667)
+bones/8/rotation = Quaternion(-0.0463467, 0.958839, -0.182033, 0.212942)
+bones/9/rotation = Quaternion(0.560398, -0.431948, 0.5604, 0.430496)
+bones/10/rotation = Quaternion(7.567e-10, 0.707107, 7.567e-10, 0.707107)
+bones/11/rotation = Quaternion(0.45744, -0.537567, -0.501627, -0.50014)
+bones/12/rotation = Quaternion(0.262974, 0.883412, -0.0218669, -0.387234)
+bones/13/rotation = Quaternion(0.573719, 0.414007, -0.573822, 0.41252)
+bones/14/rotation = Quaternion(-1.89175e-09, -0.707107, 1.89175e-09, 0.707107)
+bones/15/rotation = Quaternion(0.137337, 0.0185611, 0.976515, -0.164962)
+bones/16/rotation = Quaternion(-0.048355, 0.924662, -0.373507, 0.056167)
+bones/17/rotation = Quaternion(-0.134712, 0.462474, -0.861619, 0.15995)
+bones/18/rotation = Quaternion(4.79217e-08, 1, 0.000594299, 5.22332e-08)
+bones/20/rotation = Quaternion(-0.0949121, 0.112874, 0.984567, 0.0942267)
+bones/21/rotation = Quaternion(0.0262616, 0.921777, -0.385881, -0.0270822)
+bones/22/rotation = Quaternion(0.0865836, 0.518671, -0.845428, -0.0934589)
+bones/23/rotation = Quaternion(-8.64253e-08, 1, 0.000869033, -3.42408e-08)
 
 [node name="AnimationTree" parent="Char_MechaGizzard" index="2"]
 process_mode = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.999956, 0.00935486, -4.08914e-10, 0, -4.37114e-08, -1, -0.00935486, 0.999956, -4.37095e-08, 49.0603, 19.752, 16.3201)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 45.1084, 4.7079, -57.1083)
 material_override = ExtResource("14_y4o6o")
 mesh = SubResource("PlaneMesh_s551o")
 
