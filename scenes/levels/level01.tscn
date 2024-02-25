@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
 [ext_resource type="PackedScene" uid="uid://c8cuge5aw4jnc" path="res://scenes/world/city blocks/city_block_ne.tscn" id="2_0k1go"]
+[ext_resource type="PackedScene" uid="uid://piusmhkbhnbr" path="res://art/environment/city_v3.tscn" id="2_r27d0"]
 [ext_resource type="PackedScene" uid="uid://cahkwcyaqjh8y" path="res://art/environment/Blockout Full.glb" id="3_rn5ev"]
 [ext_resource type="PackedScene" uid="uid://dakgiuqw5f5r4" path="res://art/environment/ring.tscn" id="4_4htjn"]
 [ext_resource type="PackedScene" uid="uid://bv5b8rypdrot8" path="res://art/environment/Outer Area.glb" id="4_tvfg4"]
@@ -19,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://b3x53pfm1o35b" path="res://art/environment/tree/tree_cherry_blossom_medium.tscn" id="10_54a5c"]
 [ext_resource type="PackedScene" uid="uid://cco1tpf0ll783" path="res://art/environment/tree/tree_cherry_blossom_small.tscn" id="11_i88my"]
 [ext_resource type="PackedScene" uid="uid://cy1ujvlu70khs" path="res://art/environment/tree/tree_cherry_blossom_small_02.tscn" id="12_mkjqk"]
-[ext_resource type="PackedScene" uid="uid://dyf2l7jlyie4k" path="res://art/environment/city_v2.tscn" id="13_arcf7"]
 [ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Understreet/Street.tscn" id="13_vddnr"]
 [ext_resource type="Material" uid="uid://7i3n5tx2cdat" path="res://art/environment/Street/Understreet/UnderStreet.tres" id="14_5sxvs"]
 
@@ -82,30 +82,39 @@ shadow_bias = 10.0
 shadow_normal_bias = 5.339
 directional_shadow_max_distance = 1000.0
 
+[node name="City_v3" parent="." instance=ExtResource("2_r27d0")]
+
 [node name="CityBlocks" type="Node3D" parent="."]
 visible = false
 
 [node name="CityBlock_NE" parent="CityBlocks" instance=ExtResource("2_0k1go")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -52)
+visible = false
 
 [node name="Ring" parent="CityBlocks" instance=ExtResource("4_4htjn")]
+visible = false
 
 [node name="Block_SE" parent="CityBlocks" instance=ExtResource("5_x4rk3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 52)
+visible = false
 
 [node name="Block_SW" parent="CityBlocks" instance=ExtResource("6_vf7yr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.9, -0.5, 52)
+visible = false
 
 [node name="Block_SE_Long" parent="CityBlocks" instance=ExtResource("7_dk7b2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.9, -0.5, -26)
+visible = false
 
 [node name="Block_TokyoTower" parent="CityBlocks" instance=ExtResource("7_bp0fe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
 
 [node name="Block_Trees" parent="CityBlocks" instance=ExtResource("8_np4ox")]
 visible = false
 
 [node name="CherryBlossom_Trees" type="Node3D" parent="CityBlocks"]
+visible = false
 
 [node name="Tree_CherryBlossom_Large" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("9_lt7sk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7572, 0, 64.5649)
@@ -163,8 +172,6 @@ transform = Transform3D(0.841332, 0, -0.540519, 0, 1, 0, 0.540519, 0, 0.841332, 
 
 [node name="Tree_CherryBlossom_Small03" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("12_mkjqk")]
 transform = Transform3D(0.555977, 0, -0.831198, 0, 1, 0, 0.831198, 0, 0.555977, -44.6355, 0, -63.7291)
-
-[node name="CityV2" parent="." instance=ExtResource("13_arcf7")]
 
 [node name="Bounds" type="Node3D" parent="."]
 

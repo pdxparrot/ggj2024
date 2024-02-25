@@ -115,6 +115,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 52)
 
 [node name="RoadDivide02" parent="." instance=ExtResource("13_gqcgd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 
 [node name="RoadDivideLongA" parent="RoadDivide02/RoadDivide02" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, -55, 0, 0)

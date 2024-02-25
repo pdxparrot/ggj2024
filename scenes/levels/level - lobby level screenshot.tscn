@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=3 uid="uid://cavk2ow84b3dr"]
+
+[ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_do7it"]
+[ext_resource type="PackedScene" uid="uid://fysihrci8vt7" path="res://art/city_v1.tscn" id="2_p4npt"]
+[ext_resource type="PackedScene" uid="uid://piusmhkbhnbr" path="res://art/environment/city_v3.tscn" id="3_c0yvr"]
+[ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="4_54agn"]
+[ext_resource type="Material" uid="uid://7i3n5tx2cdat" path="res://art/environment/Street/Understreet/UnderStreet.tres" id="5_equq6"]
+[ext_resource type="PackedScene" uid="uid://blviajsd38jxc" path="res://art/environment/old blockout/playArea_OuterArea.tscn" id="6_qnkta"]
+[ext_resource type="PackedScene" uid="uid://chg5fybetufwg" path="res://scenes/world/spawn_point.tscn" id="7_j8dkw"]
+[ext_resource type="AudioStream" uid="uid://bbdjmr50q54gf" path="res://audio/Music/ROUGH-IDEA-mecha-chicken-battle-song-1.mp3" id="8_3gnq3"]
+[ext_resource type="PackedScene" uid="uid://bmuwevpcbs12i" path="res://art/environment/World Env/world_environment_bland.tscn" id="9_563gf"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
+properties/0/path = NodePath(".:_timeRemaining")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_md66h"]
+size = Vector3(170, 10, 195)
+subdivide_width = 1
+subdivide_height = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q47wc"]
+size = Vector2(1000, 1000)
+
+[node name="Arena" type="Node3D" node_paths=PackedStringArray("_gameTimer", "_gameOverTimer", "_musicPlayer")]
+process_mode = 4
+script = ExtResource("1_do7it")
+_gameTimer = NodePath("GameTimer")
+_gameOverTimer = NodePath("GameOverTimer")
+_musicPlayer = NodePath("Music")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_woxuc")
+
+[node name="CityBlocks" type="Node3D" parent="."]
+
+[node name="CityV1" parent="CityBlocks" instance=ExtResource("2_p4npt")]
+visible = false
+
+[node name="CityV3" parent="CityBlocks" instance=ExtResource("3_c0yvr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.26707, 0)
+
+[node name="Bounds" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(200, 0.1, 200)
+
+[node name="NW_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -65, 22.8677, 13.1844)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="NW_Wall2" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 105, 22.868, 15.966)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="SW_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, 100.181)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="NE_Wall" type="CSGBox3D" parent="Bounds"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.466, 25.205, -95)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(245.735, 0.1, 364.37)
+
+[node name="Play Area - 170x195" type="MeshInstance3D" parent="Bounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.063, 114.879, 3.08666)
+visible = false
+mesh = SubResource("BoxMesh_md66h")
+skeleton = NodePath("../..")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="BlockoutArea" parent="World" instance=ExtResource("4_54agn")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.055, 0, -0.302)
+visible = false
+
+[node name="Outer Street" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.3513, 0)
+visible = false
+material_override = ExtResource("5_equq6")
+mesh = SubResource("PlaneMesh_q47wc")
+
+[node name="Outer Area3" parent="World" instance=ExtResource("6_qnkta")]
+visible = false
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource("7_j8dkw")]
+process_mode = 4
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -55, 1, 50)
+
+[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource("7_j8dkw")]
+process_mode = 4
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 95, 1, 50)
+
+[node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource("7_j8dkw")]
+process_mode = 4
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 95, 1, -50)
+
+[node name="SpawnPoint4" parent="SpawnPoints" instance=ExtResource("7_j8dkw")]
+process_mode = 4
+transform = Transform3D(-0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, -0.984808, -55, 1, -50)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_3gnq3")
+volume_db = -45.0
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="WorldEnvironment_Bland" parent="." instance=ExtResource("9_563gf")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.573576, -0.212012, 0.79124, 0, 0.965926, 0.258819, -0.819152, -0.148453, 0.554032, 93.699, 35.3849, 47.5501)
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

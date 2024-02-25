@@ -1,0 +1,119 @@
+[gd_scene load_steps=15 format=3 uid="uid://piusmhkbhnbr"]
+
+[ext_resource type="PackedScene" uid="uid://bfrmyrdliusot" path="res://art/environment/city blocks v2/block_se_long_02.tscn" id="1_gjhc2"]
+[ext_resource type="PackedScene" uid="uid://bin4utdprb24l" path="res://art/environment/city blocks v2/block_sw_02.tscn" id="2_84hnj"]
+[ext_resource type="PackedScene" uid="uid://bs4ib53hvb334" path="res://art/environment/Street/street top.tscn" id="3_2ufvu"]
+[ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Understreet/Street.tscn" id="4_v3py4"]
+[ext_resource type="PackedScene" uid="uid://ihaq6x1t5iqk" path="res://art/environment/city blocks v2/block_tokyo_tower_02.tscn" id="5_cm5ia"]
+[ext_resource type="PackedScene" uid="uid://dakgiuqw5f5r4" path="res://art/environment/ring.tscn" id="6_waye6"]
+[ext_resource type="PackedScene" uid="uid://bomxy175ijydu" path="res://art/environment/city blocks v2/block_ne_02.tscn" id="7_llmgy"]
+[ext_resource type="PackedScene" uid="uid://bsxq0bdchwhkt" path="res://art/environment/city blocks v2/block_se_02.tscn" id="8_qr72m"]
+[ext_resource type="PackedScene" uid="uid://4cu2a324i8rn" path="res://art/environment/Outer Area v2.tscn" id="9_icm6k"]
+[ext_resource type="PackedScene" uid="uid://cy1ujvlu70khs" path="res://art/environment/tree/tree_cherry_blossom_small_02.tscn" id="10_q8i5g"]
+[ext_resource type="PackedScene" uid="uid://cco1tpf0ll783" path="res://art/environment/tree/tree_cherry_blossom_small.tscn" id="11_4g5b5"]
+[ext_resource type="PackedScene" uid="uid://b3x53pfm1o35b" path="res://art/environment/tree/tree_cherry_blossom_medium.tscn" id="12_eu317"]
+[ext_resource type="PackedScene" uid="uid://b7lrfk77nnoop" path="res://art/environment/tree/tree_cherry_blossom_large.tscn" id="13_gsybr"]
+[ext_resource type="PackedScene" uid="uid://lltsxy21vtyh" path="res://art/environment/roaddivide v2/road_divider.tscn" id="14_43h3k"]
+
+[node name="CityV3" type="Node3D"]
+
+[node name="Block_SE_Long03" parent="." instance=ExtResource("1_gjhc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.9, -0.75, -26)
+
+[node name="Block_SW02" parent="." instance=ExtResource("2_84hnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.9, -0.75, 52)
+
+[node name="Street2" parent="." instance=ExtResource("3_2ufvu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Streets_Under" parent="." instance=ExtResource("4_v3py4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+
+[node name="Block_TokyoTower02" parent="." instance=ExtResource("5_cm5ia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+
+[node name="Ring2" parent="." instance=ExtResource("6_waye6")]
+
+[node name="Block_NE02" parent="." instance=ExtResource("7_llmgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, -52)
+
+[node name="Block_SE02" parent="." instance=ExtResource("8_qr72m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 52)
+
+[node name="Outer Area" parent="." instance=ExtResource("9_icm6k")]
+
+[node name="CherryBlossom_Trees" type="Node3D" parent="."]
+
+[node name="North Trees" type="Node3D" parent="CherryBlossom_Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.483551, 0, 0)
+
+[node name="Tree_CherryBlossom_Small03" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("10_q8i5g")]
+transform = Transform3D(0.555977, 0, -0.831198, 0, 1, 0, 0.831198, 0, 0.555977, -44.6355, 0, -63.7291)
+
+[node name="Tree_CherryBlossom_Small02" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("10_q8i5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.0184, 0, 14.3818)
+
+[node name="Tree_CherryBlossom_Small05" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("10_q8i5g")]
+transform = Transform3D(0.239771, 0, 0.97083, 0, 1, 0, -0.97083, 0, 0.239771, -45.0184, 0, 125.393)
+
+[node name="Tree_CherryBlossom_Small04" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("10_q8i5g")]
+transform = Transform3D(0.841332, 0, -0.540519, 0, 1, 0, 0.540519, 0, 0.841332, -44.0632, 0, -168.621)
+
+[node name="Tree_CherryBlossom_Small2" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("11_4g5b5")]
+transform = Transform3D(-0.840793, 0, -0.541356, 0, 1, 0, 0.541356, 0, -0.840793, -45.0541, 0, -103.931)
+
+[node name="Tree_CherryBlossom_Small" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("11_4g5b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5119, 0, -8.56785)
+
+[node name="Tree_CherryBlossom_Medium2" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("12_eu317")]
+transform = Transform3D(-0.694118, 0, 0.719861, 0, 1, 0, -0.719861, 0, -0.694118, -44.5938, 0, -39.2976)
+
+[node name="Tree_CherryBlossom_Medium3" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("12_eu317")]
+transform = Transform3D(0.143095, 0, 0.989709, 0, 1, 0, -0.989709, 0, 0.143095, -45.2183, 0, -140.342)
+
+[node name="Tree_CherryBlossom_Large" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("13_gsybr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7572, 0, 64.5649)
+
+[node name="Tree_CherryBlossom_Medium" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("12_eu317")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.2872, 0, 36.1074)
+
+[node name="Tree_CherryBlossom_Medium4" parent="CherryBlossom_Trees/North Trees" instance=ExtResource("12_eu317")]
+transform = Transform3D(0.684852, 0, -0.728682, 0, 1, 0, 0.728682, 0, 0.684852, -45.2872, 0, 156.64)
+
+[node name="West Trees" type="Node3D" parent="CherryBlossom_Trees"]
+
+[node name="Tree_CherryBlossom_Small06" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("10_q8i5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.326, 0, 96.1747)
+
+[node name="Tree_CherryBlossom_Small05" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("10_q8i5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.839, 0, 96.0427)
+
+[node name="Tree_CherryBlossom_Small5" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("11_4g5b5")]
+transform = Transform3D(0.540798, 0, -0.841152, 0, 1, 0, 0.841152, 0, 0.540798, -74.1214, 0, 96.1772)
+
+[node name="Tree_CherryBlossom_Small3" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("11_4g5b5")]
+transform = Transform3D(0.705637, 0, 0.708574, 0, 1, 0, -0.708574, 0, 0.705637, 12.4004, 0, 94.8171)
+
+[node name="Tree_CherryBlossom_Small7" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("11_4g5b5")]
+transform = Transform3D(-0.785166, 0, 0.619286, 0, 1, 0, -0.619286, 0, -0.785166, -166.931, 0, 95.5947)
+
+[node name="Tree_CherryBlossom_Small4" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("11_4g5b5")]
+transform = Transform3D(-0.184912, 0, 0.982755, 0, 1, 0, -0.982755, 0, -0.184912, 142.142, 0, 96.0311)
+
+[node name="Tree_CherryBlossom_Large2" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("13_gsybr")]
+transform = Transform3D(-0.138171, 0, 0.990408, 0, 1, 0, -0.990408, 0, -0.138171, 37.8539, 0, 95.1133)
+
+[node name="Tree_CherryBlossom_Large3" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("13_gsybr")]
+transform = Transform3D(0.509327, 0, -0.860573, 0, 1, 0, 0.860573, 0, 0.509327, 119.104, 0, 95.9061)
+
+[node name="Tree_CherryBlossom_Medium4" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("12_eu317")]
+transform = Transform3D(-0.0459906, 0, -0.998942, 0, 1, 0, 0.998942, 0, -0.0459906, -15.5739, 0, 95.3116)
+
+[node name="Tree_CherryBlossom_Medium5" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("12_eu317")]
+transform = Transform3D(-0.994511, 0, 0.104633, 0, 1, 0, -0.104633, 0, -0.994511, 75.9278, 0, 95.3116)
+
+[node name="Tree_CherryBlossom_Small6" parent="CherryBlossom_Trees/West Trees" instance=ExtResource("11_4g5b5")]
+transform = Transform3D(0.851663, 0, 0.52409, 0, 1, 0, -0.52409, 0, 0.851663, -101.778, 0, 95.626)
+
+[node name="RoadDivider" parent="." instance=ExtResource("14_43h3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt0jn2022dcg5"]
+
+[ext_resource type="PackedScene" uid="uid://dvrpdaqw7mtno" path="res://art/environment/roaddivide v2/RoadDivide_MedC.glb" id="1_7ftmy"]
+[ext_resource type="Material" uid="uid://be2pl4555273a" path="res://art/environment/roaddivide v2/RoadDivide_Grass.tres" id="2_rndbi"]
+[ext_resource type="Material" uid="uid://bry1i3wnfp5l3" path="res://art/environment/roaddivide v2/RoadDivide_Sidewalk.tres" id="3_aor6m"]
+
+[node name="RoadDivide_MedC" instance=ExtResource("1_7ftmy")]
+
+[node name="Grass1" parent="RoadDivideMedC" index="0"]
+material_override = ExtResource("2_rndbi")
+
+[node name="Sidewalk_002" parent="RoadDivideMedC" index="1"]
+material_override = ExtResource("3_aor6m")

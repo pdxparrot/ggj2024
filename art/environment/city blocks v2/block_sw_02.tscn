@@ -64,8 +64,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.42422, 22.3217, 11.8
 [node name="OriginalR_Sign" parent="Signage" index="2" instance=ExtResource("6_n2een")]
 transform = Transform3D(0.44325, 0.00168484, 0.231358, -0.00255022, 0.499992, 0.00124471, -0.23135, -0.00228347, 0.443251, 11.9202, 16.4883, 14.5346)
 
-[node name="Sega_Sign" parent="Signage" index="3" instance=ExtResource("7_snucf")]
-transform = Transform3D(-0.216657, 0, 0.450622, 0, 0.5, 0, -0.450622, 0, -0.216657, 8.86204, 24.5377, -8.81727)
+[node name="OriginalR_Sign2" parent="Signage" index="3" instance=ExtResource("6_n2een")]
+transform = Transform3D(-0.216657, 0, 0.450621, 0, 0.5, 0, -0.450621, 0, -0.216657, 8.86204, 24.5377, -8.81727)
 
-[node name="OniBeer_Sign" parent="Signage" index="4" instance=ExtResource("8_6nhfk")]
+[node name="Sega_Sign" parent="Signage" index="4" instance=ExtResource("7_snucf")]
+transform = Transform3D(-0.216657, 0, 0.450622, 0, 0.5, 0, -0.450622, 0, -0.216657, 8.86204, 24.5377, -8.81727)
+visible = false
+
+[node name="OniBeer_Sign" parent="Signage" index="5" instance=ExtResource("8_6nhfk")]
 transform = Transform3D(0.45061, 0, 0.21668, 0, 0.5, 0, -0.21668, 0, 0.45061, 21.3329, 11.3746, 11.0872)

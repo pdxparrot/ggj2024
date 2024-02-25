@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://lltsxy21vtyh"]
+
+[ext_resource type="PackedScene" uid="uid://3afn0j6mfiyh" path="res://art/environment/roaddivide v2/road_divide_long_b.tscn" id="1_uahl3"]
+[ext_resource type="PackedScene" uid="uid://ck578jeq86e3l" path="res://art/environment/roaddivide v2/road_divide_med_b.tscn" id="2_6gl0n"]
+[ext_resource type="PackedScene" uid="uid://bbrwduh2ws4h3" path="res://art/environment/roaddivide v2/road_divide_med_a.tscn" id="3_6lk3e"]
+[ext_resource type="PackedScene" uid="uid://dt0jn2022dcg5" path="res://art/environment/roaddivide v2/road_divide_med_c.tscn" id="4_chq6k"]
+[ext_resource type="PackedScene" uid="uid://c6ck6aitwfjt7" path="res://art/environment/roaddivide v2/road_divide_long_a.tscn" id="6_2u8db"]
+
+[node name="RoadDivider" type="Node3D"]
+
+[node name="Road_Divider_West" type="Node3D" parent="."]
+
+[node name="RoadDivide_LongB2" parent="Road_Divider_West" instance=ExtResource("1_uahl3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.75, 0, 95.95)
+
+[node name="RoadDivide_MedB2" parent="Road_Divider_West" instance=ExtResource("2_6gl0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0, 95.95)
+
+[node name="RoadDivide_MedA2" parent="Road_Divider_West" instance=ExtResource("3_6lk3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 95.95)
+
+[node name="RoadDivide_MedA3" parent="Road_Divider_West" instance=ExtResource("3_6lk3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.8502, 0, 95.95)
+
+[node name="RoadDivide_MedC3" parent="Road_Divider_West" instance=ExtResource("4_chq6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.5, 0, 95.9)
+
+[node name="Road_Divider_North" type="Node3D" parent="."]
+
+[node name="RoadDivide_LongA" parent="." instance=ExtResource("6_2u8db")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 0, 25)
+
+[node name="RoadDivide_LongB" parent="." instance=ExtResource("1_uahl3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 0, -137)
+
+[node name="RoadDivide_LongB2" parent="." instance=ExtResource("1_uahl3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -44, 0, 160.797)
+
+[node name="RoadDivide_MedA" parent="." instance=ExtResource("3_6lk3e")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 0, -53)
+
+[node name="RoadDivide_MedC" parent="." instance=ExtResource("4_chq6k")]
+visible = false
