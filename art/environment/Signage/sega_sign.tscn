@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ntibe2uiux2"]
+
+[ext_resource type="PackedScene" uid="uid://cdloci4l68gwr" path="res://art/environment/Signage/Sega_Sign.glb" id="1_tb8vh"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_tvgli"]
+
+[node name="Sega_Sign" instance=ExtResource("1_tb8vh")]
+
+[node name="polySurface1385" parent="Sega_Sign" index="0"]
+material_override = ExtResource("2_tvgli")
+
+[node name="polySurface1435" parent="Sega_Sign" index="1"]
+material_override = ExtResource("2_tvgli")

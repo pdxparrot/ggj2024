@@ -1,0 +1,331 @@
+[gd_scene load_steps=25 format=3 uid="uid://so08g7rmt1oo"]
+
+[ext_resource type="PackedScene" uid="uid://c8cuge5aw4jnc" path="res://scenes/world/city blocks/city_block_ne.tscn" id="2_v267q"]
+[ext_resource type="PackedScene" uid="uid://dakgiuqw5f5r4" path="res://art/environment/ring.tscn" id="3_r5bl2"]
+[ext_resource type="PackedScene" uid="uid://c0mc35dmp0ctn" path="res://art/environment/city blocks/Block_SE.tscn" id="4_wgqmj"]
+[ext_resource type="PackedScene" uid="uid://b7srpy7shquvl" path="res://art/environment/city blocks/Block_SW.tscn" id="5_5nmng"]
+[ext_resource type="PackedScene" uid="uid://cqpdl6xvqm4vh" path="res://art/environment/city blocks/Block_SE_Long.tscn" id="6_mxcol"]
+[ext_resource type="PackedScene" uid="uid://wjhml1aqokde" path="res://art/environment/city blocks/Block_TokyoTower.tscn" id="7_5j4p0"]
+[ext_resource type="PackedScene" uid="uid://bq3p2s7oocwcs" path="res://art/environment/city blocks/Block_Trees.tscn" id="8_knhgx"]
+[ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="9_0wg50"]
+[ext_resource type="PackedScene" uid="uid://cahkwcyaqjh8y" path="res://art/environment/Blockout Full.glb" id="10_y5vy2"]
+[ext_resource type="PackedScene" uid="uid://bv5b8rypdrot8" path="res://art/environment/Outer Area.glb" id="11_ud7ye"]
+[ext_resource type="PackedScene" uid="uid://dg81r0f0u7vva" path="res://art/environment/Outer Area.tscn" id="12_3rn4u"]
+[ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Understreet/Street.tscn" id="13_pojwh"]
+[ext_resource type="Material" uid="uid://7i3n5tx2cdat" path="res://art/environment/Street/Understreet/UnderStreet.tres" id="14_6d6rt"]
+[ext_resource type="PackedScene" uid="uid://tnflc3gnddr6" path="res://art/character/Char_KungPao/char_kung_pao.tscn" id="14_vq1fl"]
+[ext_resource type="PackedScene" uid="uid://qoyyb3i2m101" path="res://art/character/Char_MechaGizzard/char_mecha_gizzard.tscn" id="15_b3nyt"]
+[ext_resource type="PackedScene" uid="uid://b3vhy32ediss2" path="res://art/character/Char_OriginalR/char_original_r.tscn" id="16_8xb15"]
+[ext_resource type="PackedScene" uid="uid://bvcnuuvhbcfy6" path="res://art/character/Char_TheColonel/char_the_colonel.tscn" id="17_whw5f"]
+[ext_resource type="Material" uid="uid://c6w4o1qvwja2k" path="res://art/materials/Indicator_P2.tres" id="18_pel20"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l4abj"]
+sky_top_color = Color(0.529412, 0.85098, 0.996078, 1)
+sky_horizon_color = Color(0.0627451, 0.313726, 0.709804, 1)
+ground_bottom_color = Color(0.392157, 0.431373, 0.482353, 1)
+ground_horizon_color = Color(0.196078, 0.239216, 0.733333, 1)
+
+[sub_resource type="Sky" id="Sky_k6yue"]
+sky_material = SubResource("ProceduralSkyMaterial_l4abj")
+
+[sub_resource type="Environment" id="Environment_f6qlm"]
+background_mode = 2
+sky = SubResource("Sky_k6yue")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_white = 16.0
+fog_light_color = Color(0.713726, 0.858824, 0.992157, 1)
+fog_light_energy = 0.1
+fog_density = 0.0015
+fog_height = 5.0
+fog_height_density = 0.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3ubp6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q47wc"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lo60c"]
+size = Vector2(2000, 2000)
+
+[node name="Arena" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f6qlm")
+camera_attributes = SubResource("CameraAttributesPractical_3ubp6")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.133004, -0.797831, 0.588027, -0.394385, 0.586907, 0.707107, -0.909269, -0.137861, -0.392714, 47.0887, 42.6131, -8.2344)
+light_color = Color(1, 0.94902, 0.784314, 1)
+shadow_enabled = true
+shadow_bias = 10.0
+shadow_normal_bias = 5.339
+directional_shadow_max_distance = 1000.0
+
+[node name="CityBlocks" type="Node3D" parent="."]
+visible = false
+
+[node name="CityBlock_NE" parent="CityBlocks" instance=ExtResource("2_v267q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.81557, -0.5, -76.1826)
+
+[node name="Ring" parent="CityBlocks" instance=ExtResource("3_r5bl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3503, 0, -19.3695)
+
+[node name="Block_SE" parent="CityBlocks" instance=ExtResource("4_wgqmj")]
+transform = Transform3D(0.859049, 0, 0.511893, 0, 1, 0, -0.511893, 0, 0.859049, -24.0199, 6.8432, 73.6288)
+
+[node name="Block_SW" parent="CityBlocks" instance=ExtResource("5_5nmng")]
+transform = Transform3D(0.963313, 0, 0.268382, 0, 1, 0, -0.268382, 0, 0.963313, 42.6776, -0.5, 63.2785)
+
+[node name="Block_SW2" parent="CityBlocks" instance=ExtResource("5_5nmng")]
+transform = Transform3D(-0.0726986, 0, -0.997354, 0, 1, 0, 0.997354, 0, -0.0726986, -79.1623, -1.52588e-05, 3.42897)
+
+[node name="Block_SW3" parent="CityBlocks" instance=ExtResource("5_5nmng")]
+transform = Transform3D(0.089972, 0, 0.995944, 0, 1, 0, -0.995944, 0, 0.089972, -81.4998, 1.52588e-05, 64.2041)
+
+[node name="Block_SW4" parent="CityBlocks" instance=ExtResource("5_5nmng")]
+transform = Transform3D(0.089972, 0, 0.995944, 0, 1, 0, -0.995944, 0, 0.089972, -81.4998, 1.52588e-05, -72.3092)
+
+[node name="Block_SE_Long" parent="CityBlocks" instance=ExtResource("6_mxcol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7156, -0.5, -50.1826)
+
+[node name="Block_TokyoTower" parent="CityBlocks" instance=ExtResource("7_5j4p0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.81557, -0.5, -24.1826)
+
+[node name="Block_Trees" parent="CityBlocks" instance=ExtResource("8_knhgx")]
+
+[node name="World" type="Node3D" parent="."]
+visible = false
+
+[node name="BlockoutArea" parent="World" instance=ExtResource("9_0wg50")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.0547028, 0.835197, -0.302475)
+visible = false
+
+[node name="Blockout Full" parent="World" instance=ExtResource("10_y5vy2")]
+visible = false
+
+[node name="Outer Area" parent="World" instance=ExtResource("11_ud7ye")]
+visible = false
+
+[node name="Outer Area2" parent="World" instance=ExtResource("12_3rn4u")]
+
+[node name="Buildings1242" parent="World/Outer Area2/Full_Edge_Level/N_Corner" index="1"]
+visible = false
+
+[node name="Sidewalk9" parent="World/Outer Area2/Full_Edge_Level/N_Corner" index="3"]
+visible = false
+
+[node name="Buildings_004" parent="World/Outer Area2/Full_Edge_Level/NW_Edge_01" index="0"]
+visible = false
+
+[node name="polySurface854" parent="World/Outer Area2/Full_Edge_Level/NW_Edge_01" index="3"]
+visible = false
+
+[node name="Outer Area3" parent="World" instance=ExtResource("12_3rn4u")]
+transform = Transform3D(0.835, 0, 0, 0, 1.5, 0, 0, 0, 0.835, -188.797, 7.46762, -16.4318)
+
+[node name="E_Corner" parent="World/Outer Area3/Full_Edge_Level" index="1"]
+visible = false
+
+[node name="RoadDivide_North" parent="World/Outer Area3/Full_Edge_Level" index="5"]
+visible = false
+
+[node name="RoadDivide_West" parent="World/Outer Area3/Full_Edge_Level" index="6"]
+visible = false
+
+[node name="SE_Edge_01" parent="World/Outer Area3/Full_Edge_Level" index="7"]
+visible = false
+
+[node name="SW_Edge_01" parent="World/Outer Area3/Full_Edge_Level" index="8"]
+visible = false
+
+[node name="Outer Area5" parent="World" instance=ExtResource("12_3rn4u")]
+transform = Transform3D(-0.999, 0, 0.0447179, 0, 1, 0, -0.0447179, 0, -0.999, -547.888, 14.4314, -24.2512)
+visible = false
+
+[node name="E_Corner" parent="World/Outer Area5/Full_Edge_Level" index="1"]
+visible = false
+
+[node name="RoadDivide_North" parent="World/Outer Area5/Full_Edge_Level" index="5"]
+visible = false
+
+[node name="RoadDivide_West" parent="World/Outer Area5/Full_Edge_Level" index="6"]
+visible = false
+
+[node name="SE_Edge_01" parent="World/Outer Area5/Full_Edge_Level" index="7"]
+visible = false
+
+[node name="SW_Edge_01" parent="World/Outer Area5/Full_Edge_Level" index="8"]
+visible = false
+
+[node name="Outer Area4" parent="World" instance=ExtResource("12_3rn4u")]
+transform = Transform3D(0.0295826, 0, 1.5153, 0, 1.5, 0, -0.508424, 0, 0.0881676, -61.269, 5.00596, -370.882)
+
+[node name="E_Corner" parent="World/Outer Area4/Full_Edge_Level" index="1"]
+visible = false
+
+[node name="RoadDivide_North" parent="World/Outer Area4/Full_Edge_Level" index="5"]
+visible = false
+
+[node name="RoadDivide_West" parent="World/Outer Area4/Full_Edge_Level" index="6"]
+visible = false
+
+[node name="SE_Edge_01" parent="World/Outer Area4/Full_Edge_Level" index="7"]
+visible = false
+
+[node name="SW_Edge_01" parent="World/Outer Area4/Full_Edge_Level" index="8"]
+visible = false
+
+[node name="Street" parent="World" instance=ExtResource("13_pojwh")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.3513, 0)
+material_override = ExtResource("14_6d6rt")
+mesh = SubResource("PlaneMesh_q47wc")
+
+[node name="Char" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="Char_MechaGizzard" parent="Char" instance=ExtResource("15_b3nyt")]
+transform = Transform3D(-0.296663, 1.73572, 9.84374, 1.49366, 9.7452, -1.67333, -9.88337, 1.42068, -0.548361, -405.996, -74.3711, -19.881)
+visible = false
+
+[node name="GeneralSkeleton" parent="Char/Char_MechaGizzard/Armature" index="0"]
+bones/0/position = Vector3(0.209984, 9.5123, -0.53744)
+bones/0/rotation = Quaternion(-0.0419788, -0.0930405, -0.0202568, 0.994571)
+bones/1/rotation = Quaternion(0.0230228, -0.00531679, 0.00541888, 0.999706)
+bones/2/rotation = Quaternion(0.0380789, -0.0111476, 0.00796969, 0.999181)
+bones/3/rotation = Quaternion(0.0380693, -0.0111249, 0.0080162, 0.999181)
+bones/4/rotation = Quaternion(0.0779594, -0.0100849, 0.00823382, 0.996872)
+bones/5/rotation = Quaternion(-0.101443, -0.0558938, 0.0310307, 0.992785)
+bones/7/rotation = Quaternion(0.478015, 0.521279, 0.478723, -0.520187)
+bones/8/rotation = Quaternion(-0.164382, 0.865698, 0.0234188, 0.472225)
+bones/9/rotation = Quaternion(0.547508, -0.448184, 0.547509, 0.446766)
+bones/11/rotation = Quaternion(0.475447, -0.5197, -0.507656, -0.496132)
+bones/12/rotation = Quaternion(0.0903139, 0.833212, 0.154764, -0.523115)
+bones/13/rotation = Quaternion(0.520729, 0.478997, -0.520822, 0.477648)
+bones/15/rotation = Quaternion(0.150096, 0.0175935, 0.973821, -0.169806)
+bones/16/rotation = Quaternion(-0.0164454, 0.907653, -0.415782, 0.054964)
+bones/17/rotation = Quaternion(-0.11327, 0.439199, -0.879292, 0.145326)
+bones/18/rotation = Quaternion(2.66768e-08, 1, 0.000524065, -1.39253e-08)
+bones/20/rotation = Quaternion(-0.0898464, 0.160362, 0.977399, 0.104414)
+bones/21/rotation = Quaternion(0.0328258, 0.906467, -0.420914, 0.00846269)
+bones/22/rotation = Quaternion(0.0882641, 0.535064, -0.834616, -0.0966025)
+bones/23/rotation = Quaternion(-7.97319e-08, 0.999999, 0.0014422, -1.3068e-08)
+
+[node name="AnimationTree" parent="Char/Char_MechaGizzard" index="2"]
+process_mode = 4
+
+[node name="Char_KungPao" parent="Char" instance=ExtResource("14_vq1fl")]
+transform = Transform3D(-0.894485, 0, 1.20412, 0, 1.5, 0, -1.20412, 0, -0.894485, -1.97287, -1.52588e-05, 33.5114)
+visible = false
+
+[node name="GeneralSkeleton" parent="Char/Char_KungPao/Armature" index="0"]
+bones/0/position = Vector3(0.230025, 7.8777, 0.306166)
+bones/0/rotation = Quaternion(0.109857, -0.00850327, 0.0530412, 0.992495)
+bones/1/rotation = Quaternion(0.0416745, -0.0568997, 0.0246329, 0.997206)
+bones/2/rotation = Quaternion(0.0325396, -0.0496866, 0.0066822, 0.998212)
+bones/3/rotation = Quaternion(0.0316104, -0.0502638, 0.00873771, 0.998197)
+bones/4/rotation = Quaternion(0.0225851, 0.00390519, 0.00231265, 0.999735)
+bones/5/rotation = Quaternion(-0.0285141, 0.106847, -0.131377, 0.985145)
+bones/7/rotation = Quaternion(0.346876, 0.57411, 0.526277, -0.522596)
+bones/8/rotation = Quaternion(0.384831, 0.750665, 0.00938737, 0.536954)
+bones/9/rotation = Quaternion(0.060957, -0.714134, 0.0607207, 0.694702)
+bones/11/rotation = Quaternion(0.509606, -0.487149, -0.492149, -0.510664)
+bones/12/rotation = Quaternion(-0.505251, 0.759445, -0.401874, -0.0803876)
+bones/13/rotation = Quaternion(0.576202, 0.492109, -0.575167, 0.308225)
+bones/15/rotation = Quaternion(0.104656, -0.321469, 0.939487, -0.055393)
+bones/16/rotation = Quaternion(-0.0383353, 0.996436, -0.0712354, 0.0238896)
+bones/17/rotation = Quaternion(-0.165859, 0.497672, -0.832156, 0.179802)
+bones/18/rotation = Quaternion(0.000360096, 0.99904, 0.0412493, 0.014743)
+bones/20/rotation = Quaternion(-0.0171859, 0.641462, 0.764966, 0.0553064)
+bones/21/rotation = Quaternion(-0.00329445, 0.963064, -0.263531, 0.0552199)
+bones/22/rotation = Quaternion(0.255772, 0.854281, -0.441908, 0.0974803)
+bones/23/rotation = Quaternion(-2.52264e-07, 0.999933, 0.0115537, 4.99671e-08)
+
+[node name="AnimationTree" parent="Char/Char_KungPao" index="2"]
+process_mode = 4
+
+[node name="Char_TheColonel" parent="Char" instance=ExtResource("17_whw5f")]
+transform = Transform3D(1.49652, 0, -0.10218, 0, 1.5, 0, 0.10218, 0, 1.49652, 10.9341, 0, 1.22539)
+
+[node name="GeneralSkeleton" parent="Char/Char_TheColonel/Armature" index="0"]
+bones/0/position = Vector3(-0.186583, 7.76273, -0.464884)
+bones/0/rotation = Quaternion(-0.160928, -0.106848, 0.064519, 0.979042)
+bones/1/rotation = Quaternion(-0.0384133, 0.110122, -0.0243165, 0.992878)
+bones/2/rotation = Quaternion(0.038971, 0.0664636, -0.048879, 0.995829)
+bones/3/rotation = Quaternion(0.038879, 0.0660595, -0.0477933, 0.995912)
+bones/4/rotation = Quaternion(0.00879473, 0.0496137, -0.0639182, 0.996682)
+bones/5/rotation = Quaternion(-0.0977714, 0.332385, -0.0455359, 0.936957)
+bones/7/rotation = Quaternion(0.514596, 0.480839, 0.457361, -0.54296)
+bones/8/rotation = Quaternion(0.237766, 0.841245, -0.423597, 0.23736)
+bones/9/rotation = Quaternion(0.597869, -0.46252, 0.595552, 0.27193)
+bones/11/rotation = Quaternion(0.339488, -0.543455, -0.65735, -0.396604)
+bones/12/rotation = Quaternion(-0.0424948, 0.944114, -0.253793, -0.205992)
+bones/13/rotation = Quaternion(0.631082, 0.404524, -0.629949, 0.203125)
+bones/15/rotation = Quaternion(-0.0420667, 0.316893, 0.947142, -0.0270395)
+bones/16/rotation = Quaternion(-0.0727322, 0.944517, -0.319617, -0.021033)
+bones/17/rotation = Quaternion(-0.350769, 0.727986, -0.588386, -0.028277)
+bones/18/rotation = Quaternion(1.53852e-07, 0.999907, 0.0136097, -6.22736e-08)
+bones/20/rotation = Quaternion(-0.391761, -0.490966, 0.713909, 0.309532)
+bones/21/rotation = Quaternion(0.0206959, 0.997788, -0.0602963, 0.0188362)
+bones/22/rotation = Quaternion(0.151857, 0.418152, -0.821995, -0.355546)
+bones/23/rotation = Quaternion(3.84558e-07, 1, 0.000117506, -3.15357e-06)
+
+[node name="AnimationTree" parent="Char/Char_TheColonel" index="2"]
+process_mode = 4
+
+[node name="Char_OriginalR" parent="Char" instance=ExtResource("16_8xb15")]
+transform = Transform3D(0.490054, 0.0505115, -1.67922, -0.0141507, 1.74927, 0.0484889, 1.67992, -5.40914e-09, 0.490258, 65.4452, 0, 6.09246)
+visible = false
+
+[node name="GeneralSkeleton" parent="Char/Char_OriginalR/Armature" index="0"]
+bones/0/position = Vector3(0.00118655, 7.67275, -0.864639)
+bones/0/rotation = Quaternion(0.105117, -0.0398966, 0.00936493, 0.993615)
+bones/1/rotation = Quaternion(0.047079, 0.159021, -0.0119159, 0.98608)
+bones/2/rotation = Quaternion(-0.00733165, 0.033808, -0.0222692, 0.999153)
+bones/3/rotation = Quaternion(0.0191798, 0.0338506, -0.0257801, 0.99891)
+bones/4/rotation = Quaternion(-0.0272286, -0.0374766, 0.037996, 0.998204)
+bones/5/rotation = Quaternion(-0.00860539, -0.149551, -0.0192878, 0.988528)
+bones/7/rotation = Quaternion(0.444615, 0.543586, 0.514388, -0.492176)
+bones/8/rotation = Quaternion(-0.208078, 0.788466, -0.499826, -0.291889)
+bones/9/rotation = Quaternion(0.480624, -0.512316, 0.487668, 0.518376)
+bones/11/rotation = Quaternion(0.433344, -0.553055, -0.517578, -0.48832)
+bones/12/rotation = Quaternion(-0.230926, 0.910285, -0.333498, -0.0826665)
+bones/13/rotation = Quaternion(0.480985, 0.529073, -0.470864, 0.516742)
+bones/15/rotation = Quaternion(-0.0142864, 0.585005, 0.810899, 0.00297022)
+bones/16/rotation = Quaternion(-0.0140436, 0.997648, -0.066463, 0.00921809)
+bones/17/rotation = Quaternion(-0.0366234, 0.813005, -0.580906, -0.0151886)
+bones/18/rotation = Quaternion(-1.80894e-08, 0.997537, 0.070139, 2.93402e-07)
+bones/20/rotation = Quaternion(-0.0922545, -0.593005, 0.797386, 0.0633254)
+bones/21/rotation = Quaternion(0.0114498, 0.99624, -0.0757049, 0.0405487)
+bones/22/rotation = Quaternion(0.00693989, 0.703085, -0.706565, -0.0799277)
+bones/23/rotation = Quaternion(6.14144e-07, 0.992919, 0.118797, -5.3479e-07)
+
+[node name="AnimationTree" parent="Char/Char_OriginalR" index="2"]
+process_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.547388, 0, 0.836879, 0, 1, 0, -0.836879, 0, 0.547388, 88.9365, 25.3644, 50.0253)
+
+[node name="CGMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00073207, 1.0499, -0.0873003, -2.90823, -0.000298791, -0.0101937, -0.00570422, 0.0175974, 5.20835, -421.377, 0, -3164.42)
+visible = false
+material_override = ExtResource("18_pel20")
+mesh = SubResource("PlaneMesh_lo60c")
+
+[node name="CGMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.00548651, 0.167354, -5.1425, -2.87332, 0.160439, 0.118657, 0.449233, 1.02413, 0.821746, -421.377, 0, -3164.42)
+visible = false
+material_override = ExtResource("18_pel20")
+mesh = SubResource("PlaneMesh_lo60c")
+
+[editable path="World/Outer Area2"]
+[editable path="World/Outer Area3"]
+[editable path="World/Outer Area5"]
+[editable path="World/Outer Area4"]
+[editable path="Char/Char_MechaGizzard"]
+[editable path="Char/Char_KungPao"]
+[editable path="Char/Char_TheColonel"]
+[editable path="Char/Char_OriginalR"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtssrt8srmv1u"]
+
+[ext_resource type="PackedScene" uid="uid://xn123hyiurn4" path="res://art/environment/Signage/KaijuSushi_Sign.glb" id="1_3x74x"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_djyu5"]
+
+[node name="KaijuSushi_Sign" instance=ExtResource("1_3x74x")]
+
+[node name="polySurface1413" parent="KaijuSushi_Sign" index="0"]
+material_override = ExtResource("2_djyu5")
+
+[node name="polySurface1453" parent="KaijuSushi_Sign" index="1"]
+material_override = ExtResource("2_djyu5")

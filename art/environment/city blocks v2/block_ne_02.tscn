@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bomxy175ijydu"]
+
+[ext_resource type="PackedScene" uid="uid://d2amy3215yf2s" path="res://art/environment/city blocks v2/Block_NE02.glb" id="1_emryo"]
+[ext_resource type="Material" uid="uid://dgaiqboe2e0pl" path="res://art/environment/city blocks v2/City v2.tres" id="2_7k13d"]
+[ext_resource type="Material" uid="uid://dben6hpmwlifc" path="res://art/environment/city blocks v2/Sidewalk.tres" id="3_by0qp"]
+[ext_resource type="PackedScene" uid="uid://dtssrt8srmv1u" path="res://art/environment/Signage/kaiju_sushi_sign.tscn" id="4_87jyp"]
+[ext_resource type="PackedScene" uid="uid://coykkt6ud0cxv" path="res://art/environment/Signage/oni_beer_sign.tscn" id="5_yf8nu"]
+[ext_resource type="PackedScene" uid="uid://dcsaih2wycs4k" path="res://art/environment/Signage/the_colonel_sign.tscn" id="6_gjomx"]
+[ext_resource type="PackedScene" uid="uid://c1m6h8n4x51d5" path="res://art/environment/Signage/ninja_bar_sign.tscn" id="7_0c4hc"]
+[ext_resource type="PackedScene" uid="uid://ix41uy5a45n6" path="res://art/environment/Signage/mecha_gizzard_sign.tscn" id="8_y07oh"]
+[ext_resource type="PackedScene" uid="uid://bmw8xr8250g60" path="res://art/environment/Signage/original_r_sign.tscn" id="9_1abop"]
+
+[node name="Block_NE02" instance=ExtResource("1_emryo")]
+
+[node name="Building01" parent="NE_Block" index="0"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building02" parent="NE_Block" index="1"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building03" parent="NE_Block" index="2"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building04" parent="NE_Block" index="3"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building05" parent="NE_Block" index="4"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building06" parent="NE_Block" index="5"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building07" parent="NE_Block" index="6"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building08" parent="NE_Block" index="7"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building09" parent="NE_Block" index="8"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building10" parent="NE_Block" index="9"]
+material_override = ExtResource("2_7k13d")
+
+[node name="Building11" parent="NE_Block" index="10"]
+material_override = ExtResource("2_7k13d")
+
+[node name="NE_Block_Sidewalk" parent="NE_Block" index="11"]
+transform = Transform3D(1.78814e-07, 1, 0, -1, 1.78814e-07, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("3_by0qp")
+
+[node name="Signage" type="Node3D" parent="." index="1"]
+
+[node name="KaijuSushi_Sign" parent="Signage" index="0" instance=ExtResource("4_87jyp")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.7758, 12.5055, 16.973)
+
+[node name="OniBeer_Sign" parent="Signage" index="1" instance=ExtResource("5_yf8nu")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.0083, 8.99316, 17.4374)
+
+[node name="TheColonel_Sign" parent="Signage" index="2" instance=ExtResource("6_gjomx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0654125, 25.3546, 14.2814)
+
+[node name="NinjaBar_Sign" parent="Signage" index="3" instance=ExtResource("7_0c4hc")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2.99222, 16.5355, 16.7487)
+
+[node name="MechaGizzard_Sign" parent="Signage" index="4" instance=ExtResource("8_y07oh")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 14.074, 23.3031, -9.04459)
+
+[node name="OriginalR_Sign" parent="Signage" index="5" instance=ExtResource("9_1abop")]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 5.45659, 21.6268, 0.744679)

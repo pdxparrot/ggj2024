@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://bin4utdprb24l"]
+
+[ext_resource type="PackedScene" uid="uid://dj2lmfj5kjjsg" path="res://art/environment/city blocks v2/Block_SW02.glb" id="1_cba4b"]
+[ext_resource type="Material" uid="uid://dgaiqboe2e0pl" path="res://art/environment/city blocks v2/City v2.tres" id="2_5bthk"]
+[ext_resource type="Material" uid="uid://dben6hpmwlifc" path="res://art/environment/city blocks v2/Sidewalk.tres" id="3_m85hf"]
+[ext_resource type="PackedScene" uid="uid://ix41uy5a45n6" path="res://art/environment/Signage/mecha_gizzard_sign.tscn" id="4_yxie7"]
+[ext_resource type="PackedScene" uid="uid://byv4njcltdusa" path="res://art/environment/Signage/mecha_ramen_sign.tscn" id="5_er34g"]
+[ext_resource type="PackedScene" uid="uid://bmw8xr8250g60" path="res://art/environment/Signage/original_r_sign.tscn" id="6_n2een"]
+[ext_resource type="PackedScene" uid="uid://6ntibe2uiux2" path="res://art/environment/Signage/sega_sign.tscn" id="7_snucf"]
+[ext_resource type="PackedScene" uid="uid://coykkt6ud0cxv" path="res://art/environment/Signage/oni_beer_sign.tscn" id="8_6nhfk"]
+
+[node name="Block_SW02" instance=ExtResource("1_cba4b")]
+
+[node name="Building01_002" parent="SW_Block_02" index="0"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building25" parent="SW_Block_02" index="1"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building26" parent="SW_Block_02" index="2"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building27" parent="SW_Block_02" index="3"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building28" parent="SW_Block_02" index="4"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building29" parent="SW_Block_02" index="5"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building30" parent="SW_Block_02" index="6"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building31" parent="SW_Block_02" index="7"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building32" parent="SW_Block_02" index="8"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building33" parent="SW_Block_02" index="9"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building34" parent="SW_Block_02" index="10"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building35" parent="SW_Block_02" index="11"]
+material_override = ExtResource("2_5bthk")
+
+[node name="Building36" parent="SW_Block_02" index="12"]
+material_override = ExtResource("2_5bthk")
+
+[node name="SW_Block_Sidewalk" parent="SW_Block_02" index="13"]
+material_override = ExtResource("3_m85hf")
+
+[node name="Signage" type="Node3D" parent="." index="1"]
+
+[node name="MechaGizzard_Sign" parent="Signage" index="0" instance=ExtResource("4_yxie7")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -12.0964, 32.9601, 8.60949)
+
+[node name="MechaRamen_Sign" parent="Signage" index="1" instance=ExtResource("5_er34g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.42422, 22.3217, 11.873)
+
+[node name="OriginalR_Sign" parent="Signage" index="2" instance=ExtResource("6_n2een")]
+transform = Transform3D(0.44325, 0.00168484, 0.231358, -0.00255022, 0.499992, 0.00124471, -0.23135, -0.00228347, 0.443251, 11.9202, 16.4883, 14.5346)
+
+[node name="Sega_Sign" parent="Signage" index="3" instance=ExtResource("7_snucf")]
+transform = Transform3D(-0.216657, 0, 0.450622, 0, 0.5, 0, -0.450622, 0, -0.216657, 8.86204, 24.5377, -8.81727)
+
+[node name="OniBeer_Sign" parent="Signage" index="4" instance=ExtResource("8_6nhfk")]
+transform = Transform3D(0.45061, 0, 0.21668, 0, 0.5, 0, -0.21668, 0, 0.45061, 21.3329, 11.3746, 11.0872)

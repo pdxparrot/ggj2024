@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://coykkt6ud0cxv"]
+
+[ext_resource type="PackedScene" uid="uid://qe4m8hklonpf" path="res://art/environment/Signage/OniBeer_Sign.glb" id="1_tk5u1"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_87555"]
+
+[node name="OniBeer_Sign" instance=ExtResource("1_tk5u1")]
+
+[node name="polySurface1415" parent="OniBeer_Sign" index="0"]
+material_override = ExtResource("2_87555")
+
+[node name="polySurface1451" parent="OniBeer_Sign" index="1"]
+material_override = ExtResource("2_87555")

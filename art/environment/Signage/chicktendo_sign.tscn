@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdh4lrgu4mbvf"]
+
+[ext_resource type="PackedScene" uid="uid://b04fndd17cr3i" path="res://art/environment/Signage/Chicktendo_Sign.glb" id="1_c6q55"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_lfd83"]
+
+[node name="Chicktendo_Sign" instance=ExtResource("1_c6q55")]
+
+[node name="polySurface1387" parent="Chicktendo_Sign" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+material_override = ExtResource("2_lfd83")
+
+[node name="polySurface1439" parent="Chicktendo_Sign" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+material_override = ExtResource("2_lfd83")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cym8u7iluhy60"]
+
+[ext_resource type="PackedScene" uid="uid://dex374r2upqhf" path="res://art/environment/Signage/KungPao_Sign.glb" id="1_ohflr"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_7y6kd"]
+
+[node name="KungPao_Sign" instance=ExtResource("1_ohflr")]
+
+[node name="polySurface1405" parent="KungPao_Sign" index="0"]
+material_override = ExtResource("2_7y6kd")
+
+[node name="polySurface1447" parent="KungPao_Sign" index="1"]
+material_override = ExtResource("2_7y6kd")

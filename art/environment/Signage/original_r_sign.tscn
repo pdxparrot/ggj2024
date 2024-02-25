@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmw8xr8250g60"]
+
+[ext_resource type="PackedScene" uid="uid://dsucibkeifemn" path="res://art/environment/Signage/OriginalR_Sign.glb" id="1_20gu3"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_ae4v7"]
+
+[node name="OriginalR_Sign" instance=ExtResource("1_20gu3")]
+
+[node name="polySurface1393" parent="OriginalR_Sign" index="0"]
+material_override = ExtResource("2_ae4v7")
+
+[node name="polySurface1443" parent="OriginalR_Sign" index="1"]
+material_override = ExtResource("2_ae4v7")

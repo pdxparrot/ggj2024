@@ -1,16 +1,16 @@
-[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://7i3n5tx2cdat"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b5ty20xfjkyyc"]
 
-[ext_resource type="Texture2D" uid="uid://1gpbj5em7kfa" path="res://art/environment/Street/Street_Layout_BaseColor02.png" id="1_sour4"]
-[ext_resource type="Texture2D" uid="uid://llya6ysxlb6t" path="res://art/environment/Street/Street_Layout_Metallic.png" id="2_63qhy"]
-[ext_resource type="Texture2D" uid="uid://cu6luv4g6r47j" path="res://art/environment/Street/Street_Layout_Normal.png" id="3_q8pbd"]
-[ext_resource type="Texture2D" uid="uid://b1d61q4lr103a" path="res://art/environment/Street/Street_Layout_Roughness.png" id="4_vyv04"]
+[ext_resource type="Texture2D" uid="uid://5qa5dpiud3c4" path="res://art/environment/Street/Street_Street_BaseColor03.png" id="1_lnoeh"]
+[ext_resource type="Texture2D" uid="uid://dvy62ug3nstsn" path="res://art/environment/Street/Street_Street_Metallic.1001.png" id="2_wow74"]
+[ext_resource type="Texture2D" uid="uid://m8fnicftwnat" path="res://art/environment/Street/Street_Street_Normal.1001.png" id="3_k3cjr"]
+[ext_resource type="Texture2D" uid="uid://lbaermiaskh5" path="res://art/environment/Street/Street_Street_Roughness.1001.png" id="4_xblig"]
 
 [resource]
-albedo_texture = ExtResource("1_sour4")
+albedo_texture = ExtResource("1_lnoeh")
 metallic = 1.0
-metallic_texture = ExtResource("2_63qhy")
+metallic_texture = ExtResource("2_wow74")
 metallic_texture_channel = 1
-roughness_texture = ExtResource("4_vyv04")
+roughness_texture = ExtResource("4_xblig")
 roughness_texture_channel = 2
 normal_enabled = true
-normal_texture = ExtResource("3_q8pbd")
+normal_texture = ExtResource("3_k3cjr")

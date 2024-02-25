@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bfijpu17aav6h"]
+[gd_scene load_steps=30 format=3 uid="uid://bfijpu17aav6h"]
 
 [ext_resource type="Script" path="res://scripts/Levels/Arena.cs" id="1_avn16"]
 [ext_resource type="PackedScene" uid="uid://bqaemh17p0ggb" path="res://scenes/world/blockout_area.tscn" id="1_gh4wy"]
@@ -14,9 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://wjhml1aqokde" path="res://art/environment/city blocks/Block_TokyoTower.tscn" id="7_bp0fe"]
 [ext_resource type="PackedScene" uid="uid://cqpdl6xvqm4vh" path="res://art/environment/city blocks/Block_SE_Long.tscn" id="7_dk7b2"]
 [ext_resource type="PackedScene" uid="uid://bq3p2s7oocwcs" path="res://art/environment/city blocks/Block_Trees.tscn" id="8_np4ox"]
+[ext_resource type="PackedScene" uid="uid://b7lrfk77nnoop" path="res://art/environment/tree/tree_cherry_blossom_large.tscn" id="9_lt7sk"]
 [ext_resource type="PackedScene" uid="uid://cmr2suug7clty" path="res://scenes/camera/follow_camera.tscn" id="10_6rkt4"]
-[ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Street.tscn" id="13_vddnr"]
-[ext_resource type="Material" uid="uid://7i3n5tx2cdat" path="res://art/environment/Street/Street.tres" id="14_5sxvs"]
+[ext_resource type="PackedScene" uid="uid://b3x53pfm1o35b" path="res://art/environment/tree/tree_cherry_blossom_medium.tscn" id="10_54a5c"]
+[ext_resource type="PackedScene" uid="uid://cco1tpf0ll783" path="res://art/environment/tree/tree_cherry_blossom_small.tscn" id="11_i88my"]
+[ext_resource type="PackedScene" uid="uid://cy1ujvlu70khs" path="res://art/environment/tree/tree_cherry_blossom_small_02.tscn" id="12_mkjqk"]
+[ext_resource type="PackedScene" uid="uid://dyf2l7jlyie4k" path="res://art/environment/city_v2.tscn" id="13_arcf7"]
+[ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Understreet/Street.tscn" id="13_vddnr"]
+[ext_resource type="Material" uid="uid://7i3n5tx2cdat" path="res://art/environment/Street/Understreet/UnderStreet.tres" id="14_5sxvs"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_woxuc"]
 properties/0/path = NodePath(".:_timeRemaining")
@@ -78,6 +83,7 @@ shadow_normal_bias = 5.339
 directional_shadow_max_distance = 1000.0
 
 [node name="CityBlocks" type="Node3D" parent="."]
+visible = false
 
 [node name="CityBlock_NE" parent="CityBlocks" instance=ExtResource("2_0k1go")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -52)
@@ -97,6 +103,68 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.9, -0.5, -26)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Block_Trees" parent="CityBlocks" instance=ExtResource("8_np4ox")]
+visible = false
+
+[node name="CherryBlossom_Trees" type="Node3D" parent="CityBlocks"]
+
+[node name="Tree_CherryBlossom_Large" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("9_lt7sk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7572, 0, 64.5649)
+
+[node name="Tree_CherryBlossom_Large2" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("9_lt7sk")]
+transform = Transform3D(-0.138171, 0, 0.990408, 0, 1, 0, -0.990408, 0, -0.138171, 37.8539, 0, 95.9061)
+
+[node name="Tree_CherryBlossom_Large3" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("9_lt7sk")]
+transform = Transform3D(0.509327, 0, -0.860573, 0, 1, 0, 0.860573, 0, 0.509327, 119.104, 0, 95.9061)
+
+[node name="Tree_CherryBlossom_Medium" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("10_54a5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.2872, 0, 36.1074)
+
+[node name="Tree_CherryBlossom_Medium4" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("10_54a5c")]
+transform = Transform3D(-0.0459906, 0, -0.998942, 0, 1, 0, 0.998942, 0, -0.0459906, -15.5739, 0, 95.3116)
+
+[node name="Tree_CherryBlossom_Medium5" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("10_54a5c")]
+transform = Transform3D(-0.994511, 0, 0.104633, 0, 1, 0, -0.104633, 0, -0.994511, 75.9278, 0, 95.3116)
+
+[node name="Tree_CherryBlossom_Medium2" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("10_54a5c")]
+transform = Transform3D(-0.694118, 0, 0.719861, 0, 1, 0, -0.719861, 0, -0.694118, -43.4151, 0, -39.2976)
+
+[node name="Tree_CherryBlossom_Medium3" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("10_54a5c")]
+transform = Transform3D(0.143095, 0, 0.989709, 0, 1, 0, -0.989709, 0, 0.143095, -43.1967, 0, -140.342)
+
+[node name="Tree_CherryBlossom_Small" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("11_i88my")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4512, 0, -8.56785)
+
+[node name="Tree_CherryBlossom_Small6" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("11_i88my")]
+transform = Transform3D(0.851663, 0, 0.52409, 0, 1, 0, -0.52409, 0, 0.851663, -101.778, 0, 95.626)
+
+[node name="Tree_CherryBlossom_Small3" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("11_i88my")]
+transform = Transform3D(0.705637, 0, 0.708574, 0, 1, 0, -0.708574, 0, 0.705637, 12.4004, 0, 94.8171)
+
+[node name="Tree_CherryBlossom_Small4" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("11_i88my")]
+transform = Transform3D(-0.184912, 0, 0.982755, 0, 1, 0, -0.982755, 0, -0.184912, 142.142, 0, 94.8171)
+
+[node name="Tree_CherryBlossom_Small5" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("11_i88my")]
+transform = Transform3D(0.540798, 0, -0.841152, 0, 1, 0, 0.841152, 0, 0.540798, -74.1214, 0, 95.1436)
+
+[node name="Tree_CherryBlossom_Small2" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("11_i88my")]
+transform = Transform3D(-0.840793, 0, -0.541356, 0, 1, 0, 0.541356, 0, -0.840793, -44.6396, 0, -103.931)
+
+[node name="Tree_CherryBlossom_Small02" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("12_mkjqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.0632, 0, 14.3818)
+
+[node name="Tree_CherryBlossom_Small06" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("12_mkjqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.326, 0, 96.1747)
+
+[node name="Tree_CherryBlossom_Small05" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("12_mkjqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.839, 0, 96.0427)
+
+[node name="Tree_CherryBlossom_Small04" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("12_mkjqk")]
+transform = Transform3D(0.841332, 0, -0.540519, 0, 1, 0, 0.540519, 0, 0.841332, -44.0632, 0, -168.621)
+
+[node name="Tree_CherryBlossom_Small03" parent="CityBlocks/CherryBlossom_Trees" instance=ExtResource("12_mkjqk")]
+transform = Transform3D(0.555977, 0, -0.831198, 0, 1, 0, 0.831198, 0, 0.555977, -44.6355, 0, -63.7291)
+
+[node name="CityV2" parent="." instance=ExtResource("13_arcf7")]
 
 [node name="Bounds" type="Node3D" parent="."]
 
@@ -154,8 +222,10 @@ visible = false
 visible = false
 
 [node name="Outer Area2" parent="World" instance=ExtResource("5_7uad2")]
+visible = false
 
 [node name="Street" parent="World" instance=ExtResource("13_vddnr")]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.3513, 0)
@@ -181,7 +251,7 @@ stream = ExtResource("5_qxvwr")
 volume_db = -45.0
 
 [node name="GameTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 240.0
 one_shot = true
 
 [node name="GameOverTimer" type="Timer" parent="."]

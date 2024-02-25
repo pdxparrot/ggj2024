@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm8pppr4t4gam"]
+
+[ext_resource type="PackedScene" uid="uid://wtl423gmfrmk" path="res://art/environment/Signage/Eggy_Sign.glb" id="1_j710h"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_wp6gh"]
+
+[node name="Eggy_Sign" instance=ExtResource("1_j710h")]
+
+[node name="polySurface1389" parent="Eggy_Sign" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+material_override = ExtResource("2_wp6gh")
+
+[node name="polySurface1437" parent="Eggy_Sign" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+material_override = ExtResource("2_wp6gh")

@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dben6hpmwlifc"]
+
+[ext_resource type="Texture2D" uid="uid://dialpqxmdy0sp" path="res://art/environment/city blocks v2/Sidewalk_BaseColor.png" id="1_fkxng"]
+[ext_resource type="Texture2D" uid="uid://3aowkcqshrjv" path="res://art/environment/city blocks v2/Sidewalk_Metallic.png" id="2_tj68c"]
+[ext_resource type="Texture2D" uid="uid://krltdlksnybm" path="res://art/environment/city blocks v2/Sidewalk_Normal.png" id="3_jivij"]
+[ext_resource type="Texture2D" uid="uid://1wb3l5uy4af1" path="res://art/environment/city blocks v2/Sidewalk__Roughness.png" id="4_lbgo5"]
+
+[resource]
+albedo_texture = ExtResource("1_fkxng")
+metallic = 1.0
+metallic_specular = 0.52
+metallic_texture = ExtResource("2_tj68c")
+metallic_texture_channel = 1
+roughness_texture = ExtResource("4_lbgo5")
+roughness_texture_channel = 2
+normal_enabled = true
+normal_texture = ExtResource("3_jivij")
+rim_enabled = true
+rim = 0.5
+rim_tint = 0.0

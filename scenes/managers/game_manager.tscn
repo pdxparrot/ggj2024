@@ -6,6 +6,6 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_hon76")
-_playerColors = PackedColorArray(0.662745, 0.403922, 0.231373, 1, 0.227451, 0.494118, 0, 1, 0.309804, 0.517647, 1, 1, 0.694118, 0.694118, 0, 1)
+_playerColors = PackedColorArray(0.878431, 0.117647, 0.133333, 1, 0.462745, 0.886275, 0.0980392, 1, 0.0941176, 0.333333, 0.886275, 1, 0.878431, 0.839216, 0.0941176, 1)
 _lobbyScene = ExtResource("2_kuoec")
 _gameScene = ExtResource("3_cl2g8")

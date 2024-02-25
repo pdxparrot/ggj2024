@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs4ib53hvb334"]
+
+[ext_resource type="PackedScene" uid="uid://egpw71v7abj" path="res://art/environment/Street/Street.glb" id="1_mha8g"]
+[ext_resource type="Material" uid="uid://b5ty20xfjkyyc" path="res://art/environment/Street/Street.tres" id="2_2x1rm"]
+
+[node name="Street" instance=ExtResource("1_mha8g")]
+
+[node name="Streets" parent="." index="0"]
+material_override = ExtResource("2_2x1rm")

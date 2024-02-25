@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsxq0bdchwhkt"]
+
+[ext_resource type="PackedScene" uid="uid://cdql5gej4gwvd" path="res://art/environment/city blocks v2/Block_SE02.glb" id="1_s165x"]
+[ext_resource type="Material" uid="uid://dgaiqboe2e0pl" path="res://art/environment/city blocks v2/City v2.tres" id="2_h4uu7"]
+[ext_resource type="Material" uid="uid://dben6hpmwlifc" path="res://art/environment/city blocks v2/Sidewalk.tres" id="3_ht00l"]
+[ext_resource type="PackedScene" uid="uid://cdh4lrgu4mbvf" path="res://art/environment/Signage/chicktendo_sign.tscn" id="4_abfgf"]
+[ext_resource type="PackedScene" uid="uid://dtssrt8srmv1u" path="res://art/environment/Signage/kaiju_sushi_sign.tscn" id="5_7i8p6"]
+[ext_resource type="PackedScene" uid="uid://cym8u7iluhy60" path="res://art/environment/Signage/kung_pao_sign.tscn" id="6_r4s5n"]
+[ext_resource type="PackedScene" uid="uid://byv4njcltdusa" path="res://art/environment/Signage/mecha_ramen_sign.tscn" id="7_3ooa2"]
+[ext_resource type="PackedScene" uid="uid://c1m6h8n4x51d5" path="res://art/environment/Signage/ninja_bar_sign.tscn" id="8_6d6hy"]
+
+[node name="Block_SE02" instance=ExtResource("1_s165x")]
+
+[node name="Building01_001" parent="SE_Block" index="0"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building13" parent="SE_Block" index="1"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building14" parent="SE_Block" index="2"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building16" parent="SE_Block" index="3"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building18" parent="SE_Block" index="4"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building19" parent="SE_Block" index="5"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building20" parent="SE_Block" index="6"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building23" parent="SE_Block" index="7"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="Building24" parent="SE_Block" index="8"]
+material_override = ExtResource("2_h4uu7")
+
+[node name="SE_BLock_Sidewalk" parent="SE_Block" index="9"]
+transform = Transform3D(1.78814e-07, -1, 0, 1, 1.78814e-07, 1.42109e-14, -7.10543e-15, -1.69407e-21, 1, 6.24959, 4.41902, 9.67221)
+material_override = ExtResource("3_ht00l")
+
+[node name="Signage" type="Node3D" parent="." index="1"]
+
+[node name="Chicktendo_Sign" parent="Signage" index="0" instance=ExtResource("4_abfgf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.93618, 24.9277, 14.0433)
+
+[node name="KaijuSushi_Sign" parent="Signage" index="1" instance=ExtResource("5_7i8p6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.7719, 14.9636, 16.5325)
+
+[node name="KungPao_Sign" parent="Signage" index="2" instance=ExtResource("6_r4s5n")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 10.7171, 18.8544, 8.79002)
+
+[node name="MechaRamen_Sign" parent="Signage" index="3" instance=ExtResource("7_3ooa2")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2.55458, 25.5715, 4.44942)
+
+[node name="NinjaBar_Sign" parent="Signage" index="4" instance=ExtResource("8_6d6hy")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 14.0826, 17.3495, 0.473138)

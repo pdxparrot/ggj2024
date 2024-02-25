@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmuwevpcbs12i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l4abj"]
+sky_top_color = Color(0.529412, 0.85098, 0.996078, 1)
+sky_horizon_color = Color(0.0627451, 0.313726, 0.709804, 1)
+ground_bottom_color = Color(0.392157, 0.431373, 0.482353, 1)
+ground_horizon_color = Color(0.196078, 0.239216, 0.733333, 1)
+
+[sub_resource type="Sky" id="Sky_k6yue"]
+sky_material = SubResource("ProceduralSkyMaterial_l4abj")
+
+[sub_resource type="Environment" id="Environment_f6qlm"]
+background_mode = 2
+sky = SubResource("Sky_k6yue")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_white = 16.0
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 2.0
+fog_light_color = Color(0.713726, 0.858824, 0.992157, 1)
+fog_light_energy = 0.1
+fog_density = 0.0015
+fog_height = 5.0
+fog_height_density = 0.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3ubp6"]
+
+[node name="WorldEnvironment_Bland" type="WorldEnvironment"]
+environment = SubResource("Environment_f6qlm")
+camera_attributes = SubResource("CameraAttributesPractical_3ubp6")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.133004, -0.797831, 0.588027, -0.394385, 0.586907, 0.707107, -0.909269, -0.137861, -0.392714, 47.0887, 42.6131, -8.2344)
+light_color = Color(1, 0.94902, 0.784314, 1)
+shadow_enabled = true
+shadow_bias = 10.0
+shadow_normal_bias = 5.339
+directional_shadow_max_distance = 1000.0

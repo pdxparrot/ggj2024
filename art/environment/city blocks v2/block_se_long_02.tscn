@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfrmyrdliusot"]
+
+[ext_resource type="PackedScene" uid="uid://cf6kc5suqt7xu" path="res://art/environment/city blocks v2/Block_SE_Long02.glb" id="1_hovw0"]
+[ext_resource type="Material" uid="uid://dgaiqboe2e0pl" path="res://art/environment/city blocks v2/City v2.tres" id="2_g2t33"]
+[ext_resource type="Material" uid="uid://dben6hpmwlifc" path="res://art/environment/city blocks v2/Sidewalk.tres" id="3_0lxjo"]
+[ext_resource type="PackedScene" uid="uid://c0uutfw5c0ouq" path="res://art/environment/Signage/catmon_sign.tscn" id="4_g1gme"]
+[ext_resource type="PackedScene" uid="uid://6ntibe2uiux2" path="res://art/environment/Signage/sega_sign.tscn" id="4_ljwb7"]
+[ext_resource type="PackedScene" uid="uid://cm8pppr4t4gam" path="res://art/environment/Signage/eggy_sign.tscn" id="5_817qf"]
+[ext_resource type="PackedScene" uid="uid://cdh4lrgu4mbvf" path="res://art/environment/Signage/chicktendo_sign.tscn" id="5_tcwhe"]
+[ext_resource type="PackedScene" uid="uid://c1m6h8n4x51d5" path="res://art/environment/Signage/ninja_bar_sign.tscn" id="8_uokkh"]
+[ext_resource type="PackedScene" uid="uid://dcsaih2wycs4k" path="res://art/environment/Signage/the_colonel_sign.tscn" id="9_he2us"]
+[ext_resource type="PackedScene" uid="uid://cym8u7iluhy60" path="res://art/environment/Signage/kung_pao_sign.tscn" id="10_an4j8"]
+
+[node name="Block_SE_Long02" instance=ExtResource("1_hovw0")]
+
+[node name="Building41" parent="SE_Block_Long_02" index="0"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building42" parent="SE_Block_Long_02" index="1"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building43" parent="SE_Block_Long_02" index="2"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building44" parent="SE_Block_Long_02" index="3"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building45" parent="SE_Block_Long_02" index="4"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building46" parent="SE_Block_Long_02" index="5"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building47" parent="SE_Block_Long_02" index="6"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building48" parent="SE_Block_Long_02" index="7"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building49" parent="SE_Block_Long_02" index="8"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building50" parent="SE_Block_Long_02" index="9"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building52" parent="SE_Block_Long_02" index="10"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building53" parent="SE_Block_Long_02" index="11"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building54" parent="SE_Block_Long_02" index="12"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building55" parent="SE_Block_Long_02" index="13"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building56" parent="SE_Block_Long_02" index="14"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building57" parent="SE_Block_Long_02" index="15"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building58" parent="SE_Block_Long_02" index="16"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building59" parent="SE_Block_Long_02" index="17"]
+material_override = ExtResource("2_g2t33")
+
+[node name="Building60" parent="SE_Block_Long_02" index="18"]
+material_override = ExtResource("2_g2t33")
+
+[node name="SE_Block_Long_Sidewalk2" parent="SE_Block_Long_02" index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+material_override = ExtResource("3_0lxjo")
+
+[node name="Signage" type="Node3D" parent="." index="1"]
+
+[node name="Catmon_Sign" parent="Signage" index="0" instance=ExtResource("4_g1gme")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1.36296, 21.3206, -12.3187)
+
+[node name="Chicktendo_Sign" parent="Signage" index="1" instance=ExtResource("5_tcwhe")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 13.6364, 24.7245, -34.8816)
+
+[node name="Sega_Sign3" parent="Signage" index="2" instance=ExtResource("4_ljwb7")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 10.2021, 19.1889, 37.774)
+
+[node name="Sega_Sign4" parent="Signage" index="3" instance=ExtResource("4_ljwb7")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 15.1878, 19.2084, 32.8016)
+
+[node name="Eggy_Sign" parent="Signage" index="4" instance=ExtResource("5_817qf")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.80616, 24.1562, 41.5848)
+
+[node name="Eggy_Sign2" parent="Signage" index="5" instance=ExtResource("5_817qf")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 4.52997, 20.7841, -27.7375)
+
+[node name="NinjaBar_Sign" parent="Signage" index="6" instance=ExtResource("8_uokkh")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 8.68265, 10.6624, -7.14826)
+
+[node name="TheColonel_Sign" parent="Signage" index="7" instance=ExtResource("9_he2us")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 13.1548, 20.1229, 17.8813)
+
+[node name="KungPao_Sign" parent="Signage" index="8" instance=ExtResource("10_an4j8")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 13.9409, 14.7313, -17.4054)

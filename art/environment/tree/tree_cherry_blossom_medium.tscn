@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3x53pfm1o35b"]
+
+[ext_resource type="PackedScene" uid="uid://bsukxgogbdmkd" path="res://art/environment/tree/Tree_CherryBlossom_Medium02.glb" id="1_ndkrn"]
+[ext_resource type="Material" uid="uid://4axk68qav0lt" path="res://art/environment/tree/Tree.tres" id="2_nhggw"]
+
+[node name="Tree_CherryBlossom_Medium" instance=ExtResource("1_ndkrn")]
+
+[node name="CanopyL12" parent="Tree_CherryBlossom_Medium02" index="0"]
+material_override = ExtResource("2_nhggw")
+
+[node name="CanopyM8" parent="Tree_CherryBlossom_Medium02" index="1"]
+material_override = ExtResource("2_nhggw")
+
+[node name="CanopyS10" parent="Tree_CherryBlossom_Medium02" index="2"]
+material_override = ExtResource("2_nhggw")
+
+[node name="CanopyS11" parent="Tree_CherryBlossom_Medium02" index="3"]
+material_override = ExtResource("2_nhggw")
+
+[node name="CanopyS9" parent="Tree_CherryBlossom_Medium02" index="4"]
+material_override = ExtResource("2_nhggw")
+
+[node name="TrunkM3" parent="Tree_CherryBlossom_Medium02" index="5"]
+material_override = ExtResource("2_nhggw")

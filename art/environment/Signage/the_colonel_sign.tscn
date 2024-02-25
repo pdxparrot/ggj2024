@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcsaih2wycs4k"]
+
+[ext_resource type="PackedScene" uid="uid://b54mhtqkhm8bv" path="res://art/environment/Signage/TheColonel_Sign.glb" id="2_a8xh3"]
+[ext_resource type="Material" uid="uid://d0s7vmp10slgr" path="res://art/environment/Signage/Signage.tres" id="2_cjj87"]
+
+[node name="TheColonel_Sign" instance=ExtResource("2_a8xh3")]
+
+[node name="polySurface1395" parent="TheColonel_Sign" index="0"]
+material_override = ExtResource("2_cjj87")
+
+[node name="polySurface1445" parent="TheColonel_Sign" index="1"]
+material_override = ExtResource("2_cjj87")

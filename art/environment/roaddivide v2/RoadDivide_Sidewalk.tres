@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bry1i3wnfp5l3"]
+
+[ext_resource type="Texture2D" uid="uid://dmluerh5n3k2h" path="res://art/environment/roaddivide v2/RoadDivide_sidewalk_BaseColor.png" id="1_14hwt"]
+[ext_resource type="Texture2D" uid="uid://3aowkcqshrjv" path="res://art/environment/city blocks v2/Sidewalk_Metallic.png" id="2_2qxlr"]
+[ext_resource type="Texture2D" uid="uid://bja2oopl167pb" path="res://art/environment/roaddivide v2/RoadDivide_sidewalk_Normal.png" id="3_8jjku"]
+[ext_resource type="Texture2D" uid="uid://230mgf3uedgo" path="res://art/environment/roaddivide v2/RoadDivide_sidewalk_Roughness.png" id="4_1y3gb"]
+
+[resource]
+albedo_texture = ExtResource("1_14hwt")
+metallic = 1.0
+metallic_specular = 0.52
+metallic_texture = ExtResource("2_2qxlr")
+metallic_texture_channel = 1
+roughness_texture = ExtResource("4_1y3gb")
+roughness_texture_channel = 2
+normal_enabled = true
+normal_texture = ExtResource("3_8jjku")
+rim_enabled = true
+rim = 0.5
+rim_tint = 0.0

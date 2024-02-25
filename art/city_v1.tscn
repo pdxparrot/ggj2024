@@ -1,0 +1,46 @@
+[gd_scene load_steps=12 format=3 uid="uid://fysihrci8vt7"]
+
+[ext_resource type="PackedScene" uid="uid://c8cuge5aw4jnc" path="res://scenes/world/city blocks/city_block_ne.tscn" id="1_0gtvc"]
+[ext_resource type="PackedScene" uid="uid://dakgiuqw5f5r4" path="res://art/environment/ring.tscn" id="2_hjv33"]
+[ext_resource type="PackedScene" uid="uid://c0mc35dmp0ctn" path="res://art/environment/city blocks/Block_SE.tscn" id="3_faxs8"]
+[ext_resource type="PackedScene" uid="uid://b7srpy7shquvl" path="res://art/environment/city blocks/Block_SW.tscn" id="4_mqv7n"]
+[ext_resource type="PackedScene" uid="uid://cqpdl6xvqm4vh" path="res://art/environment/city blocks/Block_SE_Long.tscn" id="5_ym6iv"]
+[ext_resource type="PackedScene" uid="uid://wjhml1aqokde" path="res://art/environment/city blocks/Block_TokyoTower.tscn" id="6_sgx73"]
+[ext_resource type="PackedScene" uid="uid://bq3p2s7oocwcs" path="res://art/environment/city blocks/Block_Trees.tscn" id="7_gxyhp"]
+[ext_resource type="PackedScene" uid="uid://by4ybynb3pbat" path="res://art/environment/Street/Understreet/Street.tscn" id="8_5qasq"]
+[ext_resource type="PackedScene" uid="uid://dg81r0f0u7vva" path="res://art/environment/Outer Area.tscn" id="9_y48e0"]
+[ext_resource type="Material" uid="uid://7i3n5tx2cdat" path="res://art/environment/Street/Understreet/UnderStreet.tres" id="10_jmi17"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q47wc"]
+size = Vector2(1000, 1000)
+
+[node name="CityV1" type="Node3D"]
+
+[node name="CityBlock_NE" parent="." instance=ExtResource("1_0gtvc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -52)
+
+[node name="Ring" parent="." instance=ExtResource("2_hjv33")]
+
+[node name="Block_SE" parent="." instance=ExtResource("3_faxs8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 52)
+
+[node name="Block_SW" parent="." instance=ExtResource("4_mqv7n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.9, -0.5, 52)
+
+[node name="Block_SE_Long" parent="." instance=ExtResource("5_ym6iv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.9, -0.5, -26)
+
+[node name="Block_TokyoTower" parent="." instance=ExtResource("6_sgx73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Block_Trees" parent="." instance=ExtResource("7_gxyhp")]
+
+[node name="Street" parent="." instance=ExtResource("8_5qasq")]
+
+[node name="Outer Area3" parent="." instance=ExtResource("9_y48e0")]
+
+[node name="Outer Street2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.3513, 0)
+material_override = ExtResource("10_jmi17")
+mesh = SubResource("PlaneMesh_q47wc")
+skeleton = NodePath("../../../World")
